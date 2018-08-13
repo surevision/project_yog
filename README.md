@@ -1,0 +1,7 @@
+# 概览
+
+    Hear me! King of Infinite Space! Planetmover! The Foundation of Fastness! Ruler of Earthquakes! The Vanquisher of Terror! The Creator of Panic! Destroyer! The Shining Victor! Son of Chaos and the Void! The Guardian of the Abyss! God of the Outermost Darkness! Lord of Dimensions! Riddle-knower! Guardian of The Secrets! Lord of the Labyrinth! Master of the Angles! God of the Whiporwills! Omegapoint! Lord of the Gate! Opener of the Way! The Oldest! All-in-One! The One by Life Prolonged! Umr At-Tawil! Iak-Sathath! Yog Sothoth NAFL'FTHAGN!!! Your servant call upon you!
+
+# 环境
+
+- Unity2017 3.1f1
