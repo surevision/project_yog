@@ -3,14 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteBase : MonoBehaviour {
+    public void update() {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 }

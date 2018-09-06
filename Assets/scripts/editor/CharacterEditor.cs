@@ -45,37 +45,57 @@ public class SpriteCharacterEditor : Editor
                 );
         }
 
-        // 根据图像修改行走图配置
         SpriteRenderer sr = m_Target.transform.GetComponent<SpriteRenderer>();
+        string frameName = m_Target.BaseFrame.name;
+        Regex reg = new Regex(@"^(.+)_(\d+)$");
+        Match match = reg.Match(frameName);
+        string fileName = match.Groups[1].Value;
+        int index = int.Parse(match.Groups[2].Value);
+
+        // 检测朝向变化
+        GameCharacterBase.DIRS[] dirs = {
+            GameCharacterBase.DIRS.DOWN,
+            GameCharacterBase.DIRS.LEFT,
+            GameCharacterBase.DIRS.RIGHT,
+            GameCharacterBase.DIRS.UP,
+        };
+        if (index / 3 != (int)m_Target.character.direction / 2 &&
+                sr.sprite == m_Target.BaseFrame) {
+
+            string path = string.Format("graphics/character/{0}", m_Target.character.characterName);
+            Sprite[] sprites = Resources.LoadAll<Sprite>(path);
+            int pattern = m_Target.character.pattern;
+            int i = ((int)m_Target.character.direction / 2 - 1) * 3 + (pattern % 3);
+            Debug.Log(string.Format("i, {0}", i));
+            m_Target.BaseFrame = sprites[i];
+            sr.sprite = sprites[i];
+        }
+
+        // 根据图像修改行走图配置
+
         if (sr.sprite != m_Target.BaseFrame)
         {
             // 改变状态前，使用该方法来记录操作，以便之后Undo
             Undo.RecordObject(m_Target, "Change Character BaseFrame");
             sr.sprite = m_Target.BaseFrame;
-            string frameName = sr.sprite.name;
-            Regex reg = new Regex(@"^(.+)_(\d+)$");
-            Match match = reg.Match(frameName);
-            string fileName = match.Groups[1].Value;
-            int index = int.Parse(match.Groups[2].Value);
             //Debug.Log("fileName:" + fileName + " index:" + index);
-            GameCharacterBase.DIRS[] dirs = { 
-                             GameCharacterBase.DIRS.DOWN,
-                             GameCharacterBase.DIRS.LEFT,
-                             GameCharacterBase.DIRS.RIGHT,
-                             GameCharacterBase.DIRS.UP,
-                         };
-            if (frameName.StartsWith("$") || frameName.StartsWith("!$") || frameName.StartsWith("$!"))
-            {
-                m_Target.character.characterName = fileName;
-                m_Target.character.characterIndex = 0;
-                m_Target.character.direction = dirs[(index / 3) % 3];
-            }
-            else
-            {
-                m_Target.character.characterName = fileName;
-                m_Target.character.characterIndex = (index / (3 * 4 * 4)) * 4 + ((index % (3 * 4)) / 3);
-                m_Target.character.direction = dirs[((index % (3 * 4 * 4)) / (3 * 4)) % (3 * 4)];
-            }
+            //if (frameName.StartsWith("$") || frameName.StartsWith("!$") || frameName.StartsWith("$!"))
+            //{
+            //    m_Target.character.characterName = fileName;
+            //    m_Target.character.characterIndex = 0;
+            //    m_Target.character.direction = dirs[(index / 3) % 3];
+            //}
+            //else
+            //{
+            //    m_Target.character.characterName = fileName;
+            //    m_Target.character.characterIndex = (index / (3 * 4 * 4)) * 4 + ((index % (3 * 4)) / 3);
+            //    m_Target.character.direction = dirs[((index % (3 * 4 * 4)) / (3 * 4)) % (3 * 4)];
+            //}
+
+            // 统一为单角色图片
+            m_Target.character.characterName = fileName;
+            m_Target.character.characterIndex = 0;
+            m_Target.character.direction = dirs[(index / 3) % 3];
             m_Target.character.pattern = index % 3;
         }
     }

@@ -11,6 +11,7 @@ public class GameCharacterBase
 {
     public enum DIRS
     {
+        NONE = 0,
         DOWN = 2,
         LEFT = 4,
         RIGHT = 6,
@@ -43,22 +44,22 @@ public class GameCharacterBase
     public int balloonId = -1;                      // 心情图标 ID
     public bool transparent = false;                // 透明状态
     
-    private int originalDirection = 2;               // 原方向
+    private DIRS originalDirection = DIRS.DOWN;      // 原方向
     private int originalPattern = 1;                 // 原图案
-    private int animeCount = 0;                      // 动画计数
+    private float animeCount = 0;                    // 动画计数
     private int stopCount = 0;                       // 停止计数
     private bool locked = false;                     // 锁的标志
-    private int prelockDirection = 0;                // 被锁上前的方向
+    private DIRS prelockDirection = DIRS.NONE;       // 被锁上前的方向
     private bool moveSucceed = true;                 // 移动成功的标志
 
 
     public GameCharacterBase() {
-        this.originalDirection = 2;               // 原方向
+        this.originalDirection = DIRS.DOWN;       // 原方向
         this.originalPattern = 1;                 // 原图案
         this.animeCount = 0;                      // 动画计数
         this.stopCount = 0;                       // 停止计数
         this.locked = false;                      // 锁的标志
-        this.prelockDirection = 0;                // 被锁上前的方向
+        this.prelockDirection = DIRS.NONE;        // 被锁上前的方向
         this.moveSucceed = true;                  // 移动成功的标志
     }
 
@@ -93,6 +94,32 @@ public class GameCharacterBase
     /// 更新脚步动画
     /// </summary>
     protected virtual void updateAnimation() {
+        this.updateAnimeCount();
+        if (this.animeCount > 18 - this.moveSpeed * 2) {
+            this.updateAnimePattern();  // 改图
+            this.animeCount = 0;
+        }
+    }
+
+    protected virtual void updateAnimeCount() {
+        if (this.isMoving() && this.stepAnime) {
+            // 行走的情况
+            this.animeCount += 1.5f;
+        } else if (this.stepAnime || this.pattern != this.originalPattern) {
+            this.animeCount += 1.0f;
+        }
+    }
+
+    /// <summary>
+    /// 更新动画计数
+    /// </summary>
+    protected virtual void updateAnimePattern() {
+        if (!this.stepAnime && this.stopCount > 0) {
+            // 无踏步动画
+            this.pattern = this.originalPattern;
+        } else {
+            this.pattern = (this.pattern + 1) % 4;
+        }
 
     }
 
