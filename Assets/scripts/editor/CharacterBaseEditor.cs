@@ -6,7 +6,7 @@ using UnityEditor;
 
 
 [CustomEditor(typeof(SpriteCharacter))]
-public class SpriteCharacterEditor : Editor
+public class CharacterBaseEditor : Editor
 {
     SpriteCharacter m_Target;
 

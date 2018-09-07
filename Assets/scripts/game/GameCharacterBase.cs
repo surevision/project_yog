@@ -32,7 +32,7 @@ public class GameCharacterBase
     public string characterName;                // 文件名
     public int characterIndex = 0;              // 图像序号
     public int moveFrequency = 0;               // 移动频度
-    public bool walkAnime = false;              // 步行动画
+    public bool walkAnime = true;              // 步行动画
     public bool stepAnime = false;              // 踏步动画
     public bool directionFix = false;           // 固定朝向
     public int opacity = 255;                   // 不透明度
@@ -120,6 +120,7 @@ public class GameCharacterBase
         } else {
             this.pattern = (this.pattern + 1) % 4;
         }
+        //Debug.Log(string.Format("pattern {0}", this, pattern));
 
     }
 
