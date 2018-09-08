@@ -6,22 +6,25 @@ using UnityEngine;
 public class SpriteCharacter : SpriteBase {
 
     [SerializeField]
-    public GameCharacterBase character;
-
-    [SerializeField]
     private Sprite baseFrame;
 
-    public Sprite BaseFrame
-    {
-        get
-        {
+    public Sprite BaseFrame {
+        get {
             return baseFrame;
         }
-        set
-        {
+        set {
             baseFrame = value;
         }
     }
+
+    //[SerializeField]
+    //private GameCharacterBase _character;
+
+    public virtual GameCharacterBase character 
+    {
+        get { return null; }
+    }
+
 
     private string characterName = "";
     private int characterIndex = 0;
@@ -32,14 +35,9 @@ public class SpriteCharacter : SpriteBase {
 
 	// Use this for initialization
 	void Start () {
-        //SpriteRenderer sr = transform.GetComponent<SpriteRenderer>();
-        //Sprite[] sprites = Resources.LoadAll<Sprite>("Characters/!Flame");
-        //Sprite sprite = sprites[10];
-        //sr.sprite = sprite;
-        
 	}
 
-    public void update() {
+    public override void update() {
         base.update();
         this.character.update();
         this.updateBitmap();

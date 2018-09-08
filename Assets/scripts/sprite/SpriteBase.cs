@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteBase : MonoBehaviour {
-    public void update() {
+    public virtual void update() {
 
     }
 }

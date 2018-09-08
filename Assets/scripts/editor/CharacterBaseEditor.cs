@@ -4,18 +4,19 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEditor;
 
-
-[CustomEditor(typeof(SpriteCharacter))]
 public class CharacterBaseEditor : Editor
 {
-    SpriteCharacter m_Target;
+    protected SpriteCharacter m_Target;
+
+    protected virtual void initTarget(Object target) {
+        // target可以让我们得到当前绘制的Component对象
+        m_Target = (SpriteCharacter)target;
+    }
 
     // 重载OnInspectorGUI()来绘制自己的编辑器
     public override void OnInspectorGUI()
     {
-        // target可以让我们得到当前绘制的Component对象
-        m_Target = (SpriteCharacter)target;
-
+        this.initTarget(target);
         // DrawDefaultInspector告诉Unity按照默认的方式绘制面板，这种方法在我们仅仅想要自定义某几个属性的时候会很有用
         DrawDefaultInspector();
         DrawMySpriteCharacterAttr();
@@ -29,7 +30,7 @@ public class CharacterBaseEditor : Editor
         realY = pos.y;
     }
 
-    void DrawMySpriteCharacterAttr()
+    private void DrawMySpriteCharacterAttr()
     {
         // 修改坐标
         if (m_Target.transform.position.x != m_Target.character.realX ||
@@ -78,20 +79,6 @@ public class CharacterBaseEditor : Editor
             // 改变状态前，使用该方法来记录操作，以便之后Undo
             Undo.RecordObject(m_Target, "Change Character BaseFrame");
             sr.sprite = m_Target.BaseFrame;
-            //Debug.Log("fileName:" + fileName + " index:" + index);
-            //if (frameName.StartsWith("$") || frameName.StartsWith("!$") || frameName.StartsWith("$!"))
-            //{
-            //    m_Target.character.characterName = fileName;
-            //    m_Target.character.characterIndex = 0;
-            //    m_Target.character.direction = dirs[(index / 3) % 3];
-            //}
-            //else
-            //{
-            //    m_Target.character.characterName = fileName;
-            //    m_Target.character.characterIndex = (index / (3 * 4 * 4)) * 4 + ((index % (3 * 4)) / 3);
-            //    m_Target.character.direction = dirs[((index % (3 * 4 * 4)) / (3 * 4)) % (3 * 4)];
-            //}
-
             // 统一为单角色图片
             m_Target.character.characterName = fileName;
             m_Target.character.characterIndex = 0;
