@@ -8,22 +8,27 @@ public class GamePlayer : GameCharacterBase {
     public override void update() {
         base.update();
         if (!this.isMoving()) {
+            float step = 0.125f;
             if (Input.GetKey(KeyCode.DownArrow)) {
                 Debug.Log("key down");
                 this.direction = DIRS.DOWN;
-                this.y -= 1;
+                this.y -= step;
+                this.increaseStep();
             }
             if (Input.GetKey(KeyCode.LeftArrow)) {
                 this.direction = DIRS.LEFT;
-                this.x -= 1;
+                this.x -= step;
+                this.increaseStep();
             }
             if (Input.GetKey(KeyCode.RightArrow)) {
                 this.direction = DIRS.RIGHT;
-                this.x += 1;
+                this.x += step;
+                this.increaseStep();
             }
             if (Input.GetKey(KeyCode.UpArrow)) {
                 this.direction = DIRS.UP;
-                this.y += 1;
+                this.y += step;
+                this.increaseStep();
             }
         }
     }

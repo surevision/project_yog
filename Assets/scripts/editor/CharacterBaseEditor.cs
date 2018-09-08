@@ -22,7 +22,7 @@ public class CharacterBaseEditor : Editor
         DrawMySpriteCharacterAttr();
     }
 
-    void CalcPos(Vector3 pos, ref int x, ref int y, ref float realX, ref float realY)
+    void CalcPos(Vector3 pos, ref float x, ref float y, ref float realX, ref float realY)
     {
         x = (int)pos.x;
         y = (int)pos.y;

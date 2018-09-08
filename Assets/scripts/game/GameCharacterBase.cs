@@ -24,8 +24,8 @@ public class GameCharacterBase
         UPPER
     }
     public int id;                              // ID
-    public int x;                               // 地图 X 坐标（格子坐标）
-    public int y;                               // 地图 Y 坐标（格子坐标）
+    public float x;                               // 地图 X 坐标（格子坐标）
+    public float y;                               // 地图 Y 坐标（格子坐标）
     public float realX;                         // 地图 X 坐标（实际像素坐标）
     public float realY;                         // 地图 Y 坐标（实际像素坐标）
     public int moveSpeed = 3;                   // 移动速度
@@ -90,6 +90,10 @@ public class GameCharacterBase
         return this.realX != this.x || this.realY != this.y;
     }
 
+    protected void increaseStep() {
+        this.stopCount = 0;
+    }
+
     /// <summary>
     /// 更新脚步动画
     /// </summary>
@@ -102,7 +106,7 @@ public class GameCharacterBase
     }
 
     protected virtual void updateAnimeCount() {
-        if (this.isMoving() && this.stepAnime) {
+        if (this.isMoving() && this.walkAnime) {
             // 行走的情况
             this.animeCount += 1.5f;
         } else if (this.stepAnime || this.pattern != this.originalPattern) {
