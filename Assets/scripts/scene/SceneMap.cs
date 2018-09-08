@@ -20,8 +20,14 @@ public class SceneMap : SceneBase {
         this.player.transform.SetParent(map.transform.Find("LayerEvents"));
     }
 
-    protected override void updateLogic () {
+    protected override void updateRender() {
+        base.updateRender();
+        this.player.GetComponent<SpritePlayer>().update();
+    }
+
+    protected override void updateLogic() {
         base.updateLogic();
-        this.player.GetComponent<SpriteCharacter>().update();
-	}
+        this.player.GetComponent<SpritePlayer>().character.update();
+    }
+
 }

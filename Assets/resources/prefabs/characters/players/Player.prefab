@@ -59,7 +59,7 @@ MonoBehaviour:
     y: 0
     realX: 0
     realY: 0
-    moveSpeed: 0
+    moveSpeed: 4
     characterName: $character_base_16x16
     characterIndex: 0
     moveFrequency: 0
@@ -74,7 +74,6 @@ MonoBehaviour:
     animationId: -1
     balloonId: -1
     transparent: 0
-    test: 0
 --- !u!212 &212349155828965428
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -28,11 +28,11 @@ public class GameCharacterBase
     public int y;                               // 地图 Y 坐标（格子坐标）
     public float realX;                         // 地图 X 坐标（实际像素坐标）
     public float realY;                         // 地图 Y 坐标（实际像素坐标）
-    public int moveSpeed;                       // 移动速度
+    public int moveSpeed = 3;                   // 移动速度
     public string characterName;                // 文件名
     public int characterIndex = 0;              // 图像序号
     public int moveFrequency = 0;               // 移动频度
-    public bool walkAnime = true;              // 步行动画
+    public bool walkAnime = true;               // 步行动画
     public bool stepAnime = false;              // 踏步动画
     public bool directionFix = false;           // 固定朝向
     public int opacity = 255;                   // 不透明度
@@ -67,7 +67,7 @@ public class GameCharacterBase
     /// 每帧移动距离
     /// </summary>
     /// <returns></returns>
-    private float distancePerFrame() {
+    protected float distancePerFrame() {
         return Mathf.Pow(2, this.moveSpeed) / 256.0f;
     }
 
@@ -149,5 +149,13 @@ public class GameCharacterBase
         if (!this.locked) {
             this.stopCount += 1;
         }
+    }
+
+    public float screenX() {
+        return this.realX;
+    }
+
+    public float screenY() {
+        return this.realY;
     }
 }

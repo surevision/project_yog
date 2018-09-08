@@ -39,9 +39,13 @@ public class SpriteCharacter : SpriteBase {
 
     public override void update() {
         base.update();
-        this.character.update();
         this.updateBitmap();
         this.updatePattern();
+        this.updatePosition();
+    }
+
+    private void updatePosition() {
+        this.transform.position = new Vector3(this.character.screenX(), this.character.screenY(), this.character.screenY());
     }
 
     /// <summary>

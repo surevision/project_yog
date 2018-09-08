@@ -5,13 +5,26 @@ using UnityEngine;
 
 [Serializable]
 public class GamePlayer : GameCharacterBase {
-    private int moveCnt = 0;
     public override void update() {
-        this.moveCnt += 1;
-        if (this.moveCnt > 60 * 1) {
-            this.moveCnt = 0;
-            this.direction = (DIRS)((((int)(this.direction) / 2 % 4) + 1) * 2);
-        }
         base.update();
+        if (!this.isMoving()) {
+            if (Input.GetKey(KeyCode.DownArrow)) {
+                Debug.Log("key down");
+                this.direction = DIRS.DOWN;
+                this.y -= 1;
+            }
+            if (Input.GetKey(KeyCode.LeftArrow)) {
+                this.direction = DIRS.LEFT;
+                this.x -= 1;
+            }
+            if (Input.GetKey(KeyCode.RightArrow)) {
+                this.direction = DIRS.RIGHT;
+                this.x += 1;
+            }
+            if (Input.GetKey(KeyCode.UpArrow)) {
+                this.direction = DIRS.UP;
+                this.y += 1;
+            }
+        }
     }
 }
