@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: cc653dfcb176f1f4097c4a90ed112a92
-timeCreated: 1535981796
-licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: rpg indoor tileset expansion 1 trans_0
@@ -230,11 +228,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 16
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -291,8 +290,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 176
+        x: 1
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -305,8 +304,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 176
+        x: 19
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -319,8 +318,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 176
+        x: 37
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -333,8 +332,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_3
       rect:
         serializedVersion: 2
-        x: 48
-        y: 176
+        x: 55
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -347,8 +346,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_4
       rect:
         serializedVersion: 2
-        x: 64
-        y: 176
+        x: 73
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -361,8 +360,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_5
       rect:
         serializedVersion: 2
-        x: 80
-        y: 176
+        x: 91
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -375,8 +374,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_6
       rect:
         serializedVersion: 2
-        x: 96
-        y: 176
+        x: 109
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -389,8 +388,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_7
       rect:
         serializedVersion: 2
-        x: 112
-        y: 176
+        x: 127
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -403,8 +402,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_8
       rect:
         serializedVersion: 2
-        x: 128
-        y: 176
+        x: 145
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -417,8 +416,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_9
       rect:
         serializedVersion: 2
-        x: 144
-        y: 176
+        x: 163
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -431,8 +430,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_10
       rect:
         serializedVersion: 2
-        x: 160
-        y: 176
+        x: 181
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -445,8 +444,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_11
       rect:
         serializedVersion: 2
-        x: 176
-        y: 176
+        x: 199
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -459,8 +458,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_12
       rect:
         serializedVersion: 2
-        x: 192
-        y: 176
+        x: 217
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -473,8 +472,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_13
       rect:
         serializedVersion: 2
-        x: 208
-        y: 176
+        x: 235
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -487,8 +486,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_14
       rect:
         serializedVersion: 2
-        x: 224
-        y: 176
+        x: 253
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -501,8 +500,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_15
       rect:
         serializedVersion: 2
-        x: 240
-        y: 176
+        x: 271
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -515,8 +514,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_16
       rect:
         serializedVersion: 2
-        x: 256
-        y: 176
+        x: 289
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -529,8 +528,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_17
       rect:
         serializedVersion: 2
-        x: 272
-        y: 176
+        x: 307
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -543,8 +542,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 160
+        x: 1
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -557,8 +556,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_19
       rect:
         serializedVersion: 2
-        x: 16
-        y: 160
+        x: 19
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -571,8 +570,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_20
       rect:
         serializedVersion: 2
-        x: 32
-        y: 160
+        x: 37
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -585,8 +584,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_21
       rect:
         serializedVersion: 2
-        x: 48
-        y: 160
+        x: 55
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -599,8 +598,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_22
       rect:
         serializedVersion: 2
-        x: 64
-        y: 160
+        x: 73
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -613,8 +612,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_23
       rect:
         serializedVersion: 2
-        x: 80
-        y: 160
+        x: 91
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -627,8 +626,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_24
       rect:
         serializedVersion: 2
-        x: 96
-        y: 160
+        x: 109
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -641,8 +640,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_25
       rect:
         serializedVersion: 2
-        x: 112
-        y: 160
+        x: 127
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -655,8 +654,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_26
       rect:
         serializedVersion: 2
-        x: 128
-        y: 160
+        x: 145
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -669,8 +668,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_27
       rect:
         serializedVersion: 2
-        x: 144
-        y: 160
+        x: 163
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -683,8 +682,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_28
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
+        x: 181
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -697,8 +696,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_29
       rect:
         serializedVersion: 2
-        x: 176
-        y: 160
+        x: 199
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -711,8 +710,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_30
       rect:
         serializedVersion: 2
-        x: 192
-        y: 160
+        x: 217
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -725,8 +724,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_31
       rect:
         serializedVersion: 2
-        x: 208
-        y: 160
+        x: 235
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -739,8 +738,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_32
       rect:
         serializedVersion: 2
-        x: 224
-        y: 160
+        x: 253
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -753,8 +752,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_33
       rect:
         serializedVersion: 2
-        x: 240
-        y: 160
+        x: 271
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -767,8 +766,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_34
       rect:
         serializedVersion: 2
-        x: 256
-        y: 160
+        x: 289
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -781,8 +780,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_35
       rect:
         serializedVersion: 2
-        x: 272
-        y: 160
+        x: 307
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -795,8 +794,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_36
       rect:
         serializedVersion: 2
-        x: 0
-        y: 144
+        x: 1
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -809,8 +808,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_37
       rect:
         serializedVersion: 2
-        x: 16
-        y: 144
+        x: 19
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -823,8 +822,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_38
       rect:
         serializedVersion: 2
-        x: 32
-        y: 144
+        x: 37
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -837,8 +836,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_39
       rect:
         serializedVersion: 2
-        x: 112
-        y: 144
+        x: 127
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -851,8 +850,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_40
       rect:
         serializedVersion: 2
-        x: 128
-        y: 144
+        x: 145
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -865,8 +864,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_41
       rect:
         serializedVersion: 2
-        x: 144
-        y: 144
+        x: 163
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -879,8 +878,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_42
       rect:
         serializedVersion: 2
-        x: 160
-        y: 144
+        x: 181
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -893,8 +892,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_43
       rect:
         serializedVersion: 2
-        x: 176
-        y: 144
+        x: 199
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -907,8 +906,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_44
       rect:
         serializedVersion: 2
-        x: 192
-        y: 144
+        x: 217
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -921,8 +920,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_45
       rect:
         serializedVersion: 2
-        x: 208
-        y: 144
+        x: 235
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -935,8 +934,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_46
       rect:
         serializedVersion: 2
-        x: 224
-        y: 144
+        x: 253
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -949,8 +948,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_47
       rect:
         serializedVersion: 2
-        x: 240
-        y: 144
+        x: 271
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -963,8 +962,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_48
       rect:
         serializedVersion: 2
-        x: 256
-        y: 144
+        x: 289
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -977,8 +976,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_49
       rect:
         serializedVersion: 2
-        x: 272
-        y: 144
+        x: 307
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -991,8 +990,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_50
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 1
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1005,8 +1004,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_51
       rect:
         serializedVersion: 2
-        x: 16
-        y: 128
+        x: 19
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1019,8 +1018,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_52
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
+        x: 37
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1033,8 +1032,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_53
       rect:
         serializedVersion: 2
-        x: 112
-        y: 128
+        x: 127
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1047,8 +1046,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_54
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 145
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1061,8 +1060,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_55
       rect:
         serializedVersion: 2
-        x: 144
-        y: 128
+        x: 163
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1075,8 +1074,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_56
       rect:
         serializedVersion: 2
-        x: 160
-        y: 128
+        x: 181
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1089,8 +1088,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_57
       rect:
         serializedVersion: 2
-        x: 176
-        y: 128
+        x: 199
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1103,8 +1102,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_58
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 217
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1117,8 +1116,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_59
       rect:
         serializedVersion: 2
-        x: 208
-        y: 128
+        x: 235
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1131,8 +1130,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_60
       rect:
         serializedVersion: 2
-        x: 224
-        y: 128
+        x: 253
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1145,8 +1144,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_61
       rect:
         serializedVersion: 2
-        x: 240
-        y: 128
+        x: 271
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1159,8 +1158,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_62
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
+        x: 289
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1173,8 +1172,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_63
       rect:
         serializedVersion: 2
-        x: 272
-        y: 128
+        x: 307
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1187,8 +1186,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_64
       rect:
         serializedVersion: 2
-        x: 0
-        y: 112
+        x: 1
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1201,8 +1200,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_65
       rect:
         serializedVersion: 2
-        x: 16
-        y: 112
+        x: 19
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1215,8 +1214,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_66
       rect:
         serializedVersion: 2
-        x: 32
-        y: 112
+        x: 37
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1229,8 +1228,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_67
       rect:
         serializedVersion: 2
-        x: 48
-        y: 112
+        x: 55
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1243,8 +1242,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_68
       rect:
         serializedVersion: 2
-        x: 64
-        y: 112
+        x: 73
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1257,8 +1256,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_69
       rect:
         serializedVersion: 2
-        x: 80
-        y: 112
+        x: 91
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1271,8 +1270,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_70
       rect:
         serializedVersion: 2
-        x: 96
-        y: 112
+        x: 109
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1285,8 +1284,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_71
       rect:
         serializedVersion: 2
-        x: 112
-        y: 112
+        x: 127
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1299,8 +1298,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_72
       rect:
         serializedVersion: 2
-        x: 128
-        y: 112
+        x: 145
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1313,8 +1312,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_73
       rect:
         serializedVersion: 2
-        x: 144
-        y: 112
+        x: 163
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1327,8 +1326,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_74
       rect:
         serializedVersion: 2
-        x: 160
-        y: 112
+        x: 181
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1341,8 +1340,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_75
       rect:
         serializedVersion: 2
-        x: 176
-        y: 112
+        x: 199
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1355,8 +1354,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_76
       rect:
         serializedVersion: 2
-        x: 192
-        y: 112
+        x: 217
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1369,8 +1368,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_77
       rect:
         serializedVersion: 2
-        x: 208
-        y: 112
+        x: 235
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1383,8 +1382,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_78
       rect:
         serializedVersion: 2
-        x: 224
-        y: 112
+        x: 253
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1397,8 +1396,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_79
       rect:
         serializedVersion: 2
-        x: 240
-        y: 112
+        x: 271
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1411,8 +1410,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_80
       rect:
         serializedVersion: 2
-        x: 256
-        y: 112
+        x: 289
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1425,8 +1424,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_81
       rect:
         serializedVersion: 2
-        x: 272
-        y: 112
+        x: 307
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1439,8 +1438,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_82
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 1
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1453,8 +1452,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_83
       rect:
         serializedVersion: 2
-        x: 16
-        y: 96
+        x: 19
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1467,8 +1466,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_84
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
+        x: 37
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1481,8 +1480,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_85
       rect:
         serializedVersion: 2
-        x: 48
-        y: 96
+        x: 55
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1495,8 +1494,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_86
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
+        x: 73
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1509,8 +1508,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_87
       rect:
         serializedVersion: 2
-        x: 80
-        y: 96
+        x: 91
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1523,8 +1522,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_88
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
+        x: 109
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1537,8 +1536,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_89
       rect:
         serializedVersion: 2
-        x: 112
-        y: 96
+        x: 127
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1551,8 +1550,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_90
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
+        x: 145
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1565,8 +1564,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_91
       rect:
         serializedVersion: 2
-        x: 144
-        y: 96
+        x: 163
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1579,8 +1578,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_92
       rect:
         serializedVersion: 2
-        x: 160
-        y: 96
+        x: 181
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1593,8 +1592,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_93
       rect:
         serializedVersion: 2
-        x: 176
-        y: 96
+        x: 199
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1607,8 +1606,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_94
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
+        x: 217
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1621,8 +1620,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_95
       rect:
         serializedVersion: 2
-        x: 208
-        y: 96
+        x: 235
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1635,8 +1634,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_96
       rect:
         serializedVersion: 2
-        x: 224
-        y: 96
+        x: 253
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1649,8 +1648,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_97
       rect:
         serializedVersion: 2
-        x: 240
-        y: 96
+        x: 271
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1663,8 +1662,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_98
       rect:
         serializedVersion: 2
-        x: 256
-        y: 96
+        x: 289
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1677,8 +1676,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_99
       rect:
         serializedVersion: 2
-        x: 272
-        y: 96
+        x: 307
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -1691,8 +1690,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_100
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
+        x: 1
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1705,8 +1704,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_101
       rect:
         serializedVersion: 2
-        x: 16
-        y: 80
+        x: 19
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1719,8 +1718,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_102
       rect:
         serializedVersion: 2
-        x: 32
-        y: 80
+        x: 37
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1733,8 +1732,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_103
       rect:
         serializedVersion: 2
-        x: 64
-        y: 80
+        x: 73
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1747,8 +1746,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_104
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
+        x: 91
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1761,8 +1760,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_105
       rect:
         serializedVersion: 2
-        x: 96
-        y: 80
+        x: 109
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1775,8 +1774,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_106
       rect:
         serializedVersion: 2
-        x: 112
-        y: 80
+        x: 127
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1789,8 +1788,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_107
       rect:
         serializedVersion: 2
-        x: 128
-        y: 80
+        x: 145
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1803,8 +1802,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_108
       rect:
         serializedVersion: 2
-        x: 144
-        y: 80
+        x: 163
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1817,8 +1816,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_109
       rect:
         serializedVersion: 2
-        x: 160
-        y: 80
+        x: 181
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1831,8 +1830,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_110
       rect:
         serializedVersion: 2
-        x: 176
-        y: 80
+        x: 199
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1845,8 +1844,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_111
       rect:
         serializedVersion: 2
-        x: 192
-        y: 80
+        x: 217
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1859,8 +1858,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_112
       rect:
         serializedVersion: 2
-        x: 208
-        y: 80
+        x: 235
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1873,8 +1872,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_113
       rect:
         serializedVersion: 2
-        x: 224
-        y: 80
+        x: 253
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1887,8 +1886,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_114
       rect:
         serializedVersion: 2
-        x: 240
-        y: 80
+        x: 271
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1901,8 +1900,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_115
       rect:
         serializedVersion: 2
-        x: 256
-        y: 80
+        x: 289
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1915,8 +1914,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_116
       rect:
         serializedVersion: 2
-        x: 272
-        y: 80
+        x: 307
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -1929,8 +1928,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_117
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 1
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -1943,8 +1942,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_118
       rect:
         serializedVersion: 2
-        x: 16
-        y: 64
+        x: 19
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -1957,8 +1956,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_119
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
+        x: 37
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -1971,8 +1970,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_120
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 73
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -1985,8 +1984,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_121
       rect:
         serializedVersion: 2
-        x: 80
-        y: 64
+        x: 91
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -1999,8 +1998,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_122
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
+        x: 109
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2013,8 +2012,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_123
       rect:
         serializedVersion: 2
-        x: 112
-        y: 64
+        x: 127
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2027,8 +2026,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_124
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 145
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2041,8 +2040,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_125
       rect:
         serializedVersion: 2
-        x: 144
-        y: 64
+        x: 163
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2055,8 +2054,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_126
       rect:
         serializedVersion: 2
-        x: 160
-        y: 64
+        x: 181
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2069,8 +2068,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_127
       rect:
         serializedVersion: 2
-        x: 176
-        y: 64
+        x: 199
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2083,8 +2082,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_128
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
+        x: 217
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2097,8 +2096,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_129
       rect:
         serializedVersion: 2
-        x: 208
-        y: 64
+        x: 235
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2111,8 +2110,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_130
       rect:
         serializedVersion: 2
-        x: 224
-        y: 64
+        x: 253
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2125,8 +2124,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_131
       rect:
         serializedVersion: 2
-        x: 240
-        y: 64
+        x: 271
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2139,8 +2138,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_132
       rect:
         serializedVersion: 2
-        x: 256
-        y: 64
+        x: 289
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2153,8 +2152,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_133
       rect:
         serializedVersion: 2
-        x: 272
-        y: 64
+        x: 307
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2167,8 +2166,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_134
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
+        x: 1
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2181,8 +2180,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_135
       rect:
         serializedVersion: 2
-        x: 16
-        y: 48
+        x: 19
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2195,8 +2194,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_136
       rect:
         serializedVersion: 2
-        x: 32
-        y: 48
+        x: 37
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2209,8 +2208,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_137
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
+        x: 55
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2223,8 +2222,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_138
       rect:
         serializedVersion: 2
-        x: 64
-        y: 48
+        x: 73
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2237,8 +2236,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_139
       rect:
         serializedVersion: 2
-        x: 112
-        y: 48
+        x: 127
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2251,8 +2250,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_140
       rect:
         serializedVersion: 2
-        x: 128
-        y: 48
+        x: 145
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2265,8 +2264,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_141
       rect:
         serializedVersion: 2
-        x: 144
-        y: 48
+        x: 163
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2279,8 +2278,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_142
       rect:
         serializedVersion: 2
-        x: 160
-        y: 48
+        x: 181
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2293,8 +2292,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_143
       rect:
         serializedVersion: 2
-        x: 176
-        y: 48
+        x: 199
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2307,8 +2306,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_144
       rect:
         serializedVersion: 2
-        x: 240
-        y: 48
+        x: 271
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2321,8 +2320,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_145
       rect:
         serializedVersion: 2
-        x: 256
-        y: 48
+        x: 289
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2335,8 +2334,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_146
       rect:
         serializedVersion: 2
-        x: 272
-        y: 48
+        x: 307
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2349,8 +2348,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_147
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 1
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2363,8 +2362,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_148
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
+        x: 19
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2377,8 +2376,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_149
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 37
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2391,8 +2390,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_150
       rect:
         serializedVersion: 2
-        x: 48
-        y: 32
+        x: 55
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2405,8 +2404,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_151
       rect:
         serializedVersion: 2
-        x: 112
-        y: 32
+        x: 127
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2419,8 +2418,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_152
       rect:
         serializedVersion: 2
-        x: 128
-        y: 32
+        x: 145
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2433,8 +2432,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_153
       rect:
         serializedVersion: 2
-        x: 144
-        y: 32
+        x: 163
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2447,8 +2446,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_154
       rect:
         serializedVersion: 2
-        x: 160
-        y: 32
+        x: 181
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2461,8 +2460,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_155
       rect:
         serializedVersion: 2
-        x: 176
-        y: 32
+        x: 199
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2475,8 +2474,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_156
       rect:
         serializedVersion: 2
-        x: 240
-        y: 32
+        x: 271
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2489,8 +2488,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_157
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
+        x: 1
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2503,8 +2502,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_158
       rect:
         serializedVersion: 2
-        x: 16
-        y: 16
+        x: 19
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2517,8 +2516,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_159
       rect:
         serializedVersion: 2
-        x: 32
-        y: 16
+        x: 37
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2531,8 +2530,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_160
       rect:
         serializedVersion: 2
-        x: 48
-        y: 16
+        x: 55
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2545,8 +2544,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_161
       rect:
         serializedVersion: 2
-        x: 64
-        y: 16
+        x: 73
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2559,8 +2558,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_162
       rect:
         serializedVersion: 2
-        x: 80
-        y: 16
+        x: 91
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2573,8 +2572,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_163
       rect:
         serializedVersion: 2
-        x: 96
-        y: 16
+        x: 109
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2587,8 +2586,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_164
       rect:
         serializedVersion: 2
-        x: 112
-        y: 16
+        x: 127
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2601,8 +2600,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_165
       rect:
         serializedVersion: 2
-        x: 128
-        y: 16
+        x: 145
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2615,8 +2614,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_166
       rect:
         serializedVersion: 2
-        x: 144
-        y: 16
+        x: 163
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2629,8 +2628,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_167
       rect:
         serializedVersion: 2
-        x: 160
-        y: 16
+        x: 181
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2643,8 +2642,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_168
       rect:
         serializedVersion: 2
-        x: 176
-        y: 16
+        x: 199
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2657,8 +2656,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_169
       rect:
         serializedVersion: 2
-        x: 240
-        y: 16
+        x: 271
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2671,8 +2670,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_170
       rect:
         serializedVersion: 2
-        x: 272
-        y: 16
+        x: 307
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2685,8 +2684,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_171
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 1
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2699,8 +2698,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_172
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
+        x: 19
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2713,8 +2712,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_173
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 37
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2727,8 +2726,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_174
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
+        x: 55
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2741,8 +2740,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_175
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 73
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2755,8 +2754,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_176
       rect:
         serializedVersion: 2
-        x: 80
-        y: 0
+        x: 91
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2769,8 +2768,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_177
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
+        x: 109
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2783,8 +2782,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_178
       rect:
         serializedVersion: 2
-        x: 112
-        y: 0
+        x: 127
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2797,8 +2796,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_179
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
+        x: 145
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2811,8 +2810,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_180
       rect:
         serializedVersion: 2
-        x: 144
-        y: 0
+        x: 163
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2825,8 +2824,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_181
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
+        x: 181
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2839,8 +2838,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_182
       rect:
         serializedVersion: 2
-        x: 176
-        y: 0
+        x: 199
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2853,8 +2852,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_183
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
+        x: 217
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2867,8 +2866,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_184
       rect:
         serializedVersion: 2
-        x: 208
-        y: 0
+        x: 235
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2881,8 +2880,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_185
       rect:
         serializedVersion: 2
-        x: 224
-        y: 0
+        x: 253
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2895,8 +2894,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_186
       rect:
         serializedVersion: 2
-        x: 240
-        y: 0
+        x: 271
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -2909,8 +2908,8 @@ TextureImporter:
       name: rpg indoor tileset expansion 1 trans_187
       rect:
         serializedVersion: 2
-        x: 272
-        y: 0
+        x: 307
+        y: 1
         width: 16
         height: 16
       alignment: 0

@@ -8,7 +8,7 @@ public class GamePlayer : GameCharacterBase {
     public override void update() {
         base.update();
         if (!this.isMoving()) {
-            float step = 0.125f;
+            float step = 0.16f / 16.0f;
             if (Input.GetKey(KeyCode.DownArrow)) {
                 Debug.Log("key down");
                 this.direction = DIRS.DOWN;

@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 04b7eef1d845bd245bbdb36ac1238ebd
-timeCreated: 1536069878
-licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: tileset_16x16_interior_0
@@ -240,11 +238,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 16
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -301,8 +300,8 @@ TextureImporter:
       name: tileset_16x16_interior_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 240
+        x: 1
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -315,8 +314,8 @@ TextureImporter:
       name: tileset_16x16_interior_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 240
+        x: 19
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -329,8 +328,8 @@ TextureImporter:
       name: tileset_16x16_interior_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 240
+        x: 37
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -343,8 +342,8 @@ TextureImporter:
       name: tileset_16x16_interior_3
       rect:
         serializedVersion: 2
-        x: 48
-        y: 240
+        x: 55
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -357,8 +356,8 @@ TextureImporter:
       name: tileset_16x16_interior_4
       rect:
         serializedVersion: 2
-        x: 64
-        y: 240
+        x: 73
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -371,8 +370,8 @@ TextureImporter:
       name: tileset_16x16_interior_5
       rect:
         serializedVersion: 2
-        x: 80
-        y: 240
+        x: 91
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -385,8 +384,8 @@ TextureImporter:
       name: tileset_16x16_interior_6
       rect:
         serializedVersion: 2
-        x: 96
-        y: 240
+        x: 109
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -399,8 +398,8 @@ TextureImporter:
       name: tileset_16x16_interior_7
       rect:
         serializedVersion: 2
-        x: 112
-        y: 240
+        x: 127
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -413,8 +412,8 @@ TextureImporter:
       name: tileset_16x16_interior_8
       rect:
         serializedVersion: 2
-        x: 128
-        y: 240
+        x: 145
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -427,8 +426,8 @@ TextureImporter:
       name: tileset_16x16_interior_9
       rect:
         serializedVersion: 2
-        x: 144
-        y: 240
+        x: 163
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -441,8 +440,8 @@ TextureImporter:
       name: tileset_16x16_interior_10
       rect:
         serializedVersion: 2
-        x: 160
-        y: 240
+        x: 181
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -455,8 +454,8 @@ TextureImporter:
       name: tileset_16x16_interior_11
       rect:
         serializedVersion: 2
-        x: 176
-        y: 240
+        x: 199
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -469,8 +468,8 @@ TextureImporter:
       name: tileset_16x16_interior_12
       rect:
         serializedVersion: 2
-        x: 192
-        y: 240
+        x: 217
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -483,8 +482,8 @@ TextureImporter:
       name: tileset_16x16_interior_13
       rect:
         serializedVersion: 2
-        x: 208
-        y: 240
+        x: 235
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -497,8 +496,8 @@ TextureImporter:
       name: tileset_16x16_interior_14
       rect:
         serializedVersion: 2
-        x: 224
-        y: 240
+        x: 253
+        y: 271
         width: 16
         height: 16
       alignment: 0
@@ -511,8 +510,8 @@ TextureImporter:
       name: tileset_16x16_interior_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 224
+        x: 1
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -525,8 +524,8 @@ TextureImporter:
       name: tileset_16x16_interior_16
       rect:
         serializedVersion: 2
-        x: 16
-        y: 224
+        x: 19
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -539,8 +538,8 @@ TextureImporter:
       name: tileset_16x16_interior_17
       rect:
         serializedVersion: 2
-        x: 32
-        y: 224
+        x: 37
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -553,8 +552,8 @@ TextureImporter:
       name: tileset_16x16_interior_18
       rect:
         serializedVersion: 2
-        x: 48
-        y: 224
+        x: 55
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -567,8 +566,8 @@ TextureImporter:
       name: tileset_16x16_interior_19
       rect:
         serializedVersion: 2
-        x: 64
-        y: 224
+        x: 73
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -581,8 +580,8 @@ TextureImporter:
       name: tileset_16x16_interior_20
       rect:
         serializedVersion: 2
-        x: 80
-        y: 224
+        x: 91
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -595,8 +594,8 @@ TextureImporter:
       name: tileset_16x16_interior_21
       rect:
         serializedVersion: 2
-        x: 96
-        y: 224
+        x: 109
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -609,8 +608,8 @@ TextureImporter:
       name: tileset_16x16_interior_22
       rect:
         serializedVersion: 2
-        x: 112
-        y: 224
+        x: 127
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -623,8 +622,8 @@ TextureImporter:
       name: tileset_16x16_interior_23
       rect:
         serializedVersion: 2
-        x: 128
-        y: 224
+        x: 145
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -637,8 +636,8 @@ TextureImporter:
       name: tileset_16x16_interior_24
       rect:
         serializedVersion: 2
-        x: 144
-        y: 224
+        x: 163
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -651,8 +650,8 @@ TextureImporter:
       name: tileset_16x16_interior_25
       rect:
         serializedVersion: 2
-        x: 160
-        y: 224
+        x: 181
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -665,8 +664,8 @@ TextureImporter:
       name: tileset_16x16_interior_26
       rect:
         serializedVersion: 2
-        x: 176
-        y: 224
+        x: 199
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -679,8 +678,8 @@ TextureImporter:
       name: tileset_16x16_interior_27
       rect:
         serializedVersion: 2
-        x: 192
-        y: 224
+        x: 217
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -693,8 +692,8 @@ TextureImporter:
       name: tileset_16x16_interior_28
       rect:
         serializedVersion: 2
-        x: 208
-        y: 224
+        x: 235
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -707,8 +706,8 @@ TextureImporter:
       name: tileset_16x16_interior_29
       rect:
         serializedVersion: 2
-        x: 224
-        y: 224
+        x: 253
+        y: 253
         width: 16
         height: 16
       alignment: 0
@@ -721,8 +720,8 @@ TextureImporter:
       name: tileset_16x16_interior_30
       rect:
         serializedVersion: 2
-        x: 0
-        y: 208
+        x: 1
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -735,8 +734,8 @@ TextureImporter:
       name: tileset_16x16_interior_31
       rect:
         serializedVersion: 2
-        x: 16
-        y: 208
+        x: 19
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -749,8 +748,8 @@ TextureImporter:
       name: tileset_16x16_interior_32
       rect:
         serializedVersion: 2
-        x: 32
-        y: 208
+        x: 37
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -763,8 +762,8 @@ TextureImporter:
       name: tileset_16x16_interior_33
       rect:
         serializedVersion: 2
-        x: 48
-        y: 208
+        x: 55
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -777,8 +776,8 @@ TextureImporter:
       name: tileset_16x16_interior_34
       rect:
         serializedVersion: 2
-        x: 64
-        y: 208
+        x: 73
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -791,8 +790,8 @@ TextureImporter:
       name: tileset_16x16_interior_35
       rect:
         serializedVersion: 2
-        x: 80
-        y: 208
+        x: 91
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -805,8 +804,8 @@ TextureImporter:
       name: tileset_16x16_interior_36
       rect:
         serializedVersion: 2
-        x: 96
-        y: 208
+        x: 109
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -819,8 +818,8 @@ TextureImporter:
       name: tileset_16x16_interior_37
       rect:
         serializedVersion: 2
-        x: 112
-        y: 208
+        x: 127
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -833,8 +832,8 @@ TextureImporter:
       name: tileset_16x16_interior_38
       rect:
         serializedVersion: 2
-        x: 128
-        y: 208
+        x: 145
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -847,8 +846,8 @@ TextureImporter:
       name: tileset_16x16_interior_39
       rect:
         serializedVersion: 2
-        x: 144
-        y: 208
+        x: 163
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -861,8 +860,8 @@ TextureImporter:
       name: tileset_16x16_interior_40
       rect:
         serializedVersion: 2
-        x: 160
-        y: 208
+        x: 181
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -875,8 +874,8 @@ TextureImporter:
       name: tileset_16x16_interior_41
       rect:
         serializedVersion: 2
-        x: 176
-        y: 208
+        x: 199
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -889,8 +888,8 @@ TextureImporter:
       name: tileset_16x16_interior_42
       rect:
         serializedVersion: 2
-        x: 192
-        y: 208
+        x: 217
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -903,8 +902,8 @@ TextureImporter:
       name: tileset_16x16_interior_43
       rect:
         serializedVersion: 2
-        x: 208
-        y: 208
+        x: 235
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -917,8 +916,8 @@ TextureImporter:
       name: tileset_16x16_interior_44
       rect:
         serializedVersion: 2
-        x: 224
-        y: 208
+        x: 253
+        y: 235
         width: 16
         height: 16
       alignment: 0
@@ -931,8 +930,8 @@ TextureImporter:
       name: tileset_16x16_interior_45
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 1
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -945,8 +944,8 @@ TextureImporter:
       name: tileset_16x16_interior_46
       rect:
         serializedVersion: 2
-        x: 16
-        y: 192
+        x: 19
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -959,8 +958,8 @@ TextureImporter:
       name: tileset_16x16_interior_47
       rect:
         serializedVersion: 2
-        x: 32
-        y: 192
+        x: 37
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -973,8 +972,8 @@ TextureImporter:
       name: tileset_16x16_interior_48
       rect:
         serializedVersion: 2
-        x: 48
-        y: 192
+        x: 55
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -987,8 +986,8 @@ TextureImporter:
       name: tileset_16x16_interior_49
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 73
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1001,8 +1000,8 @@ TextureImporter:
       name: tileset_16x16_interior_50
       rect:
         serializedVersion: 2
-        x: 80
-        y: 192
+        x: 91
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1015,8 +1014,8 @@ TextureImporter:
       name: tileset_16x16_interior_51
       rect:
         serializedVersion: 2
-        x: 96
-        y: 192
+        x: 109
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1029,8 +1028,8 @@ TextureImporter:
       name: tileset_16x16_interior_52
       rect:
         serializedVersion: 2
-        x: 112
-        y: 192
+        x: 127
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1043,8 +1042,8 @@ TextureImporter:
       name: tileset_16x16_interior_53
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 145
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1057,8 +1056,8 @@ TextureImporter:
       name: tileset_16x16_interior_54
       rect:
         serializedVersion: 2
-        x: 144
-        y: 192
+        x: 163
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1071,8 +1070,8 @@ TextureImporter:
       name: tileset_16x16_interior_55
       rect:
         serializedVersion: 2
-        x: 160
-        y: 192
+        x: 181
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1085,8 +1084,8 @@ TextureImporter:
       name: tileset_16x16_interior_56
       rect:
         serializedVersion: 2
-        x: 176
-        y: 192
+        x: 199
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1099,8 +1098,8 @@ TextureImporter:
       name: tileset_16x16_interior_57
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 217
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1113,8 +1112,8 @@ TextureImporter:
       name: tileset_16x16_interior_58
       rect:
         serializedVersion: 2
-        x: 208
-        y: 192
+        x: 235
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1127,8 +1126,8 @@ TextureImporter:
       name: tileset_16x16_interior_59
       rect:
         serializedVersion: 2
-        x: 224
-        y: 192
+        x: 253
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1141,8 +1140,8 @@ TextureImporter:
       name: tileset_16x16_interior_60
       rect:
         serializedVersion: 2
-        x: 240
-        y: 192
+        x: 271
+        y: 217
         width: 16
         height: 16
       alignment: 0
@@ -1155,8 +1154,8 @@ TextureImporter:
       name: tileset_16x16_interior_61
       rect:
         serializedVersion: 2
-        x: 0
-        y: 176
+        x: 1
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1169,8 +1168,8 @@ TextureImporter:
       name: tileset_16x16_interior_62
       rect:
         serializedVersion: 2
-        x: 16
-        y: 176
+        x: 19
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1183,8 +1182,8 @@ TextureImporter:
       name: tileset_16x16_interior_63
       rect:
         serializedVersion: 2
-        x: 32
-        y: 176
+        x: 37
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1197,8 +1196,8 @@ TextureImporter:
       name: tileset_16x16_interior_64
       rect:
         serializedVersion: 2
-        x: 80
-        y: 176
+        x: 91
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1211,8 +1210,8 @@ TextureImporter:
       name: tileset_16x16_interior_65
       rect:
         serializedVersion: 2
-        x: 96
-        y: 176
+        x: 109
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1225,8 +1224,8 @@ TextureImporter:
       name: tileset_16x16_interior_66
       rect:
         serializedVersion: 2
-        x: 112
-        y: 176
+        x: 127
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1239,8 +1238,8 @@ TextureImporter:
       name: tileset_16x16_interior_67
       rect:
         serializedVersion: 2
-        x: 128
-        y: 176
+        x: 145
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1253,8 +1252,8 @@ TextureImporter:
       name: tileset_16x16_interior_68
       rect:
         serializedVersion: 2
-        x: 144
-        y: 176
+        x: 163
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1267,8 +1266,8 @@ TextureImporter:
       name: tileset_16x16_interior_69
       rect:
         serializedVersion: 2
-        x: 160
-        y: 176
+        x: 181
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1281,8 +1280,8 @@ TextureImporter:
       name: tileset_16x16_interior_70
       rect:
         serializedVersion: 2
-        x: 176
-        y: 176
+        x: 199
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1295,8 +1294,8 @@ TextureImporter:
       name: tileset_16x16_interior_71
       rect:
         serializedVersion: 2
-        x: 192
-        y: 176
+        x: 217
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1309,8 +1308,8 @@ TextureImporter:
       name: tileset_16x16_interior_72
       rect:
         serializedVersion: 2
-        x: 208
-        y: 176
+        x: 235
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1323,8 +1322,8 @@ TextureImporter:
       name: tileset_16x16_interior_73
       rect:
         serializedVersion: 2
-        x: 224
-        y: 176
+        x: 253
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1337,8 +1336,8 @@ TextureImporter:
       name: tileset_16x16_interior_74
       rect:
         serializedVersion: 2
-        x: 240
-        y: 176
+        x: 271
+        y: 199
         width: 16
         height: 16
       alignment: 0
@@ -1351,8 +1350,8 @@ TextureImporter:
       name: tileset_16x16_interior_75
       rect:
         serializedVersion: 2
-        x: 0
-        y: 160
+        x: 1
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1365,8 +1364,8 @@ TextureImporter:
       name: tileset_16x16_interior_76
       rect:
         serializedVersion: 2
-        x: 16
-        y: 160
+        x: 19
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1379,8 +1378,8 @@ TextureImporter:
       name: tileset_16x16_interior_77
       rect:
         serializedVersion: 2
-        x: 32
-        y: 160
+        x: 37
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1393,8 +1392,8 @@ TextureImporter:
       name: tileset_16x16_interior_78
       rect:
         serializedVersion: 2
-        x: 48
-        y: 160
+        x: 55
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1407,8 +1406,8 @@ TextureImporter:
       name: tileset_16x16_interior_79
       rect:
         serializedVersion: 2
-        x: 64
-        y: 160
+        x: 73
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1421,8 +1420,8 @@ TextureImporter:
       name: tileset_16x16_interior_80
       rect:
         serializedVersion: 2
-        x: 80
-        y: 160
+        x: 91
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1435,8 +1434,8 @@ TextureImporter:
       name: tileset_16x16_interior_81
       rect:
         serializedVersion: 2
-        x: 96
-        y: 160
+        x: 109
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1449,8 +1448,8 @@ TextureImporter:
       name: tileset_16x16_interior_82
       rect:
         serializedVersion: 2
-        x: 112
-        y: 160
+        x: 127
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1463,8 +1462,8 @@ TextureImporter:
       name: tileset_16x16_interior_83
       rect:
         serializedVersion: 2
-        x: 128
-        y: 160
+        x: 145
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1477,8 +1476,8 @@ TextureImporter:
       name: tileset_16x16_interior_84
       rect:
         serializedVersion: 2
-        x: 144
-        y: 160
+        x: 163
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1491,8 +1490,8 @@ TextureImporter:
       name: tileset_16x16_interior_85
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
+        x: 181
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1505,8 +1504,8 @@ TextureImporter:
       name: tileset_16x16_interior_86
       rect:
         serializedVersion: 2
-        x: 176
-        y: 160
+        x: 199
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1519,8 +1518,8 @@ TextureImporter:
       name: tileset_16x16_interior_87
       rect:
         serializedVersion: 2
-        x: 192
-        y: 160
+        x: 217
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1533,8 +1532,8 @@ TextureImporter:
       name: tileset_16x16_interior_88
       rect:
         serializedVersion: 2
-        x: 208
-        y: 160
+        x: 235
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1547,8 +1546,8 @@ TextureImporter:
       name: tileset_16x16_interior_89
       rect:
         serializedVersion: 2
-        x: 224
-        y: 160
+        x: 253
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1561,8 +1560,8 @@ TextureImporter:
       name: tileset_16x16_interior_90
       rect:
         serializedVersion: 2
-        x: 240
-        y: 160
+        x: 271
+        y: 181
         width: 16
         height: 16
       alignment: 0
@@ -1575,8 +1574,8 @@ TextureImporter:
       name: tileset_16x16_interior_91
       rect:
         serializedVersion: 2
-        x: 0
-        y: 144
+        x: 1
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1589,8 +1588,8 @@ TextureImporter:
       name: tileset_16x16_interior_92
       rect:
         serializedVersion: 2
-        x: 16
-        y: 144
+        x: 19
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1603,8 +1602,8 @@ TextureImporter:
       name: tileset_16x16_interior_93
       rect:
         serializedVersion: 2
-        x: 32
-        y: 144
+        x: 37
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1617,8 +1616,8 @@ TextureImporter:
       name: tileset_16x16_interior_94
       rect:
         serializedVersion: 2
-        x: 48
-        y: 144
+        x: 55
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1631,8 +1630,8 @@ TextureImporter:
       name: tileset_16x16_interior_95
       rect:
         serializedVersion: 2
-        x: 64
-        y: 144
+        x: 73
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1645,8 +1644,8 @@ TextureImporter:
       name: tileset_16x16_interior_96
       rect:
         serializedVersion: 2
-        x: 80
-        y: 144
+        x: 91
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1659,8 +1658,8 @@ TextureImporter:
       name: tileset_16x16_interior_97
       rect:
         serializedVersion: 2
-        x: 96
-        y: 144
+        x: 109
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1673,8 +1672,8 @@ TextureImporter:
       name: tileset_16x16_interior_98
       rect:
         serializedVersion: 2
-        x: 112
-        y: 144
+        x: 127
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1687,8 +1686,8 @@ TextureImporter:
       name: tileset_16x16_interior_99
       rect:
         serializedVersion: 2
-        x: 128
-        y: 144
+        x: 145
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1701,8 +1700,8 @@ TextureImporter:
       name: tileset_16x16_interior_100
       rect:
         serializedVersion: 2
-        x: 160
-        y: 144
+        x: 181
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1715,8 +1714,8 @@ TextureImporter:
       name: tileset_16x16_interior_101
       rect:
         serializedVersion: 2
-        x: 176
-        y: 144
+        x: 199
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1729,8 +1728,8 @@ TextureImporter:
       name: tileset_16x16_interior_102
       rect:
         serializedVersion: 2
-        x: 192
-        y: 144
+        x: 217
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1743,8 +1742,8 @@ TextureImporter:
       name: tileset_16x16_interior_103
       rect:
         serializedVersion: 2
-        x: 208
-        y: 144
+        x: 235
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1757,8 +1756,8 @@ TextureImporter:
       name: tileset_16x16_interior_104
       rect:
         serializedVersion: 2
-        x: 224
-        y: 144
+        x: 253
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1771,8 +1770,8 @@ TextureImporter:
       name: tileset_16x16_interior_105
       rect:
         serializedVersion: 2
-        x: 240
-        y: 144
+        x: 271
+        y: 163
         width: 16
         height: 16
       alignment: 0
@@ -1785,8 +1784,8 @@ TextureImporter:
       name: tileset_16x16_interior_106
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 1
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1799,8 +1798,8 @@ TextureImporter:
       name: tileset_16x16_interior_107
       rect:
         serializedVersion: 2
-        x: 16
-        y: 128
+        x: 19
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1813,8 +1812,8 @@ TextureImporter:
       name: tileset_16x16_interior_108
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
+        x: 37
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1827,8 +1826,8 @@ TextureImporter:
       name: tileset_16x16_interior_109
       rect:
         serializedVersion: 2
-        x: 80
-        y: 128
+        x: 91
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1841,8 +1840,8 @@ TextureImporter:
       name: tileset_16x16_interior_110
       rect:
         serializedVersion: 2
-        x: 96
-        y: 128
+        x: 109
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1855,8 +1854,8 @@ TextureImporter:
       name: tileset_16x16_interior_111
       rect:
         serializedVersion: 2
-        x: 112
-        y: 128
+        x: 127
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1869,8 +1868,8 @@ TextureImporter:
       name: tileset_16x16_interior_112
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 145
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1883,8 +1882,8 @@ TextureImporter:
       name: tileset_16x16_interior_113
       rect:
         serializedVersion: 2
-        x: 160
-        y: 128
+        x: 181
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1897,8 +1896,8 @@ TextureImporter:
       name: tileset_16x16_interior_114
       rect:
         serializedVersion: 2
-        x: 176
-        y: 128
+        x: 199
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1911,8 +1910,8 @@ TextureImporter:
       name: tileset_16x16_interior_115
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 217
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1925,8 +1924,8 @@ TextureImporter:
       name: tileset_16x16_interior_116
       rect:
         serializedVersion: 2
-        x: 208
-        y: 128
+        x: 235
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1939,8 +1938,8 @@ TextureImporter:
       name: tileset_16x16_interior_117
       rect:
         serializedVersion: 2
-        x: 224
-        y: 128
+        x: 253
+        y: 145
         width: 16
         height: 16
       alignment: 0
@@ -1953,8 +1952,8 @@ TextureImporter:
       name: tileset_16x16_interior_118
       rect:
         serializedVersion: 2
-        x: 0
-        y: 112
+        x: 1
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1967,8 +1966,8 @@ TextureImporter:
       name: tileset_16x16_interior_119
       rect:
         serializedVersion: 2
-        x: 16
-        y: 112
+        x: 19
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1981,8 +1980,8 @@ TextureImporter:
       name: tileset_16x16_interior_120
       rect:
         serializedVersion: 2
-        x: 32
-        y: 112
+        x: 37
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -1995,8 +1994,8 @@ TextureImporter:
       name: tileset_16x16_interior_121
       rect:
         serializedVersion: 2
-        x: 48
-        y: 112
+        x: 55
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2009,8 +2008,8 @@ TextureImporter:
       name: tileset_16x16_interior_122
       rect:
         serializedVersion: 2
-        x: 64
-        y: 112
+        x: 73
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2023,8 +2022,8 @@ TextureImporter:
       name: tileset_16x16_interior_123
       rect:
         serializedVersion: 2
-        x: 80
-        y: 112
+        x: 91
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2037,8 +2036,8 @@ TextureImporter:
       name: tileset_16x16_interior_124
       rect:
         serializedVersion: 2
-        x: 96
-        y: 112
+        x: 109
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2051,8 +2050,8 @@ TextureImporter:
       name: tileset_16x16_interior_125
       rect:
         serializedVersion: 2
-        x: 112
-        y: 112
+        x: 127
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2065,8 +2064,8 @@ TextureImporter:
       name: tileset_16x16_interior_126
       rect:
         serializedVersion: 2
-        x: 128
-        y: 112
+        x: 145
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2079,8 +2078,8 @@ TextureImporter:
       name: tileset_16x16_interior_127
       rect:
         serializedVersion: 2
-        x: 144
-        y: 112
+        x: 163
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2093,8 +2092,8 @@ TextureImporter:
       name: tileset_16x16_interior_128
       rect:
         serializedVersion: 2
-        x: 160
-        y: 112
+        x: 181
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2107,8 +2106,8 @@ TextureImporter:
       name: tileset_16x16_interior_129
       rect:
         serializedVersion: 2
-        x: 176
-        y: 112
+        x: 199
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2121,8 +2120,8 @@ TextureImporter:
       name: tileset_16x16_interior_130
       rect:
         serializedVersion: 2
-        x: 192
-        y: 112
+        x: 217
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2135,8 +2134,8 @@ TextureImporter:
       name: tileset_16x16_interior_131
       rect:
         serializedVersion: 2
-        x: 208
-        y: 112
+        x: 235
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2149,8 +2148,8 @@ TextureImporter:
       name: tileset_16x16_interior_132
       rect:
         serializedVersion: 2
-        x: 224
-        y: 112
+        x: 253
+        y: 127
         width: 16
         height: 16
       alignment: 0
@@ -2163,8 +2162,8 @@ TextureImporter:
       name: tileset_16x16_interior_133
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 1
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2177,8 +2176,8 @@ TextureImporter:
       name: tileset_16x16_interior_134
       rect:
         serializedVersion: 2
-        x: 16
-        y: 96
+        x: 19
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2191,8 +2190,8 @@ TextureImporter:
       name: tileset_16x16_interior_135
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
+        x: 37
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2205,8 +2204,8 @@ TextureImporter:
       name: tileset_16x16_interior_136
       rect:
         serializedVersion: 2
-        x: 48
-        y: 96
+        x: 55
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2219,8 +2218,8 @@ TextureImporter:
       name: tileset_16x16_interior_137
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
+        x: 73
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2233,8 +2232,8 @@ TextureImporter:
       name: tileset_16x16_interior_138
       rect:
         serializedVersion: 2
-        x: 80
-        y: 96
+        x: 91
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2247,8 +2246,8 @@ TextureImporter:
       name: tileset_16x16_interior_139
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
+        x: 109
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2261,8 +2260,8 @@ TextureImporter:
       name: tileset_16x16_interior_140
       rect:
         serializedVersion: 2
-        x: 112
-        y: 96
+        x: 127
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2275,8 +2274,8 @@ TextureImporter:
       name: tileset_16x16_interior_141
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
+        x: 145
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2289,8 +2288,8 @@ TextureImporter:
       name: tileset_16x16_interior_142
       rect:
         serializedVersion: 2
-        x: 160
-        y: 96
+        x: 181
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2303,8 +2302,8 @@ TextureImporter:
       name: tileset_16x16_interior_143
       rect:
         serializedVersion: 2
-        x: 176
-        y: 96
+        x: 199
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2317,8 +2316,8 @@ TextureImporter:
       name: tileset_16x16_interior_144
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
+        x: 217
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2331,8 +2330,8 @@ TextureImporter:
       name: tileset_16x16_interior_145
       rect:
         serializedVersion: 2
-        x: 224
-        y: 96
+        x: 253
+        y: 109
         width: 16
         height: 16
       alignment: 0
@@ -2345,8 +2344,8 @@ TextureImporter:
       name: tileset_16x16_interior_146
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
+        x: 1
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -2359,8 +2358,8 @@ TextureImporter:
       name: tileset_16x16_interior_147
       rect:
         serializedVersion: 2
-        x: 16
-        y: 80
+        x: 19
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -2373,8 +2372,8 @@ TextureImporter:
       name: tileset_16x16_interior_148
       rect:
         serializedVersion: 2
-        x: 32
-        y: 80
+        x: 37
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -2387,8 +2386,8 @@ TextureImporter:
       name: tileset_16x16_interior_149
       rect:
         serializedVersion: 2
-        x: 128
-        y: 80
+        x: 145
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -2401,8 +2400,8 @@ TextureImporter:
       name: tileset_16x16_interior_150
       rect:
         serializedVersion: 2
-        x: 160
-        y: 80
+        x: 181
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -2415,8 +2414,8 @@ TextureImporter:
       name: tileset_16x16_interior_151
       rect:
         serializedVersion: 2
-        x: 176
-        y: 80
+        x: 199
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -2429,8 +2428,8 @@ TextureImporter:
       name: tileset_16x16_interior_152
       rect:
         serializedVersion: 2
-        x: 192
-        y: 80
+        x: 217
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -2443,8 +2442,8 @@ TextureImporter:
       name: tileset_16x16_interior_153
       rect:
         serializedVersion: 2
-        x: 224
-        y: 80
+        x: 253
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -2457,8 +2456,8 @@ TextureImporter:
       name: tileset_16x16_interior_154
       rect:
         serializedVersion: 2
-        x: 240
-        y: 80
+        x: 271
+        y: 91
         width: 16
         height: 16
       alignment: 0
@@ -2471,8 +2470,8 @@ TextureImporter:
       name: tileset_16x16_interior_155
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 1
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2485,8 +2484,8 @@ TextureImporter:
       name: tileset_16x16_interior_156
       rect:
         serializedVersion: 2
-        x: 16
-        y: 64
+        x: 19
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2499,8 +2498,8 @@ TextureImporter:
       name: tileset_16x16_interior_157
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
+        x: 37
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2513,8 +2512,8 @@ TextureImporter:
       name: tileset_16x16_interior_158
       rect:
         serializedVersion: 2
-        x: 48
-        y: 64
+        x: 55
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2527,8 +2526,8 @@ TextureImporter:
       name: tileset_16x16_interior_159
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 73
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2541,8 +2540,8 @@ TextureImporter:
       name: tileset_16x16_interior_160
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 145
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2555,8 +2554,8 @@ TextureImporter:
       name: tileset_16x16_interior_161
       rect:
         serializedVersion: 2
-        x: 144
-        y: 64
+        x: 163
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2569,8 +2568,8 @@ TextureImporter:
       name: tileset_16x16_interior_162
       rect:
         serializedVersion: 2
-        x: 160
-        y: 64
+        x: 181
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2583,8 +2582,8 @@ TextureImporter:
       name: tileset_16x16_interior_163
       rect:
         serializedVersion: 2
-        x: 176
-        y: 64
+        x: 199
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2597,8 +2596,8 @@ TextureImporter:
       name: tileset_16x16_interior_164
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
+        x: 217
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2611,8 +2610,8 @@ TextureImporter:
       name: tileset_16x16_interior_165
       rect:
         serializedVersion: 2
-        x: 208
-        y: 64
+        x: 235
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2625,8 +2624,8 @@ TextureImporter:
       name: tileset_16x16_interior_166
       rect:
         serializedVersion: 2
-        x: 224
-        y: 64
+        x: 253
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2639,8 +2638,8 @@ TextureImporter:
       name: tileset_16x16_interior_167
       rect:
         serializedVersion: 2
-        x: 240
-        y: 64
+        x: 271
+        y: 73
         width: 16
         height: 16
       alignment: 0
@@ -2653,8 +2652,8 @@ TextureImporter:
       name: tileset_16x16_interior_168
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
+        x: 1
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2667,8 +2666,8 @@ TextureImporter:
       name: tileset_16x16_interior_169
       rect:
         serializedVersion: 2
-        x: 16
-        y: 48
+        x: 19
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2681,8 +2680,8 @@ TextureImporter:
       name: tileset_16x16_interior_170
       rect:
         serializedVersion: 2
-        x: 32
-        y: 48
+        x: 37
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2695,8 +2694,8 @@ TextureImporter:
       name: tileset_16x16_interior_171
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
+        x: 55
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2709,8 +2708,8 @@ TextureImporter:
       name: tileset_16x16_interior_172
       rect:
         serializedVersion: 2
-        x: 64
-        y: 48
+        x: 73
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2723,8 +2722,8 @@ TextureImporter:
       name: tileset_16x16_interior_173
       rect:
         serializedVersion: 2
-        x: 128
-        y: 48
+        x: 145
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2737,8 +2736,8 @@ TextureImporter:
       name: tileset_16x16_interior_174
       rect:
         serializedVersion: 2
-        x: 160
-        y: 48
+        x: 181
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2751,8 +2750,8 @@ TextureImporter:
       name: tileset_16x16_interior_175
       rect:
         serializedVersion: 2
-        x: 176
-        y: 48
+        x: 199
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2765,8 +2764,8 @@ TextureImporter:
       name: tileset_16x16_interior_176
       rect:
         serializedVersion: 2
-        x: 192
-        y: 48
+        x: 217
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2779,8 +2778,8 @@ TextureImporter:
       name: tileset_16x16_interior_177
       rect:
         serializedVersion: 2
-        x: 208
-        y: 48
+        x: 235
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2793,8 +2792,8 @@ TextureImporter:
       name: tileset_16x16_interior_178
       rect:
         serializedVersion: 2
-        x: 224
-        y: 48
+        x: 253
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2807,8 +2806,8 @@ TextureImporter:
       name: tileset_16x16_interior_179
       rect:
         serializedVersion: 2
-        x: 240
-        y: 48
+        x: 271
+        y: 55
         width: 16
         height: 16
       alignment: 0
@@ -2821,8 +2820,8 @@ TextureImporter:
       name: tileset_16x16_interior_180
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 1
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2835,8 +2834,8 @@ TextureImporter:
       name: tileset_16x16_interior_181
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
+        x: 19
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2849,8 +2848,8 @@ TextureImporter:
       name: tileset_16x16_interior_182
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 37
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2863,8 +2862,8 @@ TextureImporter:
       name: tileset_16x16_interior_183
       rect:
         serializedVersion: 2
-        x: 128
-        y: 32
+        x: 145
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2877,8 +2876,8 @@ TextureImporter:
       name: tileset_16x16_interior_184
       rect:
         serializedVersion: 2
-        x: 160
-        y: 32
+        x: 181
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2891,8 +2890,8 @@ TextureImporter:
       name: tileset_16x16_interior_185
       rect:
         serializedVersion: 2
-        x: 176
-        y: 32
+        x: 199
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2905,8 +2904,8 @@ TextureImporter:
       name: tileset_16x16_interior_186
       rect:
         serializedVersion: 2
-        x: 192
-        y: 32
+        x: 217
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2919,8 +2918,8 @@ TextureImporter:
       name: tileset_16x16_interior_187
       rect:
         serializedVersion: 2
-        x: 208
-        y: 32
+        x: 235
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2933,8 +2932,8 @@ TextureImporter:
       name: tileset_16x16_interior_188
       rect:
         serializedVersion: 2
-        x: 224
-        y: 32
+        x: 253
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2947,8 +2946,8 @@ TextureImporter:
       name: tileset_16x16_interior_189
       rect:
         serializedVersion: 2
-        x: 240
-        y: 32
+        x: 271
+        y: 37
         width: 16
         height: 16
       alignment: 0
@@ -2961,8 +2960,8 @@ TextureImporter:
       name: tileset_16x16_interior_190
       rect:
         serializedVersion: 2
-        x: 176
-        y: 16
+        x: 199
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2975,8 +2974,8 @@ TextureImporter:
       name: tileset_16x16_interior_191
       rect:
         serializedVersion: 2
-        x: 192
-        y: 16
+        x: 217
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -2989,8 +2988,8 @@ TextureImporter:
       name: tileset_16x16_interior_192
       rect:
         serializedVersion: 2
-        x: 208
-        y: 16
+        x: 235
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -3003,8 +3002,8 @@ TextureImporter:
       name: tileset_16x16_interior_193
       rect:
         serializedVersion: 2
-        x: 224
-        y: 16
+        x: 253
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -3017,8 +3016,8 @@ TextureImporter:
       name: tileset_16x16_interior_194
       rect:
         serializedVersion: 2
-        x: 240
-        y: 16
+        x: 271
+        y: 19
         width: 16
         height: 16
       alignment: 0
@@ -3031,8 +3030,8 @@ TextureImporter:
       name: tileset_16x16_interior_195
       rect:
         serializedVersion: 2
-        x: 176
-        y: 0
+        x: 199
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -3045,8 +3044,8 @@ TextureImporter:
       name: tileset_16x16_interior_196
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
+        x: 217
+        y: 1
         width: 16
         height: 16
       alignment: 0
@@ -3059,8 +3058,8 @@ TextureImporter:
       name: tileset_16x16_interior_197
       rect:
         serializedVersion: 2
-        x: 240
-        y: 0
+        x: 271
+        y: 1
         width: 16
         height: 16
       alignment: 0
