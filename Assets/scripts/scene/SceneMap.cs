@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SceneMap : SceneBase {
     private GameObject currMapObj = null;
-
     private GameObject player = null;
+    private GameScreen screen = null;
 
 	void Start () {
         base.Start();
@@ -20,16 +20,24 @@ public class SceneMap : SceneBase {
         this.player.transform.SetParent(map.transform.Find("LayerEvents"));
 
         GameObject.Find("Main Camera").GetComponent<CameraControl>().target = player;
+
+        this.screen = new GameScreen();
+
     }
 
     protected override void updateRender() {
         base.updateRender();
         this.player.GetComponent<SpritePlayer>().update();
+        GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize = this.screen.CurrView;
     }
 
     protected override void updateLogic() {
         base.updateLogic();
         this.player.GetComponent<SpritePlayer>().character.update();
+        this.screen.update();
+        if (Input.GetKeyDown(KeyCode.F5)) {
+            this.screen.toggleView();
+        }
     }
 
 }
