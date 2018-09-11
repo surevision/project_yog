@@ -28,7 +28,7 @@ public class SceneMap : SceneBase {
     protected override void updateRender() {
         base.updateRender();
         this.player.GetComponent<SpritePlayer>().update();
-        GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize = this.screen.CurrView;
+        GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize = this.screen.currView;
     }
 
     protected override void updateLogic() {

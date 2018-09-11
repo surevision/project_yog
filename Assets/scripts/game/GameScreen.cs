@@ -7,14 +7,15 @@ public class GameScreen {
     private const float NormalView = 0.8f;
     private const float HalfView = NormalView / 2;
 
-    private float currView = NormalView;
-
-    public float CurrView {
-        get { return currView; }
-        set { currView = value; }
-    }
     private float targetView = NormalView;
     private bool isMiniView = false;
+
+    private float _currView = NormalView;
+
+    public float currView {
+        get { return _currView; }
+        set { _currView = value; }
+    }
 
     public void toggleView() {
         if (isMiniView) {
@@ -36,11 +37,11 @@ public class GameScreen {
 
     public void update() {
 
-        if (CurrView < targetView) {
-            CurrView = Mathf.Min(CurrView + 0.16f / 8, targetView);
+        if (currView < targetView) {
+            currView = Mathf.Min(currView + 0.16f / 8, targetView);
         }
-        if (CurrView > targetView) {
-            CurrView = Mathf.Max(CurrView - 0.16f / 8, targetView);
+        if (currView > targetView) {
+            currView = Mathf.Max(currView - 0.16f / 8, targetView);
         }
 
     }
