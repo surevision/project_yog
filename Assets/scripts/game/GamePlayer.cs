@@ -10,7 +10,6 @@ public class GamePlayer : GameCharacterBase {
         if (!this.isMoving()) {
             float step = 0.16f / 16.0f;
             if (Input.GetKey(KeyCode.DownArrow)) {
-                Debug.Log("key down");
                 this.direction = DIRS.DOWN;
                 this.y -= step;
                 this.increaseStep();
