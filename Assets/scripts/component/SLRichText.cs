@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class SLRichText : MonoBehaviour {
 
     private const string C_CHR = "$";
+    private const float OffsetX = 8;
+    private const float OffsetY = 8;
 
     [SerializeField]
     private GameObject container;
@@ -45,7 +47,7 @@ public class SLRichText : MonoBehaviour {
 
 
     private Color _defaultFontColor = new Color(255, 255, 255, 255);
-    private int _defaultFontSize = 12;
+    private int _defaultFontSize = 20;
     private float _lineHeight = 10;
     private float _height = 0;
     
@@ -61,9 +63,10 @@ public class SLRichText : MonoBehaviour {
     private RectTransform rectTransform;
 
     private class RenderPos{
-		public float x = 0;
-		public float y = 0;
-		public float maxHeight = 0;   // 记录本行最大高度
+        public float x = OffsetX;
+        public float y = OffsetY;
+        public float baseY = 0;         // 本行基准y
+		public float maxHeight = 0;     // 记录本行最大高度
     }
 
     private RenderPos _renderPos = new RenderPos();
@@ -131,9 +134,10 @@ public class SLRichText : MonoBehaviour {
         this._contents.Clear();
         this._currentLine.Clear();
 
-		this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._defaultFontSize * 2;
-        this._renderPos.y = rectTransform.sizeDelta.y / 2 + this._defaultFontSize * 2;
-        this._renderPos.maxHeight = this._defaultFontSize;
+		this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._defaultFontSize + OffsetX;
+        this._renderPos.y = rectTransform.sizeDelta.y / 2 + this._defaultFontSize - OffsetY + this._lineHeight;
+        this._renderPos.baseY = this._renderPos.y;
+        this._renderPos.maxHeight = this._currentFontSize;
 	}
 
     public Color getColor(int code = 0) {
@@ -216,7 +220,7 @@ public class SLRichText : MonoBehaviour {
             Regex reg = new Regex(@"<(\d+)>");
             Match match = reg.Match(contentToCheck);
 			// Debug.Log(params);
-			if (match != null) {
+			if (match.Success) {
 				progressFlag = this.changeFontColor(int.Parse(match.Groups[1].Value));
 				progressLen = match.Groups[1].Value.Length;
 			} else {
@@ -226,8 +230,8 @@ public class SLRichText : MonoBehaviour {
 			// 修改字号
             Regex reg = new Regex(@"<(\d+)>");
             Match match = reg.Match(contentToCheck);
-			// Debug.Log(params);
-			if (match != null) {
+            // Debug.Log(params);
+            if (match.Success) {
 				progressFlag = this.changeFontSize(int.Parse(match.Groups[1].Value));
 				progressLen = match.Groups[1].Value.Length;
 			} else {
@@ -259,12 +263,15 @@ public class SLRichText : MonoBehaviour {
 		node.name = chr;
 		Text uiText = node.GetComponent<Text>();
 
-		uiText.text = chr;
+        uiText.text = chr;
+        float s = Screen.width / 800.0f;
         
         RectTransform uiTextTransform = uiText.GetComponent<RectTransform>();
         uiText.color = new Color(uiText.color.r, uiText.color.g, uiText.color.b, 1.0f);
-		uiText.fontSize = this._currentFontSize;
-		uiText.lineSpacing = Mathf.Max(1.0f * this._lineHeight / this._currentFontSize, 1);
+		uiText.fontSize = (int)(this._currentFontSize * s);
+        //uiText.lineSpacing = Mathf.Max(1.0f * this._lineHeight / this._currentFontSize, 1);
+        uiTextTransform.sizeDelta = new Vector2(uiText.fontSize, uiText.fontSize);
+        //uiTextTransform.localScale = new Vector3(s, s, s);
         
         uiText.color = this.getColor(this._currentColor);
         node.transform.SetParent(this.container.transform);
@@ -273,13 +280,15 @@ public class SLRichText : MonoBehaviour {
 			node.transform.localScale = new Vector3(this._width / uiTextTransform.sizeDelta.x, this._width / uiTextTransform.sizeDelta.x, 1);
 		}
 		if (!this.isSingleLine) {
-			if (this._renderPos.x + this._width / uiTextTransform.sizeDelta.x > this._width) {
+            Debug.Log(string.Format("curr x {0} {1}", chr, this._renderPos.x + uiTextTransform.sizeDelta.x / 2));
+            if (this._renderPos.x + rectTransform.sizeDelta.x > this._width) {
 				this.nextLine();
 			}
-		}
-		this.setElemPosition(node, this._renderPos.x, this._renderPos.y);
-		this._renderPos.x += uiTextTransform.sizeDelta.x;
+        }
+        this._renderPos.x += uiTextTransform.sizeDelta.x;
         this._renderPos.maxHeight = (this._renderPos.maxHeight > uiTextTransform.sizeDelta.y) ? this._renderPos.maxHeight : uiTextTransform.sizeDelta.y;
+        Debug.Log(string.Format("pos y {0}", this._renderPos.maxHeight));
+        this.setElemPosition(node, this._renderPos.x, this._renderPos.y);
 		if (this.isSingleLine) {
 			this._width = Mathf.Max(this._width, this._renderPos.x);
 		}
@@ -295,6 +304,7 @@ public class SLRichText : MonoBehaviour {
     /// <param name="code"></param>
     /// <returns></returns>
 	private bool changeFontColor(int code) {
+        Debug.Log(string.Format("change color to {0}", code));
         this._currentColor = code;
         return true;
 	}
@@ -304,7 +314,8 @@ public class SLRichText : MonoBehaviour {
     /// </summary>
     /// <param name="code"></param>
     /// <returns></returns>
-	private bool changeFontSize(int code = 12) {
+    private bool changeFontSize(int code) {
+        Debug.Log(string.Format("change font size to {0}", code));
 		this._currentFontSize = code;
 		return true;
 	}
@@ -318,21 +329,6 @@ public class SLRichText : MonoBehaviour {
 		if (path != null && (!"".Equals(path))) {
 			// 暂时不处理
 			// Debug.Log("progress image %s", path);
-			// var uiImage = ccui.ImageView.create(path, ccui.Widget.LOCAL_TEXTURE);
-			// uiImage.setVisible(this._show_fast);
-			// this.addChild(uiImage);
-			// if (uiImage.getContentSize().width > this._width) {
-			// 	uiImage:setScale(this._width / uiImage.getContentSize().width);
-			// }
-			// if (this._renderPos.x + uiImage.getContentSize().width > this._width) {
-			// 	this.nextLine();
-			// }
-			// this.setElemPosition(uiImage, this._renderPos.x, this._renderPos.y);
-			// this._renderPos.x += uiImage.getContentSize().width;
-			// this._renderPos.maxHeight = (this._renderPos.maxHeight > uiImage.getContentSize().height) ? this._renderPos.maxHeight : uiImage.getContentSize().height
-			// this._images.push(uiImage);
-			// this._contents.push(uiImage);
-			// this._currentLine.push(uiImage);
 			return true;
 		}
 		return false;
@@ -345,41 +341,33 @@ public class SLRichText : MonoBehaviour {
     /// <param name="_x"></param>
     /// <param name="_y"></param>
     private void setElemPosition(GameObject elem, float _x, float _y) {
-        Debug.Log(string.Format("setElemPosition {0}, {1}", _x, _y));
+        //Debug.Log(string.Format("setElemPosition {0}, {1}", _x, _y));
         RectTransform elemTransform = elem.GetComponent<RectTransform>();
-		elemTransform.anchoredPosition = new Vector2(0, 1);
-		// elem.active = true;
-		if (_x != null) {
-			float x = _x + elemTransform.sizeDelta.x * elemTransform.anchoredPosition.x;
-            elemTransform.position.Set(x, elemTransform.position.y, elemTransform.position.z);
-            //elem.transform.position.Set(x, elem.transform.position.y, elem.transform.position.z);
-		}
-		if (_y != null) {
-            float y = _y - elemTransform.sizeDelta.y / 2;
-            elemTransform.position.Set(elemTransform.position.x, y, elemTransform.position.z);
-		}
+        float x = _x - elemTransform.sizeDelta.x;
+        float y = _y - this.rectTransform.sizeDelta.y / 2;
+        elem.transform.localPosition = new Vector3(x, y, elem.transform.localPosition.z);
+        //Debug.Log(string.Format("after setElemPosition {0}, {1}", elem.transform.localPosition.x, elem.transform.localPosition.y));
 	}
 
-    private void setElemPositionY(GameObject elem, float _y) {
-		// Debug.Log("setElemPosition %s, %s", _x, _y);
+    private void setElemLocalPositionY(GameObject elem, float _y) {
         RectTransform elemTransform = elem.GetComponent<RectTransform>();
-		elemTransform.anchoredPosition = new Vector2(0, 1);
-		if (_y != null) {
-            float y = _y - elemTransform.sizeDelta.y / 2;
-            elemTransform.position.Set(elemTransform.position.x, y, elemTransform.position.z);
-		}
+        elem.transform.localPosition = new Vector3(elem.transform.localPosition.x, _y, elemTransform.localPosition.z);
 	}
     /// <summary>
     /// 换行
     /// </summary>
 	private void nextLine() {
-		// 调整当前行元素高度，适应maxHeight
-		for (int i = 0; i < this._currentLine.Count; i += 1) {
-			this.setElemPositionY((GameObject)this._currentLine[i], this._renderPos.y + this._renderPos.maxHeight);
+        // 调整当前行元素高度，适应maxHeight
+        for (int i = 0; i < this._currentLine.Count; i += 1) {
+            GameObject elem = this._currentLine[i];
+            RectTransform elemTransform = elem.GetComponent<RectTransform>();
+            Debug.Log(string.Format("offset y {0}", elemTransform.sizeDelta.y - this._renderPos.maxHeight));
+            this.setElemLocalPositionY(this._currentLine[i], elem.transform.localPosition.y + (elemTransform.sizeDelta.y - this._renderPos.maxHeight));
 		}
-		this._renderPos.x = 0;
-		this._renderPos.y += this._renderPos.maxHeight + this._lineHeight;
-		this._renderPos.maxHeight = this._defaultFontSize; // 恢复lineheight
+        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._currentFontSize + OffsetX;
+		this._renderPos.y -= this._renderPos.maxHeight + this._lineHeight;
+        this._renderPos.baseY = this._renderPos.y;
+		this._renderPos.maxHeight = this._currentFontSize; // 恢复lineheight
 		this._currentLine.Clear();
 	}
 

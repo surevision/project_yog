@@ -310,7 +310,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 2101612917}
-  _text: 123
-  _width: 100
+  _text: "$s<26>\u732B\u53D4$s<20>\u662F$c<6>b$c<5>a$c<4>ka$s<26>\u732B\u53D4$s<20>\u662F$c<6>b$c<5>a$c"
+  _width: 400
   _isSingleLine: 0
   _minHeight: 64
