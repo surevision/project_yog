@@ -528,6 +528,31 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 224111916135693100, guid: 5d8b2afa784a13c488867bb63a009509,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224111916135693100, guid: 5d8b2afa784a13c488867bb63a009509,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224111916135693100, guid: 5d8b2afa784a13c488867bb63a009509,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 760
+      objectReference: {fileID: 0}
+    - target: {fileID: 224111916135693100, guid: 5d8b2afa784a13c488867bb63a009509,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 224111916135693100, guid: 5d8b2afa784a13c488867bb63a009509,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d8b2afa784a13c488867bb63a009509, type: 2}
   m_IsPrefabParent: 0
@@ -553,7 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 2101612917}
-  _text: "$s<26>\u732B\u53D4$s<20>\u662F$c<6>b$c<5>a$c<4>ka$s<26>\u732B\u53D4$s<20>\u662F$c<6>b$c<5>a$c"
-  _width: 400
+  _text: "$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a"
+  _width: 740
   _isSingleLine: 0
   _minHeight: 64

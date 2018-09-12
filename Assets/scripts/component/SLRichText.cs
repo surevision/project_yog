@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class SLRichText : MonoBehaviour {
 
     private const string C_CHR = "$";
-    private const float OffsetX = 8;
-    private const float OffsetY = 8;
+    private const float OffsetX = 0;
+    private const float OffsetY = 0;
 
     [SerializeField]
     private GameObject container;
@@ -48,7 +48,7 @@ public class SLRichText : MonoBehaviour {
 
     private Color _defaultFontColor = new Color(255, 255, 255, 255);
     private int _defaultFontSize = 20;
-    private float _lineHeight = 10;
+    private float _lineHeight = 12;
     private float _height = 0;
     
     private List<GameObject> _texts;
@@ -134,8 +134,8 @@ public class SLRichText : MonoBehaviour {
         this._contents.Clear();
         this._currentLine.Clear();
 
-		this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._defaultFontSize + OffsetX;
-        this._renderPos.y = rectTransform.sizeDelta.y / 2 + this._defaultFontSize - OffsetY + this._lineHeight;
+        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + OffsetX;
+        this._renderPos.y = rectTransform.sizeDelta.y / 2 - (this._defaultFontSize + OffsetY) * Util.getWidthScale();
         this._renderPos.baseY = this._renderPos.y;
         this._renderPos.maxHeight = this._currentFontSize;
 	}
@@ -165,7 +165,7 @@ public class SLRichText : MonoBehaviour {
 			this.progressContentString();
 		}
 		this.nextLine();
-		this._height = Mathf.Max(this._renderPos.y, this._minHeight);
+        this._height = Mathf.Max(-(this._renderPos.y - (rectTransform.sizeDelta.y / 2 - (this._defaultFontSize + OffsetY) * Util.getWidthScale())), this._minHeight);
 		if (this.isSingleLine) {
             this.rectTransform.sizeDelta = new Vector2(this._width, this._height);
 		}
@@ -264,30 +264,28 @@ public class SLRichText : MonoBehaviour {
 		Text uiText = node.GetComponent<Text>();
 
         uiText.text = chr;
-        float s = Screen.width / 800.0f;
         
         RectTransform uiTextTransform = uiText.GetComponent<RectTransform>();
         uiText.color = new Color(uiText.color.r, uiText.color.g, uiText.color.b, 1.0f);
-		uiText.fontSize = (int)(this._currentFontSize * s);
-        //uiText.lineSpacing = Mathf.Max(1.0f * this._lineHeight / this._currentFontSize, 1);
+        uiText.fontSize = (int)(this._currentFontSize * Util.getWidthScale());
         uiTextTransform.sizeDelta = new Vector2(uiText.fontSize, uiText.fontSize);
         //uiTextTransform.localScale = new Vector3(s, s, s);
         
         uiText.color = this.getColor(this._currentColor);
         node.transform.SetParent(this.container.transform);
 
-		if (!this.isSingleLine && uiTextTransform.sizeDelta.x > this._width) {
+        if (!this.isSingleLine && uiTextTransform.sizeDelta.x > this._width) {
 			node.transform.localScale = new Vector3(this._width / uiTextTransform.sizeDelta.x, this._width / uiTextTransform.sizeDelta.x, 1);
 		}
 		if (!this.isSingleLine) {
-            Debug.Log(string.Format("curr x {0} {1}", chr, this._renderPos.x + uiTextTransform.sizeDelta.x / 2));
-            if (this._renderPos.x + rectTransform.sizeDelta.x > this._width) {
+            //Debug.Log(string.Format("curr x {0} {1}", chr, this._renderPos.x + uiTextTransform.sizeDelta.x / 2));
+            if (this._renderPos.x - (-rectTransform.sizeDelta.x / 2 + OffsetX) + uiTextTransform.sizeDelta.x > this._width) {
 				this.nextLine();
 			}
         }
-        this._renderPos.x += uiTextTransform.sizeDelta.x;
-        this._renderPos.maxHeight = (this._renderPos.maxHeight > uiTextTransform.sizeDelta.y) ? this._renderPos.maxHeight : uiTextTransform.sizeDelta.y;
-        Debug.Log(string.Format("pos y {0}", this._renderPos.maxHeight));
+        this._renderPos.x += this._currentFontSize;
+        this._renderPos.maxHeight = (this._renderPos.maxHeight > this._currentFontSize) ? this._renderPos.maxHeight : this._currentFontSize;
+        Debug.Log(string.Format("pos y {0}", this._renderPos.y));
         this.setElemPosition(node, this._renderPos.x, this._renderPos.y);
 		if (this.isSingleLine) {
 			this._width = Mathf.Max(this._width, this._renderPos.x);
@@ -343,8 +341,8 @@ public class SLRichText : MonoBehaviour {
     private void setElemPosition(GameObject elem, float _x, float _y) {
         //Debug.Log(string.Format("setElemPosition {0}, {1}", _x, _y));
         RectTransform elemTransform = elem.GetComponent<RectTransform>();
-        float x = _x - elemTransform.sizeDelta.x;
-        float y = _y - this.rectTransform.sizeDelta.y / 2;
+        float x = _x;
+        float y = _y;
         elem.transform.localPosition = new Vector3(x, y, elem.transform.localPosition.z);
         //Debug.Log(string.Format("after setElemPosition {0}, {1}", elem.transform.localPosition.x, elem.transform.localPosition.y));
 	}
@@ -364,17 +362,17 @@ public class SLRichText : MonoBehaviour {
             Debug.Log(string.Format("offset y {0}", elemTransform.sizeDelta.y - this._renderPos.maxHeight));
             this.setElemLocalPositionY(this._currentLine[i], elem.transform.localPosition.y + (elemTransform.sizeDelta.y - this._renderPos.maxHeight));
 		}
-        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._currentFontSize + OffsetX;
-		this._renderPos.y -= this._renderPos.maxHeight + this._lineHeight;
+        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + OffsetX;
+        this._renderPos.y -= this._renderPos.maxHeight + this._lineHeight;
         this._renderPos.baseY = this._renderPos.y;
-		this._renderPos.maxHeight = this._currentFontSize; // 恢复lineheight
+        this._renderPos.maxHeight = this._lineHeight; // 恢复lineheight
 		this._currentLine.Clear();
 	}
 
 	private void adjustContentsY() {
 		for (int i = 0; i < this._contents.Count; i += 1) {
 			GameObject elem = (GameObject)this._contents[i];
-			elem.transform.position.Set(elem.transform.position.x, elem.transform.position.y + this._height, elem.transform.position.z);
+			elem.transform.position.Set(elem.transform.position.x, elem.transform.position.y, elem.transform.position.z);
 		}
 	}
 }

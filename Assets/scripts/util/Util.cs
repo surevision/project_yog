@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Util : MonoBehaviour {
+public class Util {
+    public static float WIDTH = 800.0f;
+    public static float HEIGHT = 600.0f;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private static Util instance = new Util();
+    private Util() { }
+
+    public float _getWidthScale() {
+        return Screen.width / WIDTH;
+    }
+    public static float getWidthScale() {
+        return instance._getWidthScale();
+    }
 }
