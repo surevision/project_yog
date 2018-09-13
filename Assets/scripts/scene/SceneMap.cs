@@ -26,6 +26,9 @@ public class SceneMap : SceneBase {
         GameTemp.gameMap = new GameMap();
         GameTemp.gameMap.setupMap(map);
         GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
+
+        Vector2 startPos = GameTemp.gameMap.getTileWorldPos(4, 4);
+        GameTemp.gamePlayer.setPos(startPos.x, startPos.y);
     }
 
     protected override void updateRender() {

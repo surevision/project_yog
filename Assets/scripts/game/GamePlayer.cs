@@ -10,25 +10,21 @@ public class GamePlayer : GameCharacterBase {
         if (!this.isMoving()) {
             float step = 0.16f / 16.0f;
             if (Input.GetKey(KeyCode.DownArrow)) {
-                this.direction = DIRS.DOWN;
-                this.y -= step;
-                this.increaseStep();
+                this.moveStraight(DIRS.DOWN);
             }
             if (Input.GetKey(KeyCode.LeftArrow)) {
-                this.direction = DIRS.LEFT;
-                this.x -= step;
-                this.increaseStep();
+                this.moveStraight(DIRS.LEFT);
             }
             if (Input.GetKey(KeyCode.RightArrow)) {
-                this.direction = DIRS.RIGHT;
-                this.x += step;
-                this.increaseStep();
+                this.moveStraight(DIRS.RIGHT);
             }
             if (Input.GetKey(KeyCode.UpArrow)) {
-                this.direction = DIRS.UP;
-                this.y += step;
-                this.increaseStep();
+                this.moveStraight(DIRS.UP);
             }
         }
+    }
+
+    public override float screenX() {
+        return this.realX + 0.5f * 0.16f;
     }
 }

@@ -90,7 +90,7 @@ public class GameCharacterBase
         return this.realX != this.x || this.realY != this.y;
     }
 
-    protected void increaseStep() {
+    protected void increaseMove() {
         this.stopCount = 0;
     }
 
@@ -155,11 +155,66 @@ public class GameCharacterBase
         }
     }
 
-    public float screenX() {
+    protected virtual float getBaseStep() {
+        return 16f / 100f;
+    }
+
+    protected virtual float getStep() {
+        return getBaseStep() / 16;
+    }
+
+    private bool isPassable(float x, float y, DIRS dir) {
+        float step = this.getStep();
+        if (dir == DIRS.DOWN) {
+            return GameTemp.gameMap.isPassable(this.x, this.y - step);
+        }
+        if (dir == DIRS.LEFT) {
+            return GameTemp.gameMap.isPassable(this.x - step, this.y);
+        }
+        if (dir == DIRS.RIGHT) {
+            return GameTemp.gameMap.isPassable(this.x + step, this.y);
+        }
+        if (dir == DIRS.UP) {
+            return GameTemp.gameMap.isPassable(this.x, this.y + step);
+        }
+        return false;
+    }
+
+    public bool moveStraight(DIRS dir) {
+        if (this.isPassable(this.x, this.y, dir)) {
+            this.direction = dir;
+
+            float step = this.getStep();
+            if (dir == DIRS.DOWN) {
+                this.y -= step;
+            }
+            if (dir == DIRS.LEFT) {
+                this.x -= step;
+            }
+            if (dir == DIRS.RIGHT) {
+                this.x += step;
+            }
+            if (dir == DIRS.UP) {
+                this.y += step;
+            }
+                this.increaseMove();
+            return true;
+        }
+        return false;
+    }
+
+    public virtual float screenX() {
         return this.realX;
     }
 
-    public float screenY() {
+    public virtual float screenY() {
         return this.realY;
+    }
+
+    public void setPos(float x, float y) {
+        this.x = x;
+        this.y = y;
+        this.realX = x;
+        this.realY = y;
     }
 }
