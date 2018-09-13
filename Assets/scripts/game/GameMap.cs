@@ -76,6 +76,9 @@ public class GameMap {
         this.mapInfo.width = maxX - minX;
         this.mapInfo.height = maxY - minY;
 
+        Tilemap passageLayer = ((SceneMap)SceneManager.Scene).getMapNode().transform.Find(getLayerName(Layers.LayerPassage)).GetComponent<Tilemap>();
+        passageLayer.color = new Color(0, 0, 0, 0);
+
         Debug.Log(string.Format("setup map {0}", this.mapInfo));
     }
 

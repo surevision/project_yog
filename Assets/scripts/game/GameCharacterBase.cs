@@ -68,7 +68,7 @@ public class GameCharacterBase
     /// </summary>
     /// <returns></returns>
     protected float distancePerFrame() {
-        return Mathf.Pow(2, this.moveSpeed) / 256.0f;
+        return Mathf.Pow(2, this.moveSpeed) / 128.0f * 0.16f;
     }
 
     /// <summary>
@@ -155,12 +155,19 @@ public class GameCharacterBase
         }
     }
 
+    public virtual float offsetStepX() {
+        return getBaseStep();
+    }
+    public virtual float offsetStepY() {
+        return getBaseStep();
+    }
+
     protected virtual float getBaseStep() {
         return 16f / 100f;
     }
 
     protected virtual float getStep() {
-        return getBaseStep() / 16;
+        return getBaseStep() / 1;
     }
 
     private bool isPassable(float x, float y, DIRS dir) {
@@ -181,8 +188,8 @@ public class GameCharacterBase
     }
 
     public bool moveStraight(DIRS dir) {
+        this.direction = dir;
         if (this.isPassable(this.x, this.y, dir)) {
-            this.direction = dir;
 
             float step = this.getStep();
             if (dir == DIRS.DOWN) {

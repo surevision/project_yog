@@ -8,7 +8,6 @@ public class GamePlayer : GameCharacterBase {
     public override void update() {
         base.update();
         if (!this.isMoving()) {
-            float step = 0.16f / 16.0f;
             if (Input.GetKey(KeyCode.DownArrow)) {
                 this.moveStraight(DIRS.DOWN);
             }
@@ -24,7 +23,24 @@ public class GamePlayer : GameCharacterBase {
         }
     }
 
+    public override float offsetStepX() {
+        return base.offsetStepX();
+    }
+    public override float offsetStepY() {
+        return base.offsetStepY();
+    }
+
+    public float offsetScreenX() {
+        return 0.5f * 0.16f;
+    }
+    public float offsetScreenY() {
+        return 0.01f * 2f;
+    }
+
     public override float screenX() {
-        return this.realX + 0.5f * 0.16f;
+        return this.realX + offsetScreenX();
+    }
+    public override float screenY() {
+        return this.realY + offsetScreenY();
     }
 }
