@@ -5,7 +5,6 @@ using UnityEngine;
 public class SceneMap : SceneBase {
     private GameObject currMapObj = null;
     private GameObject player = null;
-    private GameScreen screen = null;
 
 	void Start () {
         base.Start();
@@ -21,22 +20,24 @@ public class SceneMap : SceneBase {
 
         GameObject.Find("Main Camera").GetComponent<CameraControl>().target = player;
 
-        this.screen = new GameScreen();
-
+        GameTemp.gameScreen = new GameScreen();
+        GameTemp.gameMap = new GameMap();
+        GameTemp.gameMap.setupMap(map);
+        GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
     }
 
     protected override void updateRender() {
         base.updateRender();
         this.player.GetComponent<SpritePlayer>().update();
-        GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize = this.screen.currView;
+        GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize = GameTemp.gameScreen.currView;
     }
 
     protected override void updateLogic() {
         base.updateLogic();
-        this.player.GetComponent<SpritePlayer>().character.update();
-        this.screen.update();
+        GameTemp.gamePlayer.update();
+        GameTemp.gameScreen.update();
         if (Input.GetKeyDown(KeyCode.F5)) {
-            this.screen.toggleView();
+            GameTemp.gameScreen.toggleView();
         }
     }
 
