@@ -8,9 +8,9 @@ public class SceneMap : SceneBase {
 
 	void Start () {
         base.Start();
-        sceneName = "Main";
+        sceneName = "Map";
 
-        string mapName = "Map002";
+        string mapName = "Map001";
         GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/{0}", mapName)));
         map.name = mapName;
         GameObject.Find("Map").transform.DetachChildren();
