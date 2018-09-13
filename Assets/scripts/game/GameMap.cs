@@ -44,15 +44,18 @@ public class GameMap {
     public void setupMap(GameObject tilemapNode) {
         this.mapInfo = new MapInfo();
         
+        tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().CompressBounds();
         float minX = tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().cellBounds.xMin;
         float minY = tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().cellBounds.yMin;
         float maxX = tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().cellBounds.xMax;
         float maxY = tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().cellBounds.yMax;
         foreach (string layerName in layers) {
+            tilemapNode.transform.Find(layerName).GetComponent<Tilemap>().CompressBounds();
             minX = Mathf.Min(minX, tilemapNode.transform.Find(layerName).GetComponent<Tilemap>().cellBounds.xMin);
             minY = Mathf.Min(minY, tilemapNode.transform.Find(layerName).GetComponent<Tilemap>().cellBounds.yMin);
             maxX = Mathf.Max(maxX, tilemapNode.transform.Find(layerName).GetComponent<Tilemap>().cellBounds.xMax);
             maxY = Mathf.Max(maxY, tilemapNode.transform.Find(layerName).GetComponent<Tilemap>().cellBounds.yMax);
+            Debug.Log(string.Format("min x {0}, layer:{1}", tilemapNode.transform.Find(layerName).GetComponent<Tilemap>().cellBounds.xMin, layerName));
         }
         this.mapInfo.name = tilemapNode.name;
         this.mapInfo.minTile = new Vector3(minX, minY, 0);

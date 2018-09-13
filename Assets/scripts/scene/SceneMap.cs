@@ -10,7 +10,9 @@ public class SceneMap : SceneBase {
         base.Start();
         sceneName = "Main";
 
-        GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/maps/Map002"));
+        string mapName = "Map002";
+        GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/{0}", mapName)));
+        map.name = mapName;
         GameObject.Find("Map").transform.DetachChildren();
         map.transform.SetParent(GameObject.Find("Map").transform);
         this.currMapObj = map;
@@ -39,6 +41,10 @@ public class SceneMap : SceneBase {
         if (Input.GetKeyDown(KeyCode.F5)) {
             GameTemp.gameScreen.toggleView();
         }
+    }
+
+    public GameObject getMapNode() {
+        return this.currMapObj;
     }
 
 }
