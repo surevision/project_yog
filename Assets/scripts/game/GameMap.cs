@@ -32,6 +32,8 @@ public class GameMap {
         public int width;
         public int height;
 
+        public List<Intersection.Polygon> passageColliders = new List<Intersection.Polygon>();  // 障碍碰撞盒数组
+
         public override string ToString() {
             return string.Format("{0}: name {1} minTile {2}, maxTile {3}, width {4}, height {5}",
                 base.ToString(),
@@ -76,8 +78,27 @@ public class GameMap {
         this.mapInfo.width = maxX - minX;
         this.mapInfo.height = maxY - minY;
 
+        // 读取碰撞信息
         Tilemap passageLayer = ((SceneMap)SceneManager.Scene).getMapNode().transform.Find(getLayerName(Layers.LayerPassage)).GetComponent<Tilemap>();
         passageLayer.color = new Color(0, 0, 0, 0);
+        passageLayer.CompressBounds();
+        Vector3Int min = passageLayer.cellBounds.min;
+        Vector3Int max = passageLayer.cellBounds.max;
+        for (int x = min.x; x < max.x; x += 1) {
+            for (int y = min.y; y < max.y; y += 1) {
+                if (passageLayer.GetTile(new Vector3Int(x, y, min.z)) != null) {
+                    Vector3 worldPos = passageLayer.CellToWorld(new Vector3Int(x, y, min.z));
+                    Vector3 size = passageLayer.cellSize;
+                    List<Vector2> points = new List<Vector2>();
+                    points.Add(new Vector2(-worldPos.x * size.x * 0.5f, -worldPos.y * size.y * 0.5f));
+                    points.Add(new Vector2(-worldPos.x * size.x * 0.5f, worldPos.y * size.y * 0.5f));
+                    points.Add(new Vector2(worldPos.x * size.x * 0.5f, worldPos.y * size.y * 0.5f));
+                    points.Add(new Vector2(worldPos.x * size.x * 0.5f, -worldPos.y * size.y * 0.5f));
+                    Intersection.Polygon polygon = new Intersection.Polygon(points);
+                    this.mapInfo.passageColliders.Add(polygon);
+                }
+            }
+        }
 
         Debug.Log(string.Format("setup map {0}", this.mapInfo));
     }
@@ -117,5 +138,19 @@ public class GameMap {
         Vector3Int tilePos = passageLayer.WorldToCell(new Vector3(x, y, 0.5f));
         TileBase tile = passageLayer.GetTile(new Vector3Int(tilePos.x, tilePos.y, tilePos.z));
         return tile == null;
+    }
+
+    /// <summary>
+    /// 判断碰撞盒是否可通行
+    /// </summary>
+    /// <param name="polygon"></param>
+    /// <returns></returns>
+    public bool isPassable(Intersection.Polygon polygon) {
+        foreach (Intersection.Polygon mapCollider in this.mapInfo.passageColliders) {
+            if (Intersection.polygonPolygon(mapCollider, polygon)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

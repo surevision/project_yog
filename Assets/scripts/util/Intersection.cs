@@ -8,7 +8,7 @@ using UnityEngine;
 public class Intersection {
 
     public class Polygon {
-        List<Vector2> points = new List<Vector2>();
+        public List<Vector2> points = new List<Vector2>();
         public Polygon() { }
         public Polygon(List<Vector2> points) {
             this.points.Clear();
@@ -23,6 +23,15 @@ public class Intersection {
         public Vector2 this[int i] {
             get { return this.points[i]; }
         }
+    }
+
+    public static Polygon polygonMove(Polygon polygon, float x, float y) {
+        Polygon newPolygon = new Polygon();
+        for (int i = 0; i < polygon.points.Count; i += 1) {
+            Vector2 point = polygon.points[i];
+            newPolygon.points.Add(new Vector2(point.x + x, point.y + y));
+        }
+        return newPolygon;
     }
 
     /// <summary>

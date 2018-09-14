@@ -10,7 +10,7 @@ public class SceneMap : SceneBase {
         base.Start();
         sceneName = "Map";
 
-        string mapName = "Map001";
+        string mapName = "Map002";
         GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/{0}", mapName)));
         map.name = mapName;
         GameObject.Find("Map").transform.DetachChildren();
@@ -26,6 +26,8 @@ public class SceneMap : SceneBase {
         GameTemp.gameMap = new GameMap();
         GameTemp.gameMap.setupMap(map);
         GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
+
+        GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
 
         Vector2 startPos = GameTemp.gameMap.getTileWorldPos(4, 4);
         GameTemp.gamePlayer.setPos(startPos.x, startPos.y);

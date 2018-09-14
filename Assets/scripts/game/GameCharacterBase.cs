@@ -52,6 +52,8 @@ public class GameCharacterBase
     private DIRS prelockDirection = DIRS.NONE;       // 被锁上前的方向
     private bool moveSucceed = true;                 // 移动成功的标志
 
+    private Intersection.Polygon colliderPolygon = new Intersection.Polygon();
+
 
     public GameCharacterBase() {
         this.originalDirection = DIRS.DOWN;       // 原方向
@@ -61,6 +63,21 @@ public class GameCharacterBase
         this.locked = false;                      // 锁的标志
         this.prelockDirection = DIRS.NONE;        // 被锁上前的方向
         this.moveSucceed = true;                  // 移动成功的标志
+    }
+
+    /// <summary>
+    /// 初始化包围盒数据
+    /// </summary>
+    /// <param name="sprite"></param>
+    public void setupCollider(SpriteCharacter sprite) {
+        List<Vector2> points = new List<Vector2>();
+        Vector3 minPoint = sprite.GetComponent<SpriteRenderer>().bounds.min;
+        Vector3 maxPoint = sprite.GetComponent<SpriteRenderer>().bounds.max;
+        points.Add(new Vector2(minPoint.x, minPoint.y));
+        points.Add(new Vector2(minPoint.x, maxPoint.y));
+        points.Add(new Vector2(maxPoint.x, maxPoint.y));
+        points.Add(new Vector2(maxPoint.x, minPoint.y));
+        this.colliderPolygon = new Intersection.Polygon(points);
     }
 
     /// <summary>
@@ -167,24 +184,25 @@ public class GameCharacterBase
     }
 
     protected virtual float getStep() {
-        return getBaseStep() / 1;
+        return getBaseStep() / 16;
     }
 
     private bool isPassable(float x, float y, DIRS dir) {
         float step = this.getStep();
+        Intersection.Polygon testPolygon = this.colliderPolygon;
         if (dir == DIRS.DOWN) {
-            return GameTemp.gameMap.isPassable(this.x, this.y - step);
+            testPolygon = Intersection.polygonMove(this.colliderPolygon, 0, -step);
         }
         if (dir == DIRS.LEFT) {
-            return GameTemp.gameMap.isPassable(this.x - step, this.y);
+            testPolygon = Intersection.polygonMove(this.colliderPolygon, -step, 0);
         }
         if (dir == DIRS.RIGHT) {
-            return GameTemp.gameMap.isPassable(this.x + step, this.y);
+            testPolygon = Intersection.polygonMove(this.colliderPolygon, step, 0);
         }
         if (dir == DIRS.UP) {
-            return GameTemp.gameMap.isPassable(this.x, this.y + step);
+            testPolygon = Intersection.polygonMove(this.colliderPolygon, 0, step);
         }
-        return false;
+        return GameTemp.gameMap.isPassable(testPolygon);;
     }
 
     public bool moveStraight(DIRS dir) {
