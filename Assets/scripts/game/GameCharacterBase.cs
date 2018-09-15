@@ -73,11 +73,16 @@ public class GameCharacterBase
         List<Vector2> points = new List<Vector2>();
         Vector3 minPoint = sprite.GetComponent<SpriteRenderer>().bounds.min;
         Vector3 maxPoint = sprite.GetComponent<SpriteRenderer>().bounds.max;
-        points.Add(new Vector2(minPoint.x, minPoint.y));
-        points.Add(new Vector2(minPoint.x, maxPoint.y));
-        points.Add(new Vector2(maxPoint.x, maxPoint.y));
-        points.Add(new Vector2(maxPoint.x, minPoint.y));
+        float resize = 0.01f;
+        points.Add(new Vector2(minPoint.x + resize, minPoint.y + resize));
+        points.Add(new Vector2(minPoint.x + resize, maxPoint.y - resize));
+        points.Add(new Vector2(maxPoint.x - resize, maxPoint.y - resize));
+        points.Add(new Vector2(maxPoint.x - resize, minPoint.y + resize));
         this.colliderPolygon = new Intersection.Polygon(points);
+    }
+
+    public Intersection.Polygon currCollider() {
+        return Intersection.polygonMove(this.colliderPolygon, this.screenX(), this.screenY());
     }
 
     /// <summary>
@@ -189,18 +194,18 @@ public class GameCharacterBase
 
     private bool isPassable(float x, float y, DIRS dir) {
         float step = this.getStep();
-        Intersection.Polygon testPolygon = this.colliderPolygon;
+        Intersection.Polygon testPolygon = this.currCollider();
         if (dir == DIRS.DOWN) {
-            testPolygon = Intersection.polygonMove(this.colliderPolygon, 0, -step);
+            testPolygon = Intersection.polygonMove(testPolygon, 0, -step);
         }
         if (dir == DIRS.LEFT) {
-            testPolygon = Intersection.polygonMove(this.colliderPolygon, -step, 0);
+            testPolygon = Intersection.polygonMove(testPolygon, -step, 0);
         }
         if (dir == DIRS.RIGHT) {
-            testPolygon = Intersection.polygonMove(this.colliderPolygon, step, 0);
+            testPolygon = Intersection.polygonMove(testPolygon, step, 0);
         }
         if (dir == DIRS.UP) {
-            testPolygon = Intersection.polygonMove(this.colliderPolygon, 0, step);
+            testPolygon = Intersection.polygonMove(testPolygon, 0, step);
         }
         return GameTemp.gameMap.isPassable(testPolygon);;
     }

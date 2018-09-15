@@ -90,10 +90,10 @@ public class GameMap {
                     Vector3 worldPos = passageLayer.CellToWorld(new Vector3Int(x, y, min.z));
                     Vector3 size = passageLayer.cellSize;
                     List<Vector2> points = new List<Vector2>();
-                    points.Add(new Vector2(-worldPos.x * size.x * 0.5f, -worldPos.y * size.y * 0.5f));
-                    points.Add(new Vector2(-worldPos.x * size.x * 0.5f, worldPos.y * size.y * 0.5f));
-                    points.Add(new Vector2(worldPos.x * size.x * 0.5f, worldPos.y * size.y * 0.5f));
-                    points.Add(new Vector2(worldPos.x * size.x * 0.5f, -worldPos.y * size.y * 0.5f));
+                    points.Add(new Vector2(worldPos.x, worldPos.y));
+                    points.Add(new Vector2(worldPos.x, worldPos.y + size.y));
+                    points.Add(new Vector2(worldPos.x + size.x, worldPos.y + size.y));
+                    points.Add(new Vector2(worldPos.x + size.x, worldPos.y));
                     Intersection.Polygon polygon = new Intersection.Polygon(points);
                     this.mapInfo.passageColliders.Add(polygon);
                 }

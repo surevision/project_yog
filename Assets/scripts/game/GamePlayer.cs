@@ -22,19 +22,12 @@ public class GamePlayer : GameCharacterBase {
             }
         }
     }
-
-    public override float offsetStepX() {
-        return base.offsetStepX();
-    }
-    public override float offsetStepY() {
-        return base.offsetStepY();
-    }
-
+    
     public float offsetScreenX() {
         return 0.5f * 0.16f;
     }
     public float offsetScreenY() {
-        return 0.01f * 2f;
+        return 0;
     }
 
     public override float screenX() {

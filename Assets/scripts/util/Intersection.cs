@@ -23,6 +23,14 @@ public class Intersection {
         public Vector2 this[int i] {
             get { return this.points[i]; }
         }
+
+        public override string ToString() {
+            string result = "Polygon: ";
+            foreach (Vector2 point in points) {
+                result += point.ToString();
+            }
+            return result;
+        }
     }
 
     public static Polygon polygonMove(Polygon polygon, float x, float y) {
@@ -214,8 +222,8 @@ public class Intersection {
 
         // check if a intersects b
         for (i = 0, l = a.length; i < l; ++i) {
-            var a1 = a[i];
-            var a2 = a[(i + 1) % l];
+            Vector2 a1 = a[i];
+            Vector2 a2 = a[(i + 1) % l];
 
             if (linePolygon(a1, a2, b))
                 return true;
