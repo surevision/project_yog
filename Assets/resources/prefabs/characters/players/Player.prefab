@@ -59,7 +59,7 @@ MonoBehaviour:
     y: 0
     realX: 0
     realY: 0
-    moveSpeed: 3
+    moveSpeed: 4
     characterName: $character_base_16x16
     characterIndex: 0
     moveFrequency: 0

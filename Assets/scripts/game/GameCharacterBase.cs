@@ -90,7 +90,7 @@ public class GameCharacterBase
     /// </summary>
     /// <returns></returns>
     protected float distancePerFrame() {
-        return Mathf.Pow(2, this.moveSpeed) / 128.0f * 0.16f;
+        return Mathf.Pow(2, this.moveSpeed) / 256 * 0.16f;
     }
 
     /// <summary>
@@ -189,7 +189,7 @@ public class GameCharacterBase
     }
 
     protected virtual float getStep() {
-        return getBaseStep() / 16;
+        return getBaseStep() / 8;
     }
 
     private bool isPassable(float x, float y, DIRS dir) {
