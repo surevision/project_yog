@@ -25,6 +25,7 @@ public class GameMap {
     public class MapInfo {
 
         public string name;
+        public int mapId;
 
         public Vector3Int minTile;
         public Vector3Int maxTile;
@@ -47,6 +48,8 @@ public class GameMap {
     }
 
     public MapInfo mapInfo;
+    public List<GameEvent> events;
+    public bool needRefresh;
 
     public string getLayerName(Layers layer) {
         return layers[(int)layer];
@@ -101,6 +104,10 @@ public class GameMap {
         }
 
         Debug.Log(string.Format("setup map {0}", this.mapInfo));
+    }
+
+    public void refresh() {
+
     }
 
     /// <summary>

@@ -108,7 +108,7 @@ public class GameCharacterBase
     /// 是否在移动中
     /// </summary>
     /// <returns></returns>
-    protected virtual bool isMoving() {
+    public virtual bool isMoving() {
         return this.realX != this.x || this.realY != this.y;
     }
 
@@ -246,5 +246,12 @@ public class GameCharacterBase
         this.y = y;
         this.realX = x;
         this.realY = y;
+    }
+
+    public void lockup() {
+        this.locked = true;
+    }
+    public void unlock() {
+        this.locked = false;
     }
 }
