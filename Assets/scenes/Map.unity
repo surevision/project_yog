@@ -578,7 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 2101612917}
-  _text: "$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a$c<0>\u732B\u53D4\u662F$c<6>b$c<5>a$c<4>k$c<3>a"
+  _text: 
   _width: 740
   _isSingleLine: 0
   _minHeight: 64

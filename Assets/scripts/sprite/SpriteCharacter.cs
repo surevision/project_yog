@@ -42,10 +42,19 @@ public class SpriteCharacter : SpriteBase {
         this.updateBitmap();
         this.updatePattern();
         this.updatePosition();
+        this.character.isDirty = false;
     }
 
     private void updatePosition() {
         this.transform.position = new Vector3(this.character.screenX(), this.character.screenY(), this.character.screenY());
+        if (this.character.isDirty) {
+            this.GetComponent<SpriteRenderer>().color = new Color(
+                this.GetComponent<SpriteRenderer>().color.r,
+                this.GetComponent<SpriteRenderer>().color.g,
+                this.GetComponent<SpriteRenderer>().color.b,
+                this.character.opacity / 255
+                );
+        }
     }
 
     /// <summary>
@@ -63,7 +72,9 @@ public class SpriteCharacter : SpriteBase {
     /// </summary>
     private void updatePattern() {
         int pattern = this.character.pattern < 3 ? this.character.pattern : 1;  // 0 1 2 1 循环
-        this.changeBitmap(this.character.direction, pattern);
+        if (this.character.isDirty) {
+            this.changeBitmap(this.character.direction, pattern);
+        }
     }
 
     /// <summary>
@@ -79,6 +90,10 @@ public class SpriteCharacter : SpriteBase {
             this.sprites = Resources.LoadAll<Sprite>(path);
         }
         int index = ((int)direction / 2 - 1) * 3 + (pattern % 3);
-        sr.sprite = this.sprites[index];
+        if ("".Equals(this.character.characterName)) {
+            sr.sprite = null;
+        } else {
+            sr.sprite = this.sprites[index];
+        }
     }
 }

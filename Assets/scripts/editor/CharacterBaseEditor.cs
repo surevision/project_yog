@@ -81,7 +81,6 @@ public class CharacterBaseEditor : Editor
             sr.sprite = m_Target.BaseFrame;
             // 统一为单角色图片
             m_Target.character.characterName = fileName;
-            m_Target.character.characterIndex = 0;
             m_Target.character.direction = dirs[(index / 3) % 3];
             m_Target.character.pattern = index % 3;
         }

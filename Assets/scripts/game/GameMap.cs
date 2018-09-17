@@ -8,6 +8,7 @@ public class GameMap {
     public static string[] layers = {
         "LayerPassage",
         "Layer3",
+        "LayerPlayer",
         "LayerEvents",
         "Layer2",
         "Layer1",
@@ -16,6 +17,7 @@ public class GameMap {
     public enum Layers {
         LayerPassage,
         Layer3,
+        LayerPlayer,
         LayerEvents,
         Layer2,
         Layer1
@@ -47,6 +49,7 @@ public class GameMap {
 
     }
 
+    public GameInterpreter interpreter;
     public MapInfo mapInfo;
     public List<GameEvent> events;
     public bool needRefresh;
@@ -82,7 +85,7 @@ public class GameMap {
         this.mapInfo.height = maxY - minY;
 
         // 读取碰撞信息
-        Tilemap passageLayer = ((SceneMap)SceneManager.Scene).getMapNode().transform.Find(getLayerName(Layers.LayerPassage)).GetComponent<Tilemap>();
+        Tilemap passageLayer = tilemapNode.transform.Find(getLayerName(Layers.LayerPassage)).GetComponent<Tilemap>();
         passageLayer.color = new Color(0, 0, 0, 0);
         passageLayer.CompressBounds();
         Vector3Int min = passageLayer.cellBounds.min;
@@ -103,11 +106,55 @@ public class GameMap {
             }
         }
 
+        // 读取事件信息
+        Tilemap eventLayer = tilemapNode.transform.Find(getLayerName(Layers.LayerEvents)).GetComponent<Tilemap>();
+        this.events = new List<GameEvent>();
+        SpriteEvent[] spriteEvents = eventLayer.GetComponentsInChildren<SpriteEvent>();
+        int i = 0;
+        foreach (SpriteEvent s in spriteEvents) {
+            this.events.Add((GameEvent)s.character);
+            ((GameEvent)s.character).setup(i);
+            i += 1;
+        }
+
+        // 初始化事件解释器
+        this.interpreter = new GameInterpreter(0, true);
+
+        this.refresh();
+
         Debug.Log(string.Format("setup map {0}", this.mapInfo));
     }
 
     public void refresh() {
 
+        foreach (GameEvent e in this.events) {
+            e.refresh();
+        }
+        this.needRefresh = false;
+    }
+
+    public void update() {
+        if (this.needRefresh) {
+            this.refresh();
+        }
+        this.interpreter.update();
+        // 确认键事件启动判定
+        if (!this.interpreter.isRunning()) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                //for (let index in this.triggeredEvents) {
+                //    let event = this.triggeredEvents[index];
+                //    let node = event.getNode();
+                //    if (event.trigger == GameInterpreter.TriggerTypes.Confirm) {
+                //        event.start();
+                //        break;
+                //    }
+                //}
+            }
+        }
+        // 更新事件
+        foreach (GameEvent e in this.events) {
+            e.update();
+        }
     }
 
     /// <summary>

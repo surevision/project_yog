@@ -18,7 +18,7 @@ public class SceneMap : SceneBase {
         this.currMapObj = map;
 
         this.player = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/characters/players/Player"));
-        this.player.transform.SetParent(map.transform.Find("LayerEvents"));
+        this.player.transform.SetParent(map.transform.Find(GameMap.layers[(int)GameMap.Layers.LayerPlayer]));
 
         GameObject.Find("Main Camera").GetComponent<CameraControl>().target = player;
 
@@ -26,13 +26,11 @@ public class SceneMap : SceneBase {
         GameTemp.gameMap = new GameMap();
         GameTemp.gameMap.setupMap(map);
 
-
-        foreach (Intersection.Polygon polygon in GameTemp.gameMap.mapInfo.passageColliders) {
-            foreach (Vector2 point in polygon.points) {
-                Debug.Log(point);
-            }
-        }
-
+        //foreach (Intersection.Polygon polygon in GameTemp.gameMap.mapInfo.passageColliders) {
+        //    foreach (Vector2 point in polygon.points) {
+        //        Debug.Log(point);
+        //    }
+        //}
 
         GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
 
@@ -45,7 +43,16 @@ public class SceneMap : SceneBase {
 
     protected override void updateRender() {
         base.updateRender();
+
+        // 刷新角色
         this.player.GetComponent<SpritePlayer>().update();
+
+        // 刷新事件
+        foreach (GameEvent e in GameTemp.gameMap.events) {
+            e.getEventSprite().update();
+        }
+
+        // 刷新视野
         GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize = GameTemp.gameScreen.currView;
 
         // debug
@@ -85,6 +92,7 @@ public class SceneMap : SceneBase {
     protected override void updateLogic() {
         base.updateLogic();
         GameTemp.gamePlayer.update();
+        GameTemp.gameMap.update();
         GameTemp.gameScreen.update();
         if (Input.GetKeyDown(KeyCode.F5)) {
             GameTemp.gameScreen.toggleView();

@@ -30,7 +30,6 @@ public class GameCharacterBase
     public float realY;                         // 地图 Y 坐标（实际像素坐标）
     public int moveSpeed = 3;                   // 移动速度
     public string characterName;                // 文件名
-    public int characterIndex = 0;              // 图像序号
     public int moveFrequency = 0;               // 移动频度
     public bool walkAnime = true;               // 步行动画
     public bool stepAnime = false;              // 踏步动画
@@ -51,6 +50,8 @@ public class GameCharacterBase
     private bool locked = false;                     // 锁的标志
     private DIRS prelockDirection = DIRS.NONE;       // 被锁上前的方向
     private bool moveSucceed = true;                 // 移动成功的标志
+
+    public bool isDirty = false;
 
     private Intersection.Polygon colliderPolygon = new Intersection.Polygon();
 
@@ -124,6 +125,7 @@ public class GameCharacterBase
         if (this.animeCount > 18 - this.moveSpeed * 2) {
             this.updateAnimePattern();  // 改图
             this.animeCount = 0;
+            this.isDirty = true;
         }
     }
 
@@ -212,8 +214,8 @@ public class GameCharacterBase
 
     public bool moveStraight(DIRS dir) {
         this.direction = dir;
+        this.isDirty = true;
         if (this.isPassable(this.x, this.y, dir)) {
-
             float step = this.getStep();
             if (dir == DIRS.DOWN) {
                 this.y -= step;
@@ -227,7 +229,7 @@ public class GameCharacterBase
             if (dir == DIRS.UP) {
                 this.y += step;
             }
-                this.increaseMove();
+            this.increaseMove();
             return true;
         }
         return false;

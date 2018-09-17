@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -10,6 +11,7 @@ public class GameInterpreter {
     /// <summary>
     /// 独立开关枚举
     /// </summary>
+    [Serializable]
     public enum SelfSwitchCode {
         A = 1,
         B = 2,
@@ -20,6 +22,7 @@ public class GameInterpreter {
     /// <summary>
     /// 开始条件
     /// </summary>
+    [Serializable]
     public enum TriggerTypes {
         Confirm = 0, // 确定键
         EnterCollide = 1, // 碰撞接触
@@ -31,6 +34,7 @@ public class GameInterpreter {
     /// <summary>
     /// 指令类型
     /// </summary>
+    [Serializable]
     public enum CommandTypes {
         // 1
         ShowArticle = 101,       // 显示文章
@@ -62,29 +66,40 @@ public class GameInterpreter {
 
     }
 
+    /// <summary>
+    /// 出现条件 开关
+    /// </summary>
+    [Serializable]
     public class ActiveSwitch {
         [SerializeField]
-        private int index;
+        public int index;
 	}
 
     /// <summary>
     /// 出现条件：变量
     /// </summary>
+    [Serializable]
     public class ActiveVariable {
         [SerializeField]
-        private int index;
+        public int index;
         [SerializeField]
-        private int value;
+        public int value;
     }
 
     /// <summary>
     /// 出现条件：独立开关
     /// </summary>
+    [Serializable]
     public class ActiveSelfSwitch {
         [SerializeField]
-        private SelfSwitchCode index;
-    }
+        public SelfSwitchCode index;
 
+        public ActiveSelfSwitch() { }
+
+        public ActiveSelfSwitch(SelfSwitchCode index) {
+            this.index = index;
+        }
+    }
 
     private int depth;
     private bool isMain;
