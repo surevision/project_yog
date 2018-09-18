@@ -424,7 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _code: 230
   _args:
-  - 10
+  - 3000
 --- !u!114 &114336221663134868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _code: 111
   _args:
-  - return gameVariables:get(0) == 1
+  - return gameVariables:get(0) == 0
   - 1
 --- !u!114 &114604399526696264
 MonoBehaviour:
@@ -477,9 +477,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _code: 230
+  _code: 355
   _args:
-  - 300
+  - gamePlayer.x = 0
 --- !u!212 &212655301569147114
 SpriteRenderer:
   m_ObjectHideFlags: 1
