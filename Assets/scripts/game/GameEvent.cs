@@ -26,7 +26,12 @@ public class GameEvent : GameCharacterBase {
     }
     private bool erased = false;                                // 暂时消除标记
     private int page = -1;                                   // 当前事件页
-    private GameInterpreter.TriggerTypes trigger;       // 记录当前的开始条件
+
+    private GameInterpreter.TriggerTypes _trigger;       // 记录当前的开始条件
+    public GameInterpreter.TriggerTypes trigger {
+        get { return _trigger; }
+        set { _trigger = value; }
+    }
 
     private List<EventCommand> _list;                    // 当前指令列表
     public List<EventCommand> list {
@@ -211,6 +216,35 @@ public class GameEvent : GameCharacterBase {
             }
             this.interpreter.update();
         }
+    }
+
+    /// <summary>
+    /// 初始化包围盒数据
+    /// </summary>
+    /// <param name="sprite"></param>
+    public override void setupCollider(SpriteCharacter sprite) {
+        List<Vector2> points = new List<Vector2>();
+        Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
+        float resize = 0.01f;
+        points.Add(new Vector2(resize, resize));
+        points.Add(new Vector2(resize, size.y / 4 * 3 - resize));
+        points.Add(new Vector2(size.x - resize, size.y / 4 * 3 - resize));
+        points.Add(new Vector2(size.x - resize, resize));
+        this.colliderPolygon = new Intersection.Polygon(points);
+    }
+
+    public float offsetScreenX() {
+        return 0.5f * 0.16f;
+    }
+    public float offsetScreenY() {
+        return 0;
+    }
+
+    public override float screenX() {
+        return this.realX + offsetScreenX();
+    }
+    public override float screenY() {
+        return this.realY + offsetScreenY();
     }
     
 }

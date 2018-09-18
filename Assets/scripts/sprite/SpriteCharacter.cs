@@ -26,9 +26,7 @@ public class SpriteCharacter : SpriteBase {
     }
 
 
-    private string characterName = "";
-    private int characterIndex = 0;
-    private int characterPattern = 1;
+    protected string characterName = "";
 
     // 渲染相关
     private Sprite[] sprites;
@@ -60,7 +58,7 @@ public class SpriteCharacter : SpriteBase {
     /// <summary>
     /// 检测换图
     /// </summary>
-    private void updateBitmap() {
+    protected virtual void updateBitmap() {
         if (!this.characterName.Equals(this.character.characterName)) {
             this.changeBitmap(this.character.direction, this.character.pattern, true);
             this.characterName = this.character.characterName;

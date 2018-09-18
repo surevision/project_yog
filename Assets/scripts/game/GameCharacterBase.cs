@@ -53,8 +53,9 @@ public class GameCharacterBase
 
     public bool isDirty = false;
 
-    private Intersection.Polygon colliderPolygon = new Intersection.Polygon();
+    protected Intersection.Polygon colliderPolygon = new Intersection.Polygon();
 
+    public List<GameCharacterBase> lastHit = new List<GameCharacterBase>();
 
     public GameCharacterBase() {
         this.originalDirection = DIRS.DOWN;       // 原方向
@@ -70,20 +71,19 @@ public class GameCharacterBase
     /// 初始化包围盒数据
     /// </summary>
     /// <param name="sprite"></param>
-    public void setupCollider(SpriteCharacter sprite) {
+    public virtual void setupCollider(SpriteCharacter sprite) {
         List<Vector2> points = new List<Vector2>();
-        Vector3 minPoint = sprite.GetComponent<SpriteRenderer>().bounds.min;
-        Vector3 maxPoint = sprite.GetComponent<SpriteRenderer>().bounds.max;
+        Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
         float resize = 0.01f;
-        points.Add(new Vector2(minPoint.x + resize, minPoint.y + resize));
-        points.Add(new Vector2(minPoint.x + resize, maxPoint.y - resize));
-        points.Add(new Vector2(maxPoint.x - resize, maxPoint.y - resize));
-        points.Add(new Vector2(maxPoint.x - resize, minPoint.y + resize));
+        points.Add(new Vector2(resize, resize));
+        points.Add(new Vector2(resize, size.y - resize));
+        points.Add(new Vector2(size.x - resize, size.y - resize));
+        points.Add(new Vector2(size.x - resize, resize));
         this.colliderPolygon = new Intersection.Polygon(points);
     }
 
     public Intersection.Polygon currCollider() {
-        return Intersection.polygonMove(this.colliderPolygon, this.screenX(), this.screenY());
+        return Intersection.polygonMove(this.colliderPolygon, this.realX, this.realY);
     }
 
     /// <summary>
@@ -209,7 +209,7 @@ public class GameCharacterBase
         if (dir == DIRS.UP) {
             testPolygon = Intersection.polygonMove(testPolygon, 0, step);
         }
-        return GameTemp.gameMap.isPassable(testPolygon);;
+        return GameTemp.gameMap.isPassable(testPolygon, this);
     }
 
     public bool moveStraight(DIRS dir) {

@@ -84,6 +84,22 @@ public class SceneMap : SceneBase {
                     new Vector3(end.x, end.y, this.player.transform.position.z), Color.red);
 
             }
+
+
+            foreach (GameEvent e in GameTemp.gameMap.events) {
+                Intersection.Polygon polygon = e.currCollider();
+                start = polygon.points[0];
+                foreach (Vector2 point in polygon.points) {
+                    Debug.DrawLine(new Vector3(start.x, start.y, this.player.transform.position.z),
+                        new Vector3(point.x, point.y, this.player.transform.position.z), Color.green);
+                    start = point;
+                }
+                start = polygon.points[0];
+                end = polygon.points[polygon.length - 1];
+                Debug.DrawLine(new Vector3(start.x, start.y, this.player.transform.position.z),
+                    new Vector3(end.x, end.y, this.player.transform.position.z), Color.green);
+
+            }
         }
         
 

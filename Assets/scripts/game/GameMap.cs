@@ -141,14 +141,13 @@ public class GameMap {
         // 确认键事件启动判定
         if (!this.interpreter.isRunning()) {
             if (Input.GetKeyDown(KeyCode.Space)) {
-                //for (let index in this.triggeredEvents) {
-                //    let event = this.triggeredEvents[index];
-                //    let node = event.getNode();
-                //    if (event.trigger == GameInterpreter.TriggerTypes.Confirm) {
-                //        event.start();
-                //        break;
-                //    }
-                //}
+                foreach (GameCharacterBase character in GameTemp.gamePlayer.lastHit) {
+                    GameEvent e = (GameEvent)character;
+                    if (e.trigger == GameInterpreter.TriggerTypes.Confirm) {
+                        e.start();
+                        break;
+                    }
+                }
             }
         }
         // 更新事件
@@ -198,10 +197,23 @@ public class GameMap {
     /// 判断碰撞盒是否可通行
     /// </summary>
     /// <param name="polygon"></param>
+    /// <param name="character"></param>
     /// <returns></returns>
-    public bool isPassable(Intersection.Polygon polygon) {
+    public bool isPassable(Intersection.Polygon polygon, GameCharacterBase character) {
+        // 检测图块通行
         foreach (Intersection.Polygon mapCollider in this.mapInfo.passageColliders) {
             if (Intersection.polygonPolygon(mapCollider, polygon)) {
+                return false;
+            }
+        }
+        // 检测事件通行
+        foreach (GameEvent e in this.events) {
+            Intersection.Polygon eventCollider = e.currCollider();
+            if (Intersection.polygonPolygon(eventCollider, polygon)) {
+                if (character != null) {
+                    character.lastHit.Clear();
+                    character.lastHit.Add(e);
+                }
                 return false;
             }
         }

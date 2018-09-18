@@ -10,4 +10,15 @@ public class SpriteEvent : SpriteCharacter {
     public override GameCharacterBase character {
         get { return _event; }
     }
+
+    protected override void updateBitmap() {
+        bool reCollider = false;
+        if (!this.characterName.Equals(this.character.characterName)) {
+            reCollider = true;
+        }
+        base.updateBitmap();
+        if (reCollider) {
+            this.character.setupCollider(this);
+        }
+    }
 }
