@@ -57,7 +57,7 @@ public class GameInterpreter {
         FadeoutBGM = 242,        // 淡出BGM
         PlaySE = 250,        // 播放SE
         StopSE = 251,        // 停止SE
-        
+
         // 3
         EvalScript = 355,        // 脚本
 
@@ -73,7 +73,7 @@ public class GameInterpreter {
     public class ActiveSwitch {
         [SerializeField]
         public int index;
-	}
+    }
 
     /// <summary>
     /// 出现条件：变量
@@ -115,7 +115,7 @@ public class GameInterpreter {
     public GameInterpreter childInterpreter = null;	// 子解释器（公共事件）
 
     public CommandTypes currentCode = 0;
-    public string currentParam = "";
+    public string[] currentParam;
 
     public GameInterpreter(int depth, bool isMain) {
         this.depth = depth;
@@ -134,17 +134,16 @@ public class GameInterpreter {
         this.childInterpreter = null;   // 子解释器（公共事件）
 
         this.currentCode = 0;
-        this.currentParam = "";
     }
 
-	public void setup(List<EventCommand> list, int eventId = 0) {
+    public void setup(List<EventCommand> list, int eventId = 0) {
         this.clear();
         this.mapId = GameTemp.gameMap.mapInfo.mapId;
         this.origEventId = eventId;
         this.eventId = eventId;
         this.list = list;
     }
-	public bool isRunning() {
+    public bool isRunning() {
         return this.list != null;
     }
 
@@ -153,7 +152,7 @@ public class GameInterpreter {
     /// </summary>
     /// <param name="charId">char</param>
     /// <returns></returns>
-	private GameCharacterBase getCharacter(int charId) {
+    private GameCharacterBase getCharacter(int charId) {
         if (charId == -1) {
             // 本事件
             return GameTemp.gameMap.events[this.eventId];
@@ -169,7 +168,7 @@ public class GameInterpreter {
     /// <summary>
     /// 结束执行
     /// </summary>
-	private void commandEnd() {
+    private void commandEnd() {
         this.list = null;
         if (this.isMain && this.eventId > 0) {
             GameTemp.gameMap.events[this.eventId].unlock();
@@ -179,13 +178,13 @@ public class GameInterpreter {
     /// <summary>
     /// 跳转到分歧结束
     /// </summary>
-	public void commandSkip() {
+    public void commandSkip() {
         while (this.list[this.index].code != CommandTypes.EndCmd) {
             this.index += 1;
         }
     }
 
-	public void update() {
+    public void update() {
         while (true) {  // while跳过无用指令
             if (GameTemp.gameMap.mapInfo.mapId != this.mapId) { // 地图id和启动地图有差异
                 this.eventId = 0;
@@ -222,7 +221,7 @@ public class GameInterpreter {
     /// <summary>
     /// 启动事件
     /// </summary>
-	public void setupStartingEvent() {
+    public void setupStartingEvent() {
         if (GameTemp.gameMap.needRefresh) {
             GameTemp.gameMap.refresh();
         }
@@ -234,7 +233,7 @@ public class GameInterpreter {
                 return;
             }
         }
-	}
+    }
 
     /// <summary>
     /// 执行指令
@@ -249,59 +248,49 @@ public class GameInterpreter {
         } else {
             EventCommand eventCmd = this.list[this.index];
             this.currentCode = eventCmd.code;
-            this.currentParam = eventCmd.value;
+            this.currentParam = eventCmd.args;
             switch (eventCmd.code) {
                 case CommandTypes.ShowArticle:  // 101 显示文章 
                     Debug.Log(string.Format("CommandTypes.ShowArticle", this.currentParam));
                     return this.command_showArticle();
-                    break;
                 case CommandTypes.Condition:    // 111 条件分歧 
                     Debug.Log(string.Format("CommandTypes.Condition", this.currentParam));
+                    this.command_condition();
                     return true;
-                    break;
                 case CommandTypes.CommandBreak: // 115 中断事件处理 
                     Debug.Log(string.Format("CommandTypes.CommandBreak", this.currentParam));
                     return true;
-                    break;
                 case CommandTypes.CommonEvent:  // 117 公共事件 
                     Debug.Log(string.Format("CommandTypes.CommonEvent", this.currentParam));
                     return true;
-                    break;
                 case CommandTypes.Comment:  // 118 注释 
                     Debug.Log(string.Format("CommandTypes.Comment", this.currentParam));
                     return true;
-                    break;
                 case CommandTypes.SetSwitch:    // 121 开关操作
                     Debug.Log(string.Format("CommandTypes.SetSwitch", this.currentParam));
                     return this.command_setSwitch();
-                    break;
                 case CommandTypes.SetVariable:  // 122 变量操作
                     Debug.Log(string.Format("CommandTypes.SetVariable", this.currentParam));
                     return this.command_setVariable();
-                    break;
                 case CommandTypes.SetSelfSwitch:    // 123 独立开关操作
                     Debug.Log(string.Format("CommandTypes.SetSelfSwitch", this.currentParam));
                     return this.command_setSelfSwitch();
-                    break;
                 case CommandTypes.Shake:    // 225 画面震动
                     Debug.Log(string.Format("CommandTypes.Shake", this.currentParam));
                     return this.command_shake();
-                    break;
                 case CommandTypes.Wait: // 230 等待
                     Debug.Log(string.Format("CommandTypes.Wait", this.currentParam));
                     return this.command_wait();
-                    break;
                 case CommandTypes.EvalScript:   // 355 脚本
                     Debug.Log(string.Format("CommandTypes.EvalScript", this.currentParam));
                     //return this.command_evalScript();
                     return true;
-                    break;
                 default:
                     return true;
             }
         }
     }
-    
+
     /// <summary>
     /// 101 显示文章
     /// text
@@ -309,7 +298,7 @@ public class GameInterpreter {
     public bool command_showArticle() {
         Debug.Log(string.Format("command_showArticle"));
         if (!GameTemp.gameMessage.isBusy()) {
-            string text = this.currentParam;
+            string text = this.currentParam[0];
             GameTemp.gameMessage.text = text;
             this.messageWaiting = true;
             GameTemp.gameMessage.setFinishCallback(this.onMessageFinish);
@@ -317,9 +306,41 @@ public class GameInterpreter {
         }
         return false;
     }
-    
+
     public void onMessageFinish() {
         this.messageWaiting = false;
+    }
+
+    /// <summary>
+    /// 111 条件分歧
+    /// lua, 3 lua条件判定，跳过3条指令
+    /// </summary>
+    /// <returns></returns>
+    public bool command_condition() {
+        string condition = this.currentParam[0];
+
+        Debug.Log(condition);
+
+        XLua.LuaTable scriptEnv = LuaManager.LuaEnv.NewTable();
+        // 为每个脚本设置一个独立的环境，可一定程度上防止脚本间全局变量、函数冲突
+        XLua.LuaTable meta = LuaManager.LuaEnv.NewTable();
+        meta.Set("__index", LuaManager.LuaEnv.Global);
+        scriptEnv.SetMetaTable(meta);
+        meta.Dispose();
+
+        scriptEnv.Set("self", this);
+        scriptEnv.Set("gameVariables", GameTemp.gameVariables);
+        scriptEnv.Set("gameSwitches", GameTemp.gameSwitches);
+        scriptEnv.Set("gameSelfSwitches", GameTemp.gameSelfSwitches);
+        scriptEnv.Set("gamePlayer", GameTemp.gamePlayer);
+        scriptEnv.Set("gameMap", GameTemp.gameMap);
+
+        bool result = (bool)LuaManager.LuaEnv.DoString(condition, string.Format("event_condition_{0}", this.eventId), scriptEnv)[0];
+
+        if (result) {
+            this.index += int.Parse(this.currentParam[1]);
+        }
+        return true;
     }
 
     /// <summary>
@@ -327,15 +348,15 @@ public class GameInterpreter {
     /// id,true/false
     /// </summary>
     /// <returns></returns>
-	public bool command_setSwitch() {
+    public bool command_setSwitch() {
         Debug.Log(string.Format("command_setSwitch"));
-        int switchId = int.Parse(this.currentParam.Split(',')[0]);
-        bool value = bool.Parse(this.currentParam.Split(',')[1]);
+        int switchId = int.Parse(this.currentParam[0]);
+        bool value = bool.Parse(this.currentParam[1]);
         GameTemp.gameSwitches[switchId] = value;
         GameTemp.gameMap.needRefresh = true;
         return true;
     }
-    
+
     /// <summary>
     /// 122 变量操作
     /// 5,=,2
@@ -344,13 +365,13 @@ public class GameInterpreter {
     /// <returns></returns>
     public bool command_setVariable() {
         Debug.Log(string.Format("command_setVariable"));
-        int variableId = int.Parse(this.currentParam.Split(',')[0]);
-        string opa = this.currentParam.Split(',')[1];
+        int variableId = int.Parse(this.currentParam[0]);
+        string opa = this.currentParam[1];
         int value = 0;
-        if (this.currentParam.Split(',')[2].StartsWith("v")) {
-            value = GameTemp.gameVariables[int.Parse(this.currentParam.Split(',')[2].Substring(1))];
+        if (this.currentParam[2].StartsWith("v")) {
+            value = GameTemp.gameVariables[int.Parse(this.currentParam[2].Substring(1))];
         } else {
-            int.Parse(this.currentParam.Split(',')[2]);
+            int.Parse(this.currentParam[2]);
         }
         if ("=".Equals(opa)) {
             GameTemp.gameVariables[variableId] = value;
@@ -367,7 +388,7 @@ public class GameInterpreter {
         GameTemp.gameMap.needRefresh = true;
         return true;
     }
-    
+
     /// <summary>
     /// 123 独立开关操作
     /// A,true
@@ -375,8 +396,8 @@ public class GameInterpreter {
     /// <returns></returns>
     public bool command_setSelfSwitch() {
         Debug.Log(string.Format("command_setSelfSwitch"));
-        string code = this.currentParam.Split(',')[0].ToUpper();
-        bool value = bool.Parse(this.currentParam.Split(',')[1]);
+        string code = this.currentParam[0].ToUpper();
+        bool value = bool.Parse(this.currentParam[1]);
 
         string key = GameSelfSwtiches.key(this.mapId, this.eventId, GameSelfSwtiches.code(code));
         GameTemp.gameSelfSwitches[key] = value;
@@ -388,7 +409,7 @@ public class GameInterpreter {
     /// 225 画面震动
     /// </summary>
     /// <returns></returns>
-	public bool command_shake() {
+    public bool command_shake() {
         return true;
     }
 
@@ -396,8 +417,8 @@ public class GameInterpreter {
     ///  230 等待
     ///  帧数
     /// </summary>
-	public bool command_wait() {
-        this.waitCount = int.Parse(this.currentParam);
+    public bool command_wait() {
+        this.waitCount = int.Parse(this.currentParam[0]);
         return true;
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[XLua.LuaCallCSharp]
 public class GameTemp {
     public static GameVariables gameVariables;
     public static GameSwitches gameSwitches;
@@ -12,4 +13,8 @@ public class GameTemp {
     public static GameMap gameMap;
     public static GamePlayer gamePlayer;
     public static GameMessage gameMessage;
+
+    public static GameVariables getVariables() {
+        return gameVariables;
+    }
 }

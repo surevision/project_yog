@@ -22,6 +22,9 @@ public class SceneMap : SceneBase {
 
         GameObject.Find("Main Camera").GetComponent<CameraControl>().target = player;
 
+        GameTemp.gameVariables = new GameVariables();
+        GameTemp.gameSwitches = new GameSwitches();
+        GameTemp.gameSelfSwitches = new GameSelfSwtiches();
         GameTemp.gameScreen = new GameScreen();
         GameTemp.gameMap = new GameMap();
         GameTemp.gameMap.setupMap(map);

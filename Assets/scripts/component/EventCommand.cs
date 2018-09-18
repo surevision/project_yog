@@ -11,8 +11,9 @@ public class EventCommand : MonoBehaviour {
         get { return _code; }
     }
     [SerializeField]
-    private string _value;
-    public string value {
-        get { return _value; }
+    [MultilineAttribute]
+    private string[] _args;
+    public string[] args {
+        get { return _args; }
     }
 }

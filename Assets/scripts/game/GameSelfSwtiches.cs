@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[XLua.LuaCallCSharp]
 public class GameSelfSwtiches {
 
     public static string[] CodeNames = {

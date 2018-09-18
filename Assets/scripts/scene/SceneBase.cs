@@ -5,6 +5,10 @@ using UnityEngine;
 public class SceneBase : MonoBehaviour {
     [HideInInspector]
     public string sceneName;
+
+    internal static float lastGCTime = 0;
+    internal const float GCInterval = 1;//1 second 
+
 	// Use this for initialization
 	protected virtual void Start () {
         sceneName = "Base"; // this.GetType().Name;
@@ -18,6 +22,12 @@ public class SceneBase : MonoBehaviour {
 
     void FixedUpdate() {
         updateLogic();
+
+        // lua gc
+        if (Time.time - SceneBase.lastGCTime > GCInterval) {
+            LuaManager.LuaEnv.Tick();
+            SceneBase.lastGCTime = Time.time;
+        }
     }
 
     protected virtual void updateRender() {
