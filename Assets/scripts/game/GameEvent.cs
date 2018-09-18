@@ -24,7 +24,11 @@ public class GameEvent : GameCharacterBase {
         get { return _starting; }
         set { _starting = value; }
     }
-    private bool erased = false;                                // 暂时消除标记
+    private bool _erased;                                // 暂时消除标记
+    public bool erased {
+        get { return _erased; }
+        set { _erased = value; }
+    }
     private int page = -1;                                   // 当前事件页
 
     private GameInterpreter.TriggerTypes _trigger;       // 记录当前的开始条件

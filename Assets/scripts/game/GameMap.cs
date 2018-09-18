@@ -207,14 +207,16 @@ public class GameMap {
             }
         }
         // 检测事件通行
+        character.lastHit.Clear();
         foreach (GameEvent e in this.events) {
             Intersection.Polygon eventCollider = e.currCollider();
             if (Intersection.polygonPolygon(eventCollider, polygon)) {
                 if (character != null) {
-                    character.lastHit.Clear();
                     character.lastHit.Add(e);
                 }
-                return false;
+                if (!e.erased && e.priorityType == GameCharacterBase.PRIORITIES.SAME) {
+                    return false;
+                }
             }
         }
         return true;

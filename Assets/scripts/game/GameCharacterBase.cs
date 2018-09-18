@@ -53,9 +53,15 @@ public class GameCharacterBase
 
     public bool isDirty = false;
 
-    protected Intersection.Polygon colliderPolygon = new Intersection.Polygon();
+    protected Intersection.Polygon colliderPolygon;
 
-    public List<GameCharacterBase> lastHit = new List<GameCharacterBase>();
+    [NonSerialized]
+    private List<GameCharacterBase> _lastHit;
+    public List<GameCharacterBase> lastHit {
+        get { return _lastHit; }
+        set { _lastHit = value; }
+    }
+
 
     public GameCharacterBase() {
         this.originalDirection = DIRS.DOWN;       // 原方向
@@ -65,6 +71,8 @@ public class GameCharacterBase
         this.locked = false;                      // 锁的标志
         this.prelockDirection = DIRS.NONE;        // 被锁上前的方向
         this.moveSucceed = true;                  // 移动成功的标志
+
+        this.lastHit = new List<GameCharacterBase>();
     }
 
     /// <summary>
