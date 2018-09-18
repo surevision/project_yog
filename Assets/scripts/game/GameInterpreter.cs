@@ -284,7 +284,6 @@ public class GameInterpreter {
                 case CommandTypes.EvalScript:   // 355 脚本
                     Debug.Log(string.Format("CommandTypes.EvalScript", this.currentParam));
                     return this.command_evalScript();
-                    return true;
                 default:
                     return true;
             }
