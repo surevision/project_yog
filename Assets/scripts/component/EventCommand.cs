@@ -15,5 +15,6 @@ public class EventCommand : MonoBehaviour {
     private string[] _args;
     public string[] args {
         get { return _args; }
+        set { _args = value; }
     }
 }
