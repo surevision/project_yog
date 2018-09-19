@@ -69,7 +69,8 @@ public class SLRichText : MonoBehaviour {
         public float x = OffsetX;
         public float y = OffsetY;
         public float baseY = 0;         // 本行基准y
-		public float maxHeight = 0;     // 记录本行最大高度
+        public float maxHeight = 0;     // 记录本行最大高度
+        public float lastHeight = 0;     // 上个元素的高度
     }
 
     private RenderPos _renderPos = new RenderPos();
@@ -135,7 +136,7 @@ public class SLRichText : MonoBehaviour {
         this._contents.Clear();
         this._currentLine.Clear();
 
-        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + OffsetX;
+        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._defaultFontSize * Util.getWidthScale() / 2 + OffsetX;
         this._renderPos.y = rectTransform.sizeDelta.y / 2 - (this._defaultFontSize + OffsetY) * Util.getWidthScale();
         this._renderPos.baseY = this._renderPos.y;
         this._renderPos.maxHeight = this._currentFontSize;
@@ -163,7 +164,7 @@ public class SLRichText : MonoBehaviour {
 		// this.node.scaleX = 2;
 		// this.node.scaleY = 2;
         System.DateTime dt = System.DateTime.Now;
-        Debug.Log(string.Format("start at {0}", System.DateTime.Now));
+        //Debug.Log(string.Format("start at {0}", System.DateTime.Now));
 		while (this._strIndex < this.text.Length) {
 			this.progressContentString();
 		}
@@ -173,8 +174,8 @@ public class SLRichText : MonoBehaviour {
             this.rectTransform.sizeDelta = new Vector2(this._width, this._height);
 		}
         this.adjustContentsY();
-        Debug.Log(string.Format("end at {0}", System.DateTime.Now));
-        Debug.Log(string.Format("dt {0}", System.DateTime.Now - dt));
+        //Debug.Log(string.Format("end at {0}", System.DateTime.Now));
+        //Debug.Log(string.Format("dt {0}", System.DateTime.Now - dt));
 
 	}
 
@@ -250,7 +251,7 @@ public class SLRichText : MonoBehaviour {
 			this._strIndex += progressLen;
 		} else {
 			// 处理失败，包含$在内均当做普通字符处理
-			Debug.Log(string.Format("fail progress!, last code : {0}", chr));
+			//Debug.Log(string.Format("fail progress!, last code : {0}", chr));
 			this._strIndex -= 2; // $X
 			string str = this.text.Substring(this._strIndex, 1);
 			this._strIndex += 1;
@@ -274,7 +275,8 @@ public class SLRichText : MonoBehaviour {
         RectTransform uiTextTransform = uiText.GetComponent<RectTransform>();
         uiText.fontSize = (int)(this._currentFontSize * Util.getWidthScale());
         uiTextTransform.sizeDelta = new Vector2(uiText.fontSize, uiText.fontSize);
-        //uiTextTransform.localScale = new Vector3(s, s, s);
+        float s = Util.getWidthScale();
+        uiTextTransform.localScale = new Vector3(s, s, s);
 
         uiText.color = this.getColor(this._currentColor);
         uiText.color = new Color(uiText.color.r, uiText.color.g, uiText.color.b, 0.0f); // 初始隐藏
@@ -290,11 +292,16 @@ public class SLRichText : MonoBehaviour {
 				this.nextLine();
 			}
         }
-        this._renderPos.x += this._currentFontSize;
-        this._renderPos.maxHeight = (this._renderPos.maxHeight > this._currentFontSize) ? this._renderPos.maxHeight : this._currentFontSize;
-        //Debug.Log(string.Format("pos y {0}", this._renderPos.y));
+        this._renderPos.lastHeight = this._currentFontSize * Util.getWidthScale();
+        this._renderPos.x += this._currentFontSize * Util.getWidthScale() / 2;
+        float lastMaxHeight = this._renderPos.maxHeight;
+        this._renderPos.maxHeight = (this._renderPos.maxHeight > this._currentFontSize * Util.getWidthScale()) ? this._renderPos.maxHeight : this._currentFontSize * Util.getWidthScale();
+        if (lastMaxHeight != this._renderPos.maxHeight) {
+            this._renderPos.y = this._renderPos.baseY + lastMaxHeight / 2 - this._renderPos.maxHeight / 2;
+        }
         this.setElemPosition(node, this._renderPos.x, this._renderPos.y);
-		if (this.isSingleLine) {
+        this._renderPos.x += this._currentFontSize * Util.getWidthScale() / 2;
+        if (this.isSingleLine) {
 			this._width = Mathf.Max(this._width, this._renderPos.x);
 		}
 		this._texts.Add(node);
@@ -366,20 +373,20 @@ public class SLRichText : MonoBehaviour {
         for (int i = 0; i < this._currentLine.Count; i += 1) {
             GameObject elem = this._currentLine[i];
             RectTransform elemTransform = elem.GetComponent<RectTransform>();
-            //Debug.Log(string.Format("offset y {0}", elemTransform.sizeDelta.y - this._renderPos.maxHeight));
-            this.setElemLocalPositionY(this._currentLine[i], elem.transform.localPosition.y + (elemTransform.sizeDelta.y - this._renderPos.maxHeight));
-		}
-        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + OffsetX;
-        this._renderPos.y -= this._renderPos.maxHeight + this._lineHeight;
-        this._renderPos.baseY = this._renderPos.y;
+            Debug.Log(this._renderPos.y);
+            this.setElemLocalPositionY(this._currentLine[i], this._renderPos.y - this._renderPos.maxHeight / 2 + elemTransform.sizeDelta.y / 2);
+        }
+        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._defaultFontSize * Util.getWidthScale() / 2 + OffsetX;
+        this._renderPos.y -= this._lineHeight + this._renderPos.maxHeight / 2;
         this._renderPos.maxHeight = this._lineHeight; // 恢复lineheight
+        this._renderPos.baseY = this._renderPos.y;
 		this._currentLine.Clear();
 	}
 
 	private void adjustContentsY() {
 		for (int i = 0; i < this._contents.Count; i += 1) {
 			GameObject elem = (GameObject)this._contents[i];
-			elem.transform.position.Set(elem.transform.position.x, elem.transform.position.y, elem.transform.position.z);
+			//elem.transform.position = new Vector3(elem.transform.position.x, elem.transform.position.y, elem.transform.position.z);
 		}
 	}
 }
