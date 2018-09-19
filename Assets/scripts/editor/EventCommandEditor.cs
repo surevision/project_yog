@@ -15,28 +15,33 @@ public class EventCommandEditor : Editor {
         m_Target = (EventCommand)target;
     }
 
+    void OnEnable() {
+        this.initTarget(target);
+    }
+
     // 重载OnInspectorGUI()来绘制自己的编辑器
     public override void OnInspectorGUI() {
-        this.initTarget(target);
         // DrawDefaultInspector告诉Unity按照默认的方式绘制面板，这种方法在我们仅仅想要自定义某几个属性的时候会很有用
         DrawDefaultInspector();
         DrawArgsAndNames();
     }
 
     private void DrawArgsAndNames() {
-        if (this.code != this.m_Target.code) {
-            // 自动填充args初始值
-            this.initArgs();
-            this.code = this.m_Target.code;
+        if (GUI.changed) {
+            if (this.code != this.m_Target.code) {
+                // 自动填充args初始值
+                this.initArgs();
+                this.code = this.m_Target.code;
+            }
+            this.m_Target.gameObject.name = this.calcName();    // 更改节点名字
         }
-        this.m_Target.gameObject.name = this.calcName();    // 更改节点名字
     }
 
     private string calcName() {
-        return this.m_Target.code.ToString();
+        return this.m_Target.getTitle();
     }
 
     private void initArgs() {
-        //this.m_Target.args = new string[1];
+        this.m_Target.args = new string[this.m_Target.getArgsLen()];
     }
 }
