@@ -54,6 +54,9 @@ public class SLRichText : MonoBehaviour {
     private List<GameObject> _texts;
     private List<GameObject> _images;
     private List<GameObject> _contents;
+    public List<GameObject> contents {
+        get { return _contents; }
+    }
     private List<GameObject> _currentLine;
 
     private int _strIndex = 0;
@@ -78,8 +81,6 @@ public class SLRichText : MonoBehaviour {
 
         Debug.Log(string.Format("rectTransform {0}, {1}", rectTransform.sizeDelta.x, rectTransform.sizeDelta.y));
 
-        this.clear();
-        this.refresh();
 	}
 	
 	// Update is called once per frame
@@ -158,9 +159,11 @@ public class SLRichText : MonoBehaviour {
 		return colors[0];
 	}
 
-    private void refresh() {
+    public void refresh() {
 		// this.node.scaleX = 2;
 		// this.node.scaleY = 2;
+        System.DateTime dt = System.DateTime.Now;
+        Debug.Log(string.Format("start at {0}", System.DateTime.Now));
 		while (this._strIndex < this.text.Length) {
 			this.progressContentString();
 		}
@@ -169,7 +172,10 @@ public class SLRichText : MonoBehaviour {
 		if (this.isSingleLine) {
             this.rectTransform.sizeDelta = new Vector2(this._width, this._height);
 		}
-		this.adjustContentsY();
+        this.adjustContentsY();
+        Debug.Log(string.Format("end at {0}", System.DateTime.Now));
+        Debug.Log(string.Format("dt {0}", System.DateTime.Now - dt));
+
 	}
 
     /// <summary>
@@ -258,7 +264,7 @@ public class SLRichText : MonoBehaviour {
     /// <param name="chr"></param>
     /// <returns></returns>
     private bool progressNormalText(string chr) {
-		// Debug.Log(string.Format("create Label {0}, size {1}", chr, this._currentFontSize));
+        Debug.Log(string.Format("create Label {0}, size {1}", chr, this._currentFontSize));
 		GameObject node = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/ui/MessagChar"));
 		node.name = chr;
 		Text uiText = node.GetComponent<Text>();
@@ -266,13 +272,14 @@ public class SLRichText : MonoBehaviour {
         uiText.text = chr;
         
         RectTransform uiTextTransform = uiText.GetComponent<RectTransform>();
-        uiText.color = new Color(uiText.color.r, uiText.color.g, uiText.color.b, 1.0f);
         uiText.fontSize = (int)(this._currentFontSize * Util.getWidthScale());
         uiTextTransform.sizeDelta = new Vector2(uiText.fontSize, uiText.fontSize);
         //uiTextTransform.localScale = new Vector3(s, s, s);
-        
+
         uiText.color = this.getColor(this._currentColor);
+        uiText.color = new Color(uiText.color.r, uiText.color.g, uiText.color.b, 0.0f); // 初始隐藏
         node.transform.SetParent(this.container.transform);
+        node.transform.localScale = new Vector3(1, 1, node.transform.localScale.z);
 
         if (!this.isSingleLine && uiTextTransform.sizeDelta.x > this._width) {
 			node.transform.localScale = new Vector3(this._width / uiTextTransform.sizeDelta.x, this._width / uiTextTransform.sizeDelta.x, 1);
@@ -285,7 +292,7 @@ public class SLRichText : MonoBehaviour {
         }
         this._renderPos.x += this._currentFontSize;
         this._renderPos.maxHeight = (this._renderPos.maxHeight > this._currentFontSize) ? this._renderPos.maxHeight : this._currentFontSize;
-        Debug.Log(string.Format("pos y {0}", this._renderPos.y));
+        //Debug.Log(string.Format("pos y {0}", this._renderPos.y));
         this.setElemPosition(node, this._renderPos.x, this._renderPos.y);
 		if (this.isSingleLine) {
 			this._width = Mathf.Max(this._width, this._renderPos.x);
@@ -359,7 +366,7 @@ public class SLRichText : MonoBehaviour {
         for (int i = 0; i < this._currentLine.Count; i += 1) {
             GameObject elem = this._currentLine[i];
             RectTransform elemTransform = elem.GetComponent<RectTransform>();
-            Debug.Log(string.Format("offset y {0}", elemTransform.sizeDelta.y - this._renderPos.maxHeight));
+            //Debug.Log(string.Format("offset y {0}", elemTransform.sizeDelta.y - this._renderPos.maxHeight));
             this.setElemLocalPositionY(this._currentLine[i], elem.transform.localPosition.y + (elemTransform.sizeDelta.y - this._renderPos.maxHeight));
 		}
         this._renderPos.x = -rectTransform.sizeDelta.x / 2 + OffsetX;

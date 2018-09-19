@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneMap : SceneBase {
+    public WindowMessage windowMessage;
+
     private GameObject currMapObj = null;
     private GameObject player = null;
 
@@ -26,6 +28,7 @@ public class SceneMap : SceneBase {
         GameTemp.gameSwitches = new GameSwitches();
         GameTemp.gameSelfSwitches = new GameSelfSwtiches();
         GameTemp.gameScreen = new GameScreen();
+        GameTemp.gameMessage = new GameMessage();
         GameTemp.gameMap = new GameMap();
         GameTemp.gameMap.setupMap(map);
 
@@ -57,6 +60,9 @@ public class SceneMap : SceneBase {
 
         // 刷新视野
         GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize = GameTemp.gameScreen.currView;
+
+        // 刷新对话
+        windowMessage.update();
 
         // debug
         bool debug = true;

@@ -301,6 +301,7 @@ public class GameInterpreter {
             GameTemp.gameMessage.text = text;
             this.messageWaiting = true;
             GameTemp.gameMessage.setFinishCallback(this.onMessageFinish);
+            ((SceneMap)SceneManager.Scene).windowMessage.startMessage();
             this.index += 1;
         }
         return false;

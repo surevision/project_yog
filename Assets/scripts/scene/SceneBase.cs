@@ -6,6 +6,9 @@ public class SceneBase : MonoBehaviour {
     [HideInInspector]
     public string sceneName;
 
+    // TODO 临时
+    private Material testMaterial;
+
     internal static float lastGCTime = 0;
     internal const float GCInterval = 1;//1 second 
 
@@ -13,6 +16,8 @@ public class SceneBase : MonoBehaviour {
 	protected virtual void Start () {
         sceneName = "Base"; // this.GetType().Name;
         SceneManager.Scene = this;
+        testMaterial = Resources.Load<Material>("graphics/font/ZpixEX2_EX_copy");
+        Debug.Log(testMaterial);
 	}
 	
 	// Update is called once per frame

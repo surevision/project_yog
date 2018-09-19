@@ -509,7 +509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _code: 355
   _args:
-  - gamePlayer.x = 0
+  - print("script")
 --- !u!114 &114604399526696264
 MonoBehaviour:
   m_ObjectHideFlags: 1
