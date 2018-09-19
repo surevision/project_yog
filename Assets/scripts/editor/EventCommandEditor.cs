@@ -42,6 +42,6 @@ public class EventCommandEditor : Editor {
     }
 
     private void initArgs() {
-        this.m_Target.args = new string[this.m_Target.getArgsLen()];
+        //this.m_Target.args = new string[this.m_Target.getArgsLen()];
     }
 }

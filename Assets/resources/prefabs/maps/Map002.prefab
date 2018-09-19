@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 4589675164797784}
   - component: {fileID: 114604399526696264}
   m_Layer: 0
-  m_Name: "\u663E\u793A\u6587\u7AE0: adfsdfsdfdsd"
+  m_Name: "\u663E\u793A\u6587\u7AE0: \u732B\u53D4\u662F$c<3>$s<22>baka\uFF01"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,9 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _code: 101
   _args:
-  - 'adfsdf
-
-    sdfdsd'
+  - "\u732B\u53D4\u662F$c<3>$s<22>baka\uFF01"
 --- !u!212 &212655301569147114
 SpriteRenderer:
   m_ObjectHideFlags: 1
