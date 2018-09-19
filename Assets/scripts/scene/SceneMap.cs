@@ -45,6 +45,8 @@ public class SceneMap : SceneBase {
         Vector2 startPos = GameTemp.gameMap.getTileWorldPos(5, 4);
         GameTemp.gamePlayer.setPos(startPos.x, startPos.y);
 
+        windowMessage.gameObject.transform.localScale = new Vector3(1, 0, windowMessage.gameObject.transform.localScale.z);
+
     }
 
     protected override void updateRender() {

@@ -574,7 +574,7 @@ Prefab:
     - target: {fileID: 224773582144745708, guid: 5d8b2afa784a13c488867bb63a009509,
         type: 2}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1598096429219392, guid: 5d8b2afa784a13c488867bb63a009509, type: 2}
       propertyPath: m_IsActive
