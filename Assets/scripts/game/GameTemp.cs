@@ -4,6 +4,8 @@ using UnityEngine;
 
 [XLua.LuaCallCSharp]
 public class GameTemp {
+    // 游戏数据
+
     public static GameVariables gameVariables;
     public static GameSwitches gameSwitches;
     public static GameSelfSwtiches gameSelfSwitches;
@@ -14,7 +16,8 @@ public class GameTemp {
     public static GamePlayer gamePlayer;
     public static GameMessage gameMessage;
 
-    public static GameVariables getVariables() {
-        return gameVariables;
-    }
+    // 运行时临时数据
+    public static bool transforming;    // 场所移动中
+
+
 }

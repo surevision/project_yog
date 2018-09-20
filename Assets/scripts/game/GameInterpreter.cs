@@ -37,32 +37,37 @@ public class GameInterpreter {
     [Serializable]
     public enum CommandTypes {
         // 1
-        ShowArticle = 101,       // 显示文章
-        Condition = 111,     // 条件分歧
-        CommandBreak = 115,      // 中断事件处理
-        CommonEvent = 117,       // 公共事件
-        Comment = 118,       // 注释
-        SetSwitch = 121,     // 开关操作
-        SetVariable = 122,       // 变量操作
-        SetSelfSwitch = 123,     // 独立开关操作
+        ShowArticle = 101,              // 显示文章
+        Condition = 111,                // 条件分歧
+        Loop = 112,                     // 循环开始
+        Break = 113,                    // 中断循环
+        CommandBreak = 115,             // 中断事件处理
+        CommonEvent = 117,              // 公共事件
+        Label = 118,                    // 跳转标志
+        GotoLabel = 119,                // 跳转
+        SetSwitch = 121,                // 开关操作
+        SetVariable = 122,              // 变量操作
+        SetSelfSwitch = 123,            // 独立开关操作
+        Comment = 140,                  // 注释
 
         // 2
-        Transformation = 201,        // 场所移动
-        SetPos = 203,        // 设置事件位置
-        MoveByRoute = 205,       // 设置移动路线
-        Erase = 214,     // 暂时消除事件
-        Shake = 225,     // 画面震动
-        Wait = 230,      // 等待
-        PlayBGM = 241,       // 播放BGM
-        FadeoutBGM = 242,        // 淡出BGM
-        PlaySE = 250,        // 播放SE
-        StopSE = 251,        // 停止SE
+        Transformation = 201,           // 场所移动
+        SetPos = 203,                   // 设置事件位置
+        MoveByRoute = 205,              // 设置移动路线
+        Erase = 214,                    // 暂时消除事件
+        Shake = 225,                    // 画面震动
+        Wait = 230,                     // 等待
+        PlayBGM = 241,                  // 播放BGM
+        FadeoutBGM = 242,               // 淡出BGM
+        PlaySE = 250,                   // 播放SE
+        StopSE = 251,                   // 停止SE
 
         // 3
-        EvalScript = 355,        // 脚本
+        EvalScript = 355,               // 脚本
 
         // 4
-        EndCmd = 412,		// 指令结束（分歧结束、循环结束等）
+        EndIf = 412,		            // 分歧结束
+        EndLoop = 413,		            // 以上反复（循环）
 
     }
 
@@ -109,6 +114,8 @@ public class GameInterpreter {
     public int eventId = 0;	// 事件id
     public List<EventCommand> list = null;	// 执行内容
     public int index = 0;	// 指令索引
+    public int lastLoopIndex = 0;   // 上一个循环开始指令索引
+    public Dictionary<string, int> gotoMarks = new Dictionary<string,int>(); //标签跳转记录
     public bool messageWaiting = false;	// 等待文章结束
     public GameCharacterBase movingCharacter = null;		// 等待移动结束
     public int waitCount = 0;	// 等待帧数
@@ -127,7 +134,9 @@ public class GameInterpreter {
         this.origEventId = 0;   // 启动时的事件id
         this.eventId = 0;   // 事件id
         this.list = null;   // 执行内容
-        this.index = 0; // 指令索引
+        this.index = 0; // 当前指令索引
+        this.lastLoopIndex = 0;   // 上一个循环开始指令索引
+        this.gotoMarks = new Dictionary<string,int>(); //标签跳转索引记录
         this.messageWaiting = false;    // 等待文章结束
         this.movingCharacter = null;        // 等待移动结束
         this.waitCount = 0; // 等待帧数
@@ -178,8 +187,16 @@ public class GameInterpreter {
     /// <summary>
     /// 跳转到分歧结束
     /// </summary>
-    public void commandSkip() {
-        while (this.list[this.index].code != CommandTypes.EndCmd) {
+    public void commandConditionSkip() {
+        while (this.list[this.index].code != CommandTypes.EndIf) {
+            this.index += 1;
+        }
+    }
+    /// <summary>
+    /// 跳转到循环结束
+    /// </summary>
+    public void commandLoopSkip() {
+        while (this.list[this.index].code != CommandTypes.EndLoop) {
             this.index += 1;
         }
     }
@@ -257,15 +274,24 @@ public class GameInterpreter {
                     Debug.Log(string.Format("CommandTypes.Condition", this.currentParam));
                     this.command_condition();
                     return true;
+                case CommandTypes.Loop:    // 112 循环开始
+                    Debug.Log(string.Format("Loop.Condition", this.currentParam));
+                    return this.command_loop();
+                case CommandTypes.Break:    // 113 跳出循环
+                    Debug.Log(string.Format("Loop.Condition", this.currentParam));
+                    return this.command_break();
                 case CommandTypes.CommandBreak: // 115 中断事件处理 
                     Debug.Log(string.Format("CommandTypes.CommandBreak", this.currentParam));
                     return true;
                 case CommandTypes.CommonEvent:  // 117 公共事件 
                     Debug.Log(string.Format("CommandTypes.CommonEvent", this.currentParam));
                     return true;
-                case CommandTypes.Comment:  // 118 注释 
-                    Debug.Log(string.Format("CommandTypes.Comment", this.currentParam));
-                    return true;
+                case CommandTypes.Label:  // 118 设置标签
+                    Debug.Log(string.Format("CommandTypes.Label", this.currentParam));
+                    return this.command_label();
+                case CommandTypes.GotoLabel:  // 119 跳转到标签
+                    Debug.Log(string.Format("CommandTypes.Label", this.currentParam));
+                    return this.command_gotolabel();
                 case CommandTypes.SetSwitch:    // 121 开关操作
                     Debug.Log(string.Format("CommandTypes.SetSwitch", this.currentParam));
                     return this.command_setSwitch();
@@ -275,6 +301,9 @@ public class GameInterpreter {
                 case CommandTypes.SetSelfSwitch:    // 123 独立开关操作
                     Debug.Log(string.Format("CommandTypes.SetSelfSwitch", this.currentParam));
                     return this.command_setSelfSwitch();
+                case CommandTypes.Comment:  // 140 注释 
+                    Debug.Log(string.Format("CommandTypes.Comment", this.currentParam));
+                    return true;
                 case CommandTypes.Shake:    // 225 画面震动
                     Debug.Log(string.Format("CommandTypes.Shake", this.currentParam));
                     return this.command_shake();
@@ -284,6 +313,9 @@ public class GameInterpreter {
                 case CommandTypes.EvalScript:   // 355 脚本
                     Debug.Log(string.Format("CommandTypes.EvalScript", this.currentParam));
                     return this.command_evalScript();
+                case CommandTypes.EndLoop:   // 413 以上反复
+                    Debug.Log(string.Format("CommandTypes.EndLoop", this.currentParam));
+                    return this.command_endLoop();
                 default:
                     return true;
             }
@@ -337,11 +369,54 @@ public class GameInterpreter {
 
         bool result = (bool)LuaManager.LuaEnv.DoString(condition, string.Format("event_condition_{0}", this.eventId), scriptEnv)[0];
 
-        if (result) {
-            this.index += int.Parse(this.currentParam[1]);
+        if (!result) {
+            this.commandConditionSkip(); // 跳转到最近的end
         }
         return true;
     }
+
+    /// <summary>
+    /// 112 循环开始
+    /// 循环无法嵌套
+    /// </summary>
+    /// <returns></returns>
+    public bool command_loop() {
+        this.lastLoopIndex = this.index;
+        return true;
+    }
+
+    /// <summary>
+    /// 113 跳出循环
+    /// 循环无法嵌套
+    /// </summary>
+    /// <returns></returns>
+    public bool command_break() {
+        this.commandLoopSkip();
+        return true;
+    }
+
+    /// <summary>
+    /// 118 设置标签
+    /// </summary>
+    /// <returns></returns>
+    public bool command_label() {
+        string labelName = this.currentParam[0];
+        this.gotoMarks.Add(labelName, this.index);
+        return true;
+    }
+
+    /// <summary>
+    /// 119 跳转到标签
+    /// </summary>
+    /// <returns></returns>
+    public bool command_gotolabel() {
+        string labelName = this.currentParam[0];
+        if (this.gotoMarks.ContainsKey(labelName)) {
+            this.index = this.gotoMarks[labelName];
+        }
+        return true;
+    }
+
 
     /// <summary>
     /// 121 开关操作
@@ -448,6 +523,17 @@ public class GameInterpreter {
 
         LuaManager.LuaEnv.DoString(src, string.Format("event_eval_{0}", this.eventId), scriptEnv);
 
+        return true;
+    }
+
+
+    /// <summary>
+    ///  413 以上反复
+    ///  循环无法嵌套
+    /// </summary>
+    public bool command_endLoop() {
+        // 跳转到上次的loop位置
+        this.index = this.lastLoopIndex;
         return true;
     }
 

@@ -28,11 +28,6 @@ public class EventCommandEditor : Editor {
 
     private void DrawArgsAndNames() {
         if (GUI.changed) {
-            if (this.code != this.m_Target.code) {
-                // 自动填充args初始值
-                this.initArgs();
-                this.code = this.m_Target.code;
-            }
             this.m_Target.gameObject.name = this.calcName();    // 更改节点名字
         }
     }
@@ -41,7 +36,4 @@ public class EventCommandEditor : Editor {
         return this.m_Target.getTitle();
     }
 
-    private void initArgs() {
-        //this.m_Target.args = new string[this.m_Target.getArgsLen()];
-    }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 [Serializable]
 public class GamePlayer : GameCharacterBase {
+
     public override void update() {
         base.update();
         if (GameTemp.gameMap.interpreter.isRunning()) {
@@ -24,6 +25,12 @@ public class GamePlayer : GameCharacterBase {
                 this.moveStraight(DIRS.UP);
             }
         }
+    }
+
+    public void setCellPosition(Vector2Int cellPos) {
+        Vector2 pos = GameTemp.gameMap.getTileWorldPos(cellPos.x, cellPos.y);
+        this.x = pos.x;
+        this.y = pos.y;
     }
 
     /// <summary>

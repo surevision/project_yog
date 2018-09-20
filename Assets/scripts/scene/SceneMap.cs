@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 
 public class SceneMap : SceneBase {
     public WindowMessage windowMessage;
+    public Image snap;
 
     private GameObject currMapObj = null;
     private GameObject player = null;
@@ -12,7 +15,26 @@ public class SceneMap : SceneBase {
         base.Start();
         sceneName = "Map";
 
-        string mapName = "Map002";
+
+        GameTemp.gameVariables = new GameVariables();
+        GameTemp.gameSwitches = new GameSwitches();
+        GameTemp.gameSelfSwitches = new GameSelfSwtiches();
+        GameTemp.gameScreen = new GameScreen();
+        GameTemp.gameMessage = new GameMessage();
+        GameTemp.gameMap = new GameMap();
+
+    }
+
+    /// <summary>
+    /// 屏幕截图
+    /// </summary>
+    public Texture2D snapScreen() {
+        Texture2D texture2D = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
+        texture2D.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        return texture2D;
+    }
+
+    public void loadMap(string mapName) {
         GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/{0}", mapName)));
         map.name = mapName;
         GameObject.Find("Map").transform.DetachChildren();
@@ -23,28 +45,13 @@ public class SceneMap : SceneBase {
         this.player.transform.SetParent(map.transform.Find(GameMap.layers[(int)GameMap.Layers.LayerPlayer]));
 
         GameObject.Find("Main Camera").GetComponent<CameraControl>().target = player;
-
-        GameTemp.gameVariables = new GameVariables();
-        GameTemp.gameSwitches = new GameSwitches();
-        GameTemp.gameSelfSwitches = new GameSelfSwtiches();
-        GameTemp.gameScreen = new GameScreen();
-        GameTemp.gameMessage = new GameMessage();
-        GameTemp.gameMap = new GameMap();
         GameTemp.gameMap.setupMap(map);
-
-        //foreach (Intersection.Polygon polygon in GameTemp.gameMap.mapInfo.passageColliders) {
-        //    foreach (Vector2 point in polygon.points) {
-        //        Debug.Log(point);
-        //    }
-        //}
-
-        GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
+        if (GameTemp.gamePlayer == null) {
+            // 根据prefab初始化角色
+            GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
+        }
 
         GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
-
-        Vector2 startPos = GameTemp.gameMap.getTileWorldPos(5, 4);
-        GameTemp.gamePlayer.setPos(startPos.x, startPos.y);
-
         windowMessage.gameObject.transform.localScale = new Vector3(1, 0, windowMessage.gameObject.transform.localScale.z);
 
     }
@@ -65,6 +72,11 @@ public class SceneMap : SceneBase {
 
         // 刷新对话
         windowMessage.update();
+
+        // 刷新渐变
+        if (GameTemp.gameScreen.isInTransition()) {
+            this.snap.color = new Color(1, 1, 1, GameTemp.gameScreen.transitionProgress);
+        }
 
         // debug
         bool debug = true;
