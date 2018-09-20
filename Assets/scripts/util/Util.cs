@@ -12,7 +12,4 @@ public class Util {
     public float _getWidthScale() {
         return Screen.width / WIDTH;
     }
-    public static float getWidthScale() {
-        return instance._getWidthScale();
-    }
 }

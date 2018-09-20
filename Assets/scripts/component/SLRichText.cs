@@ -136,8 +136,8 @@ public class SLRichText : MonoBehaviour {
         this._contents.Clear();
         this._currentLine.Clear();
 
-        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._defaultFontSize * Util.getWidthScale() / 2 + OffsetX;
-        this._renderPos.y = rectTransform.sizeDelta.y / 2 - (this._defaultFontSize + OffsetY) * Util.getWidthScale();
+        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._defaultFontSize / 2 + OffsetX;
+        this._renderPos.y = rectTransform.sizeDelta.y / 2 - (this._defaultFontSize + OffsetY);
         this._renderPos.baseY = this._renderPos.y;
         this._renderPos.maxHeight = this._currentFontSize;
 	}
@@ -145,14 +145,14 @@ public class SLRichText : MonoBehaviour {
     public Color getColor(int code = 0) {
 		Color[] colors = {
 					this._defaultFontColor,
-                    new Color(255, 255, 255, 255),  		// 白色
-                    new Color(0, 0, 0, 255),            	// 黑色
-                    new Color(255, 0, 0, 255),          	// 红色
-                    new Color(0, 255, 0, 255),          	// 绿色
-                    new Color(0, 0, 255, 255),          	// 蓝色
-                    new Color(255, 255, 0, 255),         	// 黄色
-                    new Color(255, 0, 255, 255),         	// 紫色
-                    new Color(0, 255, 255, 255),         	// 青色
+                    new Color(1, 1, 1, 1),  		// 白色
+                    new Color(0, 0, 0, 1),            	// 黑色
+                    new Color(1, 0, 0, 1),          	// 红色
+                    new Color(0, 1, 0, 1),          	// 绿色
+                    new Color(0, 0, 1, 1),          	// 蓝色
+                    new Color(1, 1, 0, 1),         	// 黄色
+                    new Color(1, 0, 1, 1),         	// 紫色
+                    new Color(0, 1, 1, 1)         	// 青色
         };
         if (code < colors.Length) {
             return colors[code];
@@ -169,7 +169,7 @@ public class SLRichText : MonoBehaviour {
 			this.progressContentString();
 		}
 		this.nextLine();
-        this._height = Mathf.Max(-(this._renderPos.y - (rectTransform.sizeDelta.y / 2 - (this._defaultFontSize + OffsetY) * Util.getWidthScale())), this._minHeight);
+        this._height = Mathf.Max(-(this._renderPos.y - (rectTransform.sizeDelta.y / 2 - (this._defaultFontSize + OffsetY))), this._minHeight);
 		if (this.isSingleLine) {
             this.rectTransform.sizeDelta = new Vector2(this._width, this._height);
 		}
@@ -273,10 +273,10 @@ public class SLRichText : MonoBehaviour {
         uiText.text = chr;
         
         RectTransform uiTextTransform = uiText.GetComponent<RectTransform>();
-        uiText.fontSize = (int)(this._currentFontSize * Util.getWidthScale());
+        uiText.fontSize = (int)(this._currentFontSize);
         uiTextTransform.sizeDelta = new Vector2(uiText.fontSize, uiText.fontSize);
-        float s = Util.getWidthScale();
-        uiTextTransform.localScale = new Vector3(s, s, s);
+        //float s = Util.getWidthScale();
+        //uiTextTransform.localScale = new Vector3(s, s, uiTextTransform.localScale.z);
 
         uiText.color = this.getColor(this._currentColor);
         uiText.color = new Color(uiText.color.r, uiText.color.g, uiText.color.b, 0.0f); // 初始隐藏
@@ -292,15 +292,15 @@ public class SLRichText : MonoBehaviour {
 				this.nextLine();
 			}
         }
-        this._renderPos.lastHeight = this._currentFontSize * Util.getWidthScale();
-        this._renderPos.x += this._currentFontSize * Util.getWidthScale() / 2;
+        this._renderPos.lastHeight = this._currentFontSize;
+        this._renderPos.x += this._currentFontSize / 2;
         float lastMaxHeight = this._renderPos.maxHeight;
-        this._renderPos.maxHeight = (this._renderPos.maxHeight > this._currentFontSize * Util.getWidthScale()) ? this._renderPos.maxHeight : this._currentFontSize * Util.getWidthScale();
+        this._renderPos.maxHeight = (this._renderPos.maxHeight > this._currentFontSize) ? this._renderPos.maxHeight : this._currentFontSize;
         if (lastMaxHeight != this._renderPos.maxHeight) {
             this._renderPos.y = this._renderPos.baseY + lastMaxHeight / 2 - this._renderPos.maxHeight / 2;
         }
         this.setElemPosition(node, this._renderPos.x, this._renderPos.y);
-        this._renderPos.x += this._currentFontSize * Util.getWidthScale() / 2;
+        this._renderPos.x += this._currentFontSize / 2;
         if (this.isSingleLine) {
 			this._width = Mathf.Max(this._width, this._renderPos.x);
 		}
@@ -376,7 +376,7 @@ public class SLRichText : MonoBehaviour {
             Debug.Log(this._renderPos.y);
             this.setElemLocalPositionY(this._currentLine[i], this._renderPos.y - this._renderPos.maxHeight / 2 + elemTransform.sizeDelta.y / 2);
         }
-        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._defaultFontSize * Util.getWidthScale() / 2 + OffsetX;
+        this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._defaultFontSize / 2 + OffsetX;
         this._renderPos.y -= this._lineHeight + this._renderPos.maxHeight / 2;
         this._renderPos.maxHeight = this._lineHeight; // 恢复lineheight
         this._renderPos.baseY = this._renderPos.y;
