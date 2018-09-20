@@ -31,6 +31,8 @@ public class GamePlayer : GameCharacterBase {
         Vector2 pos = GameTemp.gameMap.getTileWorldPos(cellPos.x, cellPos.y);
         this.x = pos.x;
         this.y = pos.y;
+        this.realX = pos.x;
+        this.realY = pos.y;
     }
 
     /// <summary>

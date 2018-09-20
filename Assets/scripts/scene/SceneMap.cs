@@ -23,6 +23,8 @@ public class SceneMap : SceneBase {
         GameTemp.gameMessage = new GameMessage();
         GameTemp.gameMap = new GameMap();
 
+        loadMap("Map002");
+
     }
 
     /// <summary>
@@ -49,6 +51,7 @@ public class SceneMap : SceneBase {
         if (GameTemp.gamePlayer == null) {
             // 根据prefab初始化角色
             GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
+            GameTemp.gamePlayer.setCellPosition(new Vector2Int(5, 4));
         }
 
         GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
