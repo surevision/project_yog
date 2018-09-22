@@ -17,7 +17,7 @@ public class GameVariables {
     }
 
     public int get(int index) {
-        if (!this.data.ContainsKey(index) == null) {
+        if (!this.data.ContainsKey(index)) {
             return 0;
         }
         try {
@@ -29,6 +29,9 @@ public class GameVariables {
     }
 
     public object getObj(int index) {
+        if (!this.data.ContainsKey(index)) {
+            return 0;
+        }
         return this.data[index];
     }
     

@@ -161,7 +161,7 @@ public class GameInterpreter {
     /// </summary>
     /// <param name="charId">char</param>
     /// <returns></returns>
-    private GameCharacterBase getCharacter(int charId) {
+    public GameCharacterBase getCharacter(int charId) {
         if (charId == -1) {
             // 本事件
             return GameTemp.gameMap.events[this.eventId];

@@ -25,7 +25,7 @@ public class GameSelfSwtiches {
     }
 
     public bool get(string index) {
-        if (!this.data.ContainsKey(index) == null) {
+        if (!this.data.ContainsKey(index)) {
             return false;
         }
         try {

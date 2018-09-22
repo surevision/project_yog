@@ -17,7 +17,7 @@ public class GameSwitches {
     }
 
     public bool get(int index) {
-        if (!this.data.ContainsKey(index) == null) {
+        if (!this.data.ContainsKey(index)) {
             return false;
         }
         try {

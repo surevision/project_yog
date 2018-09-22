@@ -35,6 +35,7 @@ public class GameCharacterBase
     public bool stepAnime = false;              // 踏步动画
     public bool directionFix = false;           // 固定朝向
     public int opacity = 255;                   // 不透明度
+    public int angle = 0;                   // 角度
     public DIRS direction = DIRS.DOWN;          // 方向
     public int pattern = 1;                     // 图案
     public PRIORITIES priorityType = PRIORITIES.BELOW;            // 优先级类型

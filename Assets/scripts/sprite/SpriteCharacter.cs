@@ -45,6 +45,7 @@ public class SpriteCharacter : SpriteBase {
 
     private void updatePosition() {
         this.transform.position = new Vector3(this.character.screenX(), this.character.screenY(), this.character.screenY());
+        this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, this.character.angle));
         if (this.character.isDirty) {
             this.GetComponent<SpriteRenderer>().color = new Color(
                 this.GetComponent<SpriteRenderer>().color.r,
