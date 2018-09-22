@@ -49,8 +49,8 @@ public class EventCommand : MonoBehaviour {
             {GameInterpreter.CommandTypes.EvalScript,"脚本"},
 
             // 4
-            {GameInterpreter.CommandTypes.EndIf,"EndIf"},
-            {GameInterpreter.CommandTypes.EndLoop,"EndLoop"}
+            {GameInterpreter.CommandTypes.EndIf,"分歧结束"},
+            {GameInterpreter.CommandTypes.EndLoop,"以上反复"}
         };
 
         string title = d[this.code];
@@ -62,6 +62,7 @@ public class EventCommand : MonoBehaviour {
             if (this.args[0] != null) {
                 title = title + ": " + this.args[0].Replace("\n", "").Substring(0, Mathf.Min(this.args[0].Replace("\n", "").Length, 20));
             }
+        } else if (this.args.Length == 0) {
         } else {
             title = title + ": " + string.Join(", ", this.args);
         }

@@ -53,7 +53,7 @@ public class EventPageEditor : Editor {
                 Sprite[] sprites = Resources.LoadAll<Sprite>(path);
                 int pattern = m_Target.pattern;
                 int i = ((int)m_Target.direction / 2 - 1) * 3 + (pattern % 3);
-                Debug.Log(string.Format("i, {0}", i));
+                //Debug.Log(string.Format("i, {0}", i));
                 m_Target.BaseFrame = sprites[i];
                 sr.sprite = sprites[i];
             }

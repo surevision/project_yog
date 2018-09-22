@@ -272,13 +272,12 @@ public class GameInterpreter {
                     return this.command_showArticle();
                 case CommandTypes.Condition:    // 111 条件分歧 
                     Debug.Log(string.Format("CommandTypes.Condition", this.currentParam));
-                    this.command_condition();
-                    return true;
+                    return this.command_condition();
                 case CommandTypes.Loop:    // 112 循环开始
-                    Debug.Log(string.Format("Loop.Condition", this.currentParam));
+                    Debug.Log(string.Format("CommandTypes.Loop", this.currentParam));
                     return this.command_loop();
                 case CommandTypes.Break:    // 113 跳出循环
-                    Debug.Log(string.Format("Loop.Condition", this.currentParam));
+                    Debug.Log(string.Format("CommandTypes.Break", this.currentParam));
                     return this.command_break();
                 case CommandTypes.CommandBreak: // 115 中断事件处理 
                     Debug.Log(string.Format("CommandTypes.CommandBreak", this.currentParam));
@@ -290,7 +289,7 @@ public class GameInterpreter {
                     Debug.Log(string.Format("CommandTypes.Label", this.currentParam));
                     return this.command_label();
                 case CommandTypes.GotoLabel:  // 119 跳转到标签
-                    Debug.Log(string.Format("CommandTypes.Label", this.currentParam));
+                    Debug.Log(string.Format("CommandTypes.GotoLabel", this.currentParam));
                     return this.command_gotolabel();
                 case CommandTypes.SetSwitch:    // 121 开关操作
                     Debug.Log(string.Format("CommandTypes.SetSwitch", this.currentParam));
@@ -334,7 +333,7 @@ public class GameInterpreter {
             this.messageWaiting = true;
             GameTemp.gameMessage.setFinishCallback(this.onMessageFinish);
             ((SceneMap)SceneManager.Scene).windowMessage.startMessage();
-            this.index += 1;
+            return true;
         }
         return false;
     }
@@ -441,12 +440,12 @@ public class GameInterpreter {
     public bool command_setVariable() {
         Debug.Log(string.Format("command_setVariable"));
         int variableId = int.Parse(this.currentParam[0]);
-        string opa = this.currentParam[1];
+        string opa = this.currentParam[1].Trim();
         int value = 0;
         if (this.currentParam[2].StartsWith("v")) {
             value = GameTemp.gameVariables[int.Parse(this.currentParam[2].Substring(1))];
         } else {
-            int.Parse(this.currentParam[2]);
+            value = int.Parse(this.currentParam[2]);
         }
         if ("=".Equals(opa)) {
             GameTemp.gameVariables[variableId] = value;

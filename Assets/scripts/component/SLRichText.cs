@@ -161,8 +161,6 @@ public class SLRichText : MonoBehaviour {
 	}
 
     public void refresh() {
-		// this.node.scaleX = 2;
-		// this.node.scaleY = 2;
         System.DateTime dt = System.DateTime.Now;
         //Debug.Log(string.Format("start at {0}", System.DateTime.Now));
 		while (this._strIndex < this.text.Length) {
@@ -373,7 +371,6 @@ public class SLRichText : MonoBehaviour {
         for (int i = 0; i < this._currentLine.Count; i += 1) {
             GameObject elem = this._currentLine[i];
             RectTransform elemTransform = elem.GetComponent<RectTransform>();
-            Debug.Log(this._renderPos.y);
             this.setElemLocalPositionY(this._currentLine[i], this._renderPos.y - this._renderPos.maxHeight / 2 + elemTransform.sizeDelta.y / 2);
         }
         this._renderPos.x = -rectTransform.sizeDelta.x / 2 + this._defaultFontSize / 2 + OffsetX;
