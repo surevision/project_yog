@@ -26,7 +26,7 @@ public class GameMessage {
         while (regVar.IsMatch(text)) {
             Match matchVar = regVar.Match(text);
             int varId = int.Parse(matchVar.Groups[1].Value);
-            text = regVar.Replace(text, GameTemp.gameVariables[varId].ToString(), 1);
+            text = regVar.Replace(text, GameTemp.gameVariables.getObj(varId).ToString(), 1);
         }
         return text;
     }
