@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930ac97f006b76a4eae65bcf08636904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseFrame: {fileID: 21300002, guid: 598a6d28c23627443b67dd6ae9573778, type: 3}
+  baseFrame: {fileID: 21300002, guid: e8e16db837c090e4f90f7df584790ad1, type: 3}
   _player:
     id: 0
     x: 0
@@ -60,13 +60,13 @@ MonoBehaviour:
     realX: 0
     realY: 0
     moveSpeed: 4
-    characterName: $character_base_16x16
-    characterIndex: 0
+    characterName: $chara_mov
     moveFrequency: 0
     walkAnime: 1
     stepAnime: 0
     directionFix: 0
     opacity: 255
+    angle: 0
     direction: 2
     pattern: 1
     priorityType: 0
@@ -74,6 +74,7 @@ MonoBehaviour:
     animationId: -1
     balloonId: -1
     transparent: 0
+    isDirty: 0
 --- !u!212 &212349155828965428
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -108,7 +109,7 @@ SpriteRenderer:
   m_SortingLayerID: 1650251055
   m_SortingLayer: 1
   m_SortingOrder: 200
-  m_Sprite: {fileID: 21300002, guid: 598a6d28c23627443b67dd6ae9573778, type: 3}
+  m_Sprite: {fileID: 21300002, guid: e8e16db837c090e4f90f7df584790ad1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

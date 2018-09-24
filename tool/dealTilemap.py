@@ -3,7 +3,7 @@ from PIL import Image as PIL_Image
 split = 16 # tile format
 
 # open origin image
-image = PIL_Image.open('rpg indoor tileset expansion 1 trans.png')
+image = PIL_Image.open('indoor1.png')
 w = image.size[0]
 h = image.size[1]
 
