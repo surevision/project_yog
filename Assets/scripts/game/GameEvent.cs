@@ -227,14 +227,19 @@ public class GameEvent : GameCharacterBase {
     /// </summary>
     /// <param name="sprite"></param>
     public override void setupCollider(SpriteCharacter sprite) {
-        List<Vector2> points = new List<Vector2>();
-        Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
-        float resize = 0.01f;
-        points.Add(new Vector2(resize, resize));
-        points.Add(new Vector2(resize, size.y / 4 * 3 - resize));
-        points.Add(new Vector2(size.x - resize, size.y / 4 * 3 - resize));
-        points.Add(new Vector2(size.x - resize, resize));
-        this.colliderPolygon = new Intersection.Polygon(points);
+        Debug.Log(sprite.GetComponent<SpriteRenderer>().bounds.size);
+        if (!sprite.GetComponent<SpriteRenderer>().bounds.size.Equals(Vector3.zero)) {
+            List<Vector2> points = new List<Vector2>();
+            Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
+            float resize = 0.01f;
+            points.Add(new Vector2(resize, resize));
+            points.Add(new Vector2(resize, size.y / 4 * 3 - resize));
+            points.Add(new Vector2(size.x - resize, size.y / 4 * 3 - resize));
+            points.Add(new Vector2(size.x - resize, resize));
+            this.colliderPolygon = new Intersection.Polygon(points);
+        } else {
+            base.setupCollider(sprite);
+        }
     }
 
     public float offsetScreenX() {

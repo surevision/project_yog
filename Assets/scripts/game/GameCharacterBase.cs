@@ -74,6 +74,14 @@ public class GameCharacterBase
         this.moveSucceed = true;                  // 移动成功的标志
 
         this.lastHit = new List<GameCharacterBase>();
+
+
+        List<Vector2> points = new List<Vector2>();
+        points.Add(new Vector2(0, 0));
+        points.Add(new Vector2(0, 0.16f));
+        points.Add(new Vector2(0.16f, 0.16f));
+        points.Add(new Vector2(0.16f, 0));
+        this.colliderPolygon = new Intersection.Polygon(points);
     }
 
     /// <summary>
@@ -81,14 +89,6 @@ public class GameCharacterBase
     /// </summary>
     /// <param name="sprite"></param>
     public virtual void setupCollider(SpriteCharacter sprite) {
-        List<Vector2> points = new List<Vector2>();
-        Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
-        float resize = 0.01f;
-        points.Add(new Vector2(resize, resize));
-        points.Add(new Vector2(resize, size.y - resize));
-        points.Add(new Vector2(size.x - resize, size.y - resize));
-        points.Add(new Vector2(size.x - resize, resize));
-        this.colliderPolygon = new Intersection.Polygon(points);
     }
 
     public Intersection.Polygon currCollider() {

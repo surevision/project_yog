@@ -303,6 +303,9 @@ public class GameInterpreter {
                 case CommandTypes.Comment:  // 140 注释 
                     Debug.Log(string.Format("CommandTypes.Comment", this.currentParam));
                     return true;
+                case CommandTypes.Transformation:   // 201 场所移动
+                    Debug.Log(string.Format("CommandTypes.Transformation", this.currentParam));
+                    return this.command_transformation();
                 case CommandTypes.Shake:    // 225 画面震动
                     Debug.Log(string.Format("CommandTypes.Shake", this.currentParam));
                     return this.command_shake();
@@ -476,6 +479,25 @@ public class GameInterpreter {
         string key = GameSelfSwtiches.key(this.mapId, this.eventId, GameSelfSwtiches.code(code));
         GameTemp.gameSelfSwitches[key] = value;
         GameTemp.gameMap.needRefresh = true;
+        return true;
+    }
+
+    /// <summary>
+    /// 201 场所移动
+    /// mapname
+    /// x
+    /// y
+    /// dir 不填不改变朝向
+    /// </summary>
+    /// <returns></returns>
+    public bool command_transformation() {
+        GameTemp.transforming = true;
+        //((SceneMap)SceneManager.Scene).setupFreeze();
+        GameTemp.gamePlayer.setCellPosition(new Vector2Int(int.Parse(this.currentParam[1]), int.Parse(this.currentParam[2])));
+        if (this.currentParam.Length >= 4 && (!"".Equals(this.currentParam[3]))) {
+            GameTemp.gamePlayer.direction = (GameCharacterBase.DIRS)int.Parse(this.currentParam[3]);
+        }
+        ((SceneMap)SceneManager.Scene).loadMap(this.currentParam[0]);
         return true;
     }
 

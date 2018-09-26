@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 public class SceneMap : SceneBase {
     public WindowMessage windowMessage;
     public Image snap;
+    public bool prepareFreeze = false;
 
     private GameObject currMapObj = null;
     private GameObject player = null;
@@ -23,7 +24,7 @@ public class SceneMap : SceneBase {
         GameTemp.gameMessage = new GameMessage();
         GameTemp.gameMap = new GameMap();
 
-        loadMap("Map002");
+        loadMap("Map1");
 
     }
 
@@ -36,10 +37,14 @@ public class SceneMap : SceneBase {
         return texture2D;
     }
 
+    public void setupFreeze() {
+        this.prepareFreeze = true;
+    }
+
     public void loadMap(string mapName) {
         GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/{0}", mapName)));
         map.name = mapName;
-        GameObject.Find("Map").transform.DetachChildren();
+        Destroy(this.currMapObj);
         map.transform.SetParent(GameObject.Find("Map").transform);
         this.currMapObj = map;
 
@@ -51,7 +56,7 @@ public class SceneMap : SceneBase {
         if (GameTemp.gamePlayer == null) {
             // 根据prefab初始化角色
             GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
-            GameTemp.gamePlayer.setCellPosition(new Vector2Int(5, 4));
+            GameTemp.gamePlayer.setCellPosition(new Vector2Int(6, 4));
         }
 
         GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
@@ -59,9 +64,24 @@ public class SceneMap : SceneBase {
 
     }
 
+    public IEnumerator TakeSnapshot() {
+        WaitForEndOfFrame frameEnd = new WaitForEndOfFrame();
+        yield return frameEnd;
+        Destroy(this.snap.sprite);
+        Texture2D texture = snapScreen();
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        this.snap.sprite = sprite;
+    }
+
+
     protected override void updateRender() {
         base.updateRender();
 
+        // 检测截屏
+        if (this.prepareFreeze) {
+            this.prepareFreeze = false;
+            TakeSnapshot();
+        }
         // 刷新角色
         this.player.GetComponent<SpritePlayer>().update();
 
