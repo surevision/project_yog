@@ -21,4 +21,8 @@ public class SpriteEvent : SpriteCharacter {
             this.character.setupCollider(this);
         }
     }
+
+    public void setEvent(GameEvent _event) {
+        this._event = _event;
+    }
 }

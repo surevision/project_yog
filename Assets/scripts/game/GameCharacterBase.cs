@@ -222,7 +222,9 @@ public class GameCharacterBase
     }
 
     public bool moveStraight(DIRS dir) {
-        this.direction = dir;
+        if (dir == DIRS.LEFT || dir == DIRS.RIGHT) {
+            this.direction = dir;
+        }
         this.isDirty = true;
         if (this.isPassable(this.x, this.y, dir)) {
             float step = this.getStep();
@@ -264,5 +266,14 @@ public class GameCharacterBase
     }
     public void unlock() {
         this.locked = false;
+    }
+
+    public override string ToString() {
+        return base.ToString() + " \r\n" +
+            "x " + this.x.ToString() + " \r\n" +
+            "y " + this.y.ToString() + " \r\n" +
+            "realX " + this.realX.ToString() + " \r\n" +
+            "realY " + this.realY.ToString() + " \r\n" +
+            "direction " + this.direction.ToString();
     }
 }

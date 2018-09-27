@@ -492,12 +492,14 @@ public class GameInterpreter {
     /// <returns></returns>
     public bool command_transformation() {
         GameTemp.transforming = true;
-        //((SceneMap)SceneManager.Scene).setupFreeze();
-        GameTemp.gamePlayer.setCellPosition(new Vector2Int(int.Parse(this.currentParam[1]), int.Parse(this.currentParam[2])));
+        ((SceneMap)SceneManager.Scene).setupFreeze();
+        Vector2Int newPos = new Vector2Int(int.Parse(this.currentParam[1].Trim()), int.Parse(this.currentParam[2].Trim()));
+        Debug.Log(newPos);
+        GameTemp.gamePlayer.setCellPosition(newPos);
         if (this.currentParam.Length >= 4 && (!"".Equals(this.currentParam[3]))) {
             GameTemp.gamePlayer.direction = (GameCharacterBase.DIRS)int.Parse(this.currentParam[3]);
         }
-        ((SceneMap)SceneManager.Scene).loadMap(this.currentParam[0]);
+        ((SceneMap)SceneManager.Scene).prepareLoadMap(this.currentParam[0]);
         return true;
     }
 

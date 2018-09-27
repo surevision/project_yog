@@ -63,7 +63,6 @@ public class GameMap {
     /// </summary>
     /// <param name="tilemapNode"></param>
     public void setupMap(GameObject tilemapNode) {
-        this.mapInfo = new MapInfo();
         
         tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().CompressBounds();
         int minX = tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().cellBounds.xMin;
@@ -78,11 +77,15 @@ public class GameMap {
             maxY = Mathf.Max(maxY, tilemapNode.transform.Find(layerName).GetComponent<Tilemap>().cellBounds.yMax);
             Debug.Log(string.Format("min x {0}, layer:{1}", tilemapNode.transform.Find(layerName).GetComponent<Tilemap>().cellBounds.xMin, layerName));
         }
-        this.mapInfo.name = tilemapNode.name;
-        this.mapInfo.minTile = new Vector3Int(minX, minY, 0);
-        this.mapInfo.maxTile = new Vector3Int(maxX, maxY, 0);
-        this.mapInfo.width = maxX - minX;
-        this.mapInfo.height = maxY - minY;
+        bool isNew = this.mapInfo == null || !tilemapNode.name.Equals(this.mapInfo.name);
+        if (isNew) {
+            this.mapInfo = new MapInfo();
+            this.mapInfo.name = tilemapNode.name;
+            this.mapInfo.minTile = new Vector3Int(minX, minY, 0);
+            this.mapInfo.maxTile = new Vector3Int(maxX, maxY, 0);
+            this.mapInfo.width = maxX - minX;
+            this.mapInfo.height = maxY - minY;
+        }
 
         // 读取碰撞信息
         Tilemap passageLayer = tilemapNode.transform.Find(getLayerName(Layers.LayerPassage)).GetComponent<Tilemap>();
@@ -90,6 +93,7 @@ public class GameMap {
         passageLayer.CompressBounds();
         Vector3Int min = passageLayer.cellBounds.min;
         Vector3Int max = passageLayer.cellBounds.max;
+        this.mapInfo.passageColliders.Clear();
         for (int x = min.x; x < max.x; x += 1) {
             for (int y = min.y; y < max.y; y += 1) {
                 if (passageLayer.GetTile(new Vector3Int(x, y, min.z)) != null) {
@@ -108,13 +112,21 @@ public class GameMap {
 
         // 读取事件信息
         Tilemap eventLayer = tilemapNode.transform.Find(getLayerName(Layers.LayerEvents)).GetComponent<Tilemap>();
-        this.events = new List<GameEvent>();
         SpriteEvent[] spriteEvents = eventLayer.GetComponentsInChildren<SpriteEvent>();
-        int i = 0;
-        foreach (SpriteEvent s in spriteEvents) {
-            this.events.Add((GameEvent)s.character);
-            ((GameEvent)s.character).setup(i);
-            i += 1;
+        if (isNew) {
+            this.events = new List<GameEvent>();
+            int i = 0;
+            foreach (SpriteEvent s in spriteEvents) {
+                this.events.Add((GameEvent)s.character);
+                ((GameEvent)s.character).setup(i);
+                i += 1;
+            }
+        } else {
+            int i = 0;
+            foreach (SpriteEvent s in spriteEvents) {
+                s.setEvent(this.events[i]);
+                i += 1;
+            }
         }
 
         // 初始化事件解释器
@@ -145,6 +157,7 @@ public class GameMap {
                     GameEvent e = (GameEvent)character;
                     if (e.trigger == GameInterpreter.TriggerTypes.Confirm) {
                         e.start();
+                        GameTemp.gamePlayer.lastHit.Clear();
                         break;
                     }
                 }
@@ -163,8 +176,8 @@ public class GameMap {
     /// <param name="y"></param>
     /// <returns></returns>
     public Vector2 getTileWorldPos(int x, int y) {
-        x = this.mapInfo.minTile.x + x;
-        y = this.mapInfo.minTile.y + y;
+        //x = this.mapInfo.minTile.x + x;
+        //y = this.mapInfo.minTile.y + y;
         Vector3 worldPos = ((SceneMap)SceneManager.Scene).getMapNode().transform.Find(layers[0]).GetComponent<Tilemap>().CellToWorld(new Vector3Int(x, y, 0));
         return new Vector2(worldPos.x, worldPos.y);
     }

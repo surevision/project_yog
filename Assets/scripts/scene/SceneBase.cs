@@ -17,12 +17,15 @@ public class SceneBase : MonoBehaviour {
         sceneName = "Base"; // this.GetType().Name;
         SceneManager.Scene = this;
         testMaterial = Resources.Load<Material>("graphics/font/ZpixEX2_EX_copy");
-        Debug.Log(testMaterial);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         updateRender();
+    }
+
+    void LateUpdate() {
+        updateAfterFrame();
     }
 
     void FixedUpdate() {
@@ -40,6 +43,10 @@ public class SceneBase : MonoBehaviour {
     }
 
     protected virtual void updateLogic() {
+
+    }
+
+    protected virtual void updateAfterFrame() {
 
     }
 }

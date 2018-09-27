@@ -7,7 +7,9 @@ using UnityEngine.Tilemaps;
 public class SceneMap : SceneBase {
     public WindowMessage windowMessage;
     public Image snap;
-    public bool prepareFreeze = false;
+    public bool prepareFreeze = false;  // 标记截屏准备
+    public string mapToLoad = "";  // 标记要加载地图
+
 
     private GameObject currMapObj = null;
     private GameObject player = null;
@@ -41,25 +43,31 @@ public class SceneMap : SceneBase {
         this.prepareFreeze = true;
     }
 
-    public void loadMap(string mapName) {
+    public void prepareLoadMap(string mapName) {
+        this.mapToLoad = mapName;
+    }
+
+    private void loadMap(string mapName) {
         GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/{0}", mapName)));
         map.name = mapName;
         Destroy(this.currMapObj);
         map.transform.SetParent(GameObject.Find("Map").transform);
         this.currMapObj = map;
 
+        GameTemp.gameMap.setupMap(map);
+
         this.player = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/characters/players/Player"));
         this.player.transform.SetParent(map.transform.Find(GameMap.layers[(int)GameMap.Layers.LayerPlayer]));
-
-        GameObject.Find("Main Camera").GetComponent<CameraControl>().target = player;
-        GameTemp.gameMap.setupMap(map);
         if (GameTemp.gamePlayer == null) {
             // 根据prefab初始化角色
             GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
-            GameTemp.gamePlayer.setCellPosition(new Vector2Int(6, 4));
+            GameTemp.gamePlayer.setCellPosition(new Vector2Int(-6, -4));
+            GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
+        } else {
+            this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
         }
 
-        GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
+        GameObject.Find("Main Camera").GetComponent<CameraControl>().target = player;
         windowMessage.gameObject.transform.localScale = new Vector3(1, 0, windowMessage.gameObject.transform.localScale.z);
 
     }
@@ -82,6 +90,14 @@ public class SceneMap : SceneBase {
             this.prepareFreeze = false;
             TakeSnapshot();
         }
+
+        // 检测切换地图
+        if (!"".Equals(this.mapToLoad)) {
+            this.loadMap(this.mapToLoad);
+            this.mapToLoad = "";
+            return;
+        }
+
         // 刷新角色
         this.player.GetComponent<SpritePlayer>().update();
 
@@ -159,6 +175,10 @@ public class SceneMap : SceneBase {
         if (Input.GetKeyDown(KeyCode.F5)) {
             GameTemp.gameScreen.toggleView();
         }
+    }
+
+    protected override void updateAfterFrame() {
+        base.updateAfterFrame();
     }
 
     public GameObject getMapNode() {

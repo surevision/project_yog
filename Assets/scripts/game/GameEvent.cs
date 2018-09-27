@@ -53,7 +53,6 @@ public class GameEvent : GameCharacterBase {
             page.gameObject.SetActive(true);
             page.transform.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         }
-
         this.x = sprite.transform.position.x;
         this.y = sprite.transform.position.y;
         this.realX = this.x;
