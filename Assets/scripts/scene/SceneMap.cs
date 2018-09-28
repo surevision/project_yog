@@ -10,9 +10,37 @@ public class SceneMap : SceneBase {
     public bool prepareFreeze = false;  // 标记截屏准备
     public string mapToLoad = "";  // 标记要加载地图
 
-
+    // unity对象相关
     private GameObject currMapObj = null;
     private GameObject player = null;
+
+    // 渐变相关
+    private int _transitionProgress = -1;
+    private int _transitionDuration = -1;
+    public float transitionProgress {
+        get { return 1.0f * Mathf.Max(0, _transitionProgress) / _transitionDuration; }
+    }
+    public delegate void onTransitionFinish();  // 渐变完成回调
+    public onTransitionFinish transitionFinishCallback;
+
+    /// <summary>
+    /// 初始化渐变
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="callback"></param>
+    public void setupTransition(int duration, onTransitionFinish callback) {
+        this._transitionDuration = duration;
+        this._transitionProgress = this._transitionDuration;
+        this.transitionFinishCallback = callback;
+    }
+
+    /// <summary>
+    /// 是否在执行渐变
+    /// </summary>
+    /// <returns></returns>
+    public bool isInTransition() {
+        return this._transitionProgress != -1;
+    }
 
 	void Start () {
         base.Start();
@@ -82,23 +110,8 @@ public class SceneMap : SceneBase {
 
     }
 
-    public IEnumerator TakeSnapshot() {
-        WaitForEndOfFrame frameEnd = new WaitForEndOfFrame();
-        yield return frameEnd;
-    }
-
-
     protected override void updateRender() {
         base.updateRender();
-
-        if (!GameTemp.gameScreen.isInTransition() && this.snap.gameObject.active) {
-            this.snap.gameObject.SetActive(false);
-        }
-
-        // 刷新渐变
-        if (GameTemp.gameScreen.isInTransition()) {
-            this.snap.color = new Color(1, 1, 1, GameTemp.gameScreen.transitionProgress);
-        }
 
         // 检测截屏
         if (this.prepareFreeze) {
@@ -107,8 +120,21 @@ public class SceneMap : SceneBase {
             Texture2D texture = snapScreen();
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
             this.snap.sprite = sprite;
-            this.snap.gameObject.SetActive(true);
             return;
+        }
+
+        if (this.isInTransition()) {
+            // 刷新渐变
+            if (this._transitionProgress > 0) {
+                this._transitionProgress = Mathf.Max(this._transitionProgress - 1, 0);
+                if (this._transitionProgress == 0) {
+                    this._transitionProgress = -1;
+                    if (this.transitionFinishCallback != null) {
+                        transitionFinishCallback.Invoke();
+                    }
+                }
+            }
+            this.snap.color = new Color(1, 1, 1, this.transitionProgress);
         }
 
         // 检测切换地图
@@ -186,14 +212,13 @@ public class SceneMap : SceneBase {
 
     protected override void updateLogic() {
         base.updateLogic();
-        // 刷新渐变
-        if (GameTemp.gameScreen.isInTransition()) {
-            GameTemp.gameScreen.update();
+
+        GameTemp.gameScreen.update();
+        if (this.isInTransition()) {
             return;
         }
         GameTemp.gamePlayer.update();
         GameTemp.gameMap.update();
-        GameTemp.gameScreen.update();
         if (Input.GetKeyDown(KeyCode.F5)) {
             GameTemp.gameScreen.toggleView();
         }

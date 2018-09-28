@@ -507,7 +507,7 @@ public class GameInterpreter {
         }
         if (this.currentParam.Length >= 5 && (!"".Equals(this.currentParam[4]))) {
             ((SceneMap)SceneManager.Scene).setupFreeze();
-            GameTemp.gameScreen.setupTransition(int.Parse(this.currentParam[4]), onTransformFinish);
+            ((SceneMap)SceneManager.Scene).setupTransition(int.Parse(this.currentParam[4]), onTransformFinish);
         } else {
             GameTemp.transforming = false;  // 立即判定结束移动
         }

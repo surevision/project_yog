@@ -18,23 +18,6 @@ public class GameScreen {
         set { _currView = value; }
     }
 
-    // 渐变相关
-    private int _transitionProgress = -1;
-    private int _transitionDuration = -1;
-    public float transitionProgress {
-        get { return 1.0f * Mathf.Max(0, _transitionProgress) / _transitionDuration; }
-    }
-    public delegate void onTransitionFinish();
-    public onTransitionFinish transitionFinishCallback;
-    public void setupTransition(int duration, onTransitionFinish callback) {
-        this._transitionDuration = duration;
-        this._transitionProgress = this._transitionDuration;
-        this.transitionFinishCallback = callback;
-    }
-    public bool isInTransition() {
-        return this._transitionProgress != -1;
-    }
-
     public void toggleView() {
         if (isMiniView) {
             this.showNormalView();
@@ -61,16 +44,6 @@ public class GameScreen {
         }
         if (currView > targetView) {
             currView = Mathf.Max(currView - 0.16f / 8, targetView);
-        }
-        // 刷新渐变
-        if (this._transitionProgress > 0) {
-            this._transitionProgress = Mathf.Max(this._transitionProgress - 1, 0);
-            if (this._transitionProgress == 0) {
-                this._transitionProgress = -1;
-                if (this.transitionFinishCallback != null) {
-                    transitionFinishCallback.Invoke();
-                }
-            }
         }
     }
 }

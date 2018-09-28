@@ -42,14 +42,18 @@ public class GamePlayer : GameCharacterBase {
     public override void setupCollider(SpriteCharacter sprite) {
         List<Vector2> points = new List<Vector2>();
         Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
-        float resize = 0.03f;
+        float resize = 0.02f;
         points.Add(new Vector2(resize, resize));
         points.Add(new Vector2(resize, size.y / 4 * 3 - resize));
         points.Add(new Vector2(size.x - resize, size.y / 4 * 3 - resize));
         points.Add(new Vector2(size.x - resize, resize));
         this.colliderPolygon = new Intersection.Polygon(points);
     }
-    
+
+    protected override float getStep() {
+        return getBaseStep() / 32;
+    }
+
     public float offsetScreenX() {
         return 0.5f * 0.16f;
     }
