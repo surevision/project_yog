@@ -20,13 +20,15 @@ public class GameScreen {
 
     // 渐变相关
     private int _transitionProgress = -1;
+    private int _transitionDuration = -1;
     public float transitionProgress {
-        get { return Mathf.Max(0, _transitionProgress) / 255.0f; }
+        get { return 1.0f * Mathf.Max(0, _transitionProgress) / _transitionDuration; }
     }
     public delegate void onTransitionFinish();
     public onTransitionFinish transitionFinishCallback;
-    public void setupTransition(onTransitionFinish callback) {
-        this._transitionProgress = 255;
+    public void setupTransition(int duration, onTransitionFinish callback) {
+        this._transitionDuration = duration;
+        this._transitionProgress = this._transitionDuration;
         this.transitionFinishCallback = callback;
     }
     public bool isInTransition() {
@@ -62,7 +64,7 @@ public class GameScreen {
         }
         // 刷新渐变
         if (this._transitionProgress > 0) {
-            this._transitionProgress = Mathf.Max(this._transitionProgress - 8, 0);
+            this._transitionProgress = Mathf.Max(this._transitionProgress - 1, 0);
             if (this._transitionProgress == 0) {
                 this._transitionProgress = -1;
                 if (this.transitionFinishCallback != null) {

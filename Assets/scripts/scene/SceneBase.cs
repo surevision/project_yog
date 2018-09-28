@@ -20,7 +20,14 @@ public class SceneBase : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    void Update() {
+        updateLogic();
+
+        // lua gc
+        if (Time.time - SceneBase.lastGCTime > GCInterval) {
+            LuaManager.LuaEnv.Tick();
+            SceneBase.lastGCTime = Time.time;
+        }
         updateRender();
     }
 
@@ -29,13 +36,6 @@ public class SceneBase : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        updateLogic();
-
-        // lua gc
-        if (Time.time - SceneBase.lastGCTime > GCInterval) {
-            LuaManager.LuaEnv.Tick();
-            SceneBase.lastGCTime = Time.time;
-        }
     }
 
     protected virtual void updateRender() {

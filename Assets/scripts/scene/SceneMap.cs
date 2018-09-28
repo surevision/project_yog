@@ -95,6 +95,11 @@ public class SceneMap : SceneBase {
             this.snap.gameObject.SetActive(false);
         }
 
+        // 刷新渐变
+        if (GameTemp.gameScreen.isInTransition()) {
+            this.snap.color = new Color(1, 1, 1, GameTemp.gameScreen.transitionProgress);
+        }
+
         // 检测截屏
         if (this.prepareFreeze) {
             this.prepareFreeze = false;
@@ -103,13 +108,13 @@ public class SceneMap : SceneBase {
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
             this.snap.sprite = sprite;
             this.snap.gameObject.SetActive(true);
+            return;
         }
 
         // 检测切换地图
         if (!"".Equals(this.mapToLoad)) {
             this.loadMap(this.mapToLoad);
             this.mapToLoad = "";
-            return;
         }
 
         // 刷新角色
@@ -123,13 +128,11 @@ public class SceneMap : SceneBase {
         // 刷新视野
         GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize = GameTemp.gameScreen.currView;
 
+        // 刷新摄像机
+        GameObject.Find("Main Camera").GetComponent<CameraControl>().update();
+
         // 刷新对话
         windowMessage.update();
-
-        // 刷新渐变
-        if (GameTemp.gameScreen.isInTransition()) {
-            this.snap.color = new Color(1, 1, 1, GameTemp.gameScreen.transitionProgress);
-        }
 
         // debug
         bool debug = true;
@@ -183,6 +186,11 @@ public class SceneMap : SceneBase {
 
     protected override void updateLogic() {
         base.updateLogic();
+        // 刷新渐变
+        if (GameTemp.gameScreen.isInTransition()) {
+            GameTemp.gameScreen.update();
+            return;
+        }
         GameTemp.gamePlayer.update();
         GameTemp.gameMap.update();
         GameTemp.gameScreen.update();

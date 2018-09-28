@@ -495,16 +495,21 @@ public class GameInterpreter {
     /// x
     /// y
     /// dir 不填不改变朝向
+    /// 渐变过渡帧数，可不填
     /// </summary>
     /// <returns></returns>
     public bool command_transformation() {
         GameTemp.transforming = true;
-        ((SceneMap)SceneManager.Scene).setupFreeze();
-        GameTemp.gameScreen.setupTransition(onTransformFinish);
         Vector2Int newPos = new Vector2Int(int.Parse(this.currentParam[1].Trim()), int.Parse(this.currentParam[2].Trim()));
         GameTemp.gamePlayer.setCellPosition(newPos);
         if (this.currentParam.Length >= 4 && (!"".Equals(this.currentParam[3]))) {
             GameTemp.gamePlayer.direction = (GameCharacterBase.DIRS)int.Parse(this.currentParam[3]);
+        }
+        if (this.currentParam.Length >= 5 && (!"".Equals(this.currentParam[4]))) {
+            ((SceneMap)SceneManager.Scene).setupFreeze();
+            GameTemp.gameScreen.setupTransition(int.Parse(this.currentParam[4]), onTransformFinish);
+        } else {
+            GameTemp.transforming = false;  // 立即判定结束移动
         }
         ((SceneMap)SceneManager.Scene).prepareLoadMap(this.currentParam[0]);
         return true;
