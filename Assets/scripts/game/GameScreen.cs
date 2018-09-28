@@ -62,7 +62,7 @@ public class GameScreen {
         }
         // 刷新渐变
         if (this._transitionProgress > 0) {
-            this._transitionProgress = Mathf.Max(this._transitionProgress, 0);
+            this._transitionProgress = Mathf.Max(this._transitionProgress - 8, 0);
             if (this._transitionProgress == 0) {
                 this._transitionProgress = -1;
                 if (this.transitionFinishCallback != null) {

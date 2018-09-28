@@ -175,6 +175,13 @@ public class GameInterpreter {
     }
 
     /// <summary>
+    /// 场所移动的渐变结束回调
+    /// </summary>
+    private void onTransformFinish() {
+        GameTemp.transforming = false;
+    }
+
+    /// <summary>
     /// 结束执行
     /// </summary>
     private void commandEnd() {
@@ -493,8 +500,8 @@ public class GameInterpreter {
     public bool command_transformation() {
         GameTemp.transforming = true;
         ((SceneMap)SceneManager.Scene).setupFreeze();
+        GameTemp.gameScreen.setupTransition(onTransformFinish);
         Vector2Int newPos = new Vector2Int(int.Parse(this.currentParam[1].Trim()), int.Parse(this.currentParam[2].Trim()));
-        Debug.Log(newPos);
         GameTemp.gamePlayer.setCellPosition(newPos);
         if (this.currentParam.Length >= 4 && (!"".Equals(this.currentParam[3]))) {
             GameTemp.gamePlayer.direction = (GameCharacterBase.DIRS)int.Parse(this.currentParam[3]);

@@ -34,10 +34,20 @@ public class SceneMap : SceneBase {
     /// 屏幕截图
     /// </summary>
     public Texture2D snapScreen() {
-        Texture2D texture2D = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
-        texture2D.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-        return texture2D;
+        Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        Rect rect = new Rect(0, 0, Screen.width, Screen.height);
+        RenderTexture rt = new RenderTexture((int)rect.width, (int)rect.height, 0);
+        camera.targetTexture = rt;
+        camera.Render();
+        RenderTexture.active = rt;
+        Texture2D screenShot = new Texture2D((int)rect.width, (int)rect.height, TextureFormat.RGB24, false);
+        screenShot.ReadPixels(rect, 0, 0);
+        screenShot.Apply();
+        camera.targetTexture = null;
+        RenderTexture.active = null;
+        return screenShot;
     }
+
 
     public void setupFreeze() {
         this.prepareFreeze = true;
@@ -75,20 +85,24 @@ public class SceneMap : SceneBase {
     public IEnumerator TakeSnapshot() {
         WaitForEndOfFrame frameEnd = new WaitForEndOfFrame();
         yield return frameEnd;
-        Destroy(this.snap.sprite);
-        Texture2D texture = snapScreen();
-        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-        this.snap.sprite = sprite;
     }
 
 
     protected override void updateRender() {
         base.updateRender();
 
+        if (!GameTemp.gameScreen.isInTransition() && this.snap.gameObject.active) {
+            this.snap.gameObject.SetActive(false);
+        }
+
         // 检测截屏
         if (this.prepareFreeze) {
             this.prepareFreeze = false;
-            TakeSnapshot();
+            Destroy(this.snap.sprite);
+            Texture2D texture = snapScreen();
+            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            this.snap.sprite = sprite;
+            this.snap.gameObject.SetActive(true);
         }
 
         // 检测切换地图
