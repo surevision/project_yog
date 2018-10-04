@@ -104,8 +104,11 @@ public class SceneMap : SceneBase {
         } else {
             this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
         }
-
-        GameObject.Find("Main Camera").GetComponent<CameraControl>().target = player;
+        CameraControl cameraControl = GameObject.Find("Main Camera").GetComponent<CameraControl>();
+        cameraControl.target = player;
+        cameraControl.minTile = GameTemp.gameMap.mapInfo.minTileWorld;
+        cameraControl.maxTile = GameTemp.gameMap.mapInfo.maxTileWorld;
+        cameraControl.setupPos(cameraControl.minTile, cameraControl.maxTile);
         windowMessage.gameObject.transform.localScale = new Vector3(1, 0, windowMessage.gameObject.transform.localScale.z);
 
     }

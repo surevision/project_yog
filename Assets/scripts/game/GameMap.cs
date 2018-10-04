@@ -32,19 +32,24 @@ public class GameMap {
         public Vector3Int minTile;
         public Vector3Int maxTile;
 
+        public Vector3 minTileWorld;
+        public Vector3 maxTileWorld;
+
         public int width;
         public int height;
 
         public List<Intersection.Polygon> passageColliders = new List<Intersection.Polygon>();  // 障碍碰撞盒数组
 
         public override string ToString() {
-            return string.Format("{0}: name {1} minTile {2}, maxTile {3}, width {4}, height {5}",
+            return string.Format("{0}: name {1} minTile {2}, maxTile {3}, width {4}, height {5}, minTileWorld {6}, maxTileWorld {7}",
                 base.ToString(),
                 name,
                 minTile,
                 maxTile,
                 width,
-                height);
+                height,
+                minTileWorld,
+                maxTileWorld);
         }
 
     }
@@ -85,6 +90,8 @@ public class GameMap {
             this.mapInfo.maxTile = new Vector3Int(maxX, maxY, 0);
             this.mapInfo.width = maxX - minX;
             this.mapInfo.height = maxY - minY;
+            this.mapInfo.minTileWorld = tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().CellToWorld(new Vector3Int(minX, minY, 0));
+            this.mapInfo.maxTileWorld = tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().CellToWorld(new Vector3Int(maxX, maxY, 0));
         }
 
         // 读取碰撞信息
