@@ -87,9 +87,13 @@ public class SceneMap : SceneBase {
 
     private void loadMap(string mapName) {
         GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/{0}", mapName)));
+        CameraControl cameraControl = GameObject.Find("Main Camera").GetComponent<CameraControl>();
+        cameraControl.target = null;
         map.name = mapName;
+        Destroy(this.player);
         Destroy(this.currMapObj);
         map.transform.SetParent(GameObject.Find("Map").transform);
+        map.transform.position = Vector3.zero;
         this.currMapObj = map;
 
         GameTemp.gameMap.setupMap(map);
@@ -101,16 +105,19 @@ public class SceneMap : SceneBase {
             GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
             GameTemp.gamePlayer.setCellPosition(new Vector2Int(-6, -4));
             GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
+
+            this.updateLogic();
+            this.updateRender();
         } else {
             this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
         }
-        CameraControl cameraControl = GameObject.Find("Main Camera").GetComponent<CameraControl>();
+
         cameraControl.target = player;
         cameraControl.minTile = GameTemp.gameMap.mapInfo.minTileWorld;
         cameraControl.maxTile = GameTemp.gameMap.mapInfo.maxTileWorld;
         cameraControl.setupPos(cameraControl.minTile, cameraControl.maxTile);
-        windowMessage.gameObject.transform.localScale = new Vector3(1, 0, windowMessage.gameObject.transform.localScale.z);
 
+        windowMessage.gameObject.transform.localScale = new Vector3(1, 0, windowMessage.gameObject.transform.localScale.z);
     }
 
     protected override void updateRender() {

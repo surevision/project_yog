@@ -38,25 +38,18 @@ public class CameraControl : MonoBehaviour {
 
     public void setupPos(Vector3 minTile, Vector3 maxTile) {
         float width, height;
-        width = GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize;
-        height = width * GameObject.Find("Main Camera").GetComponent<Camera>().aspect;
-        float _width = maxTile.x - minTile.x;
-        float _height = _width * GameObject.Find("Main Camera").GetComponent<Camera>().aspect;
-        this.minX = minTile.x;
-        this.maxX = maxTile.x;
-        this.minY = (minTile.y + maxTile.y) / 2 - _height;
-        this.maxY = _height + (minTile.y + maxTile.y) / 2;
+        height = GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize * 2f;
+        width = height * GameObject.Find("Main Camera").GetComponent<Camera>().aspect;
+        this.minX = minTile.x + width / 2f;
+        this.maxX = maxTile.x - width / 2f;
+        this.minY = minTile.y + height / 2f;
+        this.maxY = maxTile.y - height / 2f;
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
 	public void update () {
-        float x = Mathf.Clamp(this.target.transform.position.x, this.minX, this.maxX);
-        float y = Mathf.Clamp(this.target.transform.position.y, this.minY, this.maxY);
         if (this.target != null) {
+            float x = Mathf.Clamp(this.target.transform.position.x, this.minX, this.maxX);
+            float y = Mathf.Clamp(this.target.transform.position.y, this.minY, this.maxY);
             this.transform.position = new Vector3(
                 x,
                 y,
