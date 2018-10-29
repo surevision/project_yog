@@ -120,6 +120,7 @@ public class GameMap {
         // 读取事件信息
         Tilemap eventLayer = tilemapNode.transform.Find(getLayerName(Layers.LayerEvents)).GetComponent<Tilemap>();
         SpriteEvent[] spriteEvents = eventLayer.GetComponentsInChildren<SpriteEvent>();
+        Debug.Log(string.Format("sprites len {0}", spriteEvents.Length));
         if (isNew) {
             this.events = new List<GameEvent>();
             int i = 0;

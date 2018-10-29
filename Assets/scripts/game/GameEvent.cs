@@ -202,7 +202,7 @@ public class GameEvent : GameCharacterBase {
     /// </summary>
     /// <returns></returns>
     public SpriteEvent getEventSprite() {
-        return GameObject.Find(GameMap.layers[(int)GameMap.Layers.LayerEvents]).GetComponentsInChildren<SpriteEvent>()[this.eventId];
+        return ((SceneMap)SceneManager.Scene).getMapNode().transform.Find(GameMap.layers[(int)GameMap.Layers.LayerEvents]).GetComponentsInChildren<SpriteEvent>()[this.eventId];
     }
 
     public override void update() {
