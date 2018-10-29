@@ -58,7 +58,7 @@ public class GamePlayer : GameCharacterBase {
         return 0.5f * 0.16f;
     }
     public float offsetScreenY() {
-        return 0;
+        return 0.16f / 16;
     }
 
     public override float screenX() {

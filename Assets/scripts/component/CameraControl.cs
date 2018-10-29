@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class CameraControl : MonoBehaviour {
+
+    public GameObject playerLightMask;
+
     private GameObject _target;
 
     private Vector3 _minTile;
@@ -55,6 +58,14 @@ public class CameraControl : MonoBehaviour {
                 y,
                 -10
                 );
+            if (this.playerLightMask != null) {
+                Vector3 size = this.target.GetComponent<SpriteRenderer>().bounds.size;
+                this.playerLightMask.transform.position = new Vector3(
+                    this.target.transform.position.x,
+                    this.target.transform.position.y + size.y * 0.5f,
+                    this.target.transform.position.z
+                    );
+            }
         }
-	}
+    }
 }

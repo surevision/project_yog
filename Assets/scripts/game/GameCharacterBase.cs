@@ -131,7 +131,7 @@ public class GameCharacterBase
     /// </summary>
     protected virtual void updateAnimation() {
         this.updateAnimeCount();
-        if (this.animeCount > 18 - this.moveSpeed * 2) {
+        if (this.animeCount > 24 - this.moveSpeed * 2) {
             this.updateAnimePattern();  // 改图
             this.animeCount = 0;
             this.isDirty = true;
