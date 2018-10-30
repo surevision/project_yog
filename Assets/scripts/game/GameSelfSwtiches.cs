@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameSelfSwtiches {
 
     public static string[] CodeNames = {
+        "",
         "A",
         "B",
         "C",
@@ -21,7 +22,13 @@ public class GameSelfSwtiches {
         get {
             return this.get(index);
         }
-        set { this.data.Add(index, value); }
+        set {
+            if (this.data.ContainsKey(index)) {
+                this.data[index] = value;
+            } else {
+                this.data.Add(index, value);
+            }
+        }
     }
 
     public bool get(string index) {
@@ -44,7 +51,7 @@ public class GameSelfSwtiches {
     public static GameInterpreter.SelfSwitchCode code(string codeName) {
         int index = 0;
         foreach(string name in CodeNames) {
-            if (name.Equals(codeName)) {
+            if (name.Trim().Equals(codeName)) {
                 break;
             }
             index += 1;
@@ -60,6 +67,6 @@ public class GameSelfSwtiches {
     /// <param name="switchId"></param>
     /// <returns></returns>
     public static string key(int mapId, int eventId, GameInterpreter.SelfSwitchCode switchId) {
-        return string.Format("{0},{1},{2}", mapId, eventId, switchId);
+        return string.Format("{0},{1},{2}", mapId, eventId, (int)switchId);
     }
 }

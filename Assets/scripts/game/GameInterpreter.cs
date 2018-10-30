@@ -319,6 +319,12 @@ public class GameInterpreter {
                 case CommandTypes.Wait: // 230 等待
                     Debug.Log(string.Format("CommandTypes.Wait", this.currentParam));
                     return this.command_wait();
+                case CommandTypes.PlayBGM: // 241 播放bgm
+                    Debug.Log(string.Format("CommandTypes.PlayBGM", this.currentParam));
+                    return this.command_play_bgm();
+                case CommandTypes.PlaySE: // 250 播放se
+                    Debug.Log(string.Format("CommandTypes.PlaySE", this.currentParam));
+                    return this.command_play_se();
                 case CommandTypes.EvalScript:   // 355 脚本
                     Debug.Log(string.Format("CommandTypes.EvalScript", this.currentParam));
                     return this.command_evalScript();
@@ -480,7 +486,7 @@ public class GameInterpreter {
     /// <returns></returns>
     public bool command_setSelfSwitch() {
         Debug.Log(string.Format("command_setSelfSwitch"));
-        string code = this.currentParam[0].ToUpper();
+        string code = this.currentParam[0].Trim().ToUpper();
         bool value = bool.Parse(this.currentParam[1]);
 
         string key = GameSelfSwtiches.key(this.mapId, this.eventId, GameSelfSwtiches.code(code));
@@ -532,6 +538,23 @@ public class GameInterpreter {
         return true;
     }
 
+    /// <summary>
+    ///  241 播放bgm
+    ///  文件名
+    /// </summary>
+    public bool command_play_bgm() {
+        AudioManager.PlayBGM(this.currentParam[0]);
+        return true;
+    }
+
+    /// <summary>
+    ///  250 播放se
+    ///  文件名
+    /// </summary>
+    public bool command_play_se() {
+        AudioManager.PlaySE(this.currentParam[0]);
+        return true;
+    }
 
     /// <summary>
     ///  355 eval
