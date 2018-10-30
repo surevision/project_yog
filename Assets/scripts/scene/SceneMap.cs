@@ -23,29 +23,16 @@ public class SceneMap : SceneBase {
     public delegate void onTransitionFinish();  // 渐变完成回调
     public onTransitionFinish transitionFinishCallback;
 
-    /// <summary>
-    /// 初始化渐变
-    /// </summary>
-    /// <param name="duration"></param>
-    /// <param name="callback"></param>
-    public void setupTransition(int duration, onTransitionFinish callback) {
-        this._transitionDuration = duration;
-        this._transitionProgress = this._transitionDuration;
-        this.transitionFinishCallback = callback;
-    }
-
-    /// <summary>
-    /// 是否在执行渐变
-    /// </summary>
-    /// <returns></returns>
-    public bool isInTransition() {
-        return this._transitionProgress != -1;
-    }
-
 	void Start () {
         base.Start();
         sceneName = "Map";
 
+        // 初始化音频
+        AudioManager.setup(
+            GameObject.Find("BGM"),
+            GameObject.Find("BGS"),
+            GameObject.Find("SEs")
+        );
 
         GameTemp.gameVariables = new GameVariables();
         GameTemp.gameSwitches = new GameSwitches();
@@ -56,29 +43,6 @@ public class SceneMap : SceneBase {
 
         loadMap("Map1");
 
-    }
-
-    /// <summary>
-    /// 屏幕截图
-    /// </summary>
-    public Texture2D snapScreen() {
-        Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        Rect rect = new Rect(0, 0, Screen.width, Screen.height);
-        RenderTexture rt = new RenderTexture((int)rect.width, (int)rect.height, 0);
-        camera.targetTexture = rt;
-        camera.Render();
-        RenderTexture.active = rt;
-        Texture2D screenShot = new Texture2D((int)rect.width, (int)rect.height, TextureFormat.RGB24, false);
-        screenShot.ReadPixels(rect, 0, 0);
-        screenShot.Apply();
-        camera.targetTexture = null;
-        RenderTexture.active = null;
-        return screenShot;
-    }
-
-
-    public void setupFreeze() {
-        this.prepareFreeze = true;
     }
 
     public void prepareLoadMap(string mapName) {
@@ -240,6 +204,48 @@ public class SceneMap : SceneBase {
 
     public GameObject getMapNode() {
         return this.currMapObj;
+    }
+
+    /// <summary>
+    /// 初始化渐变
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="callback"></param>
+    public void setupTransition(int duration, onTransitionFinish callback) {
+        this._transitionDuration = duration;
+        this._transitionProgress = this._transitionDuration;
+        this.transitionFinishCallback = callback;
+    }
+
+    /// <summary>
+    /// 是否在执行渐变
+    /// </summary>
+    /// <returns></returns>
+    public bool isInTransition() {
+        return this._transitionProgress != -1;
+    }
+
+    /// <summary>
+    /// 屏幕截图
+    /// </summary>
+    public Texture2D snapScreen() {
+        Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        Rect rect = new Rect(0, 0, Screen.width, Screen.height);
+        RenderTexture rt = new RenderTexture((int)rect.width, (int)rect.height, 0);
+        camera.targetTexture = rt;
+        camera.Render();
+        RenderTexture.active = rt;
+        Texture2D screenShot = new Texture2D((int)rect.width, (int)rect.height, TextureFormat.RGB24, false);
+        screenShot.ReadPixels(rect, 0, 0);
+        screenShot.Apply();
+        camera.targetTexture = null;
+        RenderTexture.active = null;
+        return screenShot;
+    }
+
+
+    public void setupFreeze() {
+        this.prepareFreeze = true;
     }
 
 }

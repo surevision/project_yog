@@ -43,14 +43,14 @@ public class GameCharacterBase
     public int animationId = -1;                    // 动画 ID
     public int balloonId = -1;                      // 心情图标 ID
     public bool transparent = false;                // 透明状态
-    
-    private DIRS originalDirection = DIRS.DOWN;      // 原方向
-    private int originalPattern = 1;                 // 原图案
-    private float animeCount = 0;                    // 动画计数
-    private int stopCount = 0;                       // 停止计数
-    private bool locked = false;                     // 锁的标志
-    private DIRS prelockDirection = DIRS.NONE;       // 被锁上前的方向
-    private bool moveSucceed = true;                 // 移动成功的标志
+
+    protected DIRS originalDirection = DIRS.DOWN;      // 原方向
+    protected int originalPattern = 1;                 // 原图案
+    protected float animeCount = 0;                    // 动画计数
+    protected int stopCount = 0;                       // 停止计数
+    protected bool locked = false;                     // 锁的标志
+    protected DIRS prelockDirection = DIRS.NONE;       // 被锁上前的方向
+    protected bool moveSucceed = true;                 // 移动成功的标志
 
     public bool isDirty = false;
 
@@ -122,7 +122,7 @@ public class GameCharacterBase
         return this.realX != this.x || this.realY != this.y;
     }
 
-    protected void increaseMove() {
+    protected virtual void increaseMove() {
         this.stopCount = 0;
     }
 

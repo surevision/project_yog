@@ -27,6 +27,22 @@ public class GamePlayer : GameCharacterBase {
         }
     }
 
+    /// <summary>
+    /// 更新脚步动画
+    /// </summary>
+    protected override void updateAnimation() {
+        this.updateAnimeCount();
+        if (this.animeCount > 24 - this.moveSpeed * 2) {
+            this.updateAnimePattern();  // 改图
+            this.animeCount = 0;
+            this.isDirty = true;
+            if (this.pattern == 2) {
+                // 脚步声
+                AudioManager.PlaySE("step");
+            }
+        }
+    }
+
     public void setCellPosition(Vector2Int cellPos) {
         Vector2 pos = GameTemp.gameMap.getTileWorldPos(cellPos.x, cellPos.y);
         this.x = pos.x;
