@@ -246,6 +246,10 @@ public class GameCharacterBase
         return false;
     }
 
+    public virtual void moveByRoute(List<GameInterpreter.MoveRoute> routes) {
+
+    }
+
     public virtual float screenX() {
         return this.realX;
     }

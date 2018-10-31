@@ -53,7 +53,7 @@ public class GameInterpreter {
         // 2
         Transformation = 201,           // 场所移动
         SetPos = 203,                   // 设置事件位置
-        MoveByRoute = 205,              // 设置移动路线
+        MoveByRoute = 209,              // 设置移动路线
         Erase = 214,                    // 暂时消除事件
         Shake = 225,                    // 画面震动
         Wait = 230,                     // 等待
@@ -103,6 +103,35 @@ public class GameInterpreter {
 
         public ActiveSelfSwitch(SelfSwitchCode index) {
             this.index = index;
+        }
+    }
+
+    /// <summary>
+    /// 移动路径指令
+    /// </summary>
+    [Serializable]
+    [XLua.LuaCallCSharp]
+    public class MoveRoute {
+        [SerializeField]
+        public int code;
+
+        [SerializeField]
+        public string args;
+
+        public MoveRoute() { }
+
+        public MoveRoute(int code) {
+            this.code = code;
+            this.args = null;
+        }
+
+        public MoveRoute(int code, string args) {
+            this.code = code;
+            this.args = args;
+        }
+
+        public override string ToString() {
+            return base.ToString() + " code: " + this.code + " args: " + this.args;
         }
     }
 
@@ -234,11 +263,12 @@ public class GameInterpreter {
                     // 没有可启动的事件
                     return;
                 }
+            } else {
+                if (!this.executeCmd()) {   // 执行并前往下一个指令
+                    return;
+                }
+                this.index += 1;
             }
-            if (!this.executeCmd()) {   // 执行并前往下一个指令
-                return;
-            }
-            this.index += 1;
         }
     }
 
@@ -251,9 +281,8 @@ public class GameInterpreter {
         }
         foreach (GameEvent e in GameTemp.gameMap.events) {
             if (e.starting) {
-
+                this.setup(e.list, e.eventId);
                 e.starting = false;
-                this.setup(e.list, eventId);
                 return;
             }
         }
@@ -313,6 +342,9 @@ public class GameInterpreter {
                 case CommandTypes.Transformation:   // 201 场所移动
                     Debug.Log(string.Format("CommandTypes.Transformation", this.currentParam));
                     return this.command_transformation();
+                case CommandTypes.MoveByRoute:   // 209 设置移动路线
+                    Debug.Log(string.Format("CommandTypes.MoveByRoute", this.currentParam));
+                    return this.command_move_by_route();
                 case CommandTypes.Erase:   // 216 暂时消除事件
                     Debug.Log(string.Format("CommandTypes.Erase", this.currentParam));
                     return this.command_erase();
@@ -371,19 +403,7 @@ public class GameInterpreter {
 
         Debug.Log(condition);
 
-        XLua.LuaTable scriptEnv = LuaManager.LuaEnv.NewTable();
-        // 为每个脚本设置一个独立的环境，可一定程度上防止脚本间全局变量、函数冲突
-        XLua.LuaTable meta = LuaManager.LuaEnv.NewTable();
-        meta.Set("__index", LuaManager.LuaEnv.Global);
-        scriptEnv.SetMetaTable(meta);
-        meta.Dispose();
-
-        scriptEnv.Set("self", this);
-        scriptEnv.Set("gameVariables", GameTemp.gameVariables);
-        scriptEnv.Set("gameSwitches", GameTemp.gameSwitches);
-        scriptEnv.Set("gameSelfSwitches", GameTemp.gameSelfSwitches);
-        scriptEnv.Set("gamePlayer", GameTemp.gamePlayer);
-        scriptEnv.Set("gameMap", GameTemp.gameMap);
+        XLua.LuaTable scriptEnv = LuaManager.getInterpreterEnvTable(this);
 
         bool result = (bool)LuaManager.LuaEnv.DoString(condition, string.Format("event_condition_{0}", this.eventId), scriptEnv)[0];
 
@@ -534,12 +554,44 @@ public class GameInterpreter {
     }
 
     /// <summary>
+    /// 209 设置移动路线
+    /// lua移动指令
+    /// 移动对象
+    /// 是否等待结束
+    /// </summary>
+    /// <returns></returns>
+    public bool command_move_by_route() {
+
+        XLua.LuaTable scriptEnv = LuaManager.getInterpreterEnvTable(this);
+
+        object[] result = LuaManager.LuaEnv.DoString(this.currentParam[0], string.Format("command_move_by_route_{0}", this.eventId), scriptEnv);
+
+        // 移动对象
+        GameCharacterBase character = this.getCharacter(int.Parse(this.currentParam[1]));
+
+        // 是否等待移动结束
+        if (bool.Parse(this.currentParam[2])) {
+            this.movingCharacter = character;
+        }
+
+        // 处理移动指令
+        List<MoveRoute> list = new List<MoveRoute>();
+        for (int i = 0; i < ((XLua.LuaTable)result[0]).Length; i += 1) {
+            list.Add(((XLua.LuaTable)result[0]).Get<MoveRoute>(i + 1));
+            Debug.Log(list[list.Count - 1]);
+        }
+
+        character.moveByRoute(list);
+
+        return true;
+    }
+
+    /// <summary>
     /// 216 暂时消除事件
     /// </summary>
     /// <returns></returns>
     public bool command_erase() {
         ((GameEvent)this.getCharacter(-1)).erase();
-        GameTemp.gameMap.needRefresh = true;
         return true;
     }
 
@@ -587,19 +639,7 @@ public class GameInterpreter {
 
         Debug.Log(src);
 
-        XLua.LuaTable scriptEnv = LuaManager.LuaEnv.NewTable();
-        // 为每个脚本设置一个独立的环境，可一定程度上防止脚本间全局变量、函数冲突
-        XLua.LuaTable meta = LuaManager.LuaEnv.NewTable();
-        meta.Set("__index", LuaManager.LuaEnv.Global);
-        scriptEnv.SetMetaTable(meta);
-        meta.Dispose();
-
-        scriptEnv.Set("self", this);
-        scriptEnv.Set("gameVariables", GameTemp.gameVariables);
-        scriptEnv.Set("gameSwitches", GameTemp.gameSwitches);
-        scriptEnv.Set("gameSelfSwitches", GameTemp.gameSelfSwitches);
-        scriptEnv.Set("gamePlayer", GameTemp.gamePlayer);
-        scriptEnv.Set("gameMap", GameTemp.gameMap);
+        XLua.LuaTable scriptEnv = LuaManager.getInterpreterEnvTable(this);
 
         LuaManager.LuaEnv.DoString(src, string.Format("event_eval_{0}", this.eventId), scriptEnv);
 

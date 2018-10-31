@@ -58,6 +58,9 @@ public class GameEvent : GameCharacterBase {
         this.realX = this.x;
         this.realY = this.y;
 
+        this.page = -1;
+        this.list = null;
+        this.erased = false;
     }
 
     /// <summary>
@@ -75,7 +78,13 @@ public class GameEvent : GameCharacterBase {
     /// <param name="page"></param>
     /// <returns></returns>
     private List<EventCommand> getCommands(int page) {
-        return new List<EventCommand>(this.getPageInfo(page).GetComponentsInChildren<EventCommand>());
+        List<EventCommand> result = new List<EventCommand>();
+        foreach (EventCommand e in this.getPageInfo(page).GetComponentsInChildren<EventCommand>()) {
+            if (e.gameObject.activeInHierarchy) {
+                result.Add(e);
+            }
+        }
+        return result;
     }
 
     /// <summary>
@@ -120,6 +129,7 @@ public class GameEvent : GameCharacterBase {
         if (this.page == -1) {
             this.list = null;
             this.interpreter = null;
+            this.characterName = "";    // 清理图像
         } else {
             // 显示控制
             EventPage[] pages = this.getEventSprite().GetComponentsInChildren<EventPage>();
@@ -151,6 +161,7 @@ public class GameEvent : GameCharacterBase {
     /// 标记启动
     /// </summary>
     public void start() {
+        Debug.Log(string.Format("start {0}", this.eventId));
         this.starting = true;
         this.lockup();
         if (!GameTemp.gameMap.interpreter.isRunning()) {
@@ -175,16 +186,15 @@ public class GameEvent : GameCharacterBase {
                 }
             }
         }
-        Debug.Log(string.Format("newPage {0}", newPage));
         if (this.page != newPage) {
             this.clearStarting();
-            this.setupPage(newPage);    // 设置新启动页
+            this.setupPage(newPage);    // 设置新启动页,-1时清除
         }
         this.checkTriggerAuto();    // 检查自动启动
     }
 
     private void checkTriggerAuto() {
-        if (this.trigger == GameInterpreter.TriggerTypes.Auto) {
+        if (!this.isNullPage() && !this.erased && this.trigger == GameInterpreter.TriggerTypes.Auto) {
             this.start();
         }
     }
@@ -198,6 +208,14 @@ public class GameEvent : GameCharacterBase {
     }
 
     /// <summary>
+    /// 处于空指令页
+    /// </summary>
+    /// <returns></returns>
+    public bool isNullPage() {
+        return this.list == null;
+    }
+
+    /// <summary>
     /// 取事件对应的精灵节点
     /// </summary>
     /// <returns></returns>
@@ -207,10 +225,10 @@ public class GameEvent : GameCharacterBase {
 
     public override void update() {
         base.update();
-
         if (!this.erased) {
             // 检查自动执行
             this.checkTriggerAuto();
+        } else {
         }
         if (this.interpreter != null) {
             // 检查并行执行
