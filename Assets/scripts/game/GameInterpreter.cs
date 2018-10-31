@@ -288,7 +288,7 @@ public class GameInterpreter {
                     return this.command_break();
                 case CommandTypes.CommandBreak: // 115 中断事件处理 
                     Debug.Log(string.Format("CommandTypes.CommandBreak", this.currentParam));
-                    return true;
+                    return this.command_break_event();
                 case CommandTypes.CommonEvent:  // 117 公共事件 
                     Debug.Log(string.Format("CommandTypes.CommonEvent", this.currentParam));
                     return true;
@@ -313,6 +313,9 @@ public class GameInterpreter {
                 case CommandTypes.Transformation:   // 201 场所移动
                     Debug.Log(string.Format("CommandTypes.Transformation", this.currentParam));
                     return this.command_transformation();
+                case CommandTypes.Erase:   // 216 暂时消除事件
+                    Debug.Log(string.Format("CommandTypes.Erase", this.currentParam));
+                    return this.command_erase();
                 case CommandTypes.Shake:    // 225 画面震动
                     Debug.Log(string.Format("CommandTypes.Shake", this.currentParam));
                     return this.command_shake();
@@ -407,6 +410,15 @@ public class GameInterpreter {
     /// <returns></returns>
     public bool command_break() {
         this.commandLoopSkip();
+        return true;
+    }
+
+    /// <summary>
+    /// 115 中断事件处理
+    /// </summary>
+    /// <returns></returns>
+    public bool command_break_event() {
+        this.index = this.list.Count;
         return true;
     }
 
@@ -518,6 +530,16 @@ public class GameInterpreter {
             GameTemp.transforming = false;  // 立即判定结束移动
         }
         ((SceneMap)SceneManager.Scene).prepareLoadMap(this.currentParam[0]);
+        return true;
+    }
+
+    /// <summary>
+    /// 216 暂时消除事件
+    /// </summary>
+    /// <returns></returns>
+    public bool command_erase() {
+        ((GameEvent)this.getCharacter(-1)).erase();
+        GameTemp.gameMap.needRefresh = true;
         return true;
     }
 
