@@ -162,7 +162,7 @@ public class GameEvent : GameCharacterBase {
     /// </summary>
     public void start() {
         Debug.Log(string.Format("start {0}", this.eventId));
-        this.starting = true;
+        this.starting = true;   // 标记本事件开始执行
         this.lockup();
         if (!GameTemp.gameMap.interpreter.isRunning()) {
             GameTemp.gameMap.interpreter.setupStartingEvent();  // 调用解释器执行

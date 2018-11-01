@@ -78,22 +78,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1084509578850274
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4119493976176734}
-  - component: {fileID: 114492594674221056}
-  m_Layer: 0
-  m_Name: "\u7B49\u5F85: 1"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1089627484365202
 GameObject:
   m_ObjectHideFlags: 1
@@ -374,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1827152480361706
 GameObject:
   m_ObjectHideFlags: 1
@@ -515,19 +499,6 @@ Transform:
   m_Father: {fileID: 4667396857037132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4119493976176734
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1084509578850274}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4864147634240190}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4232621770311188
 Transform:
   m_ObjectHideFlags: 1
@@ -597,7 +568,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4864147634240190}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4413394790918370
 Transform:
@@ -777,7 +748,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4838590304536020}
-  - {fileID: 4119493976176734}
   - {fileID: 4390700058957924}
   m_Father: {fileID: 4092844734168208}
   m_RootOrder: 0
@@ -941,8 +911,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _code: 209
   _args:
-  - "local result = {}\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(1, \"123\")\r\nresult[#result
-    + 1] = CS.GameInterpreter.MoveRoute(2, \"234\")\r\nreturn result"
+  - "local result = {}\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(2)\r\nresult[#result
+    + 1] = CS.GameInterpreter.MoveRoute(1)\r\nreturn result"
   - -1
   - true
 --- !u!114 &114384237650554876
@@ -994,20 +964,6 @@ MonoBehaviour:
   _args:
   - A
   - true
---- !u!114 &114492594674221056
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1084509578850274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _code: 230
-  _args:
-  - 1
 --- !u!114 &114504893626146790
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -112,22 +112,80 @@ public class GameInterpreter {
     [Serializable]
     [XLua.LuaCallCSharp]
     public class MoveRoute {
-        [SerializeField]
-        public int code;
+        public enum Cmd {
+            ROUTE_END               = 0, // 移动路径的终点
+            ROUTE_MOVE_DOWN         = 1, // 向下移动
+            ROUTE_MOVE_LEFT         = 2, // 向左移动
+            ROUTE_MOVE_RIGHT        = 3, // 向右移动
+            ROUTE_MOVE_UP           = 4, // 向上移动
+            ROUTE_MOVE_LOWER_L      = 5, // 左下移动
+            ROUTE_MOVE_LOWER_R      = 6, // 右下移动
+            ROUTE_MOVE_UPPER_L      = 7, // 坐上移动
+            ROUTE_MOVE_UPPER_R      = 8, // 右上移动
+            ROUTE_MOVE_RANDOM       = 9, // 随机移动
+            ROUTE_MOVE_TOWARD       = 10, // 接近玩家
+            ROUTE_MOVE_AWAY         = 11, // 远离玩家
+            ROUTE_MOVE_FORWARD      = 12, // 前进一步
+            ROUTE_MOVE_BACKWARD     = 13, // 后退一步
+            ROUTE_JUMP              = 14, // 跳跃
+            ROUTE_WAIT              = 15, // 等待
+            ROUTE_TURN_DOWN         = 16, // 脸朝向下
+            ROUTE_TURN_LEFT         = 17, // 脸朝向左
+            ROUTE_TURN_RIGHT        = 18, // 脸朝向右
+            ROUTE_TURN_UP           = 19, // 脸朝向上
+            ROUTE_TURN_90D_R        = 20, // 右转 90 度
+            ROUTE_TURN_90D_L        = 21, // 左转 90 度
+            ROUTE_TURN_180D         = 22, // 后转180 度
+            ROUTE_TURN_90D_R_L      = 23, // 随机向左右转
+            ROUTE_TURN_RANDOM       = 24, // 随机转换方向
+            ROUTE_TURN_TOWARD       = 25, // 朝向玩家
+            ROUTE_TURN_AWAY         = 26, // 背向玩家
+            ROUTE_SWITCH_ON         = 27, // 开启开关
+            ROUTE_SWITCH_OFF        = 28, // 关闭开关
+            ROUTE_CHANGE_SPEED      = 29, // 更改移动速度
+            ROUTE_CHANGE_FREQ       = 30, // 更改移动频度
+            ROUTE_WALK_ANIME_ON     = 31, // 开启步行动画
+            ROUTE_WALK_ANIME_OFF    = 32, // 关闭步行动画
+            ROUTE_STEP_ANIME_ON     = 33, // 开启踏步动画
+            ROUTE_STEP_ANIME_OFF    = 34, // 关闭踏步动画
+            ROUTE_DIR_FIX_ON        = 35, // 开启固定朝向
+            ROUTE_DIR_FIX_OFF       = 36, // 关闭固定朝向
+            ROUTE_THROUGH_ON        = 37, // 开启穿透
+            ROUTE_THROUGH_OFF       = 38, // 关闭穿透
+            ROUTE_TRANSPARENT_ON    = 39, // 开启透明化
+            ROUTE_TRANSPARENT_OFF   = 40, // 关闭透明化
+            ROUTE_CHANGE_GRAPHIC    = 41, // 更改图像
+            ROUTE_CHANGE_OPACITY    = 42, // 更改不透明度
+            ROUTE_CHANGE_BLENDING   = 43, // 更改合成方式
+            ROUTE_PLAY_SE           = 44, // 播放声效
+            ROUTE_SCRIPT            = 45, // 脚本
+        }
 
         [SerializeField]
-        public string args;
+        public Cmd code;
+
+        [SerializeField]
+        public List<string> args;
 
         public MoveRoute() { }
 
         public MoveRoute(int code) {
-            this.code = code;
+            this.code = (Cmd)code;
             this.args = null;
         }
 
         public MoveRoute(int code, string args) {
-            this.code = code;
-            this.args = args;
+            this.code = (Cmd)code;
+            this.args = new List<string>();
+            this.args.Add(args);
+        }
+
+        public MoveRoute(int code, XLua.LuaTable argsTable) {
+            this.code = (Cmd)code;
+            this.args = new List<string>();
+            for (int i = 0; i < argsTable.Length; i += 1) {
+                this.args.Add(argsTable.Get<string>(i + 1));
+            }
         }
 
         public override string ToString() {
@@ -246,7 +304,8 @@ public class GameInterpreter {
                 return;
             }
             if (this.movingCharacter != null) { // 等待移动
-                if (this.movingCharacter.isMoving()) {  // 移动中
+                //Debug.Log(string.Format("this.movingCharacter.isForcedMoving() {0}", this.movingCharacter.isForcedMoving()));
+                if (this.movingCharacter.isForcedMoving()) {  // 移动中
                     return;
                 }
                 this.movingCharacter = null;
@@ -344,7 +403,7 @@ public class GameInterpreter {
                     return this.command_transformation();
                 case CommandTypes.MoveByRoute:   // 209 设置移动路线
                     Debug.Log(string.Format("CommandTypes.MoveByRoute", this.currentParam));
-                    return this.command_move_by_route();
+                    return this.command_moveByRoute();
                 case CommandTypes.Erase:   // 216 暂时消除事件
                     Debug.Log(string.Format("CommandTypes.Erase", this.currentParam));
                     return this.command_erase();
@@ -560,7 +619,7 @@ public class GameInterpreter {
     /// 是否等待结束
     /// </summary>
     /// <returns></returns>
-    public bool command_move_by_route() {
+    public bool command_moveByRoute() {
 
         XLua.LuaTable scriptEnv = LuaManager.getInterpreterEnvTable(this);
 
@@ -581,7 +640,7 @@ public class GameInterpreter {
             Debug.Log(list[list.Count - 1]);
         }
 
-        character.moveByRoute(list);
+        character.setMoveRoute(list);
 
         return true;
     }

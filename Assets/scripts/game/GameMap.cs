@@ -232,10 +232,10 @@ public class GameMap {
         foreach (GameEvent e in this.events) {
             Intersection.Polygon eventCollider = e.currCollider();
             if (Intersection.polygonPolygon(eventCollider, polygon)) {
-                if (character != null) {
+                if (character != null && character != e) {
                     character.lastHit.Add(e);
                 }
-                if (!e.erased && e.priorityType == GameCharacterBase.PRIORITIES.SAME) {
+                if (!e.erased && e.priorityType == GameCharacterBase.PRIORITIES.SAME && character != e) {
                     return false;
                 }
             }
