@@ -53,6 +53,7 @@ public class SceneMap : SceneBase {
         GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/{0}", mapName)));
         CameraControl cameraControl = GameObject.Find("Main Camera").GetComponent<CameraControl>();
         cameraControl.target = null;
+        cameraControl.player = null;
         map.name = mapName;
         Destroy(this.player);
         Destroy(this.currMapObj);
@@ -75,8 +76,8 @@ public class SceneMap : SceneBase {
         } else {
             this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
         }
-
         cameraControl.target = player;
+        cameraControl.player = player;
         cameraControl.minTile = GameTemp.gameMap.mapInfo.minTileWorld;
         cameraControl.maxTile = GameTemp.gameMap.mapInfo.maxTileWorld;
         cameraControl.setupPos(cameraControl.minTile, cameraControl.maxTile);

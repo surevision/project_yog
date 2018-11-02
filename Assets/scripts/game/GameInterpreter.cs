@@ -169,24 +169,27 @@ public class GameInterpreter {
 
         public MoveRoute() { }
 
-        public MoveRoute(int code) {
-            this.code = (Cmd)code;
+        public MoveRoute(Cmd code) {
+            this.code = code;
             this.args = null;
         }
+        public MoveRoute(int code):this((Cmd)code) {}
 
-        public MoveRoute(int code, string args) {
-            this.code = (Cmd)code;
+        public MoveRoute(Cmd code, string args) {
+            this.code = code;
             this.args = new List<string>();
             this.args.Add(args);
         }
+        public MoveRoute(int code, string args) : this((Cmd)code, args) {}
 
-        public MoveRoute(int code, XLua.LuaTable argsTable) {
-            this.code = (Cmd)code;
+        public MoveRoute(Cmd code, XLua.LuaTable argsTable) {
+            this.code = code;
             this.args = new List<string>();
             for (int i = 0; i < argsTable.Length; i += 1) {
                 this.args.Add(argsTable.Get<string>(i + 1));
             }
         }
+        public MoveRoute(int code, XLua.LuaTable argsTable):this((Cmd)code, argsTable) {}
 
         public override string ToString() {
             return base.ToString() + " code: " + this.code + " args: " + this.args;

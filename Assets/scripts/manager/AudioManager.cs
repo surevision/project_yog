@@ -7,7 +7,7 @@ public class AudioManager {
     private static GameObject nodeBGS;
     private static GameObject nodeSE;
 
-    private const int SE_CHANNELS = 10;
+    private const int SE_CHANNELS = 16;
 
     public static void setup(GameObject _nodeBGM, GameObject _nodeBGS, GameObject _nodeSE) {
         nodeBGM = _nodeBGM;

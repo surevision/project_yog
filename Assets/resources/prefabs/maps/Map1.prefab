@@ -911,11 +911,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _code: 209
   _args:
-  - "local result = {}\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(2)\t--
-    \u5411\u5DE6\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(44, \"step\")\t--
-    \u64AD\u653Ese\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(3)\t-- \u5411\u53F3\r\nresult[#result
-    + 1] = CS.GameInterpreter.MoveRoute(44, \"step\")\t-- \u64AD\u653Ese\r\nreturn
-    result"
+  - "local result = {}\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(CS.GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_LEFT)\t--
+    \u5411\u5DE6\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(CS.GameInterpreter.MoveRoute.Cmd.ROUTE_PLAY_SE,
+    \"step\")\t-- \u64AD\u653Ese\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(CS.GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_RIGHT)\t--
+    \u5411\u53F3\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(CS.GameInterpreter.MoveRoute.Cmd.ROUTE_PLAY_SE,
+    \"step\")\t-- \u64AD\u653Ese\r\nreturn result"
   - -1
   - true
 --- !u!114 &114384237650554876
