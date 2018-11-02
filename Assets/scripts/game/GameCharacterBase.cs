@@ -451,19 +451,19 @@ public class GameCharacterBase
                     //jump(params[0], params[1])
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_WAIT:
-                    //@wait_count = params[0] - 1
+                    this.moveWaitCount = int.Parse(cmd.args[0]);
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TURN_DOWN:
-                    //set_direction(2)
+                    this.direction = DIRS.DOWN;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TURN_LEFT:
-                    //set_direction(4)
+                    this.direction = DIRS.LEFT;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TURN_RIGHT:
-                    //set_direction(6)
+                    this.direction = DIRS.RIGHT;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TURN_UP:
-                    //set_direction(8)
+                    this.direction = DIRS.UP;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TURN_90D_R:
                     //turn_right_90
@@ -499,46 +499,47 @@ public class GameCharacterBase
                     //@move_frequency = params[0]
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_WALK_ANIME_ON:
-                    //@walk_anime = true
+                    this.walkAnime = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_WALK_ANIME_OFF:
-                    //@walk_anime = false
+                    this.walkAnime = false;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_STEP_ANIME_ON:
-                    //@step_anime = true
+                    this.stepAnime = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_STEP_ANIME_OFF:
-                    //@step_anime = false
+                    this.stepAnime = false;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_DIR_FIX_ON:
-                    //@direction_fix = true
+                    this.directionFix = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_DIR_FIX_OFF:
-                    //@direction_fix = false
+                    this.directionFix = false;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_THROUGH_ON:
-                    //@through = true
+                    this.through = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_THROUGH_OFF:
-                    //@through = false
+                    this.through = false;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TRANSPARENT_ON:
-                    //@transparent = true
+                    this.transparent = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TRANSPARENT_OFF:
-                    //@transparent = false
+                    this.transparent = false;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_CHANGE_GRAPHIC:
-                    //set_graphic(params[0], params[1])
+                    this.characterName = cmd.args[0];
+                    this.originalPattern = 1;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_CHANGE_OPACITY:
-                    //@opacity = params[0]
+                    this.opacity = int.Parse(cmd.args[0]);
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_CHANGE_BLENDING:
                     //@blend_type = params[0]
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_PLAY_SE:
-                    //params[0].play
+                    AudioManager.PlaySE(cmd.args[0]);
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_SCRIPT:
                     //eval(params[0])

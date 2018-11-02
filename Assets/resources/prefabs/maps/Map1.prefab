@@ -358,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1827152480361706
 GameObject:
   m_ObjectHideFlags: 1
@@ -911,8 +911,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _code: 209
   _args:
-  - "local result = {}\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(2)\r\nresult[#result
-    + 1] = CS.GameInterpreter.MoveRoute(1)\r\nreturn result"
+  - "local result = {}\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(2)\t--
+    \u5411\u5DE6\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(44, \"step\")\t--
+    \u64AD\u653Ese\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(3)\t-- \u5411\u53F3\r\nresult[#result
+    + 1] = CS.GameInterpreter.MoveRoute(44, \"step\")\t-- \u64AD\u653Ese\r\nreturn
+    result"
   - -1
   - true
 --- !u!114 &114384237650554876
