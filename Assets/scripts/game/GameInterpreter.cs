@@ -26,7 +26,7 @@ public class GameInterpreter {
     public enum TriggerTypes {
         Confirm = 0, // 确定键
         EnterCollide = 1, // 碰撞接触
-        ExitCollide = 2, // 碰撞分离
+        NOTUSED = 2, // 未使用
         Auto = 3, // 自动执行
         Async = 4, // 并行处理
     }

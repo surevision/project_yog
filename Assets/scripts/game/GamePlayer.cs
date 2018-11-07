@@ -43,14 +43,6 @@ public class GamePlayer : GameCharacterBase {
         }
     }
 
-    public void setCellPosition(Vector2Int cellPos) {
-        Vector2 pos = GameTemp.gameMap.getTileWorldPos(cellPos.x, cellPos.y);
-        this.x = pos.x;
-        this.y = pos.y;
-        this.realX = pos.x;
-        this.realY = pos.y;
-    }
-
     /// <summary>
     /// 初始化包围盒数据
     /// </summary>

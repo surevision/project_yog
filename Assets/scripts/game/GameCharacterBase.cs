@@ -214,6 +214,18 @@ public class GameCharacterBase
         }
     }
 
+    /// <summary>
+    /// 设置到图块位置
+    /// </summary>
+    /// <param name="cellPos"></param>
+    public virtual void setCellPosition(Vector2Int cellPos) {
+        Vector2 pos = GameTemp.gameMap.getTileWorldPos(cellPos.x, cellPos.y);
+        this.x = pos.x;
+        this.y = pos.y;
+        this.realX = pos.x;
+        this.realY = pos.y;
+    }
+
     protected virtual void updateRouteMove() {
         if (this.moveWaitCount > 0) {
             this.moveWaitCount += 1;

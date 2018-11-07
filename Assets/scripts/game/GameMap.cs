@@ -165,12 +165,20 @@ public class GameMap {
                     GameEvent e = (GameEvent)character;
                     if (e.trigger == GameInterpreter.TriggerTypes.Confirm) {
                         e.start();
-                        GameTemp.gamePlayer.lastHit.Clear();
                         break;
                     }
                 }
             }
         }
+        // 接触启动事件
+        foreach (GameCharacterBase character in GameTemp.gamePlayer.lastHit) {
+            GameEvent e = (GameEvent)character;
+            if (e.trigger == GameInterpreter.TriggerTypes.EnterCollide) {
+                e.start();
+                break;
+            }
+        }
+        GameTemp.gamePlayer.lastHit.Clear();
         // 更新事件
         foreach (GameEvent e in this.events) {
             e.update();

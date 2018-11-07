@@ -11,6 +11,8 @@ public class CameraControl : MonoBehaviour {
     private GameObject _player;
     private Vector3 _targetPos;
 
+    private bool forcePos = false;
+
     private Vector3 _minTile;
     private Vector3 _maxTile;
 
@@ -62,7 +64,7 @@ public class CameraControl : MonoBehaviour {
     public void update() {
 
         //强制转向坐标
-        if (this.targetPos != null) {
+        if (forcePos) {
             float x = Mathf.Clamp(this.targetPos.x, this.minX, this.maxX);
             float y = Mathf.Clamp(this.targetPos.y, this.minY, this.maxY);
             this.transform.position = new Vector3(

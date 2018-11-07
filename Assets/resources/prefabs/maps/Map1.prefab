@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 4838590304536020}
   - component: {fileID: 114353187834708470}
   m_Layer: 0
-  m_Name: "\u8BBE\u7F6E\u79FB\u52A8\u8DEF\u5F84"
+  m_Name: "\u663E\u793A\u6587\u7AE0: local result = {}\rre"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,6 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4738655247320734}
   - component: {fileID: 2569400265949310946}
+  - component: {fileID: 114341217332283960}
   m_Layer: 0
   m_Name: Map1
   m_TagString: Untagged
@@ -358,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1827152480361706
 GameObject:
   m_ObjectHideFlags: 1
@@ -898,6 +899,33 @@ MonoBehaviour:
     balloonId: -1
     transparent: 0
     isDirty: 0
+--- !u!114 &114341217332283960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1169610840418350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af019f69846575f41a93ef90e63a8f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fogs:
+  - name: 
+    speedX: 0
+    speedY: 0
+  parallaxes:
+  - fogName: 
+    moveType: 0
+    speedX: 0
+    speedY: 0
+  - fogName: 
+    moveType: 0
+    speedX: 0
+    speedY: 0
+  bgm: 
+  bgs: 
+  notes: 
 --- !u!114 &114353187834708470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -909,15 +937,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _code: 209
+  _code: 101
   _args:
   - "local result = {}\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(CS.GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_LEFT)\t--
     \u5411\u5DE6\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(CS.GameInterpreter.MoveRoute.Cmd.ROUTE_PLAY_SE,
     \"step\")\t-- \u64AD\u653Ese\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(CS.GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_RIGHT)\t--
     \u5411\u53F3\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(CS.GameInterpreter.MoveRoute.Cmd.ROUTE_PLAY_SE,
     \"step\")\t-- \u64AD\u653Ese\r\nreturn result"
-  - -1
-  - true
 --- !u!114 &114384237650554876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1126,10 +1152,10 @@ MonoBehaviour:
   activeVariables: []
   activeSwitches: []
   activeSelfSwitches: []
-  trigger: 3
+  trigger: 1
   characterName: $character_base_16x16
   direction: 2
-  pattern: 0
+  pattern: 1
   priorityType: 1
   through: 0
   moveSpeed: 3
@@ -1137,7 +1163,7 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
-  BaseFrame: {fileID: 21300000, guid: 598a6d28c23627443b67dd6ae9573778, type: 3}
+  BaseFrame: {fileID: 21300002, guid: 598a6d28c23627443b67dd6ae9573778, type: 3}
 --- !u!114 &114855202211117654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1259,7 +1285,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 598a6d28c23627443b67dd6ae9573778, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 598a6d28c23627443b67dd6ae9573778, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
