@@ -146,11 +146,10 @@ public class SceneMap : SceneBase {
 		foreach (GamePicture pic in GameTemp.gameScreen.pictures.Values) {
 			Image img = this.pictures[pic.num];
 			GameObject imgObj = img.gameObject;
-
-			imgObj.transform.position = new Vector3(pic.x, pic.y, pic.num);	// 位置
+			imgObj.GetComponent<RectTransform>().localPosition = new Vector3(pic.x, pic.y, pic.num); // 位置
 			imgObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, pic.rotation));  // 旋转
 			img.color = new Color(1, 1, 1, pic.opacity / 255.0f);   // 透明
-			imgObj.transform.localScale = new Vector3(pic.zoomX, pic.zoomY, 1);
+			imgObj.transform.localScale = new Vector3(pic.zoomX, pic.zoomY, 1);	// 缩放
 		}
 
         // 刷新视野
