@@ -125,10 +125,10 @@ public class SLRichText : MonoBehaviour {
 		this._currentFontSize = this._defaultFontSize;   // 当前文字大小
 		
 		for (int i = 0; i < this._texts.Count; i += 1) {
-			Destroy((GameObject)this._texts[i]);
+			GameObject.Destroy((GameObject)this._texts[i]);
 		}
 		for (int i = 0; i < this._images.Count; i += 1) {
-			Destroy((GameObject)this._images[i]);
+			GameObject.Destroy((GameObject)this._images[i]);
 		}
         
         this._texts.Clear();

@@ -56,8 +56,11 @@ public class GameInterpreter {
         MoveByRoute = 209,              // 设置移动路线
         Erase = 214,                    // 暂时消除事件
         Shake = 225,                    // 画面震动
-        Wait = 230,                     // 等待
-        PlayBGM = 241,                  // 播放BGM
+		Wait = 230,                     // 等待
+		ShowPic = 231,                  // 显示图片
+		TransPic = 232,                 // 移动图片
+		ErasePic = 233,                 // 消除图片
+		PlayBGM = 241,                  // 播放BGM
         FadeoutBGM = 242,               // 淡出BGM
         PlaySE = 250,                   // 播放SE
         StopSE = 251,                   // 停止SE
@@ -413,10 +416,19 @@ public class GameInterpreter {
                 case CommandTypes.Shake:    // 225 画面震动
                     Debug.Log(string.Format("CommandTypes.Shake", this.currentParam));
                     return this.command_shake();
-                case CommandTypes.Wait: // 230 等待
-                    Debug.Log(string.Format("CommandTypes.Wait", this.currentParam));
-                    return this.command_wait();
-                case CommandTypes.PlayBGM: // 241 播放bgm
+				case CommandTypes.Wait: // 230 等待
+					Debug.Log(string.Format("CommandTypes.Wait", this.currentParam));
+					return this.command_wait();
+				case CommandTypes.ShowPic: // 231 显示图片
+					Debug.Log(string.Format("CommandTypes.ShowPic", this.currentParam));
+					return this.command_showPic();
+				case CommandTypes.TransPic: // 232 移动图片
+					Debug.Log(string.Format("CommandTypes.TransPic", this.currentParam));
+					return this.command_transPic();
+				case CommandTypes.ErasePic: // 233 消除图片
+					Debug.Log(string.Format("CommandTypes.ErasePic", this.currentParam));
+					return this.command_erasePic();
+				case CommandTypes.PlayBGM: // 241 播放bgm
                     Debug.Log(string.Format("CommandTypes.PlayBGM", this.currentParam));
                     return this.command_play_bgm();
                 case CommandTypes.PlaySE: // 250 播放se
@@ -639,7 +651,7 @@ public class GameInterpreter {
         // 处理移动指令
         List<MoveRoute> list = new List<MoveRoute>();
         for (int i = 0; i < ((XLua.LuaTable)result[0]).Length; i += 1) {
-            list.Add(((XLua.LuaTable)result[0]).Get<MoveRoute>(i + 1));
+            list.Add(((XLua.LuaTable)result[0]).Get<int, MoveRoute>(i + 1));
             Debug.Log(list[list.Count - 1]);
         }
 
@@ -673,6 +685,83 @@ public class GameInterpreter {
         this.waitCount = int.Parse(this.currentParam[0]);
         return true;
     }
+
+	/// <summary>
+	/// 显示图片
+	/// 图片编号
+	/// 图片名
+	/// 坐标x
+	/// 坐标y
+	/// </summary>
+	/// <returns></returns>
+	public bool command_showPic() {
+		int num = int.Parse(this.currentParam[0]);
+		string picName = this.currentParam[1];
+		int x = int.Parse(this.currentParam[2]);
+		int y = int.Parse(this.currentParam[3]);
+		int opacity = 255;
+		int rotation = 0;
+		if (this.currentParam.Length > 4 && !"".Equals(this.currentParam[4])) {
+			opacity = int.Parse(this.currentParam[4]);
+		}
+		if (this.currentParam.Length > 5 && !"".Equals(this.currentParam[5])) {
+			rotation = int.Parse(this.currentParam[5]);
+		}
+
+		// 生成数据和精灵
+		GamePicture picture = new GamePicture(num, picName, x, y);
+		picture.opacity = opacity;
+		picture.rotation = rotation;
+		GameTemp.gameScreen.showPicture(picture);
+
+		return true;
+	}
+
+	/// <summary>
+	/// 移动图片
+	/// 编号
+	/// 时间
+	/// x
+	/// y
+	/// opacity
+	/// rotation
+	/// </summary>
+	/// <returns></returns>
+	public bool command_transPic() {
+		int num = int.Parse(this.currentParam[0]);
+		int wait = int.Parse(this.currentParam[1]);
+		int x = int.Parse(this.currentParam[2]);
+		int y = int.Parse(this.currentParam[3]);
+		GamePicture currPic = GameTemp.gameScreen.getPicture(num);
+		Debug.Log(string.Format("trans pic {0}", num));
+		currPic.setAnimDuration(wait);
+		currPic.moveTo(x, y);
+		if (this.currentParam.Length > 4 && !"".Equals(this.currentParam[4])) {
+			int opacity = int.Parse(this.currentParam[4]);
+			currPic.fadeTo(opacity);
+		}
+		if (this.currentParam.Length > 5 && !"".Equals(this.currentParam[5])) {
+			int rotation = int.Parse(this.currentParam[5]);
+			currPic.rotateTo(rotation);
+		}
+		if (this.currentParam.Length > 7) {
+			float zoomX = float.Parse(this.currentParam[6]);
+			float zoomY = float.Parse(this.currentParam[7]);
+			currPic.zoomTo(zoomX, zoomY);
+		}
+		return true;
+	}
+
+	/// <summary>
+	/// 消除图片
+	/// 编号
+	/// </summary>
+	/// <returns></returns>
+	public bool command_erasePic() {
+		int num = int.Parse(this.currentParam[0]);
+		GameTemp.gameScreen.erasePicture(num);
+		return true;
+	}
 
     /// <summary>
     ///  241 播放bgm

@@ -51,7 +51,7 @@ public class SpriteCharacter : SpriteBase {
                 this.GetComponent<SpriteRenderer>().color.r,
                 this.GetComponent<SpriteRenderer>().color.g,
                 this.GetComponent<SpriteRenderer>().color.b,
-                this.character.opacity / 255
+                this.character.opacity / 255.0f
                 );
         }
     }

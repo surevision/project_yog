@@ -4,39 +4,85 @@ using UnityEngine;
 
 public class GameScreen {
 
-    // 缩放相关
-    private const float NormalView = 0.8f;
-    private const float HalfView = NormalView / 2;
+	// 显示图片
+	public Dictionary<int, GamePicture> pictures;
 
-    private float targetView = NormalView;
-    private bool isMiniView = false;
+	// 缩放相关
+	private const float NormalView = 0.8f;
+	private const float HalfView = NormalView / 2;
 
-    private float _currView = NormalView;
+	private float targetView = NormalView;
+	private bool isMiniView = false;
 
-    public float currView {
-        get { return _currView; }
-        set { _currView = value; }
-    }
+	private float _currView = NormalView;
 
-    public void toggleView() {
-        if (isMiniView) {
-            this.showNormalView();
-        } else {
-            this.showHalfView();
-        }
-    }
+	public GameScreen() {
+		this.currView = NormalView;
+		this.pictures = new Dictionary<int, GamePicture>();
+	}
 
-    public void showNormalView() {
-        isMiniView = false;
-        targetView = NormalView;
-    }
+	public float currView {
+		get { return _currView; }
+		set { _currView = value; }
+	}
 
-    public void showHalfView() {
-        isMiniView = true;
-        targetView = HalfView;
-    }
+	public void toggleView() {
+		if (isMiniView) {
+			this.showNormalView();
+		} else {
+			this.showHalfView();
+		}
+	}
+
+	public void showNormalView() {
+		isMiniView = false;
+		targetView = NormalView;
+	}
+
+	public void showHalfView() {
+		isMiniView = true;
+		targetView = HalfView;
+	}
+
+	public GamePicture getPicture(int num) {
+		if (this.pictures.ContainsKey(num)) {
+			return this.pictures[num];
+		}
+		Debug.Log(string.Format("not found pic num {0}", num));
+		return null;
+	}
+
+	/// <summary>
+	/// 显示图片
+	/// </summary>
+	/// <param name="pic"></param>
+	public void showPicture(GamePicture pic) {
+		if (!this.pictures.ContainsKey(pic.num)) {
+			// 操作精灵
+			((SceneMap)SceneManager.Scene).attachPicImage(pic);
+		}
+		Debug.Log(string.Format("show pic {0}", pic.num));
+		this.pictures.Add(pic.num, pic);
+	}
+
+	/// <summary>
+	/// 消除图片
+	/// </summary>
+	/// <param name="num"></param>
+	public void erasePicture(int num) {
+		if (this.pictures.ContainsKey(num)) {
+			this.pictures.Remove(num);
+			// 操作精灵
+			((SceneMap)SceneManager.Scene).erasePicImage(num);
+		}
+	}
 
     public void update() {
+
+		// 刷新图片
+		foreach(GamePicture pic in this.pictures.Values) {
+			pic.update();
+		}
 
         // 刷新视野
         if (currView < targetView) {
