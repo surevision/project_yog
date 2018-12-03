@@ -6,6 +6,7 @@ using UnityEngine;
 /// <summary>
 /// 事件解释器
 /// </summary>
+[Serializable]
 public class GameInterpreter {
 
     /// <summary>
@@ -205,14 +206,20 @@ public class GameInterpreter {
     private int mapId = 0;  // 启动时的地图id
     public int origEventId = 0;	// 启动时的事件id
     public int eventId = 0;	// 事件id
+
+    [NonSerialized]
     public List<EventCommand> list = null;	// 执行内容
+
+    public int eventPageForList = 0;	// 执行的事件的事件页序号
+
     public int index = 0;	// 指令索引
     public int lastLoopIndex = 0;   // 上一个循环开始指令索引
     public Dictionary<string, int> gotoMarks = new Dictionary<string,int>(); //标签跳转记录
     public bool messageWaiting = false;	// 等待文章结束
     public GameCharacterBase movingCharacter = null;		// 等待移动结束
     public int waitCount = 0;	// 等待帧数
-    public GameInterpreter childInterpreter = null;	// 子解释器（公共事件）
+
+    //public GameInterpreter childInterpreter = null;	// 子解释器（公共事件）
 
     public CommandTypes currentCode = 0;
     public string[] currentParam;
@@ -227,23 +234,25 @@ public class GameInterpreter {
         this.origEventId = 0;   // 启动时的事件id
         this.eventId = 0;   // 事件id
         this.list = null;   // 执行内容
+        this.eventPageForList = 0;
         this.index = 0; // 当前指令索引
         this.lastLoopIndex = 0;   // 上一个循环开始指令索引
         this.gotoMarks = new Dictionary<string,int>(); //标签跳转索引记录
         this.messageWaiting = false;    // 等待文章结束
         this.movingCharacter = null;        // 等待移动结束
         this.waitCount = 0; // 等待帧数
-        this.childInterpreter = null;   // 子解释器（公共事件）
+        //this.childInterpreter = null;   // 子解释器（公共事件）
 
         this.currentCode = 0;
     }
 
-    public void setup(List<EventCommand> list, int eventId = 0) {
+    public void setup(List<EventCommand> list, int eventId = 0, int page = 0) {
         this.clear();
         this.mapId = GameTemp.gameMap.mapInfo.mapId;
         this.origEventId = eventId;
         this.eventId = eventId;
         this.list = list;
+        this.eventPageForList = page;
     }
     public bool isRunning() {
         return this.list != null;
@@ -346,7 +355,7 @@ public class GameInterpreter {
         }
         foreach (GameEvent e in GameTemp.gameMap.events) {
             if (e.starting) {
-                this.setup(e.list, e.eventId);
+                this.setup(e.list, e.eventId, e.page);
                 e.starting = false;
                 return;
             }
@@ -452,6 +461,7 @@ public class GameInterpreter {
     /// </summary>
     public bool command_showArticle() {
         Debug.Log(string.Format("command_showArticle"));
+        DataManager.save(1);
         if (!GameTemp.gameMessage.isBusy()) {
             string text = this.currentParam[0];
             GameTemp.gameMessage.text = text;
@@ -595,7 +605,7 @@ public class GameInterpreter {
         string code = this.currentParam[0].Trim().ToUpper();
         bool value = bool.Parse(this.currentParam[1]);
 
-        string key = GameSelfSwtiches.key(this.mapId, this.eventId, GameSelfSwtiches.code(code));
+        string key = GameSelfSwitches.key(this.mapId, this.eventId, GameSelfSwitches.code(code));
         GameTemp.gameSelfSwitches[key] = value;
         GameTemp.gameMap.needRefresh = true;
         return true;

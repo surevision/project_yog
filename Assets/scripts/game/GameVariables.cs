@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [XLua.LuaCallCSharp]
+[Serializable]
 public class GameVariables {
     private Dictionary<int, object> data;
     public GameVariables() {

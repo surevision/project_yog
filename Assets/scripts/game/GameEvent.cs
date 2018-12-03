@@ -29,7 +29,11 @@ public class GameEvent : GameCharacterBase {
         get { return _erased; }
         set { _erased = value; }
     }
-    private int page = -1;                                   // 当前事件页
+    private int _page = -1;                                   // 当前事件页
+    public int page {
+        get { return _page; }
+        protected set { _page = value; }
+    }
 
     private GameInterpreter.TriggerTypes _trigger;       // 记录当前的开始条件
     public GameInterpreter.TriggerTypes trigger {
@@ -37,6 +41,7 @@ public class GameEvent : GameCharacterBase {
         set { _trigger = value; }
     }
 
+    [NonSerialized]
     private List<EventCommand> _list;                    // 当前指令列表
     public List<EventCommand> list {
         get { return _list; }
@@ -112,7 +117,7 @@ public class GameEvent : GameCharacterBase {
         // 检查独立开关
         for (int i = 0; i < pageInfo.activeSelfSwitches.Length; i += 1) {
             GameInterpreter.SelfSwitchCode switchId = pageInfo.activeSelfSwitches[i].index;  // ABCD
-            if (!GameTemp.gameSelfSwitches[GameSelfSwtiches.key(this.mapId, this.eventId, switchId)]) {
+            if (!GameTemp.gameSelfSwitches[GameSelfSwitches.key(this.mapId, this.eventId, switchId)]) {
                 return false;
             }
         }
@@ -233,7 +238,7 @@ public class GameEvent : GameCharacterBase {
         if (this.interpreter != null) {
             // 检查并行执行
             if (!this.interpreter.isRunning()) {
-                this.interpreter.setup(this.list, this.eventId);
+                this.interpreter.setup(this.list, this.eventId, this.page);
             }
             this.interpreter.update();
         }

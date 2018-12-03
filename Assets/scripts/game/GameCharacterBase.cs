@@ -9,6 +9,7 @@ using UnityEditor;
 [Serializable]
 public class GameCharacterBase
 {
+    [Serializable]
     public enum DIRS
     {
         NONE = 0,
@@ -17,6 +18,8 @@ public class GameCharacterBase
         RIGHT = 6,
         UP = 8
     }
+
+    [Serializable]
     public enum PRIORITIES
     {
         BELOW,
@@ -54,13 +57,13 @@ public class GameCharacterBase
 
     public bool isDirty = false;
 
+    [NonSerialized]
     protected Intersection.Polygon colliderPolygon;
 
     protected List<GameInterpreter.MoveRoute> moveRoute;  // 移动路径信息
     protected int moveByRouteIndex; // 移动路径指令索引
     protected int moveWaitCount;    // 移动指令等待计数
 
-    [NonSerialized]
     private List<GameCharacterBase> _lastHit;
     public List<GameCharacterBase> lastHit {
         get { return _lastHit; }

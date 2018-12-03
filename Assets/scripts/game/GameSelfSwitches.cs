@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [XLua.LuaCallCSharp]
-public class GameSelfSwtiches {
+[Serializable]
+public class GameSelfSwitches {
 
     public static string[] CodeNames = {
         "",
@@ -14,7 +16,7 @@ public class GameSelfSwtiches {
     };
 
     private Dictionary<string, bool> data;
-    public GameSelfSwtiches() {
+    public GameSelfSwitches() {
         this.data = new Dictionary<string, bool>();
     }
 

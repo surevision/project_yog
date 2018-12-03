@@ -8,7 +8,7 @@ public class GameTemp {
 
     public static GameVariables gameVariables;
     public static GameSwitches gameSwitches;
-    public static GameSelfSwtiches gameSelfSwitches;
+    public static GameSelfSwitches gameSelfSwitches;
 
     public static GameScreen gameScreen;
 

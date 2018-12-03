@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[Serializable]
 public class GameMap {
 
     public static string[] layers = {
@@ -14,6 +16,7 @@ public class GameMap {
         "Layer1",
     };
 
+    [Serializable]
     public enum Layers {
         LayerPassage,
         Layer3,
@@ -31,7 +34,6 @@ public class GameMap {
 
         public Vector3Int minTile;
         public Vector3Int maxTile;
-
         public Vector3 minTileWorld;
         public Vector3 maxTileWorld;
 
@@ -54,9 +56,14 @@ public class GameMap {
 
     }
 
+    [NonSerialized]
     public GameInterpreter interpreter;
+
+    [NonSerialized]
     public MapInfo mapInfo;
+
     public List<GameEvent> events;
+
     public bool needRefresh;
 
     public string getLayerName(Layers layer) {

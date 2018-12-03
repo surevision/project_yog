@@ -38,7 +38,7 @@ public class SceneMap : SceneBase {
 
         GameTemp.gameVariables = new GameVariables();
         GameTemp.gameSwitches = new GameSwitches();
-        GameTemp.gameSelfSwitches = new GameSelfSwtiches();
+        GameTemp.gameSelfSwitches = new GameSelfSwitches();
         GameTemp.gameScreen = new GameScreen();
         GameTemp.gameMessage = new GameMessage();
         GameTemp.gameMap = new GameMap();
