@@ -256,6 +256,7 @@ public class SceneMap : SceneBase {
 		if (this.pictures.ContainsKey(picture.num)) {
 			// 已存在
 			GameObject.Destroy(this.pictures[picture.num]);
+            this.pictures.Remove(picture.num);
 		}
 		this.pictures.Add(picture.num, img);
 	}

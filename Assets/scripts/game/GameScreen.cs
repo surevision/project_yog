@@ -56,13 +56,15 @@ public class GameScreen {
 	/// 显示图片
 	/// </summary>
 	/// <param name="pic"></param>
-	public void showPicture(GamePicture pic) {
-		if (!this.pictures.ContainsKey(pic.num)) {
-			// 操作精灵
-			((SceneMap)SceneManager.Scene).attachPicImage(pic);
-		}
-		Debug.Log(string.Format("show pic {0}", pic.num));
-		this.pictures.Add(pic.num, pic);
+    public void showPicture(GamePicture pic) {
+        Debug.Log(string.Format("show pic {0}", pic.num));
+        if (!this.pictures.ContainsKey(pic.num)) {
+            // 操作精灵
+            ((SceneMap)SceneManager.Scene).attachPicImage(pic);
+            this.pictures.Add(pic.num, pic);
+        } else {
+            Debug.Log(string.Format("pic {0} already exists", pic.num));
+        }
 	}
 
 	/// <summary>
