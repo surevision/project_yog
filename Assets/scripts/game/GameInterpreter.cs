@@ -247,6 +247,7 @@ public class GameInterpreter {
     }
 
     public void setup(List<EventCommand> list, int eventId = 0, int page = -1) {
+		Debug.Log(string.Format("setup interpreter for event {0}, page {1}, list len {2}", eventId, page, list.Count));
         this.clear();
         this.mapId = GameTemp.gameMap.mapInfo.mapId;
         this.origEventId = eventId;
@@ -276,13 +277,13 @@ public class GameInterpreter {
     public GameCharacterBase getCharacter(int charId) {
         if (charId == -1) {
             // 本事件
-            return GameTemp.gameMap.events[this.eventId];
+            return GameTemp.gameMap.events[this.eventId - 1];
         } else if (charId == 0) {
             // 玩家
             return GameTemp.gamePlayer;
         } else {
             // 指定事件
-            return GameTemp.gameMap.events[charId];
+            return GameTemp.gameMap.events[charId - 1];
         }
     }
 
@@ -811,7 +812,11 @@ public class GameInterpreter {
 
         XLua.LuaTable scriptEnv = LuaManager.getInterpreterEnvTable(this);
 
-        LuaManager.LuaEnv.DoString(src, string.Format("event_eval_{0}", this.eventId), scriptEnv);
+        object[] results = LuaManager.LuaEnv.DoString(src, string.Format("event_eval_{0}", this.eventId), scriptEnv);
+
+		if (results != null && results.Length > 0) {
+			return (bool)results[0];
+		}
 
         return true;
     }

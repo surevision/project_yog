@@ -191,6 +191,7 @@ public class GameEvent : GameCharacterBase {
         this.starting = true;   // 标记本事件开始执行
         this.lockup();
         if (!GameTemp.gameMap.interpreter.isRunning()) {
+			Debug.Log("setupStartingEvent");
             GameTemp.gameMap.interpreter.setupStartingEvent();  // 调用解释器执行
         }
     }

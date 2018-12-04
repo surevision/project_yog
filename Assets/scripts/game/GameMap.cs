@@ -155,13 +155,16 @@ public class GameMap {
             SpriteEvent[] spriteEvents = eventLayer.GetComponentsInChildren<SpriteEvent>();
             int i = 0;
             foreach (SpriteEvent s in spriteEvents) {
-                Debug.Log(string.Format("load event {0}", i));
+                Debug.Log(string.Format("load event {0}", i + 1));
                 s.setEvent(this.events[i]);
                 // 恢复事件解释器
                 if (i + 1 == this.interpreter.eventId) {
+					Debug.Log(string.Format("reset interpreter for event {0}, page {1}", this.interpreter.eventId, this.interpreter.eventPageForList));
                     this.events[i].loadCommands(this.interpreter.eventPageForList);
                     this.interpreter.loadList(this.events[i].list);
-                }
+                } else {
+					this.events[i].loadCommands(this.events[i].page);
+				}
                 i += 1;
             }
         }
