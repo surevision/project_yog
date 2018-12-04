@@ -57,7 +57,6 @@ public class GameCharacterBase
 
     public bool isDirty = false;
 
-    [NonSerialized]
     protected Intersection.Polygon colliderPolygon;
 
     protected List<GameInterpreter.MoveRoute> moveRoute;  // 移动路径信息

@@ -56,7 +56,8 @@ public class GameMap {
 
     }
 
-    [NonSerialized]
+    public string mapName = "";
+
     public GameInterpreter interpreter;
 
     [NonSerialized]
@@ -74,8 +75,9 @@ public class GameMap {
     /// 读取地图信息
     /// </summary>
     /// <param name="tilemapNode"></param>
-    public void setupMap(GameObject tilemapNode) {
-        
+    public void setupMap(GameObject tilemapNode, bool isLoad = false) {
+        this.mapName = tilemapNode.name;
+
         tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().CompressBounds();
         int minX = tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().cellBounds.xMin;
         int minY = tilemapNode.transform.Find(layers[0]).GetComponent<Tilemap>().cellBounds.yMin;
@@ -124,31 +126,46 @@ public class GameMap {
             }
         }
 
-        // 读取事件信息
-        Tilemap eventLayer = tilemapNode.transform.Find(getLayerName(Layers.LayerEvents)).GetComponent<Tilemap>();
-        SpriteEvent[] spriteEvents = eventLayer.GetComponentsInChildren<SpriteEvent>();
-        Debug.Log(string.Format("sprites len {0}", spriteEvents.Length));
-        if (isNew) {
-            this.events = new List<GameEvent>();
-            int i = 0;
-            foreach (SpriteEvent s in spriteEvents) {
-                this.events.Add((GameEvent)s.character);
-                ((GameEvent)s.character).setup(i);
-                i += 1;
+        if (!isLoad) {// 读取事件信息
+            Tilemap eventLayer = tilemapNode.transform.Find(getLayerName(Layers.LayerEvents)).GetComponent<Tilemap>();
+            SpriteEvent[] spriteEvents = eventLayer.GetComponentsInChildren<SpriteEvent>();
+            if (isNew) {
+                this.events = new List<GameEvent>();
+                int i = 0;
+                foreach (SpriteEvent s in spriteEvents) {
+                    this.events.Add((GameEvent)s.character);
+                    ((GameEvent)s.character).setup(i + 1);
+                    i += 1;
+                }
+            } else {
+                int i = 0;
+                foreach (SpriteEvent s in spriteEvents) {
+                    s.setEvent(this.events[i]);
+                    i += 1;
+                }
             }
+
+            // 初始化事件解释器
+            this.interpreter = new GameInterpreter(0, true);
+
+            this.refresh();
         } else {
+            // 读档处理，使用读取的数据重置精灵内事件数据
+            Tilemap eventLayer = tilemapNode.transform.Find(getLayerName(Layers.LayerEvents)).GetComponent<Tilemap>();
+            SpriteEvent[] spriteEvents = eventLayer.GetComponentsInChildren<SpriteEvent>();
             int i = 0;
             foreach (SpriteEvent s in spriteEvents) {
+                Debug.Log(string.Format("load event {0}", i));
                 s.setEvent(this.events[i]);
+                // 恢复事件解释器
+                if (i + 1 == this.interpreter.eventId) {
+                    this.events[i].loadCommands(this.interpreter.eventPageForList);
+                    this.interpreter.loadList(this.events[i].list);
+                }
                 i += 1;
             }
         }
-
-        // 初始化事件解释器
-        this.interpreter = new GameInterpreter(0, true);
-
-        this.refresh();
-
+        
         Debug.Log(string.Format("setup map {0}", this.mapInfo));
     }
 

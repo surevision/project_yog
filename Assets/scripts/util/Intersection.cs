@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// 辅助类，用于测试形状与形状是否相交
 /// </summary>
+[Serializable]
 public class Intersection {
 
+    [Serializable]
     public class Polygon {
         public List<Vector2> points = new List<Vector2>();
         public Polygon() { }

@@ -234,7 +234,7 @@ public class GameInterpreter {
         this.origEventId = 0;   // 启动时的事件id
         this.eventId = 0;   // 事件id
         this.list = null;   // 执行内容
-        this.eventPageForList = 0;
+        this.eventPageForList = -1;
         this.index = 0; // 当前指令索引
         this.lastLoopIndex = 0;   // 上一个循环开始指令索引
         this.gotoMarks = new Dictionary<string,int>(); //标签跳转索引记录
@@ -246,7 +246,7 @@ public class GameInterpreter {
         this.currentCode = 0;
     }
 
-    public void setup(List<EventCommand> list, int eventId = 0, int page = 0) {
+    public void setup(List<EventCommand> list, int eventId = 0, int page = -1) {
         this.clear();
         this.mapId = GameTemp.gameMap.mapInfo.mapId;
         this.origEventId = eventId;
@@ -254,6 +254,16 @@ public class GameInterpreter {
         this.list = list;
         this.eventPageForList = page;
     }
+
+    /// <summary>
+    /// 读档恢复list
+    /// </summary>
+    /// <param name="list"></param>
+    public void loadList(List<EventCommand> list) {
+        this.list = list;
+    }
+
+
     public bool isRunning() {
         return this.list != null;
     }
@@ -461,7 +471,6 @@ public class GameInterpreter {
     /// </summary>
     public bool command_showArticle() {
         Debug.Log(string.Format("command_showArticle"));
-        DataManager.save(1);
         if (!GameTemp.gameMessage.isBusy()) {
             string text = this.currentParam[0];
             GameTemp.gameMessage.text = text;

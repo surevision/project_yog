@@ -7,6 +7,9 @@ using UnityEngine;
 [Serializable]
 public class GameEvent : GameCharacterBase {
 
+    /// <summary>
+    /// 事件id，从1开始
+    /// </summary>
     private int _eventId;
     public int eventId {
         get { return _eventId; }
@@ -90,6 +93,24 @@ public class GameEvent : GameCharacterBase {
             }
         }
         return result;
+    }
+
+    /// <summary>
+    /// 读档恢复list数据
+    /// </summary>
+    /// <param name="page"></param>
+    public void loadCommands(int page) {
+        this.list = this.getCommands(page);
+    }
+
+    /// <summary>
+    /// 读档恢复本事件并行处理commands
+    /// </summary>
+    public void loadInterpreterList() {
+        if (this.interpreter != null) {
+            // 检查并行执行
+            this.interpreter.loadList(this.list);
+        }
     }
 
     /// <summary>
@@ -225,7 +246,11 @@ public class GameEvent : GameCharacterBase {
     /// </summary>
     /// <returns></returns>
     public SpriteEvent getEventSprite() {
-        return ((SceneMap)SceneManager.Scene).getMapNode().transform.Find(GameMap.layers[(int)GameMap.Layers.LayerEvents]).GetComponentsInChildren<SpriteEvent>()[this.eventId];
+        return ((SceneMap)SceneManager.Scene)
+            .getMapNode()
+            .transform
+            .Find(GameMap.layers[(int)GameMap.Layers.LayerEvents])
+            .GetComponentsInChildren<SpriteEvent>()[this.eventId - 1];
     }
 
     public override void update() {

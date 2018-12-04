@@ -18,6 +18,7 @@ public class GameTemp {
 
     // 运行时临时数据
     public static bool transforming;    // 场所移动中
+    public static string startMapName = "";
 
 
 }

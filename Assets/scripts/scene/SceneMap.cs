@@ -43,7 +43,8 @@ public class SceneMap : SceneBase {
         GameTemp.gameMessage = new GameMessage();
         GameTemp.gameMap = new GameMap();
 
-        loadMap("Map1");
+        GameTemp.startMapName = "Map1";
+        loadMap(GameTemp.startMapName);
 
     }
 
@@ -51,7 +52,7 @@ public class SceneMap : SceneBase {
         this.mapToLoad = mapName;
     }
 
-    private void loadMap(string mapName) {
+    public void loadMap(string mapName, bool isLoad = false) {
         // 加载地图prefab
         GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/{0}", mapName)));
         CameraControl cameraControl = GameObject.Find("Main Camera").GetComponent<CameraControl>();
@@ -64,21 +65,26 @@ public class SceneMap : SceneBase {
         map.transform.position = Vector3.zero;
         this.currMapObj = map;
 
-        GameTemp.gameMap.setupMap(map);
+        GameTemp.gameMap.setupMap(map, isLoad);
 
         // 创建玩家
         this.player = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/characters/players/Player"));
         this.player.transform.SetParent(map.transform.Find(GameMap.layers[(int)GameMap.Layers.LayerPlayer]));
-        if (GameTemp.gamePlayer == null) {
-            // 根据prefab初始化角色
-            GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
-            GameTemp.gamePlayer.setCellPosition(new Vector2Int(-6, -4));
-            GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
-
-            this.updateLogic();
-            this.updateRender();
-        } else {
+        if (isLoad) {
+            // 读档后初始化玩家
             this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
+        } else {
+            if (GameTemp.gamePlayer == null) {
+                // 根据prefab初始化角色
+                GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
+                GameTemp.gamePlayer.setCellPosition(new Vector2Int(-6, -4));
+                GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
+
+                this.updateLogic();
+                this.updateRender();
+            } else {
+                this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
+            }
         }
 
         // 绑定摄像机到玩家
