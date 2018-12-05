@@ -300,6 +300,7 @@ public class GameInterpreter {
     private void commandEnd() {
         this.list = null;
         if (this.isMain && this.eventId > 0) {
+            Debug.Log(string.Format("end command unlock event {0}", this.eventId));
             GameTemp.gameMap.events[this.eventId].unlock();
         }
     }
@@ -644,7 +645,7 @@ public class GameInterpreter {
             GameTemp.transforming = false;  // 立即判定结束移动
         }
         ((SceneMap)SceneManager.Scene).prepareLoadMap(this.currentParam[0]);
-        return true;
+        return false;
     }
 
     /// <summary>
