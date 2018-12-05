@@ -264,7 +264,7 @@ public class SLRichText : MonoBehaviour {
     /// <returns></returns>
     private bool progressNormalText(string chr) {
         //Debug.Log(string.Format("create Label {0}, size {1}", chr, this._currentFontSize));
-		GameObject node = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/ui/MessagChar"));
+		GameObject node = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/ui/messages/MessagChar"));
 		node.name = chr;
 		Text uiText = node.GetComponent<Text>();
 
