@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4632887716888466}
   - component: {fileID: 114990602989805640}
   m_Layer: 0
-  m_Name: "\u663E\u793A\u6587\u7AE0: local result = {}\rre"
+  m_Name: "\u8BBE\u7F6E\u79FB\u52A8\u8DEF\u5F84"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,6 +110,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1071092678228086
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4194694625584282}
+  - component: {fileID: 114348387721154454}
+  m_Layer: 0
+  m_Name: "\u663E\u793A\u6587\u7AE0: and they fought and "
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1081995437191442
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4900909120333744}
+  - component: {fileID: 114118626011723370}
+  m_Layer: 0
+  m_Name: "\u663E\u793A\u6587\u7AE0: Alduin's wings, \u5965\u675C\u56E0\u7684"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1089627484365202
 GameObject:
   m_ObjectHideFlags: 1
@@ -153,7 +185,7 @@ GameObject:
   - component: {fileID: 4761757282883322}
   - component: {fileID: 114200356839518850}
   m_Layer: 0
-  m_Name: "\u6682\u65F6\u6D88\u9664\u4E8B\u4EF6"
+  m_Name: "\u663E\u793A\u6587\u7AE0: They burned and they"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,6 +307,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1170786589917758
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4285911543162130}
+  - component: {fileID: 114233575785929312}
+  m_Layer: 0
+  m_Name: "\u663E\u793A\u6587\u7AE0: they did darken the "
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1211809013791224
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +335,22 @@ GameObject:
   - component: {fileID: 3664157344355858350}
   m_Layer: 0
   m_Name: LayerEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1252693603062932
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4517192836471594}
+  - component: {fileID: 114788767967525520}
+  m_Layer: 0
+  m_Name: "\u663E\u793A\u6587\u7AE0: and his scales sharp"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,6 +554,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1604070963154168
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4871282351111854}
+  - component: {fileID: 114989045062963202}
+  m_Layer: 0
+  m_Name: "\u6682\u65F6\u6D88\u9664\u4E8B\u4EF6"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1610399377976416
 GameObject:
   m_ObjectHideFlags: 1
@@ -687,6 +767,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1968980317415514
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4296144630175764}
+  - component: {fileID: 114389054708631000}
+  m_Layer: 0
+  m_Name: "\u663E\u793A\u6587\u7AE0: Men ran and they cow"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1983354885407738
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4395091948472866}
+  - component: {fileID: 114400764829289876}
+  m_Layer: 0
+  m_Name: "\u663E\u793A\u6587\u7AE0: His roar fury's fire"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4006999530807240
 Transform:
   m_ObjectHideFlags: 1
@@ -783,7 +895,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4864147634240190}
-  m_RootOrder: 2
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4194694625584282
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071092678228086}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4316195643944850}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4232621770311188
 Transform:
@@ -824,7 +949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4864147634240190}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4274157876099136
 Transform:
@@ -839,6 +964,19 @@ Transform:
   m_Father: {fileID: 4738655247320734}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4285911543162130
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1170786589917758}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4316195643944850}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4288164905761864
 Transform:
   m_ObjectHideFlags: 1
@@ -850,6 +988,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4864147634240190}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4296144630175764
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968980317415514}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4316195643944850}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4316195643944850
@@ -863,8 +1014,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4969342732470516}
-  - {fileID: 4632887716888466}
+  - {fileID: 4900909120333744}
+  - {fileID: 4285911543162130}
+  - {fileID: 4395091948472866}
+  - {fileID: 4517192836471594}
+  - {fileID: 4296144630175764}
+  - {fileID: 4194694625584282}
   - {fileID: 4761757282883322}
+  - {fileID: 4871282351111854}
   m_Father: {fileID: 4030583014260970}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -898,6 +1055,19 @@ Transform:
   - {fileID: 4092844734168208}
   - {fileID: 4038419860632542}
   m_Father: {fileID: 4738655247320734}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4395091948472866
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1983354885407738}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4316195643944850}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4413394790918370
@@ -937,7 +1107,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4864147634240190}
-  m_RootOrder: 0
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4517192836471594
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252693603062932}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4316195643944850}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4517776639305110
 Transform:
@@ -987,12 +1170,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1016290957724048}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.72, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4316195643944850}
-  m_RootOrder: 1
+  m_Father: {fileID: 4864147634240190}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4661408481717850
 Transform:
@@ -1005,7 +1188,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4864147634240190}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4667396857037132
 Transform:
@@ -1032,7 +1215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4864147634240190}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4713932555496268
 Transform:
@@ -1117,7 +1300,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4316195643944850}
-  m_RootOrder: 2
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4763024097044712
 Transform:
@@ -1130,7 +1313,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4864147634240190}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4838590304536020
 Transform:
@@ -1143,7 +1326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4864147634240190}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4864147634240190
 Transform:
@@ -1155,6 +1338,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4632887716888466}
   - {fileID: 4450391670072370}
   - {fileID: 4702820415070648}
   - {fileID: 4177378562762236}
@@ -1165,6 +1349,19 @@ Transform:
   - {fileID: 4661408481717850}
   m_Father: {fileID: 4092844734168208}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4871282351111854
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1604070963154168}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4316195643944850}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4885034107617992
 Transform:
@@ -1191,6 +1388,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4006999530807240}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4900909120333744
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1081995437191442}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4316195643944850}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4935771585173598
 Transform:
@@ -1313,6 +1523,20 @@ MonoBehaviour:
   - 360
   - 2
   - 2
+--- !u!114 &114118626011723370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1081995437191442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _code: 101
+  _args:
+  - "Alduin's wings, \n\u5965\u675C\u56E0\u7684\u9ED1\u7FFC"
 --- !u!114 &114140419102883642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1372,8 +1596,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _code: 214
-  _args: []
+  _code: 101
+  _args:
+  - "They burned and they bled \n\u4ED6\u4EEC\u5728\u70C8\u706B\u4E2D\u82E6\u82E6\u575A\u6301"
+--- !u!114 &114233575785929312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1170786589917758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _code: 101
+  _args:
+  - "they did darken the sky. \n\u906E\u5929\u853D\u65E5"
 --- !u!114 &114253429375812956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1475,6 +1714,20 @@ MonoBehaviour:
   bgm: 
   bgs: 
   notes: 
+--- !u!114 &114348387721154454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071092678228086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _code: 101
+  _args:
+  - "and they fought and they died \n\u6709\u4EBA\u594B\u8D77\u53CD\u6297\u5374\u96BE\u9003\u4E00\u6B7B"
 --- !u!114 &114353187834708470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1538,6 +1791,34 @@ MonoBehaviour:
   _args:
   - A
   - true
+--- !u!114 &114389054708631000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968980317415514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _code: 101
+  _args:
+  - "Men ran and they cowered \n\u4EBA\u4EEC\u56DB\u6563\u5954\u9003"
+--- !u!114 &114400764829289876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1983354885407738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _code: 101
+  _args:
+  - "His roar fury's fire \n\u5B83\u53E3\u5410\u70C8\u706B"
 --- !u!114 &114504893626146790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1768,6 +2049,20 @@ MonoBehaviour:
     balloonId: -1
     transparent: 0
     isDirty: 0
+--- !u!114 &114788767967525520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252693603062932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _code: 101
+  _args:
+  - "and his scales sharpened scythes \n\u9CDE\u5982\u5229\u5203"
 --- !u!114 &114802563405586694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1987,6 +2282,19 @@ MonoBehaviour:
   _code: 230
   _args:
   - 120
+--- !u!114 &114989045062963202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1604070963154168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _code: 214
+  _args: []
 --- !u!114 &114990602989805640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1998,7 +2306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _code: 101
+  _code: 209
   _args:
   - "local result = {}\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(CS.GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_LEFT)\t--
     \u5411\u5DE6\r\nresult[#result + 1] = CS.GameInterpreter.MoveRoute(CS.GameInterpreter.MoveRoute.Cmd.ROUTE_PLAY_SE,
