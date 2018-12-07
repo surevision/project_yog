@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SLRichText : MonoBehaviour {
 
@@ -266,9 +267,9 @@ public class SLRichText : MonoBehaviour {
         //Debug.Log(string.Format("create Label {0}, size {1}", chr, this._currentFontSize));
 		GameObject node = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/ui/messages/MessagChar"));
 		node.name = chr;
-		Text uiText = node.GetComponent<Text>();
+        TMP_Text uiText = node.GetComponentInChildren<TMP_Text>();
 
-        uiText.text = chr;
+        uiText.SetText(chr);
         
         RectTransform uiTextTransform = uiText.GetComponent<RectTransform>();
         uiText.fontSize = (int)(this._currentFontSize);
@@ -277,7 +278,7 @@ public class SLRichText : MonoBehaviour {
         //uiTextTransform.localScale = new Vector3(s, s, uiTextTransform.localScale.z);
 
         uiText.color = this.getColor(this._currentColor);
-        uiText.color = new Color(uiText.color.r, uiText.color.g, uiText.color.b, 0.0f); // 初始隐藏
+        //uiText.color = new Color(uiText.color.r, uiText.color.g, uiText.color.b, 0.0f); // 初始隐藏
         node.transform.SetParent(this.container.transform);
         node.transform.localScale = new Vector3(1, 1, node.transform.localScale.z);
 

@@ -16,7 +16,7 @@ public class SceneBase : MonoBehaviour {
 	protected virtual void Start () {
         sceneName = "Base"; // this.GetType().Name;
         SceneManager.Scene = this;
-        testMaterial = Resources.Load<Material>("graphics/font/ZpixEX2_EX_copy");
+        //testMaterial = Resources.Load<Material>("graphics/font/ZpixEX2_EX_copy");
 	}
 	
 	// Update is called once per frame

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WindowMessage : WindowBase {
     private string _text;
@@ -66,11 +67,11 @@ public class WindowMessage : WindowBase {
                     // 按次序显示文字
                     for (int i = 0; i < this.showIndex; i += 1) {
                         if (this.richText.contents[i]) {
-                            if (this.richText.contents[i].GetComponent<UnityEngine.UI.Text>() != null ) { // TODO只处理文字
-                                this.richText.contents[i].GetComponent<UnityEngine.UI.Text>().color =
-                                    new Color(this.richText.contents[i].GetComponent<UnityEngine.UI.Text>().color.r,
-                                        this.richText.contents[i].GetComponent<UnityEngine.UI.Text>().color.g,
-                                        this.richText.contents[i].GetComponent<UnityEngine.UI.Text>().color.b,
+                            if (this.richText.contents[i].GetComponent<TMP_Text>() != null ) { // TODO只处理文字
+                                this.richText.contents[i].GetComponent<TMP_Text>().color =
+                                    new Color(this.richText.contents[i].GetComponent<TMP_Text>().color.r,
+                                        this.richText.contents[i].GetComponent<TMP_Text>().color.g,
+                                        this.richText.contents[i].GetComponent<TMP_Text>().color.b,
                                         1);
                             }
                         }
