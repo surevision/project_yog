@@ -217,11 +217,11 @@ public class GameInterpreter {
     public Dictionary<string, int> gotoMarks = new Dictionary<string,int>(); //标签跳转记录
     public bool messageWaiting = false;	// 等待文章结束
     public GameCharacterBase movingCharacter = null;		// 等待移动结束
-    public int waitCount = 0;	// 等待帧数
+    public int waitCount = 0;   // 等待帧数
 
-    //public GameInterpreter childInterpreter = null;	// 子解释器（公共事件）
+	public GameInterpreter childInterpreter = null; // 子解释器（公共事件）
 
-    public CommandTypes currentCode = 0;
+	public CommandTypes currentCode = 0;
     public string[] currentParam;
 
     public GameInterpreter(int depth, bool isMain) {
@@ -241,9 +241,9 @@ public class GameInterpreter {
         this.messageWaiting = false;    // 等待文章结束
         this.movingCharacter = null;        // 等待移动结束
         this.waitCount = 0; // 等待帧数
-        //this.childInterpreter = null;   // 子解释器（公共事件）
+		this.childInterpreter = null;   // 子解释器（公共事件）
 
-        this.currentCode = 0;
+		this.currentCode = 0;
     }
 
     public void setup(List<EventCommand> list, int eventId = 0, int page = -1) {
@@ -327,6 +327,16 @@ public class GameInterpreter {
             if (GameTemp.gameMap.mapInfo.mapId != this.mapId) { // 地图id和启动地图有差异
                 this.eventId = 0;
             }
+			// 公共事件处理
+			if (this.childInterpreter != null) {
+				if (!this.childInterpreter.isRunning()) {
+					this.childInterpreter = null;
+				}
+				// 公共事件仍在执行则退出当前事件解释
+				if (this.childInterpreter != null) {
+					return;
+				}
+			}
             if (this.messageWaiting) {  // 文章显示中
                 return;
             }
