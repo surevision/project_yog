@@ -268,7 +268,7 @@ MonoBehaviour:
   m_text: "\u8BFB\u6863"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 64c18959718b17d4d9828ae310e34929, type: 2}
-  m_sharedMaterial: {fileID: 21515539208133178, guid: 64c18959718b17d4d9828ae310e34929,
+  m_sharedMaterial: {fileID: 21276030600435140, guid: 64c18959718b17d4d9828ae310e34929,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_text: "\u9000\u51FA"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 64c18959718b17d4d9828ae310e34929, type: 2}
-  m_sharedMaterial: {fileID: 21515539208133178, guid: 64c18959718b17d4d9828ae310e34929,
+  m_sharedMaterial: {fileID: 21276030600435140, guid: 64c18959718b17d4d9828ae310e34929,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -572,7 +572,7 @@ MonoBehaviour:
   m_text: "\u8BBE\u7F6E\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 64c18959718b17d4d9828ae310e34929, type: 2}
-  m_sharedMaterial: {fileID: 21515539208133178, guid: 64c18959718b17d4d9828ae310e34929,
+  m_sharedMaterial: {fileID: 21276030600435140, guid: 64c18959718b17d4d9828ae310e34929,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_text: "\u7269\u54C1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 64c18959718b17d4d9828ae310e34929, type: 2}
-  m_sharedMaterial: {fileID: 21515539208133178, guid: 64c18959718b17d4d9828ae310e34929,
+  m_sharedMaterial: {fileID: 21276030600435140, guid: 64c18959718b17d4d9828ae310e34929,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
