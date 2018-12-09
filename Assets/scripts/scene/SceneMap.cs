@@ -12,6 +12,7 @@ public class SceneMap : SceneBase {
     // unity对象相关
     private GameObject currMapObj = null;   // 地图
     private GameObject player = null;       // 玩家
+    private GameObject commonEventNode = null;  // 公共事件
     public WindowMessage windowMessage;     // 文字显示窗口
     public Image snap;                      // 截屏
     public Dictionary<int, Image> pictures = null;            // 图片
@@ -35,6 +36,9 @@ public class SceneMap : SceneBase {
             GameObject.Find("BGS"),
             GameObject.Find("SEs")
         );
+        // 加载公共事件
+        this.commonEventNode = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/CommonEventNode")));
+        this.commonEventNode.transform.parent = GameObject.Find("CommonEvents").transform;
 
         GameTemp.gameVariables = new GameVariables();
         GameTemp.gameSwitches = new GameSwitches();
@@ -237,6 +241,32 @@ public class SceneMap : SceneBase {
 
     public GameObject getMapNode() {
         return this.currMapObj;
+    }
+
+    /// <summary>
+    /// 按id获得公共事件指令
+    /// </summary>
+    /// <returns></returns>
+    /// <param name="id">事件索引，从0开始</param>
+    public List<EventCommand> getCommonEventCmd(int id) {
+        return new List<EventCommand>(this.commonEventNode.transform.GetChild(id).GetComponentsInChildren<EventCommand>());
+    }
+
+    /// <summary>
+    /// 按事件名获得公共事件指令
+    /// </summary>
+    /// <returns></returns>
+    /// <param name="name">事件名称</param>
+    public List<EventCommand> getCommonEventCmd(string name, out int id) {
+        int index = 0;
+        for (int i = 0; i < this.commonEventNode.transform.childCount; i += 1) {
+            if (this.commonEventNode.transform.GetChild(i).name.Equals(name)) {
+                index = i;
+                break;
+            }
+        }
+        id = index;
+        return new List<EventCommand>(this.commonEventNode.transform.GetChild(index).GetComponentsInChildren<EventCommand>());
     }
 
 	/// <summary>

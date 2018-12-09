@@ -329,6 +329,7 @@ public class GameInterpreter {
             }
 			// 公共事件处理
 			if (this.childInterpreter != null) {
+                this.childInterpreter.update();
 				if (!this.childInterpreter.isRunning()) {
 					this.childInterpreter = null;
 				}
@@ -416,7 +417,7 @@ public class GameInterpreter {
                     return this.command_break_event();
                 case CommandTypes.CommonEvent:  // 117 公共事件 
                     Debug.Log(string.Format("CommandTypes.CommonEvent", this.currentParam));
-                    return true;
+					return this.command_commonEvent();
                 case CommandTypes.Label:  // 118 设置标签
                     Debug.Log(string.Format("CommandTypes.Label", this.currentParam));
                     return this.command_label();
@@ -546,6 +547,27 @@ public class GameInterpreter {
         this.index = this.list.Count;
         return true;
     }
+
+	/// <summary>
+	/// 117 调用公共事件
+	/// 名称/编号，优先使用编号，编号从1开始
+	/// </summary>
+	/// <returns></returns>
+	public bool command_commonEvent() {
+		int cmdId = 0;
+        List<EventCommand> cmdList = null;
+		int.TryParse(this.currentParam[0], out cmdId);
+        if (cmdId > 0) {
+            cmdId = cmdId - 1;  // 转为从0开始的编号
+            cmdList = ((SceneMap)SceneManager.Scene).getCommonEventCmd(cmdId);
+        } else {
+            cmdList = ((SceneMap)SceneManager.Scene).getCommonEventCmd(this.currentParam[0], out cmdId);
+        }
+        // 生成子解释器
+        this.childInterpreter = new GameInterpreter(this.depth + 1, false);
+        this.childInterpreter.setup(cmdList, this.eventId, cmdId);
+		return true;
+	}
 
     /// <summary>
     /// 118 设置标签
