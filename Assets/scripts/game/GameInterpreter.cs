@@ -380,7 +380,7 @@ public class GameInterpreter {
         }
         // 检查预约的公共事件
         if (GameTemp.gameMap.commonEventId != 0) {
-            this.setup(((SceneMap)SceneManager.Scene).getCommonEventCmd(GameTemp.gameMap.commonEventId), 
+            this.setup(((SceneMap)SceneManager.Scene).getCommonEventCmd(GameTemp.gameMap.commonEventId - 1), 
                 this.eventId,
                 GameTemp.gameMap.commonEventId);
             GameTemp.gameMap.commonEventId = 0;

@@ -63,7 +63,7 @@ public class GameMap {
 
     public GameInterpreter interpreter;
 
-    public int commonEventId = 0;   // 预约执行的公共事件ID，优先执行ID对应的公共事件
+    public int commonEventId = 0;   // 预约执行的公共事件ID，从1开始，优先执行ID对应的公共事件
     public string commonEventName = ""; // 预约执行的公共事件名称
 
     public List<GameEvent> events;
