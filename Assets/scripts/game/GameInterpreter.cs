@@ -354,8 +354,10 @@ public class GameInterpreter {
             }
             // 执行相关
             if (this.list == null) {
-                // 尝试启动地图事件
-                this.setupStartingEvent();
+                if (this.isMain) {
+                    // 尝试启动地图事件
+                    this.setupStartingEvent();
+                }
                 if (this.list == null) {
                     // 没有可启动的事件
                     return;
@@ -370,12 +372,25 @@ public class GameInterpreter {
     }
 
     /// <summary>
-    /// 启动事件
+    /// 尝试启动事件
     /// </summary>
     public void setupStartingEvent() {
         if (GameTemp.gameMap.needRefresh) {
             GameTemp.gameMap.refresh();
         }
+        // 检查预约的公共事件
+        if (GameTemp.gameMap.commonEventId != 0) {
+            this.setup(((SceneMap)SceneManager.Scene).getCommonEventCmd(GameTemp.gameMap.commonEventId), 
+                this.eventId,
+                GameTemp.gameMap.commonEventId);
+            GameTemp.gameMap.commonEventId = 0;
+        } else if (!"".Equals(GameTemp.gameMap.commonEventName)) {
+            int cmdId = 0;
+            List<EventCommand> cmds = ((SceneMap)SceneManager.Scene).getCommonEventCmd(GameTemp.gameMap.commonEventName, out cmdId);
+            this.setup(cmds, this.eventId, cmdId);
+            GameTemp.gameMap.commonEventName = "";
+        }
+        // 检查地图事件
         foreach (GameEvent e in GameTemp.gameMap.events) {
             if (e.starting) {
                 this.setup(e.list, e.eventId, e.page);

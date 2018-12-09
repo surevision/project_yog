@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4632887716888466}
   - component: {fileID: 114990602989805640}
   m_Layer: 0
-  m_Name: "\u516C\u5171\u4E8B\u4EF6: \u4E2D\u6587\u6D4B\u8BD5"
+  m_Name: "\u811A\u672C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2166,9 +2166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _code: 117
+  _code: 355
   _args:
-  - "\u4E2D\u6587\u6D4B\u8BD5"
+  - "CS.GameTemp.gameMap.commonEventName = \"\u4E2D\u6587\u6D4B\u8BD5\""
 --- !u!212 &212259739977225594
 SpriteRenderer:
   m_ObjectHideFlags: 1
