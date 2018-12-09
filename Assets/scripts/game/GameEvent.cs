@@ -104,12 +104,13 @@ public class GameEvent : GameCharacterBase {
     }
 
     /// <summary>
-    /// 读档恢复本事件并行处理commands
+    /// 读档恢复本事件调用的公共事件数据
     /// </summary>
-    public void loadInterpreterList() {
-        if (this.interpreter != null) {
-            // 检查并行执行
-            this.interpreter.loadList(this.list);
+    public void loadInterpreterCommonEventList() {
+        if (this.interpreter != null && this.interpreter.childInterpreter != null) {
+            this.interpreter.childInterpreter.loadList(
+                ((SceneMap)SceneManager.Scene).getCommonEventCmd(this.interpreter.childInterpreter.eventPageForList)
+            );
         }
     }
 

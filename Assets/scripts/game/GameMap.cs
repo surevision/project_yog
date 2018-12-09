@@ -165,7 +165,15 @@ public class GameMap {
                 } else {
 					this.events[i].loadCommands(this.events[i].page);
 				}
+                // 重置事件的并行解释器调用公共事件部分的数据
+                this.events[i].loadInterpreterCommonEventList();
                 i += 1;
+            }
+            // 读档后重置公共事件解释器数据
+            if (this.interpreter.childInterpreter != null) {
+                this.interpreter.childInterpreter.loadList(
+                    ((SceneMap)SceneManager.Scene).getCommonEventCmd(this.interpreter.childInterpreter.eventPageForList)
+                );
             }
         }
         
