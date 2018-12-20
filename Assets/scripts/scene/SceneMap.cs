@@ -12,10 +12,15 @@ public class SceneMap : SceneBase {
     // unity对象相关
     private GameObject currMapObj = null;   // 地图
     private GameObject player = null;       // 玩家
+    private GameObject menu = null;         // 菜单
     private GameObject commonEventNode = null;  // 公共事件
     public WindowMessage windowMessage;     // 文字显示窗口
     public Image snap;                      // 截屏
     public Dictionary<int, Image> pictures = null;            // 图片
+
+    // 菜单相关
+    private UISetBase.UISetMessenger uiSetMessenger = null;
+    private UISetBase uiSet = null;
 
     // 渐变相关
     private int _transitionProgress = -1;
@@ -36,6 +41,10 @@ public class SceneMap : SceneBase {
             GameObject.Find("BGS"),
             GameObject.Find("SEs")
         );
+        // 标记菜单节点
+        this.menu = GameObject.Find("Menu");
+        this.uiSetMessenger = new UISetBase.UISetMessenger(this.menu, "");
+        this.uiSetMessenger.setSwitchDelegate(this.switchUIDelegate);
         // 加载公共事件
         this.commonEventNode = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/CommonEventNode")));
         this.commonEventNode.transform.parent = GameObject.Find("CommonEvents").transform;
@@ -123,7 +132,6 @@ public class SceneMap : SceneBase {
             this.snap.sprite = sprite;
             return;
         }
-
         if (this.isInTransition()) {
             // 刷新渐变
             if (this._transitionProgress > 0) {
@@ -228,6 +236,13 @@ public class SceneMap : SceneBase {
         if (this.isInTransition()) {
             return;
         }
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            this.uiSetMessenger.switchToUI("menu");
+        }
+        if (this.isUIRunning()) {
+            this.uiSet.update();
+            return;
+        }
         GameTemp.gamePlayer.update();
         GameTemp.gameMap.update();
         if (Input.GetKeyDown(KeyCode.F5)) {
@@ -309,6 +324,30 @@ public class SceneMap : SceneBase {
 			this.pictures.Remove(num);
 		}
 	}
+
+    /// <summary>
+    /// 切换ui处理
+    /// </summary>
+    /// <param name="uiName">User interface name.</param>
+    public void switchUIDelegate(string uiSetName) {
+        this.uiSetMessenger.uiSetName = uiSetName;
+        if ("menu".Equals(uiSetName)) {
+            // 菜单
+            this.uiSet = new UISetMenu(this.uiSetMessenger);
+            this.uiSet.start();
+        } else {
+            // 关闭ui
+            this.uiSet = null;
+        }
+    }
+
+    /// <summary>
+    /// 是否在处理菜单逻辑
+    /// </summary>
+    /// <returns></returns>
+    public bool isUIRunning() {
+        return this.uiSet != null;
+    }
 
     /// <summary>
     /// 初始化渐变

@@ -6,6 +6,10 @@ using UnityEngine;
 /// UI控制组基类
 /// </summary>
 public class UISetBase {
+    protected static float minDistance = 16.0f / 10000f;    // 移动判定重叠的最小间隔
+    /// <summary>
+    /// 传递ui信息结构
+    /// </summary>
     public class UISetMessenger {
         public GameObject uiNode;
         public string uiSetName;
@@ -29,22 +33,27 @@ public class UISetBase {
         }
     }
     private string uiSetName = "";   // ui名
-    private UISetMessenger messenger = null;
+    protected UISetMessenger messenger = null;
+    public UISetBase() {
+    }
     public UISetBase(UISetMessenger messenger) {
         this.uiSetName = new string(messenger.uiSetName.ToCharArray());
         this.messenger = messenger;
     }
 
     public virtual void start() {
+        Debug.Log(string.Format("start {0}", this.uiSetName));
     }
 
     public virtual void update() {
+        Debug.Log(string.Format("update {0}", this.uiSetName));
         if (!this.uiSetName.Equals(this.messenger.uiSetName)) {
             this.terminate();
             return;
         }
     }
 
-    private virtual void terminate() {
+    protected virtual void terminate() {
+        Debug.Log(string.Format("terminate {0}", this.uiSetName));
     }
 }
