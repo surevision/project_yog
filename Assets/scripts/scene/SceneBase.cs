@@ -13,12 +13,13 @@ public class SceneBase : MonoBehaviour {
 	protected virtual void Start () {
         sceneName = "Base"; // this.GetType().Name;
         SceneManager.Scene = this;
+        InputManager.init();
 	}
 	
 	// Update is called once per frame
     void Update() {
+        InputManager.update();
         updateLogic();
-
         // lua gc
         if (Time.time - SceneBase.lastGCTime > GCInterval) {
             LuaManager.LuaEnv.Tick();
@@ -28,6 +29,7 @@ public class SceneBase : MonoBehaviour {
     }
 
     void LateUpdate() {
+        InputManager.lateUpdate();
         updateAfterFrame();
     }
 

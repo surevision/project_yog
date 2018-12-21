@@ -18,6 +18,7 @@ public class UISetMenu : UISetBase {
 
     public override void start() {
         base.start();
+        InputManager.clear();
         // 加载菜单节点
         this.menuNode = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/ui/menus/MainMenu"));
         this.menuNode.transform.SetParent(this.messenger.uiNode.transform);
@@ -44,15 +45,16 @@ public class UISetMenu : UISetBase {
         if (this.isMoving()) {
             // 光标移动中
             Vector3.MoveTowards(this.cursorNode.transform.position, this.targetPos, 100 * UISetBase.minDistance * 0.016f);
+            this.cursorNode.transform.position = new Vector3(this.targetPos.x, this.targetPos.y, this.targetPos.z);
             return;
         }
 
         // 移动光标
-        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+        if (InputManager.isTrigger(InputManager.GameKey.DOWN)) {
             this.menuIndex += 1;
             this.menuIndex %= this.items.Count;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+        if (InputManager.isTrigger(InputManager.GameKey.UP)) {
             this.menuIndex -= 1;
             this.menuIndex += this.items.Count;
             this.menuIndex %= this.items.Count;
@@ -60,7 +62,7 @@ public class UISetMenu : UISetBase {
         this.targetPos = this.items[this.menuIndex].GetComponent<RectTransform>().position;
 
         // 退出菜单
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (InputManager.isTrigger(InputManager.GameKey.B)) {
             this.messenger.switchToUI("");
         }
         base.update();

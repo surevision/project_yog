@@ -45,7 +45,7 @@ public class WindowMessage : WindowBase {
             return;
         }
         if (this.finished && !this.closing) {
-            if (Input.GetKeyDown(KeyCode.Space)) {	// 按下确认
+            if (InputManager.isTrigger(InputManager.GameKey.C)) {	// 按下确认
                 this.closing = true;	// 开始关闭
                 this.finished = false;
             }
@@ -53,7 +53,7 @@ public class WindowMessage : WindowBase {
         }
         if (!this.openning && !this.closing) {
             // 未显示完
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (InputManager.isTrigger(InputManager.GameKey.C)) {
                 this.showIndex = this.richText.contents.Count;	// 快速显示
                 this.finished = true;
             }

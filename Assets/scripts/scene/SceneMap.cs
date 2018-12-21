@@ -236,16 +236,16 @@ public class SceneMap : SceneBase {
         if (this.isInTransition()) {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            this.uiSetMessenger.switchToUI("menu");
-        }
         if (this.isUIRunning()) {
             this.uiSet.update();
             return;
         }
+        if (InputManager.isTrigger(InputManager.GameKey.B)) {
+            this.uiSetMessenger.switchToUI("menu");
+        }
         GameTemp.gamePlayer.update();
         GameTemp.gameMap.update();
-        if (Input.GetKeyDown(KeyCode.F5)) {
+        if (InputManager.isTrigger(InputManager.GameKey.F5)) {
             GameTemp.gameScreen.toggleView();
         }
     }
