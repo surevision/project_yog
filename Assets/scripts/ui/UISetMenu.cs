@@ -44,8 +44,8 @@ public class UISetMenu : UISetBase {
     public override void update() {
         if (this.isMoving()) {
             // 光标移动中
-            Vector3.MoveTowards(this.cursorNode.transform.position, this.targetPos, 100 * UISetBase.minDistance * 0.016f);
-            this.cursorNode.transform.position = new Vector3(this.targetPos.x, this.targetPos.y, this.targetPos.z);
+            this.cursorNode.transform.position = Vector3.MoveTowards(this.cursorNode.transform.position, this.targetPos, 16);
+            //this.cursorNode.transform.position = new Vector3(this.targetPos.x, this.targetPos.y, this.targetPos.z);
             return;
         }
 

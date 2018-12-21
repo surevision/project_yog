@@ -46,7 +46,7 @@ public class UISetBase {
     }
 
     public virtual void update() {
-        Debug.Log(string.Format("update {0}", this.uiSetName));
+        //Debug.Log(string.Format("update {0}", this.uiSetName));
         if (!this.uiSetName.Equals(this.messenger.uiSetName)) {
             this.terminate();
             return;
