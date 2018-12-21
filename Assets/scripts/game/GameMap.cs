@@ -198,7 +198,7 @@ public class GameMap {
         this.interpreter.update();
         // 确认键事件启动判定
         if (!this.interpreter.isRunning()) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (InputManager.isTrigger(InputManager.GameKey.C)) {
                 foreach (GameCharacterBase character in GameTemp.gamePlayer.lastHit) {
                     GameEvent e = (GameEvent)character;
                     if (e.trigger == GameInterpreter.TriggerTypes.Confirm) {
