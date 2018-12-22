@@ -240,9 +240,6 @@ public class SceneMap : SceneBase {
             this.uiSet.update();
             return;
         }
-        if (InputManager.isTrigger(InputManager.GameKey.B)) {
-            this.uiSetMessenger.switchToUI("menu");
-        }
         GameTemp.gamePlayer.update();
         GameTemp.gameMap.update();
         if (InputManager.isTrigger(InputManager.GameKey.F5)) {
@@ -324,9 +321,19 @@ public class SceneMap : SceneBase {
 			this.pictures.Remove(num);
 		}
 	}
-
     /// <summary>
-    /// 切换ui处理
+    /// 切换UI
+    /// </summary>
+    /// <param name="newUIName">新ui名</param>
+    public void switchToUI(string newUIName) {
+        UISetBase origUI = this.uiSet;
+        this.uiSetMessenger.switchToUI(newUIName);
+        if (origUI != null) {
+            origUI.terminate();
+        }
+    }
+    /// <summary>
+    /// 切换ui委托
     /// </summary>
     /// <param name="uiName">User interface name.</param>
     public void switchUIDelegate(string uiSetName) {

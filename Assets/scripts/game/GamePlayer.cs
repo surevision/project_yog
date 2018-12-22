@@ -59,7 +59,7 @@ public class GamePlayer : GameCharacterBase {
         this.colliderPolygon = new Intersection.Polygon(points);
     }
 
-    protected override float getStep() {
+    public override float getStep() {
         return getBaseStep() / 32;
     }
 

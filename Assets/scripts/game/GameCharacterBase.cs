@@ -249,7 +249,7 @@ public class GameCharacterBase
         return 16f / 100f;
     }
 
-    protected virtual float getStep() {
+    public virtual float getStep() {
         return getBaseStep() / 8;
     }
 

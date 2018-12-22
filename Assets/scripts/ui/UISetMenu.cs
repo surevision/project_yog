@@ -33,7 +33,7 @@ public class UISetMenu : UISetBase {
         Debug.Log(this.cursorNode);
         this.targetPos = this.cursorNode.transform.position;
     }
-    protected override void terminate() {
+    public override void terminate() {
         base.terminate();
         GameObject.Destroy(this.menuNode);
     }

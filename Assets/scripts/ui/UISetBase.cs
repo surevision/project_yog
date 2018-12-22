@@ -53,7 +53,7 @@ public class UISetBase {
         }
     }
 
-    protected virtual void terminate() {
+    public virtual void terminate() {
         Debug.Log(string.Format("terminate {0}", this.uiSetName));
     }
 }

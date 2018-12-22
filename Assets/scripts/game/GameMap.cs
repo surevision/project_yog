@@ -199,11 +199,21 @@ public class GameMap {
         // 确认键事件启动判定
         if (!this.interpreter.isRunning()) {
             if (InputManager.isTrigger(InputManager.GameKey.C)) {
+                bool findFlag = false;
                 foreach (GameCharacterBase character in GameTemp.gamePlayer.lastHit) {
                     GameEvent e = (GameEvent)character;
                     if (e.trigger == GameInterpreter.TriggerTypes.Confirm) {
+                        findFlag = true;
                         e.start();
                         break;
+                    }
+                }
+                if (!findFlag) {
+                    // 检查面向的附近事件
+                    GameEvent e = this.getFaceToConfirmEvent();
+                    if (e != null && e.trigger == GameInterpreter.TriggerTypes.Confirm) {
+                        findFlag = true;
+                        e.start();
                     }
                 }
             }
@@ -221,6 +231,48 @@ public class GameMap {
         foreach (GameEvent e in this.events) {
             e.update();
         }
+        // 菜单处理
+        if (!this.interpreter.isRunning()) {
+            if (InputManager.isTrigger(InputManager.GameKey.B)) {
+                ((SceneMap)SceneManager.Scene).switchToUI("menu");
+            }
+        }
+    }
+
+    /// <summary>
+    /// 返回面向的格子事件
+    /// </summary>
+    /// <returns></returns>
+    public GameEvent getFaceToConfirmEvent() {
+        GameEvent result = null;
+        float step = GameTemp.gamePlayer.getStep();
+        Intersection.Polygon testPolygon = GameTemp.gamePlayer.currCollider();
+        GameCharacterBase.DIRS dir = GameTemp.gamePlayer.direction;
+        if (dir == GameCharacterBase.DIRS.DOWN) {
+            testPolygon = Intersection.polygonMove(testPolygon, 0, -step);
+        }
+        if (dir == GameCharacterBase.DIRS.LEFT) {
+            testPolygon = Intersection.polygonMove(testPolygon, -step, 0);
+        }
+        if (dir == GameCharacterBase.DIRS.RIGHT) {
+            testPolygon = Intersection.polygonMove(testPolygon, step, 0);
+        }
+        if (dir == GameCharacterBase.DIRS.UP) {
+            testPolygon = Intersection.polygonMove(testPolygon, 0, step);
+        }
+        List<GameEvent> events = new List<GameEvent>();
+        foreach (GameEvent e in this.events) {
+            Intersection.Polygon eventCollider = e.currCollider();
+            if (Intersection.polygonPolygon(eventCollider, testPolygon)) {
+                if (!e.erased && e.priorityType == GameCharacterBase.PRIORITIES.SAME) {
+                    events.Add(e);
+                }
+            }
+        }
+        if (events.Count > 0) {
+            result = events[(new System.Random()).Next(events.Count)];
+        }
+        return result;
     }
 
     /// <summary>
