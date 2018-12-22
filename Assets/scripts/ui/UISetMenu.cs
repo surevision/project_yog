@@ -48,23 +48,36 @@ public class UISetMenu : UISetBase {
             //this.cursorNode.transform.position = new Vector3(this.targetPos.x, this.targetPos.y, this.targetPos.z);
             return;
         }
-
-        // 移动光标
-        if (InputManager.isTrigger(InputManager.GameKey.DOWN)) {
-            this.menuIndex += 1;
-            this.menuIndex %= this.items.Count;
-        }
-        if (InputManager.isTrigger(InputManager.GameKey.UP)) {
-            this.menuIndex -= 1;
-            this.menuIndex += this.items.Count;
-            this.menuIndex %= this.items.Count;
-        }
-        this.targetPos = this.items[this.menuIndex].GetComponent<RectTransform>().position;
-
-        // 退出菜单
-        if (InputManager.isTrigger(InputManager.GameKey.B)) {
-            this.messenger.switchToUI("");
-        }
+		// 按键处理
+		while (true) {
+			// 移动光标
+			if (InputManager.isTrigger(InputManager.GameKey.DOWN)) {
+				this.menuIndex += 1;
+				this.menuIndex %= this.items.Count;
+				this.targetPos = this.items[this.menuIndex].GetComponent<RectTransform>().position;
+				break;
+			}
+			if (InputManager.isTrigger(InputManager.GameKey.UP)) {
+				this.menuIndex -= 1;
+				this.menuIndex += this.items.Count;
+				this.menuIndex %= this.items.Count;
+				this.targetPos = this.items[this.menuIndex].GetComponent<RectTransform>().position;
+				break;
+			}
+			// 确定
+			if (InputManager.isTrigger(InputManager.GameKey.C)) {
+				if (this.menuIndex == 0) {
+					this.messenger.switchToUI("item");
+				}
+				break;
+			}
+			// 退出菜单
+			if (InputManager.isTrigger(InputManager.GameKey.B)) {
+				this.messenger.switchToUI("");
+				break;
+			}
+			break;
+		}
         base.update();
     }
 

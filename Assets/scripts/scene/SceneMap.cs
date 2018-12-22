@@ -331,14 +331,18 @@ public class SceneMap : SceneBase {
     /// <param name="uiName">User interface name.</param>
     public void switchUIDelegate(string uiSetName) {
         this.uiSetMessenger.uiSetName = uiSetName;
-        if ("menu".Equals(uiSetName)) {
-            // 菜单
-            this.uiSet = new UISetMenu(this.uiSetMessenger);
-            this.uiSet.start();
-        } else {
-            // 关闭ui
-            this.uiSet = null;
-        }
+		if ("menu".Equals(uiSetName)) {
+			// 菜单
+			this.uiSet = new UISetMenu(this.uiSetMessenger);
+			this.uiSet.start();
+		} else if ("item".Equals(uiSetName)) {
+			// 物品
+			this.uiSet = new UISetItem(this.uiSetMessenger);
+			this.uiSet.start();
+		} else {
+			// 关闭ui
+			this.uiSet = null;
+		}
     }
 
     /// <summary>
