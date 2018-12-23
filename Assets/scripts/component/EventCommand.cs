@@ -32,6 +32,7 @@ public class EventCommand : MonoBehaviour {
             {GameInterpreter.CommandTypes.SetSwitch,"开关操作"},
             {GameInterpreter.CommandTypes.SetVariable,"变量操作"},
             {GameInterpreter.CommandTypes.SetSelfSwitch,"独立开关"},
+            {GameInterpreter.CommandTypes.DealItem,"增减物品"},
 
             // 2
             {GameInterpreter.CommandTypes.Transformation,"场所移动"},

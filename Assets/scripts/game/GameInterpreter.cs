@@ -49,6 +49,7 @@ public class GameInterpreter {
         SetSwitch = 121,                // 开关操作
         SetVariable = 122,              // 变量操作
         SetSelfSwitch = 123,            // 独立开关操作
+        DealItem = 126,                 // 增减物品
         Comment = 140,                  // 注释
 
         // 2
@@ -190,7 +191,7 @@ public class GameInterpreter {
             this.code = code;
             this.args = new List<string>();
             for (int i = 0; i < argsTable.Length; i += 1) {
-                this.args.Add(argsTable.Get<string>(i + 1));
+                this.args.Add(argsTable.Get<int, string>(i + 1));
             }
         }
         public MoveRoute(int code, XLua.LuaTable argsTable):this((Cmd)code, argsTable) {}
@@ -448,6 +449,9 @@ public class GameInterpreter {
                 case CommandTypes.SetSelfSwitch:    // 123 独立开关操作
                     Debug.Log(string.Format("CommandTypes.SetSelfSwitch", this.currentParam));
                     return this.command_setSelfSwitch();
+                case CommandTypes.DealItem:    // 126 增减物品
+                    Debug.Log(string.Format("CommandTypes.DealItem", this.currentParam));
+                    return this.command_dealItem();
                 case CommandTypes.Comment:  // 140 注释 
                     Debug.Log(string.Format("CommandTypes.Comment", this.currentParam));
                     return true;
@@ -666,6 +670,21 @@ public class GameInterpreter {
         string key = GameSelfSwitches.key(this.mapId, this.eventId, GameSelfSwitches.code(code));
         GameTemp.gameSelfSwitches[key] = value;
         GameTemp.gameMap.needRefresh = true;
+        return true;
+    }
+
+    /// <summary>
+    /// 126 增减物品
+    /// id
+    /// num +-
+    /// </summary>
+    /// <returns></returns>
+    public bool command_dealItem() {
+        int id = int.Parse(this.currentParam[0]);
+        int num = int.Parse(this.currentParam[1]);
+        if (num > 0) {
+            GameTemp.gameParty.gainItem(id, num);
+        }
         return true;
     }
 

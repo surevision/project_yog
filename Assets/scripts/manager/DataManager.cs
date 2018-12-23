@@ -117,6 +117,8 @@ public class DataManager {
         offset += flushObjData(GameTemp.gameMap, fs, offset);
         // GamePlayer
         offset += flushObjData(GameTemp.gamePlayer, fs, offset);
+        // GameParty
+        offset += flushObjData(GameTemp.gameParty, fs, offset);
         fs.Close();
     }
 
@@ -179,6 +181,12 @@ public class DataManager {
             len = BitConverter.ToInt32(lenBytes, 0);
             GamePlayer gamePlayer = (GamePlayer)loadObjData(fs, offset, len);
             offset += len;
+            // GameParty
+            fs.Read(lenBytes, 0, 4);
+            offset += 4;
+            len = BitConverter.ToInt32(lenBytes, 0);
+            GameParty gameParty = (GameParty)loadObjData(fs, offset, len);
+            offset += len;
             fs.Close();
 
             // 绑定新数据
@@ -189,6 +197,7 @@ public class DataManager {
             GameTemp.gameMessage = new GameMessage();
             GameTemp.gameMap = gameMap;
             GameTemp.gamePlayer = gamePlayer;
+            GameTemp.gameParty = gameParty;
 
         } catch (Exception e) {
             Debug.Log(string.Format("load data {0} fail", fileName));

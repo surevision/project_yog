@@ -14,6 +14,7 @@ public class GameTemp {
 
     public static GameMap gameMap;
     public static GamePlayer gamePlayer;
+    public static GameParty gameParty;
     public static GameMessage gameMessage;
 
     // 运行时临时数据

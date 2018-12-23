@@ -31,7 +31,7 @@ public class SceneMap : SceneBase {
     public delegate void onTransitionFinish();  // 渐变完成回调
     public onTransitionFinish transitionFinishCallback;
 
-	void Start () {
+	protected override void Start () {
         base.Start();
         sceneName = "Map";
 
@@ -55,6 +55,7 @@ public class SceneMap : SceneBase {
         GameTemp.gameVariables = new GameVariables();
         GameTemp.gameSwitches = new GameSwitches();
         GameTemp.gameSelfSwitches = new GameSelfSwitches();
+        GameTemp.gameParty = new GameParty();
         GameTemp.gameScreen = new GameScreen();
         GameTemp.gameMessage = new GameMessage();
         GameTemp.gameMap = new GameMap();
@@ -149,6 +150,10 @@ public class SceneMap : SceneBase {
             this.snap.color = new Color(1, 1, 1, this.transitionProgress);
         }
 
+        if (this.isUIRunning()) {
+            return;
+        }
+
         // 检测切换地图
         if (!"".Equals(this.mapToLoad)) {
             this.loadMap(this.mapToLoad);
@@ -234,8 +239,6 @@ public class SceneMap : SceneBase {
 
     protected override void updateLogic() {
         base.updateLogic();
-
-        GameTemp.gameScreen.update();
         if (this.isInTransition()) {
             return;
         }
@@ -243,6 +246,8 @@ public class SceneMap : SceneBase {
             this.uiSet.update();
             return;
         }
+
+        GameTemp.gameScreen.update();
         GameTemp.gamePlayer.update();
         GameTemp.gameMap.update();
         if (InputManager.isTrigger(InputManager.GameKey.F5)) {
