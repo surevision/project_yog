@@ -35,6 +35,9 @@ public class SceneMap : SceneBase {
         base.Start();
         sceneName = "Map";
 
+		// 初始化数据库
+		DataManager.loadAllData();
+
         // 初始化音频
         AudioManager.setup(
             GameObject.Find("BGM"),

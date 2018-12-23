@@ -32,7 +32,7 @@ public class InputManager {
         keyStatus = new Dictionary<GameKey, int>();
         keyMap = new Dictionary<KeyCode,GameKey>();
         keyMap.Add(KeyCode.DownArrow, GameKey.DOWN);
-        keyMap.Add(KeyCode.LeftArrow, GameKey.UP);
+        keyMap.Add(KeyCode.LeftArrow, GameKey.LEFT);
         keyMap.Add(KeyCode.RightArrow, GameKey.RIGHT);
         keyMap.Add(KeyCode.UpArrow, GameKey.UP);
         

@@ -12,8 +12,29 @@ using UnityEngine;
 /// 存读档管理类
 /// </summary>
 public class DataManager {
-    // 写入一个对象
-    private static int flushObjData(object obj, FileStream fs, int offset) {
+	// 游戏数据库相关
+	public static List<Item> dataItems;	// 物品
+	public static void loadAllData() {
+		XLua.LuaTable env = LuaManager.getSimpleEnvTable();
+
+		// 物品数据
+		dataItems = new List<Item>();
+		object[] results = LuaManager.LuaEnv.DoString("return require \"data/items\"", string.Format("load_data_{0}", "item"), env);
+		if (results != null && results.Length > 0) {
+			XLua.LuaTable resultTable = ((XLua.LuaTable)results[0]);
+			for (int i = 0; i < resultTable.Length; i += 1) {
+				dataItems.Add(resultTable.Get<int, Item>(i + 1));	// 从1开始
+			}
+		}
+		// TODO 测试
+		Debug.Log(string.Format("load item finish, len {0}", dataItems.Count));
+		foreach (Item item in dataItems) {
+			Debug.Log(string.Format("load item {0}", item.name));
+		}
+
+	}
+	// 写入一个对象
+	private static int flushObjData(object obj, FileStream fs, int offset) {
         MemoryStream ms = new MemoryStream();
         int len = 0;
         // flush data

@@ -8,7 +8,19 @@ public class LuaManager {
         LuaEnv.Dispose();
     }
 
-    public static XLua.LuaTable getInterpreterEnvTable(GameInterpreter interpreter) {
+	public static XLua.LuaTable getSimpleEnvTable() {
+
+		XLua.LuaTable scriptEnv = LuaManager.LuaEnv.NewTable();
+		// 为每个脚本设置一个独立的环境，可一定程度上防止脚本间全局变量、函数冲突
+		XLua.LuaTable meta = LuaManager.LuaEnv.NewTable();
+		meta.Set("__index", LuaManager.LuaEnv.Global);
+		scriptEnv.SetMetaTable(meta);
+		meta.Dispose();
+
+		return scriptEnv;
+	}
+
+	public static XLua.LuaTable getInterpreterEnvTable(GameInterpreter interpreter) {
 
         XLua.LuaTable scriptEnv = LuaManager.LuaEnv.NewTable();
         // 为每个脚本设置一个独立的环境，可一定程度上防止脚本间全局变量、函数冲突

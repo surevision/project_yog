@@ -5,6 +5,13 @@ using UnityEngine;
 
 [Serializable]
 public class BaseItem {
+	public BaseItem() { }
+	public BaseItem(int id, string name, string desc, string note) {
+		this.id = id;
+		this.name = name;
+		this.description = desc;
+		this.note = note;
+	}
 	/// <summary>
 	/// ID
 	/// </summary>

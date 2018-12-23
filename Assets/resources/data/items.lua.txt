@@ -1,0 +1,4 @@
+local items = {}
+items[#items + 1] = CS.Item(#items, "test1", "测试物品描述", 1, "")
+items[#items + 1] = CS.Item(#items, "test2", "测试物品描述2", 0, "")
+return items
