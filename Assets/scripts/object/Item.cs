@@ -8,7 +8,7 @@ public class Item : BaseItem {
 	public Item() {
 
 	}
-	public Item(int id, string name, string desc, int commonEventId, bool consumable, string note) : base(id, name, desc, note) {
+    public Item(int id, string name, string pic, string desc, int commonEventId, bool consumable, string note) : base(id, name, pic, desc, note) {
         this.consumable = consumable;
 		this.commonEventId = commonEventId;
 	}

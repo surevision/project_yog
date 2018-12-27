@@ -1,10 +1,10 @@
 local items = {
 }
-items[#items + 1] = CS.Item(#items + 1, "test1", "测试物品描述", 1, false, "")
-items[#items + 1] = CS.Item(#items + 1, "test2", "测试物品描述2，消耗品", 2, true, "")
-items[#items + 1] = CS.Item(#items + 1, "test3", "测试物品描述3", 0, false, "")
-items[#items + 1] = CS.Item(#items + 1, "test4", "测试物品描述4", 0, false, "")
-items[#items + 1] = CS.Item(#items + 1, "test5", "测试物品描述5", 0, false, "")
-items[#items + 1] = CS.Item(#items + 1, "test6", "测试物品描述6", 0, false, "")
-items[#items + 1] = CS.Item(#items + 1, "test7", "测试物品描述7", 0, false, "")
+items[#items + 1] = CS.Item(#items + 1, "test1", "", "测试物品描述", 1, false, "")
+items[#items + 1] = CS.Item(#items + 1, "test2", "", "测试物品描述2，消耗品", 2, true, "")
+items[#items + 1] = CS.Item(#items + 1, "test3", "", "测试物品描述3", 0, false, "")
+items[#items + 1] = CS.Item(#items + 1, "test4", "", "测试物品描述4", 0, false, "")
+items[#items + 1] = CS.Item(#items + 1, "test5", "", "测试物品描述5", 0, false, "")
+items[#items + 1] = CS.Item(#items + 1, "test6", "", "测试物品描述6", 0, false, "")
+items[#items + 1] = CS.Item(#items + 1, "test7", "", "测试物品描述7", 0, false, "")
 return items

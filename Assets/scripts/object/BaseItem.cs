@@ -6,9 +6,10 @@ using UnityEngine;
 [Serializable]
 public class BaseItem {
 	public BaseItem() { }
-	public BaseItem(int id, string name, string desc, string note) {
+    public BaseItem(int id, string name, string pic, string desc, string note) {
 		this.id = id;
 		this.name = name;
+        this.pic = pic;
 		this.description = desc;
 		this.note = note;
 	}
@@ -21,6 +22,11 @@ public class BaseItem {
 	/// 物品名
 	/// </summary>
 	public string name = "";
+
+    /// <summary>
+    /// 图片
+    /// </summary>
+    public string pic = "";
 
 	/// <summary>
 	/// 物品描述
