@@ -6,7 +6,7 @@ using UnityEngine;
 /// UI控制组基类
 /// </summary>
 public class UISetBase {
-    protected static float minDistance = 16.0f / 10000f;    // 移动判定重叠的最小间隔
+    protected static float minDistance = Util.GRID_WIDTH / Util.PPU / 10000f;    // 移动判定重叠的最小间隔
     /// <summary>
     /// 传递ui信息结构
     /// </summary>

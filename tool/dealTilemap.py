@@ -1,9 +1,16 @@
 from PIL import Image as PIL_Image
+import sys
 
-split = 16 # tile format
+if len(sys.argv) < 2:
+	print("no file input.")
+	sys.exit(0)
+
+filename = sys.argv[1]
+
+split = input('size:') # tile format
 
 # open origin image
-image = PIL_Image.open('indoor1.png')
+image = PIL_Image.open(filename)
 w = image.size[0]
 h = image.size[1]
 
@@ -43,4 +50,4 @@ for i in range(0, (w / split) * (h / split)):
 	newimage.paste(center, (targetX, targetY))
 
 # save new image
-newimage.save('newimage.png')
+newimage.save("output_" + filename)

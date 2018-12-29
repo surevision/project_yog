@@ -64,10 +64,10 @@ public class GamePlayer : GameCharacterBase {
     }
 
     public float offsetScreenX() {
-        return 0.5f * 0.16f;
+        return 0.5f * (Util.GRID_WIDTH / Util.PPU);
     }
     public float offsetScreenY() {
-        return 0.16f / 16;
+        return Util.GRID_WIDTH / Util.PPU / 16;
     }
 
     public override float screenX() {

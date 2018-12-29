@@ -292,7 +292,7 @@ public class GameEvent : GameCharacterBase {
     }
 
     public float offsetScreenX() {
-        return 0.5f * 0.16f;
+        return 0.5f * (Util.GRID_WIDTH / Util.PPU);
     }
     public float offsetScreenY() {
         return 0;

@@ -88,9 +88,9 @@ public class GameCharacterBase
 
         List<Vector2> points = new List<Vector2>();
         points.Add(new Vector2(0, 0));
-        points.Add(new Vector2(0, 0.16f));
-        points.Add(new Vector2(0.16f, 0.16f));
-        points.Add(new Vector2(0.16f, 0));
+        points.Add(new Vector2(0, Util.GRID_WIDTH / Util.PPU));
+        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU, Util.GRID_WIDTH / Util.PPU));
+        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU, 0));
         this.colliderPolygon = new Intersection.Polygon(points);
     }
 
@@ -110,7 +110,7 @@ public class GameCharacterBase
     /// </summary>
     /// <returns></returns>
     protected float distancePerFrame() {
-        return Mathf.Pow(2, this.moveSpeed) / 256 * 0.16f;
+        return Mathf.Pow(2, this.moveSpeed) / 256 * Util.GRID_WIDTH / Util.PPU;
     }
 
     /// <summary>
@@ -246,7 +246,7 @@ public class GameCharacterBase
     }
 
     protected virtual float getBaseStep() {
-        return 16f / 100f;
+        return Util.GRID_WIDTH / Util.PPU;
     }
 
     public virtual float getStep() {

@@ -90,10 +90,10 @@ public class GameScreen {
 
         // 刷新视野
         if (currView < targetView) {
-            currView = Mathf.Min(currView + 0.16f / 8, targetView);
+            currView = Mathf.Min(currView + (Util.GRID_WIDTH / Util.PPU) / 8, targetView);
         }
         if (currView > targetView) {
-            currView = Mathf.Max(currView - 0.16f / 8, targetView);
+            currView = Mathf.Max(currView - (Util.GRID_WIDTH / Util.PPU) / 8, targetView);
         }
     }
 }
