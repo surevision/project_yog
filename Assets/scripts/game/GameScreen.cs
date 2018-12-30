@@ -10,7 +10,7 @@ public class GameScreen {
 	public Dictionary<int, GamePicture> pictures;
 
 	// 缩放相关
-	private const float NormalView = 0.8f;
+	private const float NormalView = 1.6f;
 	private const float HalfView = NormalView / 2;
 
 	private float targetView = NormalView;

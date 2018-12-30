@@ -52,10 +52,15 @@ public class GamePlayer : GameCharacterBase {
         List<Vector2> points = new List<Vector2>();
         Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
         float resize = 0.02f;
-        points.Add(new Vector2(resize, resize));
-        points.Add(new Vector2(resize, size.y / 4 * 3 - resize));
-        points.Add(new Vector2(size.x - resize, size.y / 4 * 3 - resize));
-        points.Add(new Vector2(size.x - resize, resize));
+        points.Add(new Vector2(resize, resize + 8 / Util.PPU));
+        points.Add(new Vector2(resize, Util.GRID_WIDTH / Util.PPU - resize));
+        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, Util.GRID_WIDTH / Util.PPU - resize));
+        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, resize));
+
+//        points.Add(new Vector2(0, 8 / Util.PPU));
+//        points.Add(new Vector2(0, Util.GRID_WIDTH / Util.PPU));
+//        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU, Util.GRID_WIDTH / Util.PPU));
+//        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU, 8 / Util.PPU));
         this.colliderPolygon = new Intersection.Polygon(points);
     }
 

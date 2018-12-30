@@ -226,6 +226,7 @@ public class GameCharacterBase
         this.y = pos.y;
         this.realX = pos.x;
         this.realY = pos.y;
+        Debug.Log(pos);
     }
 
     protected virtual void updateRouteMove() {
