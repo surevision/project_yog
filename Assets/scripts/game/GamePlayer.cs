@@ -55,11 +55,17 @@ public class GamePlayer : GameCharacterBase {
     public override void setupCollider(SpriteCharacter sprite) {
         List<Vector2> points = new List<Vector2>();
         Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
-        float resize = 0.02f;
-        points.Add(new Vector2(resize, resize + 8 / Util.PPU));
-        points.Add(new Vector2(resize, Util.GRID_WIDTH / Util.PPU - resize * 2));
-        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, Util.GRID_WIDTH / Util.PPU - resize * 2));
-        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, resize));
+        float resize = 0.036f;
+
+        points.Add(new Vector2((Util.GRID_WIDTH / Util.PPU - resize) / 2, resize));
+        points.Add(new Vector2(resize, (Util.GRID_WIDTH / Util.PPU - resize) / 2));
+        points.Add(new Vector2((Util.GRID_WIDTH / Util.PPU - resize) / 2, Util.GRID_WIDTH / Util.PPU - resize));
+        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, (Util.GRID_WIDTH / Util.PPU - resize) / 2));
+
+//        points.Add(new Vector2(resize, resize + 8 / Util.PPU));
+//        points.Add(new Vector2(resize, Util.GRID_WIDTH / Util.PPU - resize * 2));
+//        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, Util.GRID_WIDTH / Util.PPU - resize * 2));
+//        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, resize));
 
 //        points.Add(new Vector2(0, 8 / Util.PPU));
 //        points.Add(new Vector2(0, Util.GRID_WIDTH / Util.PPU));
