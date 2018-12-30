@@ -316,9 +316,9 @@ public class GameCharacterBase
     /// <param name="dir"></param>
     /// <returns></returns>
     public bool moveStraight(DIRS dir) {
-        if (dir == DIRS.LEFT || dir == DIRS.RIGHT) {
+//        if (dir == DIRS.LEFT || dir == DIRS.RIGHT) {
             this.direction = dir;
-        }
+//        }
         this.isDirty = true;
         if (this.isPassable(this.x, this.y, dir)) {
             float step = this.getStep();

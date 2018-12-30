@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputManager {
     public enum GameKey {
+        NONE = -1,
 
         DOWN = 2,
         LEFT = 4,
@@ -118,4 +119,27 @@ public class InputManager {
     public static bool isRepeat(GameKey code) {
 		return keyStatus.ContainsKey(code) && keyStatus[code] > 1;
 	}
+
+    /// <summary>
+    /// 取最后按下的方向键
+    /// </summary>
+    public static GameKey DIR4() {
+        List<GameKey> keys = new List<GameKey>(new GameKey[]{ GameKey.DOWN, GameKey.LEFT, GameKey.RIGHT, GameKey.UP });
+        bool keyDownFlag = false;
+        foreach (GameKey code in keys) {
+            if (isPress(code)) {
+                keyDownFlag = true;
+                break;
+            }
+        }
+        if (!keyDownFlag) {
+            return GameKey.NONE;
+        }
+        keys.Sort((code1, code2) => {
+            int frames1 = keyStatus.ContainsKey(code1) ? keyStatus[code1] : int.MaxValue;
+            int frames2 = keyStatus.ContainsKey(code2) ? keyStatus[code2] : int.MaxValue;
+            return frames1.CompareTo(frames2);
+        });
+        return keys[0];
+    }
 }

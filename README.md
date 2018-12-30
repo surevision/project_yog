@@ -5,3 +5,9 @@
 # 环境
 
 - Unity2017 4.8f1
+
+# 素材来源
+
+- [kauzz](https://kauzzresources.wordpress.com/)
+
+- [Sithjester](http://untamed.wild-refuge.net/rmxpresources.php)

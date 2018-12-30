@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930ac97f006b76a4eae65bcf08636904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseFrame: {fileID: 21300002, guid: e8e16db837c090e4f90f7df584790ad1, type: 3}
+  baseFrame: {fileID: 21300002, guid: 348e62f3fbb1c4315b3d7f4e752a0479, type: 3}
   _player:
     id: 0
     x: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
     realX: 0
     realY: 0
     moveSpeed: 4
-    characterName: $chara_mov
+    characterName: tremel
     moveFrequency: 0
     walkAnime: 1
     stepAnime: 0
@@ -109,7 +109,7 @@ SpriteRenderer:
   m_SortingLayerID: 1650251055
   m_SortingLayer: 1
   m_SortingOrder: 200
-  m_Sprite: {fileID: 21300002, guid: e8e16db837c090e4f90f7df584790ad1, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 348e62f3fbb1c4315b3d7f4e752a0479, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

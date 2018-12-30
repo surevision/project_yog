@@ -13,17 +13,21 @@ public class GamePlayer : GameCharacterBase {
             return;
         }
         if (!this.isMoving()) {
-            if (Input.GetKey(KeyCode.DownArrow)) {
-                this.moveStraight(DIRS.DOWN);
-            }
-            if (Input.GetKey(KeyCode.LeftArrow)) {
-                this.moveStraight(DIRS.LEFT);
-            }
-            if (Input.GetKey(KeyCode.RightArrow)) {
-                this.moveStraight(DIRS.RIGHT);
-            }
-            if (Input.GetKey(KeyCode.UpArrow)) {
-                this.moveStraight(DIRS.UP);
+            switch (InputManager.DIR4()) {
+                case InputManager.GameKey.DOWN :
+                    this.moveStraight(DIRS.DOWN);
+                    break;
+                case InputManager.GameKey.LEFT :
+                    this.moveStraight(DIRS.LEFT);
+                    break;
+                case InputManager.GameKey.RIGHT :
+                    this.moveStraight(DIRS.RIGHT);
+                    break;
+                case InputManager.GameKey.UP :
+                    this.moveStraight(DIRS.UP);
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -53,8 +57,8 @@ public class GamePlayer : GameCharacterBase {
         Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
         float resize = 0.02f;
         points.Add(new Vector2(resize, resize + 8 / Util.PPU));
-        points.Add(new Vector2(resize, Util.GRID_WIDTH / Util.PPU - resize));
-        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, Util.GRID_WIDTH / Util.PPU - resize));
+        points.Add(new Vector2(resize, Util.GRID_WIDTH / Util.PPU - resize * 2));
+        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, Util.GRID_WIDTH / Util.PPU - resize * 2));
         points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, resize));
 
 //        points.Add(new Vector2(0, 8 / Util.PPU));
