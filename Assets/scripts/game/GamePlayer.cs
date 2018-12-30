@@ -57,10 +57,10 @@ public class GamePlayer : GameCharacterBase {
         Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
         float resize = 0.036f;
 
-        points.Add(new Vector2((Util.GRID_WIDTH / Util.PPU - resize) / 2, resize));
-        points.Add(new Vector2(resize, (Util.GRID_WIDTH / Util.PPU - resize) / 2));
-        points.Add(new Vector2((Util.GRID_WIDTH / Util.PPU - resize) / 2, Util.GRID_WIDTH / Util.PPU - resize));
-        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, (Util.GRID_WIDTH / Util.PPU - resize) / 2));
+        points.Add(new Vector2((resize + Util.GRID_WIDTH / Util.PPU - resize) / 2, resize));
+        points.Add(new Vector2(resize, resize + (Util.GRID_WIDTH / Util.PPU - resize) / 2));
+        points.Add(new Vector2((resize + Util.GRID_WIDTH / Util.PPU - resize) / 2, Util.GRID_WIDTH / Util.PPU - resize));
+        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU - resize, resize + (Util.GRID_WIDTH / Util.PPU - resize) / 2));
 
 //        points.Add(new Vector2(resize, resize + 8 / Util.PPU));
 //        points.Add(new Vector2(resize, Util.GRID_WIDTH / Util.PPU - resize * 2));

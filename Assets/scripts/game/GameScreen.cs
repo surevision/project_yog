@@ -10,8 +10,8 @@ public class GameScreen {
 	public Dictionary<int, GamePicture> pictures;
 
 	// 缩放相关
-	private const float NormalView = 1.6f;
-	private const float HalfView = NormalView / 2;
+	private const float NormalView = 2.4f;
+	private const float HalfView = 3.2f;
 
 	private float targetView = NormalView;
 	private bool isMiniView = false;

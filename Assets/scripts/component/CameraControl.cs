@@ -5,9 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class CameraControl : MonoBehaviour {
 
-    public GameObject playerLightMask;
+	public GameObject _playerLightMask;
+	private Material _playerLightMaskMaterial;
 
-    private GameObject _target;
+	private Camera camera;
+	private GameObject _target;
     private GameObject _player;
     private Vector3 _targetPos;
 
@@ -27,9 +29,18 @@ public class CameraControl : MonoBehaviour {
     public Vector3 targetPos {
         get { return _targetPos; }
         set { _targetPos = value; }
-    }
+	}
+	public GameObject playerLightMask {
+		get {
+			return _playerLightMask;
+		}
+		set {
+			_playerLightMask = value;
+			_playerLightMaskMaterial = _playerLightMask.GetComponent<MeshRenderer>().material;
+		}
+	}
 
-    public Vector3 minTile {
+	public Vector3 minTile {
         get {
             return _minTile;
         }
@@ -50,8 +61,11 @@ public class CameraControl : MonoBehaviour {
     }
 
     private float maxX, minX, maxY, minY;
-
-    public void setupPos(Vector3 minTile, Vector3 maxTile) {
+	void Start() {
+		camera = this.gameObject.GetComponent<Camera>();
+		_playerLightMaskMaterial = this.playerLightMask.GetComponent<SpriteRenderer>().material;
+	}
+	public void setupPos(Vector3 minTile, Vector3 maxTile) {
         float width, height;
         height = GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize * 2f;
         width = height * GameObject.Find("Main Camera").GetComponent<Camera>().aspect;
@@ -84,12 +98,17 @@ public class CameraControl : MonoBehaviour {
                     );
                 if (this.target == this.player && this.playerLightMask != null) {
                     Vector3 size = this.player.GetComponent<SpriteRenderer>().bounds.size;
-                    this.playerLightMask.transform.position = new Vector3(
-                        this.player.transform.position.x,
-                        this.player.transform.position.y + size.y * 0.5f,
-                        this.player.transform.position.z
-                        );
-                }
+					this.playerLightMask.transform.position = new Vector3(
+						x,
+						y,
+						this.player.transform.position.z
+						);
+					Vector3 pos = camera.WorldToViewportPoint(this.player.transform.position);
+					float _x = -pos.x + 0.5f;
+					float _y = -pos.y + 0.5f;
+					Vector2 offset = new Vector2(_x, _y);
+					this._playerLightMaskMaterial.SetTextureOffset("_Mask", offset);
+				}
             }
         }
     }
