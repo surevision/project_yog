@@ -8,6 +8,8 @@
 
 # 素材来源
 
+- [ドット絵世界](http://yms.main.jp/dotartworld/index.html)
+
 - [kauzz](https://kauzzresources.wordpress.com/)
 
 - [Sithjester](http://untamed.wild-refuge.net/rmxpresources.php)
