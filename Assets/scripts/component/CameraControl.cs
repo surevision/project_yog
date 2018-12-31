@@ -104,8 +104,8 @@ public class CameraControl : MonoBehaviour {
 						this.player.transform.position.z
 						);
 					Vector3 pos = camera.WorldToViewportPoint(this.player.transform.position);
-					float _x = -pos.x + 0.5f;
-					float _y = -pos.y + 0.5f;
+					float _x = (x - this.target.transform.position.x) / (Util.WIDTH / Util.PPU);
+					float _y = (y - this.target.transform.position.y) / (Util.HEIGHT / Util.PPU);
 					Vector2 offset = new Vector2(_x, _y);
 					this._playerLightMaskMaterial.SetTextureOffset("_Mask", offset);
 				}
