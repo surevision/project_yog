@@ -1,10 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class SceneMap : SceneBase {
+
+	[Serializable]
+	public enum TransitionType {
+		NONE = -1,
+		SNAP = 0,
+		BLACK = 1,
+		WHITE = 2
+	}
 
     public bool prepareFreeze = false;  // 标记截屏准备
     public string mapToLoad = "";  // 标记要加载地图
@@ -16,6 +25,8 @@ public class SceneMap : SceneBase {
     private GameObject commonEventNode = null;  // 公共事件
     public WindowMessage windowMessage;     // 文字显示窗口
     public Image snap;                      // 截屏
+	public Image transBlack;				// 黑屏渐变
+	public Image transWhite;				// 白屏渐变
     public Dictionary<int, Image> pictures = null;            // 图片
 
     // 菜单相关
@@ -23,6 +34,7 @@ public class SceneMap : SceneBase {
     private UISetBase uiSet = null;
 
     // 渐变相关
+	private TransitionType _transitionType = TransitionType.SNAP;
     private int _transitionProgress = -1;
     private int _transitionDuration = -1;
     public float transitionProgress {
@@ -148,7 +160,17 @@ public class SceneMap : SceneBase {
                     }
                 }
             }
-            this.snap.color = new Color(1, 1, 1, this.transitionProgress);
+			switch (this._transitionType) {
+			case TransitionType.SNAP:
+				this.snap.color = new Color(1, 1, 1, this.transitionProgress);
+				break;
+			case TransitionType.BLACK:
+				this.transBlack.color = new Color (0, 0, 0, this.transitionProgress);
+				break;
+			case TransitionType.WHITE:
+				this.transWhite.color = new Color (1, 1, 1, this.transitionProgress);
+				break;
+			}
         }
 
         if (this.isUIRunning()) {
@@ -374,10 +396,15 @@ public class SceneMap : SceneBase {
     /// </summary>
     /// <param name="duration"></param>
     /// <param name="callback"></param>
-    public void setupTransition(int duration, onTransitionFinish callback) {
+	public void setupTransition(TransitionType transType, int duration, onTransitionFinish callback) {
+		this._transitionType = transType;
         this._transitionDuration = duration;
         this._transitionProgress = this._transitionDuration;
-        this.transitionFinishCallback = callback;
+		this.transitionFinishCallback = callback;
+		// 初始化渐变节点显隐状态
+		this.snap.color = new Color(1, 1, 1, 0);
+		this.transBlack.color = new Color(0, 0, 0, 0);
+		this.transWhite.color = new Color(1, 1, 1, 0);
     }
 
     /// <summary>

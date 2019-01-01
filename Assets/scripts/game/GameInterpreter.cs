@@ -694,7 +694,8 @@ public class GameInterpreter {
     /// x
     /// y
     /// dir 不填不改变朝向
-    /// 渐变过渡帧数，可不填
+    /// 渐变过渡帧数，可不填，不填无渐变立即跳转
+	/// 渐变类型 0 截图渐变 1 变黑 2 变白，不填为0
     /// </summary>
     /// <returns></returns>
     public bool command_transformation() {
@@ -705,8 +706,13 @@ public class GameInterpreter {
             GameTemp.gamePlayer.direction = (GameCharacterBase.DIRS)int.Parse(this.currentParam[3]);
         }
         if (this.currentParam.Length >= 5 && (!"".Equals(this.currentParam[4]))) {
-            ((SceneMap)SceneManager.Scene).setupFreeze();
-            ((SceneMap)SceneManager.Scene).setupTransition(int.Parse(this.currentParam[4]), onTransformFinish);
+			int duration = int.Parse(this.currentParam[4]);
+			SceneMap.TransitionType transType = SceneMap.TransitionType.SNAP;
+			if (this.currentParam.Length >= 6 && (!"".Equals(this.currentParam[5]))) {
+				transType = (SceneMap.TransitionType)(int.Parse(this.currentParam[5]));
+			}
+			((SceneMap)SceneManager.Scene).setupFreeze();
+            ((SceneMap)SceneManager.Scene).setupTransition(transType, duration, onTransformFinish);
         } else {
             GameTemp.transforming = false;  // 立即判定结束移动
         }
