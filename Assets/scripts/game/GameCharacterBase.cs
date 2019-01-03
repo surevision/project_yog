@@ -231,7 +231,7 @@ public class GameCharacterBase
 
     protected virtual void updateRouteMove() {
         if (this.moveWaitCount > 0) {
-            this.moveWaitCount += 1;
+            this.moveWaitCount -= 1;
             return;
         }
         this.moveByRoute();
@@ -470,15 +470,19 @@ public class GameCharacterBase
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TURN_DOWN:
                     this.direction = DIRS.DOWN;
+                    this.isDirty = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TURN_LEFT:
                     this.direction = DIRS.LEFT;
+                    this.isDirty = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TURN_RIGHT:
                     this.direction = DIRS.RIGHT;
+                    this.isDirty = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TURN_UP:
                     this.direction = DIRS.UP;
+                    this.isDirty = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TURN_90D_R:
                     //turn_right_90

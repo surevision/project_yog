@@ -245,7 +245,7 @@ public class GameMap {
     /// <returns></returns>
     public GameEvent getFaceToConfirmEvent() {
         GameEvent result = null;
-        float step = GameTemp.gamePlayer.getStep();
+        float step = GameTemp.gamePlayer.getStep() * 2;
         Intersection.Polygon testPolygon = GameTemp.gamePlayer.currCollider();
         GameCharacterBase.DIRS dir = GameTemp.gamePlayer.direction;
         if (dir == GameCharacterBase.DIRS.DOWN) {
@@ -319,6 +319,9 @@ public class GameMap {
     /// <param name="character"></param>
     /// <returns></returns>
     public bool isPassable(Intersection.Polygon polygon, GameCharacterBase character) {
+        if (character.through) {
+            return true;
+        }
         // 检测图块通行
         foreach (Intersection.Polygon mapCollider in this.mapInfo.passageColliders) {
             if (Intersection.polygonPolygon(mapCollider, polygon)) {
@@ -329,7 +332,7 @@ public class GameMap {
         character.lastHit.Clear();
         foreach (GameEvent e in this.events) {
             Intersection.Polygon eventCollider = e.currCollider();
-            if (Intersection.polygonPolygon(eventCollider, polygon)) {
+            if (e.through == false && Intersection.polygonPolygon(eventCollider, polygon)) {
                 if (character != null && character != e) {
                     character.lastHit.Add(e);
                 }
