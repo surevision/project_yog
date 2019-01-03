@@ -21,9 +21,10 @@ public class WindowMessage : WindowBase {
     private bool openning = true;
 	private bool closing = false;
 	private bool finished = false;
+    private bool needClose = true;
     private int showIndex = 0;
     
-	public void startMessage() {
+    public void startMessage(bool needOpen, bool needClose) {
 		this.text = GameTemp.gameMessage.text;
 		this.showFast = false;	// 快速显示所有
 		this.waitCount = 0;	// 等待帧数
@@ -31,6 +32,11 @@ public class WindowMessage : WindowBase {
 		this.openning = true;
 		this.closing = false;
 		this.finished = false;
+        if (!needOpen) {
+            this.openness = 255;
+            this.openning = false;
+        }
+        this.needClose = needClose;
 		// 初始化显示控件
 		if (this.richText) {
             this.richText.text = this.text;		// 初始化文字
@@ -85,14 +91,21 @@ public class WindowMessage : WindowBase {
                 this.openness += 16;
                 this.gameObject.transform.localScale = new Vector3(1, Mathf.Min(this.openness, 255) / 255.0f, this.gameObject.transform.localScale.z);
                 if (this.openness >= 255) {
+                    this.gameObject.transform.localScale = new Vector3(1, 1, this.gameObject.transform.localScale.z);
                     this.openning = false;
                 }
             } else if (this.closing) {	// 刷新关闭
-                this.openness -= 16;
-                this.gameObject.transform.localScale = new Vector3(1, Mathf.Min(this.openness, 255) / 255.0f, this.gameObject.transform.localScale.z);
-                if (this.openness <= 0) {
+                if (!this.needClose) {
                     this.closing = false;
-                    GameTemp.gameMessage.onFinish();	// 显示完毕回调
+                    GameTemp.gameMessage.onFinish();    // 显示完毕回调
+                } else {
+                    this.openness -= 16;
+                    this.gameObject.transform.localScale = new Vector3(1, Mathf.Min(this.openness, 255) / 255.0f, this.gameObject.transform.localScale.z);
+                    if (this.openness <= 0) {
+                        this.gameObject.transform.localScale = new Vector3(1, 0, this.gameObject.transform.localScale.z);
+                        this.closing = false;
+                        GameTemp.gameMessage.onFinish();    // 显示完毕回调
+                    }
                 }
             }
         }

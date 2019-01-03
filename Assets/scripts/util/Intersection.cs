@@ -11,9 +11,12 @@ public class Intersection {
 
     [Serializable]
     public class Polygon {
-        public List<Vector2> points = new List<Vector2>();
-        public Polygon() { }
+        public List<Vector2> points = null;
+        public Polygon() {
+            this.points = new List<Vector2>();
+        }
         public Polygon(List<Vector2> points) {
+            this.points = new List<Vector2>();
             this.points.Clear();
             foreach (Vector2 point in points) {
                 this.points.Add(point);

@@ -302,7 +302,7 @@ public class GameInterpreter {
         this.list = null;
         if (this.isMain && this.eventId > 0) {
             Debug.Log(string.Format("end command unlock event {0}", this.eventId));
-            GameTemp.gameMap.events[this.eventId].unlock();
+            GameTemp.gameMap.events[this.eventId - 1].unlock();
         }
     }
 
@@ -508,7 +508,35 @@ public class GameInterpreter {
             GameTemp.gameMessage.text = text;
             this.messageWaiting = true;
             GameTemp.gameMessage.setFinishCallback(this.onMessageFinish);
-            ((SceneMap)SceneManager.Scene).windowMessage.startMessage();
+            bool needOpen = false;
+            bool needClose = false;
+            // 判定是否有展开动画
+            while (true) {
+                if (this.index == 0) {
+                    needOpen = true;
+                    break;
+                }
+                EventCommand preCmd = this.list[this.index - 1];
+                if (preCmd.code != CommandTypes.ShowArticle) {
+                    needOpen = true;
+                    break;
+                }
+                break;
+            }
+            // 判定是否有收起动画
+            while (true) {
+                if (this.list.Count <= this.index + 1) {
+                    needClose = true;
+                    break;
+                }
+                EventCommand nextCmd = this.list[this.index + 1];
+                if (nextCmd.code != CommandTypes.ShowArticle) {
+                    needClose = true;
+                    break;
+                }
+                break;
+            }
+            ((SceneMap)SceneManager.Scene).windowMessage.startMessage(needOpen, needClose);
             return true;
         }
         return false;
