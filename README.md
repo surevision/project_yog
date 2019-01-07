@@ -13,3 +13,7 @@
 - [kauzz](https://kauzzresources.wordpress.com/)
 
 - [Sithjester](http://untamed.wild-refuge.net/rmxpresources.php)
+
+- [IceDragon/Enterbrain](http://forums.rpgmakerweb.com/index.php?/user/36-icedragon/)
+
+- [Caitlin Nicnubill](http://nicnubill.deviantart.com/)

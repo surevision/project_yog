@@ -50,4 +50,4 @@ for i in range(0, (w / split) * (h / split)):
 	newimage.paste(center, (targetX, targetY))
 
 # save new image
-newimage.save("output_" + filename)
+newimage.save("Pad/" + filename)
