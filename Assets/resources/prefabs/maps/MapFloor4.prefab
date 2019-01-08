@@ -88,6 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4738655247320734}
   - component: {fileID: 2569400265949310946}
+  - component: {fileID: 114485287487017986}
   m_Layer: 0
   m_Name: MapFloor4
   m_TagString: Untagged
@@ -718,6 +719,23 @@ MonoBehaviour:
   - 4
   - 30
   - 1
+--- !u!114 &114485287487017986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1169610840418350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af019f69846575f41a93ef90e63a8f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showName: "4F \u8D70\u5ECA"
+  fogs: []
+  parallaxes: []
+  bgm: 
+  bgs: 
+  notes: 
 --- !u!114 &114486497498092674
 MonoBehaviour:
   m_ObjectHideFlags: 1

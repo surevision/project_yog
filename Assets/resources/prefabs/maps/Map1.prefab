@@ -103,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4738655247320734}
   - component: {fileID: 2569400265949310946}
+  - component: {fileID: 114275966442756540}
   m_Layer: 0
   m_Name: Map1
   m_TagString: Untagged
@@ -821,6 +822,23 @@ MonoBehaviour:
   _code: 101
   _args:
   - "\u518D\u8BF4\u4E00\u53E5\u8BDD"
+--- !u!114 &114275966442756540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1169610840418350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af019f69846575f41a93ef90e63a8f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showName: "\u81EA\u4E60\u5BA4"
+  fogs: []
+  parallaxes: []
+  bgm: 
+  bgs: 
+  notes: 
 --- !u!114 &114506632688447598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7376,7 +7394,7 @@ Tilemap:
   - first: {x: 9, y: 0, z: 0}
     second:
       m_TileIndex: 14
-      m_TileSpriteIndex: 16
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -7520,7 +7538,7 @@ Tilemap:
   - first: {x: 6, y: 4, z: 0}
     second:
       m_TileIndex: 18
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 16
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -7565,7 +7583,7 @@ Tilemap:
   - first: {x: 11, y: 5, z: 0}
     second:
       m_TileIndex: 24
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -7734,10 +7752,10 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: e59404bed43ccae409b7c321610cb34d, type: 2}
   m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 21300160, guid: 37401c3d036ffdc4fade7af84320b846, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300282, guid: 37401c3d036ffdc4fade7af84320b846, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300200, guid: 37401c3d036ffdc4fade7af84320b846, type: 3}
   - m_RefCount: 1
@@ -7767,9 +7785,9 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 21300136, guid: 37401c3d036ffdc4fade7af84320b846, type: 3}
   - m_RefCount: 1
+    m_Data: {fileID: 21300282, guid: 37401c3d036ffdc4fade7af84320b846, type: 3}
+  - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 37401c3d036ffdc4fade7af84320b846, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 21300040, guid: 37401c3d036ffdc4fade7af84320b846, type: 3}
   - m_RefCount: 1

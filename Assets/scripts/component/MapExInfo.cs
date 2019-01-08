@@ -28,7 +28,8 @@ public class MapExInfo : MonoBehaviour {
         public int speedX;
         public int speedY;
     }
-
+    // 显示名称
+    public string showName = "";
     // 雾图形
     public Fog[] fogs;
     // 远景图形
