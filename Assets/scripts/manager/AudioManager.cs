@@ -7,6 +7,9 @@ public class AudioManager {
     private static GameObject nodeBGS;
     private static GameObject nodeSE;
 
+    private static string playingBgm = "";
+    private static string playingBgs = "";
+
     private const int SE_CHANNELS = 16;
 
     public static void setup(GameObject _nodeBGM, GameObject _nodeBGS, GameObject _nodeSE) {
@@ -34,6 +37,10 @@ public class AudioManager {
     /// </summary>
     /// <param name="name"></param>
     public static void PlayBGM(string name) {
+        if (name.Equals(playingBgm)) {
+            return;
+        }
+        playingBgm = name;
         string path = string.Format("audios/bgm/{0}", name);
         AudioClip clip = Resources.Load<AudioClip>(path);
         nodeBGM.GetComponent<AudioSource>().Stop();
@@ -41,6 +48,7 @@ public class AudioManager {
         nodeBGM.GetComponent<AudioSource>().PlayDelayed(0);
     }
     public static void StopBGM() {
+        playingBgm = "";
         nodeBGM.GetComponent<AudioSource>().Stop();
     }
 
@@ -49,6 +57,10 @@ public class AudioManager {
     /// </summary>
     /// <param name="name"></param>
     public static void PlayBGS(string name) {
+        if (name.Equals(playingBgs)) {
+            return;
+        }
+        playingBgs = name;
         string path = string.Format("audios/bgs/{0}", name);
         AudioClip clip = Resources.Load<AudioClip>(path);
         nodeBGS.GetComponent<AudioSource>().Stop();
@@ -56,6 +68,7 @@ public class AudioManager {
         nodeBGS.GetComponent<AudioSource>().PlayDelayed(0);
     }
     public static void StopBGS() {
+        playingBgs = "";
         nodeBGS.GetComponent<AudioSource>().Stop();
     }
 

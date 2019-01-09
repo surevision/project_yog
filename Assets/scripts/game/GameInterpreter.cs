@@ -808,7 +808,7 @@ public class GameInterpreter {
     }
 
 	/// <summary>
-	/// 显示图片
+	/// 231 显示图片
 	/// 图片编号
 	/// 图片名
 	/// 坐标x
@@ -839,7 +839,7 @@ public class GameInterpreter {
 	}
 
 	/// <summary>
-	/// 移动图片
+	/// 232 移动图片
 	/// 编号
 	/// 时间
 	/// x
@@ -874,7 +874,7 @@ public class GameInterpreter {
 	}
 
 	/// <summary>
-	/// 消除图片
+	/// 233 消除图片
 	/// 编号
 	/// </summary>
 	/// <returns></returns>
