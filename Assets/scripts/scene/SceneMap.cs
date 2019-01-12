@@ -72,7 +72,7 @@ public class SceneMap : SceneBase {
         GameTemp.gameMessage = new GameMessage();
         GameTemp.gameMap = new GameMap();
 
-        GameTemp.startMapName = "Map1";
+        GameTemp.startMapName = "MapOuter";
         loadMap(GameTemp.startMapName);
 
     }
@@ -106,7 +106,7 @@ public class SceneMap : SceneBase {
             if (GameTemp.gamePlayer == null) {
                 // 根据prefab初始化角色
                 GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
-                GameTemp.gamePlayer.setCellPosition(new Vector2Int(9, -1));
+                GameTemp.gamePlayer.setCellPosition(new Vector2Int(7, 4));
                 GameTemp.gamePlayer.direction = GameCharacterBase.DIRS.UP;
                 GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
 

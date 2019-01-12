@@ -276,7 +276,10 @@ public class GameEvent : GameCharacterBase {
     /// </summary>
     /// <param name="sprite"></param>
     public override void setupCollider(SpriteCharacter sprite) {
-        Debug.Log(sprite.GetComponent<SpriteRenderer>().bounds.size);
+//        Debug.Log(sprite.GetComponent<SpriteRenderer>().bounds.size);
+        // TODO 事件碰撞区域
+        base.setupCollider(sprite);
+        return;
         if (!sprite.GetComponent<SpriteRenderer>().bounds.size.Equals(Vector3.zero)) {
             List<Vector2> points = new List<Vector2>();
             Vector3 size = sprite.GetComponent<SpriteRenderer>().bounds.size;
