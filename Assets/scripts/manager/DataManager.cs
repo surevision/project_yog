@@ -13,7 +13,8 @@ using UnityEngine;
 /// </summary>
 public class DataManager {
 	// 游戏数据库相关
-	public static List<Item> dataItems;	// 物品
+    public static List<Item> dataItems;	// 物品
+    public static SystemData systemData;	// 系统设定
 	public static void loadAllData() {
 		XLua.LuaTable env = LuaManager.getSimpleEnvTable();
 
@@ -26,6 +27,12 @@ public class DataManager {
 				dataItems.Add(resultTable.Get<int, Item>(i + 1));	// 从1开始
 			}
 		}
+        // 系统设定
+        systemData = new SystemData();
+        results = LuaManager.LuaEnv.DoString("return require \"data/system\"", string.Format("load_data_{0}", "system"), env);
+        if (results != null && results.Length > 0) {
+            systemData = (SystemData)results[0];
+        }
 		// TODO 测试
 		Debug.Log(string.Format("load item finish, len {0}", dataItems.Count));
 		foreach (Item item in dataItems) {

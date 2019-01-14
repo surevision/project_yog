@@ -1,0 +1,6 @@
+local data = CS.SystemData()
+data.startMap = "MapUnderStreet"
+data.startX = 0
+data.startY = 0
+data.startDir = 6
+return data
