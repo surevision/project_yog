@@ -17,3 +17,5 @@
 - [IceDragon/Enterbrain](http://forums.rpgmakerweb.com/index.php?/user/36-icedragon/)
 
 - [Caitlin Nicnubill](http://nicnubill.deviantart.com/)
+
+- [Rayane Félix](https://opengameart.org/content/rpg-terrains)
