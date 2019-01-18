@@ -1,5 +1,5 @@
 local data = CS.SystemData()
-data.startMap = "MapUnderStreet"
+data.startMap = "MapCave2"
 data.startX = 0
 data.startY = 0
 data.startDir = 6
