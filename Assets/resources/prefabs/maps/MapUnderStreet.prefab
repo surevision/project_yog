@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af019f69846575f41a93ef90e63a8f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showName: 
+  showName: "\u4E0D\u660E\u8D70\u5ECA"
   fogs: []
   parallaxes: []
   bgm: 
