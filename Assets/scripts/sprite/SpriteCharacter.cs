@@ -44,7 +44,6 @@ public class SpriteCharacter : SpriteBase {
     }
 
     private void updatePosition() {
-        this.transform.position = new Vector3(this.character.screenX(), this.character.screenY(), this.character.screenY());
         this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, this.character.angle));
         if (this.character.isDirty) {
             this.GetComponent<SpriteRenderer>().color = new Color(
@@ -53,7 +52,8 @@ public class SpriteCharacter : SpriteBase {
                 this.GetComponent<SpriteRenderer>().color.b,
                 this.character.opacity / 255.0f
                 );
-        }
+		}
+		this.transform.position = new Vector3(this.character.screenX(), this.character.screenY(), this.character.screenY());
     }
 
     /// <summary>

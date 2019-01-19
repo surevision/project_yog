@@ -84,7 +84,7 @@ public class CameraControl : MonoBehaviour {
             this.transform.position = new Vector3(
                 x,
                 y,
-                -100
+                -10
                 );
         } else {
             // 转向目标
@@ -94,7 +94,7 @@ public class CameraControl : MonoBehaviour {
                 this.transform.position = new Vector3(
                     x,
                     y,
-                    -100
+                    -10
                     );
                 if (this.target == this.player && this.playerLightMask != null) {
                     Vector3 size = this.player.GetComponent<SpriteRenderer>().bounds.size;

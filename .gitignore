@@ -33,3 +33,5 @@ Thumbs.db
 
 Materials
 *.sav
+
+build/
