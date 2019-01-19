@@ -59,7 +59,7 @@ MonoBehaviour:
     y: 0
     realX: 0
     realY: 0
-    moveSpeed: 4
+    moveSpeed: 3
     characterName: tremel
     moveFrequency: 0
     walkAnime: 1

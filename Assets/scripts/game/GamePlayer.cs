@@ -7,6 +7,13 @@ using UnityEngine;
 [Serializable]
 public class GamePlayer : GameCharacterBase {
 
+	protected override float getMoveSpeed() {
+		if (InputManager.isPress (InputManager.GameKey.SHIFT)) {
+			return Mathf.Min(5, this.moveSpeed + 1);
+		}
+		return this.moveSpeed;
+	}
+
     public override void update() {
         base.update();
         if (GameTemp.gameMap.interpreter.isRunning()) {
@@ -37,7 +44,7 @@ public class GamePlayer : GameCharacterBase {
     /// </summary>
     protected override void updateAnimation() {
         this.updateAnimeCount();
-        if (this.animeCount > 24 - this.moveSpeed * 2) {
+		if (this.animeCount > 24 - this.getMoveSpeed() * 2) {
             this.updateAnimePattern();  // 改图
             this.animeCount = 0;
             this.isDirty = true;
@@ -75,7 +82,7 @@ public class GamePlayer : GameCharacterBase {
     }
 
     public override float getStep() {
-        return getBaseStep() / 32;
+        return getBaseStep() / 16;
     }
 
     public float offsetScreenX() {

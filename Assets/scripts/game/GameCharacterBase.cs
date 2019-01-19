@@ -105,12 +105,16 @@ public class GameCharacterBase
         return Intersection.polygonMove(this.colliderPolygon, this.realX, this.realY);
     }
 
+	protected virtual float getMoveSpeed() {
+		return this.moveSpeed;
+	}
+
     /// <summary>
     /// 每帧移动距离
     /// </summary>
     /// <returns></returns>
     protected float distancePerFrame() {
-        return Mathf.Pow(2, this.moveSpeed) / 256 * Util.GRID_WIDTH / Util.PPU;
+		return Mathf.Pow(2, this.getMoveSpeed()) / 256 * Util.GRID_WIDTH / Util.PPU;
     }
 
     /// <summary>
@@ -152,7 +156,7 @@ public class GameCharacterBase
     /// </summary>
     protected virtual void updateAnimation() {
         this.updateAnimeCount();
-        if (this.animeCount > 24 - this.moveSpeed * 2) {
+		if (this.animeCount > 24 - this.getMoveSpeed() * 2) {
             this.updateAnimePattern();  // 改图
             this.animeCount = 0;
             this.isDirty = true;

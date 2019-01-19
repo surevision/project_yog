@@ -97,6 +97,7 @@ public class CameraControl : MonoBehaviour {
                     -10
                     );
                 if (this.target == this.player && this.playerLightMask != null) {
+					playerLightMask.gameObject.SetActive (false); // TODO 测试用隐藏
                     Vector3 size = this.player.GetComponent<SpriteRenderer>().bounds.size;
 					this.playerLightMask.transform.position = new Vector3(
 						x,
