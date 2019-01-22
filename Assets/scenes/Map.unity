@@ -1029,6 +1029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerLightMask: {fileID: 2055511585}
+  _screenMaterial: {fileID: 2100000, guid: c915eb05801cdbd4090d5de087b46a8c, type: 2}
 --- !u!1 &2055511585
 GameObject:
   m_ObjectHideFlags: 0

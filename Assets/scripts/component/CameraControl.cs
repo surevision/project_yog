@@ -8,6 +8,8 @@ public class CameraControl : MonoBehaviour {
 	public GameObject _playerLightMask;
 	private Material _playerLightMaskMaterial;
 
+    public Material _screenMaterial = null;
+
 	private Camera camera;
 	private GameObject _target;
     private GameObject _player;
@@ -117,6 +119,26 @@ public class CameraControl : MonoBehaviour {
 					this._playerLightMaskMaterial.SetTextureOffset("_Mask", offset);
 				}
             }
+        }
+    }
+
+    /// <summary>
+    /// 画面后处理，修改色调
+    /// </summary>
+    /// <param name="src"></param>
+    /// <param name="dest"></param>
+    void OnRenderImage(RenderTexture src, RenderTexture dest) {
+        //仅仅当有材质的时候才进行后处理，如果_Material为空，不进行后处理
+        if (_screenMaterial) {
+            //通过Material.SetXXX（"name",value）可以设置shader中的参数值
+            _screenMaterial.SetFloat("_Brightness", 1f);
+            _screenMaterial.SetFloat("_Saturation", 1f);
+            _screenMaterial.SetFloat("_Contrast", 1f);
+            //使用Material处理Texture，dest不一定是屏幕，后处理效果可以叠加的！
+            Graphics.Blit(src, dest, _screenMaterial);
+        } else {
+            //直接绘制
+            Graphics.Blit(src, dest);
         }
     }
 }
