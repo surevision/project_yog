@@ -6,19 +6,19 @@ using UnityEngine;
 public class GameTemp {
     // 游戏数据
 
-    public static GameVariables gameVariables;
-    public static GameSwitches gameSwitches;
-    public static GameSelfSwitches gameSelfSwitches;
+    public static GameVariables gameVariables = null;
+    public static GameSwitches gameSwitches = null;
+    public static GameSelfSwitches gameSelfSwitches = null;
 
-    public static GameScreen gameScreen;
+    public static GameScreen gameScreen = null;
 
-    public static GameMap gameMap;
-    public static GamePlayer gamePlayer;
-    public static GameParty gameParty;
-    public static GameMessage gameMessage;
+    public static GameMap gameMap = null;
+    public static GamePlayer gamePlayer = null;
+    public static GameParty gameParty = null;
+    public static GameMessage gameMessage = null;
 
     // 运行时临时数据
-    public static bool transforming;    // 场所移动中
+    public static bool transforming = false;    // 场所移动中
     public static string startMapName = "";
 
 

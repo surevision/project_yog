@@ -62,6 +62,7 @@ public class GameInterpreter {
 		ShowPic = 231,                  // 显示图片
 		TransPic = 232,                 // 移动图片
 		ErasePic = 233,                 // 消除图片
+        ChangeScreenColor = 234,        // 更改画面色调
 		PlayBGM = 241,                  // 播放BGM
         FadeoutBGM = 242,               // 淡出BGM
         PlaySE = 250,                   // 播放SE
@@ -475,10 +476,13 @@ public class GameInterpreter {
 					return this.command_showPic();
 				case CommandTypes.TransPic: // 232 移动图片
 					Debug.Log(string.Format("CommandTypes.TransPic", this.currentParam));
-					return this.command_transPic();
-				case CommandTypes.ErasePic: // 233 消除图片
-					Debug.Log(string.Format("CommandTypes.ErasePic", this.currentParam));
-					return this.command_erasePic();
+                    return this.command_transPic();
+                case CommandTypes.ErasePic: // 233 消除图片
+                    Debug.Log(string.Format("CommandTypes.ErasePic", this.currentParam));
+                    return this.command_erasePic();
+                case CommandTypes.ChangeScreenColor: // 234 更改画面色调
+                    Debug.Log(string.Format("CommandTypes.ChangeScreenColor", this.currentParam));
+                    return this.command_changeScreenColor();
 				case CommandTypes.PlayBGM: // 241 播放bgm
                     Debug.Log(string.Format("CommandTypes.PlayBGM", this.currentParam));
                     return this.command_play_bgm();
@@ -884,6 +888,29 @@ public class GameInterpreter {
 		GameTemp.gameScreen.erasePicture(num);
 		return true;
 	}
+
+    /// <summary>
+    /// 234 更改画面色调
+    /// 亮度
+    /// 饱和度
+    /// 对比度
+    /// 色调
+    /// 时间（帧）
+    /// </summary>
+    /// <returns></returns>
+    public bool command_changeScreenColor() {
+        float brightness = float.Parse(this.currentParam[0]);
+        float saturation = float.Parse(this.currentParam[1]);
+        float contrast = int.Parse(this.currentParam[2]);
+        int hue = int.Parse(this.currentParam[3]);
+        int frames = int.Parse(this.currentParam[4]);
+        GameScreen.ScreenColorInfo info = new GameScreen.ScreenColorInfo();
+        info.brightness = brightness;
+        info.saturation = saturation;
+        info.contrast = contrast;
+        GameTemp.gameScreen.screenColorChange(info, frames);
+        return true;
+    }
 
     /// <summary>
     ///  241 播放bgm

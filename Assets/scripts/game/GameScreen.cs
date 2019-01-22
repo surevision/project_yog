@@ -21,8 +21,43 @@ public class GameScreen {
 
 	private float _currView = NormalView;
 
+    // 画面色调
+    [Serializable]
+    public class ScreenColorInfo {
+        /// <summary>
+        /// 亮度
+        /// </summary>
+        public float brightness = 1.0f;
+        /// <summary>
+        /// 饱和度
+        /// </summary>
+        public float saturation = 1.0f;
+        /// <summary>
+        /// 对比度
+        /// </summary>
+        public float contrast = 1.0f;
+        /// <summary>
+        /// 色调
+        /// </summary>
+        public int hue = 0;
+    }
+
+    /// <summary>
+    /// 当前色调
+    /// </summary>
+    public ScreenColorInfo currScreenColorInfo = null;
+    /// <summary>
+    /// 转换到的色调
+    /// </summary>
+    private ScreenColorInfo targetScreenColorInfo = null;
+    /// <summary>
+    /// 色调转换时间
+    /// </summary>
+    private int screenColorTransformFrames = 0;
+
 	public GameScreen() {
 		this.currView = NormalView;
+        this.currScreenColorInfo = new ScreenColorInfo();
 		this.pictures = new Dictionary<int, GamePicture>();
 	}
 
@@ -98,12 +133,44 @@ public class GameScreen {
 		}
 	}
 
+    /// <summary>
+    /// 转换画面色调
+    /// </summary>
+    /// <param name="info">Info.</param>
+    /// <param name="time">Time.</param>
+    public void screenColorChange(ScreenColorInfo info, int time) {
+        this.targetScreenColorInfo = info;
+        this.screenColorTransformFrames = time;
+    }
+
+    public bool isColorChanging() {
+        return this.targetScreenColorInfo != null;
+    }
+
     public void update() {
 
 		// 刷新图片
 		foreach(GamePicture pic in this.pictures.Values) {
 			pic.update();
 		}
+
+        // 刷新色调
+        if (this.isColorChanging()) {
+            this.screenColorTransformFrames -= 1;
+            if (this.screenColorTransformFrames == 0) {
+                this.currScreenColorInfo = this.targetScreenColorInfo;
+                this.targetScreenColorInfo = null;
+            } else {
+                this.currScreenColorInfo.brightness += 
+                    (this.targetScreenColorInfo.brightness - this.currScreenColorInfo.brightness) / this.screenColorTransformFrames;
+                this.currScreenColorInfo.contrast += 
+                    (this.targetScreenColorInfo.contrast - this.currScreenColorInfo.contrast) / this.screenColorTransformFrames;
+                this.currScreenColorInfo.saturation += 
+                    (this.targetScreenColorInfo.saturation - this.currScreenColorInfo.saturation) / this.screenColorTransformFrames;
+                this.currScreenColorInfo.hue += 
+                    (this.targetScreenColorInfo.hue - this.currScreenColorInfo.hue) / this.screenColorTransformFrames;
+            }
+        }
 
         // 刷新视野
         if (currView < targetView) {

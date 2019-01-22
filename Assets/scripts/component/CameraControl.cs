@@ -128,11 +128,11 @@ public class CameraControl : MonoBehaviour {
     /// <param name="src"></param>
     /// <param name="dest"></param>
     void OnRenderImage(RenderTexture src, RenderTexture dest) {
-        if (_screenMaterial) {
-            _screenMaterial.SetFloat("_Brightness", 1f);  // 亮度
-            _screenMaterial.SetFloat("_Saturation", 1f);    // 饱和度
-            _screenMaterial.SetFloat("_Contrast", 1f);      // 对比度
-            _screenMaterial.SetInt("_Hue", 0);  // 色调0~360
+        if (GameTemp.gameScreen != null && _screenMaterial) {
+            _screenMaterial.SetFloat("_Brightness", GameTemp.gameScreen.currScreenColorInfo.brightness);  // 亮度
+            _screenMaterial.SetFloat("_Saturation", GameTemp.gameScreen.currScreenColorInfo.saturation);    // 饱和度
+            _screenMaterial.SetFloat("_Contrast", GameTemp.gameScreen.currScreenColorInfo.contrast);      // 对比度
+            _screenMaterial.SetInt("_Hue", GameTemp.gameScreen.currScreenColorInfo.hue);  // 色调0~360
             Graphics.Blit(src, dest, _screenMaterial);
         } else {
             //直接绘制
