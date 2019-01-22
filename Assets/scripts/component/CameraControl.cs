@@ -128,13 +128,11 @@ public class CameraControl : MonoBehaviour {
     /// <param name="src"></param>
     /// <param name="dest"></param>
     void OnRenderImage(RenderTexture src, RenderTexture dest) {
-        //仅仅当有材质的时候才进行后处理，如果_Material为空，不进行后处理
         if (_screenMaterial) {
-            //通过Material.SetXXX（"name",value）可以设置shader中的参数值
-            _screenMaterial.SetFloat("_Brightness", 1f);
-            _screenMaterial.SetFloat("_Saturation", 1f);
-            _screenMaterial.SetFloat("_Contrast", 1f);
-            //使用Material处理Texture，dest不一定是屏幕，后处理效果可以叠加的！
+            _screenMaterial.SetFloat("_Brightness", 1f);  // 亮度
+            _screenMaterial.SetFloat("_Saturation", 1f);    // 饱和度
+            _screenMaterial.SetFloat("_Contrast", 1f);      // 对比度
+            _screenMaterial.SetInt("_Hue", 0);  // 色调0~360
             Graphics.Blit(src, dest, _screenMaterial);
         } else {
             //直接绘制
