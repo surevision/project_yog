@@ -1,6 +1,6 @@
 local data = CS.SystemData()
-data.startMap = "MapTemple"
-data.startX = 3
-data.startY = -3
-data.startDir = 6
+data.startMap = "Map1"
+data.startX = 9
+data.startY = -1
+data.startDir = 8
 return data

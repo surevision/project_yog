@@ -188,7 +188,6 @@ public class GameEvent : GameCharacterBase {
     /// 标记启动
     /// </summary>
     public void start() {
-        Debug.Log(string.Format("start {0}", this.eventId));
         this.starting = true;   // 标记本事件开始执行
         this.lockup();
         if (!GameTemp.gameMap.interpreter.isRunning()) {

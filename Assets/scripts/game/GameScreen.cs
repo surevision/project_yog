@@ -9,9 +9,12 @@ public class GameScreen {
 	// 显示图片
 	public Dictionary<int, GamePicture> pictures;
 
+    // 遮罩
+    public bool maskVisible = false;
+
 	// 缩放相关
-	private const float NormalView = 2.4f;
-	private const float HalfView = 3.2f;
+	private const float NormalView = 1.6f;
+	private const float HalfView = 2.4f;
 
 	private float targetView = NormalView;
 	private bool isMiniView = false;
@@ -53,6 +56,20 @@ public class GameScreen {
 		Debug.Log(string.Format("not found pic num {0}", num));
 		return null;
 	}
+
+    /// <summary>
+    /// 显示光遮罩
+    /// </summary>
+    public void showMask() {
+        this.maskVisible = true;
+    }
+
+    /// <summary>
+    /// 隐藏光遮罩
+    /// </summary>
+    public void hideMask() {
+        this.maskVisible = false;
+    }
 
 	/// <summary>
 	/// 显示图片

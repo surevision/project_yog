@@ -687,7 +687,8 @@ public class GameInterpreter {
 
     /// <summary>
     /// 123 独立开关操作
-    /// A,true
+    /// A
+    /// true
     /// </summary>
     /// <returns></returns>
     public bool command_setSelfSwitch() {

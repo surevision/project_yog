@@ -76,9 +76,14 @@ public class CameraControl : MonoBehaviour {
     }
 
     public void update() {
-
+        if (this.playerLightMask != null) {
+            if (this.playerLightMask.activeSelf != GameTemp.gameScreen.maskVisible) {
+                this.playerLightMask.SetActive(GameTemp.gameScreen.maskVisible);
+            }
+        }
         //强制转向坐标
         if (forcePos) {
+            // 更新摄像机位置
             float x = Mathf.Clamp(this.targetPos.x, this.minX, this.maxX);
             float y = Mathf.Clamp(this.targetPos.y, this.minY, this.maxY);
             this.transform.position = new Vector3(
@@ -89,6 +94,7 @@ public class CameraControl : MonoBehaviour {
         } else {
             // 转向目标
             if (this.target != null) {
+                // 更新摄像机位置
                 float x = Mathf.Clamp(this.target.transform.position.x, this.minX, this.maxX);
                 float y = Mathf.Clamp(this.target.transform.position.y, this.minY, this.maxY);
                 this.transform.position = new Vector3(
@@ -96,8 +102,8 @@ public class CameraControl : MonoBehaviour {
                     y,
                     -10
                     );
-                if (this.target == this.player && this.playerLightMask != null) {
-					playerLightMask.gameObject.SetActive (false); // TODO 测试用隐藏
+                // 更新遮罩位置
+                if (GameTemp.gameScreen.maskVisible && this.target == this.player && this.playerLightMask != null) {
                     Vector3 size = this.player.GetComponent<SpriteRenderer>().bounds.size;
 					this.playerLightMask.transform.position = new Vector3(
 						x,
