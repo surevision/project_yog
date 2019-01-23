@@ -68,6 +68,8 @@ public class GameInterpreter {
         PlaySE = 250,                   // 播放SE
         StopSE = 251,                   // 停止SE
 
+        ShowMapName = 281,              // 开启/关闭展示地图名
+
         // 3
         EvalScript = 355,               // 脚本
 
@@ -489,6 +491,9 @@ public class GameInterpreter {
                 case CommandTypes.PlaySE: // 250 播放se
                     Debug.Log(string.Format("CommandTypes.PlaySE", this.currentParam));
                     return this.command_play_se();
+                case CommandTypes.ShowMapName: // 281 开启/关闭展示地图名
+                    Debug.Log(string.Format("CommandTypes.ShowMapName", this.currentParam));
+                    return this.command_showMapName();
                 case CommandTypes.EvalScript:   // 355 脚本
                     Debug.Log(string.Format("CommandTypes.EvalScript", this.currentParam));
                     return this.command_evalScript();
@@ -927,6 +932,15 @@ public class GameInterpreter {
     /// </summary>
     public bool command_play_se() {
         AudioManager.PlaySE(this.currentParam[0]);
+        return true;
+    }
+
+    /// <summary>
+    ///  281 开启/关闭展示地图名
+    ///  true/false
+    /// </summary>
+    public bool command_showMapName() {
+        GameTemp.gameMap.showMapName = bool.Parse(this.currentParam[0]);
         return true;
     }
 

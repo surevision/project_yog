@@ -112,6 +112,7 @@ public class SceneMap : SceneBase {
                 GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
                 GameTemp.gamePlayer.setCellPosition(new Vector2Int(DataManager.systemData.startX, DataManager.systemData.startY));
                 GameTemp.gamePlayer.direction = DataManager.systemData.startDir;
+                GameTemp.gameMap.showMapName = DataManager.systemData.showMapName;
                 GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
 
                 this.updateLogic();

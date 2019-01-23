@@ -49,6 +49,7 @@ public class EventCommand : MonoBehaviour {
             {GameInterpreter.CommandTypes.FadeoutBGM,"淡出BGM"},
             {GameInterpreter.CommandTypes.PlaySE,"播放SE"},
             {GameInterpreter.CommandTypes.StopSE,"停止SE"},
+            {GameInterpreter.CommandTypes.ShowMapName,"开启/关闭地图名"},
 
             // 3
             {GameInterpreter.CommandTypes.EvalScript,"脚本"},

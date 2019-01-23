@@ -38,6 +38,10 @@ public class AsyncUIMapName : AsyncUIBase {
         this.nameLabel = this.node.transform.Find("Panel/bg/name").gameObject;
         this.bgNode = this.node.transform.Find("Panel/bg").gameObject;
         this.nameLabel.GetComponent<TMPro.TMP_Text>().SetText(((SceneMap)SceneManager.Scene).getMapNode().GetComponent<MapExInfo>().showName);
+        Color color = this.bgNode.GetComponent<Image>().color;
+        this.bgNode.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0);
+        color = this.nameLabel.GetComponent<TMPro.TMP_Text>().color;
+        this.nameLabel.GetComponent<TMPro.TMP_Text>().color = new Color(color.r, color.g, color.b, 0);
     }
 
     public override void update() {
@@ -52,9 +56,11 @@ public class AsyncUIMapName : AsyncUIBase {
             }
         }
         Color color = this.bgNode.GetComponent<Image>().color;
+        Color fontColor = this.nameLabel.GetComponent<TMPro.TMP_Text>().color;
         switch (this.phase) {
             case Phase.Open:
                 this.bgNode.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 1.0f * this.timeStep / Delays[(int)Phase.Open]);
+                this.nameLabel.GetComponent<TMPro.TMP_Text>().color = new Color(fontColor.r, fontColor.g, fontColor.b, 1.0f * this.timeStep / Delays[(int)Phase.Open]);
                 break;
             case Phase.Stay:
                 break;
@@ -64,6 +70,12 @@ public class AsyncUIMapName : AsyncUIBase {
                         color.g, 
                         color.b, 
                         1.0f - 1.0f * 
+                            (this.timeStep - Delays[(int)Phase.Open] - Delays[(int)Phase.Stay]) / Delays[(int)Phase.Close]);
+                this.nameLabel.GetComponent<TMPro.TMP_Text>().color = new Color(
+                        color.r,
+                        color.g,
+                        color.b,
+                        1.0f - 1.0f *
                             (this.timeStep - Delays[(int)Phase.Open] - Delays[(int)Phase.Stay]) / Delays[(int)Phase.Close]);
                 break;
             case Phase.End:

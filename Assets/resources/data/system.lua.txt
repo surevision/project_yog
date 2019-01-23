@@ -3,4 +3,5 @@ data.startMap = "Map1"
 data.startX = 9
 data.startY = -1
 data.startDir = 8
+data.showMapName = false
 return data
