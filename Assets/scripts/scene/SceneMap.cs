@@ -21,7 +21,8 @@ public class SceneMap : SceneBase {
     // unity对象相关
     private GameObject currMapObj = null;   // 地图
     private GameObject player = null;       // 玩家
-    private GameObject menu = null;         // 菜单
+    private GameObject menuNode = null;         // 菜单
+    private GameObject asyncUINode = null;         // 异步刷新的ui
     private GameObject commonEventNode = null;  // 公共事件
     public WindowMessage windowMessage;     // 文字显示窗口
     public Image snap;                      // 截屏
@@ -32,6 +33,7 @@ public class SceneMap : SceneBase {
     // 菜单相关
     private UISetBase.UISetMessenger uiSetMessenger = null;
     private UISetBase uiSet = null;
+    private List<AsyncUIBase> asyncUis = null;
 
     // 渐变相关
 	private TransitionType _transitionType = TransitionType.SNAP;
@@ -57,8 +59,10 @@ public class SceneMap : SceneBase {
             GameObject.Find("SEs")
         );
         // 标记菜单节点
-        this.menu = GameObject.Find("Menu");
-        this.uiSetMessenger = new UISetBase.UISetMessenger(this.menu, "");
+        this.menuNode = GameObject.Find("Menu");
+        this.asyncUINode = GameObject.Find("AsyncUI");
+        this.asyncUis = new List<AsyncUIBase>();
+        this.uiSetMessenger = new UISetBase.UISetMessenger(this.menuNode, "");
         this.uiSetMessenger.setSwitchDelegate(this.switchUIDelegate);
         // 加载公共事件
         this.commonEventNode = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/CommonEventNode")));
@@ -135,6 +139,10 @@ public class SceneMap : SceneBase {
         foreach (GamePicture pic in GameTemp.gameScreen.pictures.Values) {
 			this.attachPicImage(pic);
 		}
+        // 展示地图名
+        if (GameTemp.gameMap.showMapName) {
+            this.showMapName();
+        }
     }
 
     protected override void updateRender() {
@@ -256,15 +264,23 @@ public class SceneMap : SceneBase {
 
             }
         }
-        
-
     }
 
     protected override void updateLogic() {
         base.updateLogic();
+
+        // 刷新渐变
         if (this.isInTransition()) {
             return;
         }
+
+        // 刷新异步ui
+        foreach (AsyncUIBase asyncUi in this.asyncUis) {
+            asyncUi.update();
+        }
+        this.asyncUis.RemoveAll(ui => ui.isDead());
+
+        // 刷新菜单
         if (this.isUIRunning()) {
             this.uiSet.update();
             return;
@@ -352,6 +368,22 @@ public class SceneMap : SceneBase {
 			this.pictures.Remove(num);
 		}
 	}
+
+    /// <summary>
+    /// 显示地图名
+    /// </summary>
+    public void showMapName() {
+        this.showAsyncUi(new AsyncUIMapName("MapName", this.asyncUINode));
+    }
+
+    /// <summary>
+    /// 展示异步ui
+    /// </summary>
+    /// <param name="ui"></param>
+    public void showAsyncUi(AsyncUIBase ui) {
+        this.asyncUis.Add(ui);
+        ui.start();
+    }
     /// <summary>
     /// 切换UI
     /// </summary>

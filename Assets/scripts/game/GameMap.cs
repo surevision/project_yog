@@ -27,6 +27,7 @@ public class GameMap {
 
     }
 
+    [Serializable]
     public class MapInfo {
 
         public string name;
@@ -60,6 +61,9 @@ public class GameMap {
 
     [NonSerialized]
     public MapInfo mapInfo;
+
+
+    public bool showMapName = true; // 切换地图时展示地图名
 
     public GameInterpreter interpreter;
 
@@ -237,6 +241,13 @@ public class GameMap {
                 ((SceneMap)SceneManager.Scene).switchToUI("menu");
             }
         }
+    }
+
+    /// <summary>
+    /// 在画面上显示地图名
+    /// </summary>
+    public void showMapNameInScene() {
+        ((SceneMap)SceneManager.Scene).showMapName();
     }
 
     /// <summary>
