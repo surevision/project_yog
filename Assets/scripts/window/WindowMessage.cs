@@ -14,10 +14,11 @@ public class WindowMessage : WindowBase {
     }
 
     public SLRichText richText;
-    
-	private bool showFast = false;	// 快速显示所有
-    private int waitCount = 0;	// 等待帧数
-	private int openness = 0;	// 展开的程度
+
+    private const int OpenSpeed = 255 / 8;   //展开速度
+	private bool showFast = false;	    // 快速显示所有
+    private int waitCount = 0;	        // 等待帧数
+	private int openness = 0;	        // 展开的程度
     private bool openning = true;
 	private bool closing = false;
 	private bool finished = false;
@@ -88,7 +89,7 @@ public class WindowMessage : WindowBase {
             }
         } else {
             if (this.openning) {	// 刷新打开
-                this.openness += 16;
+                this.openness += OpenSpeed;
                 this.gameObject.transform.localScale = new Vector3(1, Mathf.Min(this.openness, 255) / 255.0f, this.gameObject.transform.localScale.z);
                 if (this.openness >= 255) {
                     this.gameObject.transform.localScale = new Vector3(1, 1, this.gameObject.transform.localScale.z);
@@ -99,7 +100,7 @@ public class WindowMessage : WindowBase {
                     this.closing = false;
                     GameTemp.gameMessage.onFinish();    // 显示完毕回调
                 } else {
-                    this.openness -= 16;
+                    this.openness -= OpenSpeed;
                     this.gameObject.transform.localScale = new Vector3(1, Mathf.Min(this.openness, 255) / 255.0f, this.gameObject.transform.localScale.z);
                     if (this.openness <= 0) {
                         this.gameObject.transform.localScale = new Vector3(1, 0, this.gameObject.transform.localScale.z);
