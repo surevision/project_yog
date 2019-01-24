@@ -16,10 +16,10 @@ public class GameEvent : GameCharacterBase {
         set { _eventId = value; }
     }
 
-    private int _mapId;
-    public int mapId {
-        get { return _mapId; }
-        set { _mapId = value; }
+    private string _mapName;
+    public string mapName {
+        get { return _mapName; }
+        set { _mapName = value; }
     }
 
     private bool _starting;
@@ -53,8 +53,9 @@ public class GameEvent : GameCharacterBase {
 
     private GameInterpreter interpreter;                // 并行事件用解释器
 
-    public void setup(int id) {
+    public void setup(string mapName, int id) {
         this.eventId = id;
+        this.mapName = mapName;
 
         SpriteEvent sprite = getEventSprite();
         foreach (EventPage page in sprite.GetComponentsInChildren<EventPage>()) {
@@ -139,7 +140,7 @@ public class GameEvent : GameCharacterBase {
         // 检查独立开关
         for (int i = 0; i < pageInfo.activeSelfSwitches.Length; i += 1) {
             GameInterpreter.SelfSwitchCode switchId = pageInfo.activeSelfSwitches[i].index;  // ABCD
-            if (!GameTemp.gameSelfSwitches[GameSelfSwitches.key(this.mapId, this.eventId, switchId)]) {
+            if (!GameTemp.gameSelfSwitches[GameSelfSwitches.key(this.mapName, this.eventId, switchId)]) {
                 return false;
             }
         }

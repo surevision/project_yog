@@ -31,7 +31,6 @@ public class GameMap {
     public class MapInfo {
 
         public string name;
-        public int mapId;
 
         public Vector3Int minTile;
         public Vector3Int maxTile;
@@ -141,7 +140,7 @@ public class GameMap {
                 int i = 0;
                 foreach (SpriteEvent s in spriteEvents) {
                     this.events.Add((GameEvent)s.character);
-                    ((GameEvent)s.character).setup(i + 1);
+                    ((GameEvent)s.character).setup(this.mapName, i + 1);
                     i += 1;
                 }
             } else {
@@ -347,7 +346,7 @@ public class GameMap {
                 if (character != null && character != e) {
                     character.lastHit.Add(e);
                 }
-                if (!e.erased && e.priorityType == GameCharacterBase.PRIORITIES.SAME && character != e) {
+                if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && character != e) {
                     return false;
                 }
             }

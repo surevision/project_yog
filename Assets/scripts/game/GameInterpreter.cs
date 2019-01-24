@@ -207,7 +207,7 @@ public class GameInterpreter {
     private int depth;
     private bool isMain;
 
-    private int mapId = 0;  // 启动时的地图id
+    private string mapName = "";  // 启动时的地图name
     public int origEventId = 0;	// 启动时的事件id
     public int eventId = 0;	// 事件id
 
@@ -234,7 +234,7 @@ public class GameInterpreter {
     }
 
     public void clear() {
-        this.mapId = 0; // 启动时的地图id
+        this.mapName = ""; // 启动时的地图id
         this.origEventId = 0;   // 启动时的事件id
         this.eventId = 0;   // 事件id
         this.list = null;   // 执行内容
@@ -253,7 +253,7 @@ public class GameInterpreter {
     public void setup(List<EventCommand> list, int eventId = 0, int page = -1) {
 		Debug.Log(string.Format("setup interpreter for event {0}, page {1}, list len {2}", eventId, page, list.Count));
         this.clear();
-        this.mapId = GameTemp.gameMap.mapInfo.mapId;
+        this.mapName = GameTemp.gameMap.mapInfo.name;
         this.origEventId = eventId;
         this.eventId = eventId;
         this.list = list;
@@ -328,7 +328,7 @@ public class GameInterpreter {
 
     public void update() {
         while (true) {  // while跳过无用指令
-            if (GameTemp.gameMap.mapInfo.mapId != this.mapId) { // 地图id和启动地图有差异
+            if (!GameTemp.gameMap.mapInfo.name.Equals(this.mapName)) { // 地图和启动地图有差异
                 this.eventId = 0;
             }
 			// 公共事件处理
@@ -705,7 +705,7 @@ public class GameInterpreter {
         string code = this.currentParam[0].Trim().ToUpper();
         bool value = bool.Parse(this.currentParam[1]);
 
-        string key = GameSelfSwitches.key(this.mapId, this.eventId, GameSelfSwitches.code(code));
+        string key = GameSelfSwitches.key(this.mapName, this.eventId, GameSelfSwitches.code(code));
         GameTemp.gameSelfSwitches[key] = value;
         GameTemp.gameMap.needRefresh = true;
         return true;

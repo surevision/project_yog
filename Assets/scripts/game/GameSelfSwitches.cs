@@ -45,6 +45,12 @@ public class GameSelfSwitches {
         }
     }
 
+    public bool forceSet(string mapName, int eventId, string code, bool value) {
+        string key = GameSelfSwitches.key(mapName, eventId, GameSelfSwitches.code(code));
+        this[key] = value;
+        return value;
+    }
+
     /// <summary>
     /// 由字符ABCD构造一个对应的开关类型id
     /// </summary>
@@ -64,11 +70,11 @@ public class GameSelfSwitches {
     /// <summary>
     /// 构造一个key
     /// </summary>
-    /// <param name="mapId"></param>
+    /// <param name="mapName"></param>
     /// <param name="eventId"></param>
     /// <param name="switchId"></param>
     /// <returns></returns>
-    public static string key(int mapId, int eventId, GameInterpreter.SelfSwitchCode switchId) {
-        return string.Format("{0},{1},{2}", mapId, eventId, (int)switchId);
+    public static string key(string mapName, int eventId, GameInterpreter.SelfSwitchCode switchId) {
+        return string.Format("{0},{1},{2}", mapName, eventId, (int)switchId);
     }
 }

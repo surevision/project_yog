@@ -351,9 +351,9 @@ public class GameCharacterBase
     /// <returns></returns>
     public bool moveGridStraight(DIRS dir) {
         Debug.Log(string.Format("moveGridStraight {0}", dir));
-        if (dir == DIRS.LEFT || dir == DIRS.RIGHT) {
+        //if (dir == DIRS.LEFT || dir == DIRS.RIGHT) {
             this.direction = dir;
-        }
+        //}
         this.isDirty = true;
         float step = this.getStep();
         float stepX = 0f;
