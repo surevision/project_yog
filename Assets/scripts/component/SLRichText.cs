@@ -49,7 +49,7 @@ public class SLRichText : MonoBehaviour {
 
     private Color _defaultFontColor = new Color(255, 255, 255, 255);
     private int _defaultFontSize = 24;
-    private float _lineHeight = 12;
+    private float _lineHeight = 8;
     private float _height = 0;
     
     private List<GameObject> _texts;
