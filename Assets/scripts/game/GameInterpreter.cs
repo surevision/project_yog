@@ -258,6 +258,7 @@ public class GameInterpreter {
         this.eventId = eventId;
         this.list = list;
         this.eventPageForList = page;
+        this.preDealList(list);
     }
 
     /// <summary>
@@ -266,6 +267,21 @@ public class GameInterpreter {
     /// <param name="list"></param>
     public void loadList(List<EventCommand> list) {
         this.list = list;
+        this.preDealList(list);
+    }
+
+    /// <summary>
+    /// 对指令进行预处理
+    /// </summary>
+    /// <param name="list">List.</param>
+    public void preDealList(List<EventCommand> list) {
+        // 记录跳转标签
+        for (int i = 0; i < list.Count; i += 1) {
+            if (list[i].code == CommandTypes.Label) {
+                string labelName = list[i].args[0];
+                this.gotoMarks.Add(labelName, i);
+            }
+        }
     }
 
 
@@ -557,7 +573,7 @@ public class GameInterpreter {
 
     /// <summary>
     /// 111 条件分歧
-    /// lua, 3 lua条件判定，跳过3条指令
+    /// lua, lua条件判定
     /// </summary>
     /// <returns></returns>
     public bool command_condition() {
@@ -627,16 +643,18 @@ public class GameInterpreter {
 
     /// <summary>
     /// 118 设置标签
+    /// 标签名
     /// </summary>
     /// <returns></returns>
     public bool command_label() {
         string labelName = this.currentParam[0];
-        this.gotoMarks.Add(labelName, this.index);
+        //this.gotoMarks.Add(labelName, this.index);
         return true;
     }
 
     /// <summary>
     /// 119 跳转到标签
+    /// 标签名
     /// </summary>
     /// <returns></returns>
     public bool command_gotolabel() {
@@ -722,6 +740,8 @@ public class GameInterpreter {
         int num = int.Parse(this.currentParam[1]);
         if (num > 0) {
             GameTemp.gameParty.gainItem(id, num);
+        } else if (num < 0) {
+            GameTemp.gameParty.loseItem(id, -num);
         }
         return true;
     }

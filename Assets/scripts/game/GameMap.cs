@@ -213,7 +213,7 @@ public class GameMap {
                 }
                 if (!findFlag) {
                     // 检查面向的附近事件
-                    GameEvent e = this.getFaceToConfirmEvent();
+                    GameEvent e = this.getPlayerFaceToConfirmEvent();
                     if (e != null && e.trigger == GameInterpreter.TriggerTypes.Confirm) {
                         findFlag = true;
                         e.start();
@@ -250,10 +250,10 @@ public class GameMap {
     }
 
     /// <summary>
-    /// 返回面向的格子事件
+    /// 返回主角面向的确认键启动格子事件
     /// </summary>
     /// <returns></returns>
-    public GameEvent getFaceToConfirmEvent() {
+    public GameEvent getPlayerFaceToConfirmEvent() {
         GameEvent result = null;
         float step = GameTemp.gamePlayer.getStep() * 2;
         Intersection.Polygon testPolygon = GameTemp.gamePlayer.currCollider();
@@ -283,6 +283,43 @@ public class GameMap {
             result = events[(new System.Random()).Next(events.Count)];
         }
         return result;
+    }
+
+    /// <summary>
+    /// 返回面向的格子事件ID
+    /// </summary>
+    /// <returns></returns>
+    public int getFaceToEventId(GameCharacterBase character) {
+        GameEvent result = null;
+        float step = GameTemp.gamePlayer.getStep() * 2;
+        Intersection.Polygon testPolygon = character.currCollider();
+        GameCharacterBase.DIRS dir = character.direction;
+        if (dir == GameCharacterBase.DIRS.DOWN) {
+            testPolygon = Intersection.polygonMove(testPolygon, 0, -step);
+        }
+        if (dir == GameCharacterBase.DIRS.LEFT) {
+            testPolygon = Intersection.polygonMove(testPolygon, -step, 0);
+        }
+        if (dir == GameCharacterBase.DIRS.RIGHT) {
+            testPolygon = Intersection.polygonMove(testPolygon, step, 0);
+        }
+        if (dir == GameCharacterBase.DIRS.UP) {
+            testPolygon = Intersection.polygonMove(testPolygon, 0, step);
+        }
+        List<GameEvent> events = new List<GameEvent>();
+        foreach (GameEvent e in this.events) {
+            Intersection.Polygon eventCollider = e.currCollider();
+            if (Intersection.polygonPolygon(eventCollider, testPolygon)) {
+                if (!e.erased && !e.Equals(character)) {
+                    events.Add(e);
+                }
+            }
+        }
+        if (events.Count > 0) {
+            result = events[(new System.Random()).Next(events.Count)];
+            return result.eventId;
+        }
+        return 0;
     }
 
     /// <summary>
