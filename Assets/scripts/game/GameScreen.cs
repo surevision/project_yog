@@ -55,6 +55,22 @@ public class GameScreen {
     /// </summary>
     private int screenColorTransformFrames = 0;
 
+    // 屏幕震动相关
+
+    public enum ShakeDir {
+        X = 1,
+        Y = 2,
+        XY = 3
+    }
+    private int shakePower = 0; // 震动强度
+    private int shakeDuration = 0;  // 帧计数
+    private int shakeDirX = 0;  // X移动方向
+    private int shakeDirY = 0;  // Y移动方向
+    private int shakeRandOffsetX = 0;   // X终点偏移
+    private int shakeRandOffsetY = 0;   // Y终点偏移
+    public int shakePosX = 0;   // X震动位置
+    public int shakePosY = 0;   // Y震动位置
+
 	public GameScreen() {
 		this.currView = NormalView;
         this.currScreenColorInfo = new ScreenColorInfo();
@@ -143,8 +159,49 @@ public class GameScreen {
         this.screenColorTransformFrames = time;
     }
 
+    /// <summary>
+    /// 是否正在更改画面色调
+    /// </summary>
+    /// <returns></returns>
     public bool isColorChanging() {
         return this.targetScreenColorInfo != null;
+    }
+
+    /// <summary>
+    /// 震动
+    /// </summary>
+    /// <param name="power"></param>
+    /// <param name="duration"></param>
+    /// <param name="dir"></param>
+    public void startShake(int power, int duration, ShakeDir dir) {
+        this.shakePower = power;
+        this.shakeDirX = 0;
+        this.shakeDirY = 0;
+        switch (dir) {
+        case ShakeDir.X:
+            this.shakeDirX = 1;
+            break;
+        case ShakeDir.Y:
+            this.shakeDirY = 1;
+            break;
+        case ShakeDir.XY:
+            this.shakeDirX = 1;
+            this.shakeDirY = 1;
+            break;
+        }
+        this.shakeDuration = duration;
+        this.shakeRandOffsetX = UnityEngine.Random.Range(-power, power);
+        this.shakeRandOffsetY = UnityEngine.Random.Range(-power, power);
+        this.shakePosX = 0;
+        this.shakePosY = 0;
+    }
+
+    /// <summary>
+    /// 是否正在震动屏幕
+    /// </summary>
+    /// <returns></returns>
+    public bool isShaking() {
+        return this.shakeDuration > 0;
     }
 
     public void update() {
@@ -178,6 +235,35 @@ public class GameScreen {
         }
         if (currView > targetView) {
             currView = Mathf.Max(currView - (Util.GRID_WIDTH / Util.PPU) / 8, targetView);
+        }
+
+        // 刷新震动
+        if (this.isShaking()) {
+            // 移动位置X
+            this.shakePosX += this.shakeDirX;
+            if (this.shakePosX > this.shakePower * 2) {
+                this.shakeDirX = -1;
+                this.shakeRandOffsetX = UnityEngine.Random.Range(-this.shakePower, this.shakePower);
+            } else if (this.shakePosX < -this.shakePower * 2) {
+                this.shakeDirX = 1;
+                this.shakeRandOffsetX = UnityEngine.Random.Range(-this.shakePower, this.shakePower);
+            }
+            // 移动位置y
+            this.shakePosY += this.shakeDirY;
+            if (this.shakePosY > this.shakePower * 2) {
+                this.shakeDirY = -1;
+                this.shakeRandOffsetY = UnityEngine.Random.Range(-this.shakePower, this.shakePower);
+            } else if (this.shakePosY < -this.shakePower * 2) {
+                this.shakeDirY = 1;
+                this.shakeRandOffsetY = UnityEngine.Random.Range(-this.shakePower, this.shakePower);
+            }
+            // 帧步进
+            this.shakeDuration -= 1;
+            // 位置还原
+            if (this.shakeDuration == 0) {
+                this.shakePosX = 0;
+                this.shakePosY = 0;
+            }
         }
     }
 }

@@ -122,29 +122,28 @@ public class GameEvent : GameCharacterBase {
     /// <returns></returns>
     public bool isConditionMet(int page) {
         EventPage pageInfo = this.getPageInfo(page);
+        bool switchFlag = true;
+        bool variableFlag = true;
+        bool selfSwitchFlag = true;
         // 检查开关
-        for (int i = 0; i < pageInfo.activeSwitches.Length; i += 1) {
-            int switchId = pageInfo.activeSwitches[i].index;
-            if (!GameTemp.gameSwitches[switchId]) {
-                return false;
-            }
+        if (pageInfo.activeSwitches.Length > 0) {
+            switchFlag = new List<GameInterpreter.ActiveSwitch>(pageInfo.activeSwitches).TrueForAll(
+                _switch => GameTemp.gameSwitches[_switch.index]
+            );
         }
         // 检查变量
-        for (int i = 0; i < pageInfo.activeVariables.Length; i += 1) {
-            int variableId = pageInfo.activeVariables[i].index;
-            int variableValue = pageInfo.activeVariables[i].value;
-            if (GameTemp.gameVariables[variableId] < variableValue) {
-                return false;
-            }
+        if (pageInfo.activeVariables.Length > 0) {
+            variableFlag = new List<GameInterpreter.ActiveVariable>(pageInfo.activeVariables).TrueForAll(
+                _variable => GameTemp.gameVariables[_variable.index] >= _variable.value
+            );
         }
         // 检查独立开关
-        for (int i = 0; i < pageInfo.activeSelfSwitches.Length; i += 1) {
-            GameInterpreter.SelfSwitchCode switchId = pageInfo.activeSelfSwitches[i].index;  // ABCD
-            if (!GameTemp.gameSelfSwitches[GameSelfSwitches.key(this.mapName, this.eventId, switchId)]) {
-                return false;
-            }
+        if (pageInfo.activeSelfSwitches.Length > 0) {
+            selfSwitchFlag = new List<GameInterpreter.ActiveSelfSwitch>(pageInfo.activeSelfSwitches).TrueForAll(
+                _selfSwitch => GameTemp.gameSelfSwitches[GameSelfSwitches.key(this.mapName, this.eventId, _selfSwitch.index)]
+            );
         }
-        return true;
+        return switchFlag && variableFlag && selfSwitchFlag;
     }
 
     /// <summary>
@@ -191,10 +190,10 @@ public class GameEvent : GameCharacterBase {
     public void start() {
         this.starting = true;   // 标记本事件开始执行
         this.lockup();
-        if (!GameTemp.gameMap.interpreter.isRunning()) {
-			Debug.Log("setupStartingEvent");
-            GameTemp.gameMap.interpreter.setupStartingEvent();  // 调用解释器执行
-        }
+        //if (!GameTemp.gameMap.interpreter.isRunning()) {
+        //    Debug.Log("setupStartingEvent");
+        //    GameTemp.gameMap.interpreter.setupStartingEvent();  // 调用解释器执行
+        //}
     }
     
     public void clearStarting() {

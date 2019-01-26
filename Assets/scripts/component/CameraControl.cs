@@ -89,8 +89,8 @@ public class CameraControl : MonoBehaviour {
             float x = Mathf.Clamp(this.targetPos.x, this.minX, this.maxX);
             float y = Mathf.Clamp(this.targetPos.y, this.minY, this.maxY);
             this.transform.position = new Vector3(
-                x,
-                y,
+                x + GameTemp.gameScreen.shakePosX / (float)Util.PPU,
+                y + GameTemp.gameScreen.shakePosY / (float)Util.PPU,
                 -10
                 );
         } else {
@@ -100,8 +100,8 @@ public class CameraControl : MonoBehaviour {
                 float x = Mathf.Clamp(this.target.transform.position.x, this.minX, this.maxX);
                 float y = Mathf.Clamp(this.target.transform.position.y, this.minY, this.maxY);
                 this.transform.position = new Vector3(
-                    x,
-                    y,
+                    x + GameTemp.gameScreen.shakePosX / (float)Util.PPU,
+                    y + GameTemp.gameScreen.shakePosY / (float)Util.PPU,
                     -10
                     );
                 // 更新遮罩位置

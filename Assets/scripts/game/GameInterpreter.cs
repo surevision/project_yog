@@ -691,7 +691,7 @@ public class GameInterpreter {
         int variableId = int.Parse(this.currentParam[0]);
         string opa = this.currentParam[1].Trim();
         int value = 0;
-        if (this.currentParam[2].StartsWith("v")) {
+        if (this.currentParam[2].ToLower().StartsWith("v")) {
             value = GameTemp.gameVariables[int.Parse(this.currentParam[2].Substring(1))];
         } else {
             value = int.Parse(this.currentParam[2]);
@@ -822,9 +822,16 @@ public class GameInterpreter {
 
     /// <summary>
     /// 225 画面震动
+    /// 强度
+    /// 方向 1:x 2:y 3:xy
+    /// 帧数
     /// </summary>
     /// <returns></returns>
     public bool command_shake() {
+        int power = int.Parse(this.currentParam[0]);
+        int duration = int.Parse(this.currentParam[1]);
+        int dir = int.Parse(this.currentParam[2]);
+        GameTemp.gameScreen.startShake(power, duration, (GameScreen.ShakeDir)dir);
         return true;
     }
 
