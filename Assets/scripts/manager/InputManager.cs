@@ -11,8 +11,8 @@ public class InputManager {
         RIGHT = 6,
         UP = 8,
 
-        B,
-        C,
+        B,	// cancle
+        C,	// confirm
 
         L,
         R,
@@ -39,14 +39,15 @@ public class InputManager {
         
         keyMap.Add(KeyCode.Escape, GameKey.B);
         keyMap.Add(KeyCode.X, GameKey.B);
-        keyMap.Add(KeyCode.KeypadEnter, GameKey.C);
+		keyMap.Add(KeyCode.Return, GameKey.C);
         keyMap.Add(KeyCode.Space, GameKey.C);
         keyMap.Add(KeyCode.Z, GameKey.C);
 
         keyMap.Add(KeyCode.Q, GameKey.L);
         keyMap.Add(KeyCode.W, GameKey.R);
 
-        keyMap.Add(KeyCode.LeftShift, GameKey.SHIFT);
+		keyMap.Add(KeyCode.LeftShift, GameKey.SHIFT);
+		keyMap.Add(KeyCode.RightShift, GameKey.SHIFT);
         keyMap.Add(KeyCode.LeftControl, GameKey.CTRL);
         
         keyMap.Add(KeyCode.F1, GameKey.F1);
