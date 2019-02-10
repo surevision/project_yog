@@ -66,9 +66,11 @@ public class UISetMenu : UISetBase {
 			}
 			// 确定
 			if (InputManager.isTrigger(InputManager.GameKey.C)) {
-				if (this.menuIndex == 0) {
-					this.messenger.switchToUI("item");
-				}
+                if (this.menuIndex == 0) {
+                    this.messenger.switchToUI("item");
+                } else if (this.menuIndex == 1) {
+                    this.messenger.switchToUI("load");
+                }
 				break;
 			}
 			// 退出菜单

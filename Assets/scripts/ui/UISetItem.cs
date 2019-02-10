@@ -9,6 +9,10 @@ public class UISetItem : UISetBase {
     private const int ContentSpaceX = 0;
 
     private int _menuIndex = -1;
+    /// <summary>
+    /// 选中的选项id
+    /// </summary>
+    /// <value>选中的选项id，设置时自动更新ui</value>
     public int menuIndex
     {
         get {
@@ -24,14 +28,14 @@ public class UISetItem : UISetBase {
                 this.helpText.text = GameTemp.gameParty.items[this._menuIndex].item.description;
             }
         }
-    }// 选中的选项id
+    }
 
 
 	private GameObject menuNode = null; // 加载的节点
     private Vector3 targetPos = Vector3.zero;   // 光标目标位置
     private List<Transform> items = new List<Transform>();    // 选项节点
     private GameObject cursorNode = null;   // 光标节点
-    private GameObject contentNode = null;   // 内容节点
+    private GameObject contentNode = null;   // 容器节点
     private TMPro.TMP_Text helpText = null; // 说明文本
 
 	public UISetItem() : base() {
@@ -76,14 +80,14 @@ public class UISetItem : UISetBase {
         while (true) {
             // 移动光标
             if (InputManager.isTrigger(InputManager.GameKey.DOWN)) {
-                if (this.items.Count == 0) {
+                if (this.items.Count <= 1) {
                     break;
                 }
                 this.menuIndex = Mathf.Min(this.menuIndex + 5, this.items.Count - 1);
                 break;
             }
             if (InputManager.isTrigger(InputManager.GameKey.UP)) {
-                if (this.items.Count == 0) {
+                if (this.items.Count <= 1) {
                     break;
                 }
                 this.menuIndex = Mathf.Max(this.menuIndex - 5, 0);
@@ -91,14 +95,14 @@ public class UISetItem : UISetBase {
             }
             // 移动光标
             if (InputManager.isTrigger(InputManager.GameKey.RIGHT)) {
-                if (this.items.Count == 0) {
+                if (this.items.Count <= 1) {
                     break;
                 }
                 this.menuIndex = Mathf.Min(this.menuIndex + 1, this.items.Count - 1);
                 break;
             }
             if (InputManager.isTrigger(InputManager.GameKey.LEFT)) {
-                if (this.items.Count == 0) {
+                if (this.items.Count <= 1) {
                     break;
                 }
                 this.menuIndex = Mathf.Max(this.menuIndex - 1, 0);

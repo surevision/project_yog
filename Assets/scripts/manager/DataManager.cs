@@ -112,6 +112,11 @@ public class DataManager {
         int len = 0;
         fs.Write(BitConverter.GetBytes(len), offset, 4);
         offset += BitConverter.GetBytes(len).Length;
+        // HeaderData
+        Dictionary<string, string> headerData = new Dictionary<string, string>();
+        headerData.Add("mapName", ((SceneMap)SceneManager.Scene).getMapNode().GetComponent<MapExInfo>().showName);
+        headerData.Add("saveTime", DateTime.Now.ToString("yyyy-M-d hh:mm:ss"));
+        offset += flushObjData(headerData, fs, offset);
         // GameVariables
         offset += flushObjData(GameTemp.gameVariables, fs, offset);
         // GameSwitches
@@ -129,6 +134,44 @@ public class DataManager {
         fs.Close();
     }
 
+    /// <summary>
+    /// 读取存档头部数据
+    /// </summary>
+    /// <param name="fileName"></param>
+    public static Dictionary<string, string> loadGameDataHeader(string fileName) {
+        // 
+        // header
+        // 
+        // GameVariables
+        // GameSwitches
+        // GameSelfSwitches
+        // GameScreen
+        // GameMap
+
+        try {
+            FileStream fs = new FileStream(fileName, FileMode.Open);  // 读取文件 
+            // 反序列化内容
+            byte[] lenBytes = new byte[4];
+            int len = 0;
+            int offset = 0;
+            // header
+            fs.Read(lenBytes, 0, 4);
+            offset += lenBytes.Length;
+            // HeaderData
+            fs.Read(lenBytes, 0, 4);
+            offset += 4;
+            len = BitConverter.ToInt32(lenBytes, 0);
+            Dictionary<string, string> headerData = (Dictionary<string, string>)loadObjData(fs, offset, len);
+            offset += len;
+            fs.Close();
+            return headerData;
+
+        } catch (Exception e) {
+            Debug.Log(string.Format("load data {0} fail", fileName));
+            Debug.Log(e.Message + e.StackTrace);
+            return null;
+        }
+    }
     /// <summary>
     /// 读取存档数据
     /// </summary>
@@ -152,6 +195,12 @@ public class DataManager {
             // header
             fs.Read(lenBytes, 0, 4);
             offset += lenBytes.Length;
+            // HeaderData
+            fs.Read(lenBytes, 0, 4);
+            offset += 4;
+            len = BitConverter.ToInt32(lenBytes, 0);
+            Dictionary<string, string> headerData = (Dictionary<string, string>)loadObjData(fs, offset, len);
+            offset += len;
             // GameVariables
             fs.Read(lenBytes, 0, 4);
             offset += 4;

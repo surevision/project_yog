@@ -45,5 +45,6 @@ public class CopyGameObjectPathEditor : Editor {
         }
         ClipBoard.Copy(result);
         Debug.Log(string.Format("The gameobject:{0}'s path has been copied to the clipboard!", obj.name));
+        Debug.Log(string.Format("The gameobject:{0}'s path：{1}", obj.name, result));
     }
 }

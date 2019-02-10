@@ -405,11 +405,15 @@ public class SceneMap : SceneBase {
 		if ("menu".Equals(uiSetName)) {
 			// 菜单
 			this.uiSet = new UISetMenu(this.uiSetMessenger);
-			this.uiSet.start();
-		} else if ("item".Equals(uiSetName)) {
-			// 物品
-			this.uiSet = new UISetItem(this.uiSetMessenger);
-			this.uiSet.start();
+            this.uiSet.start();
+        } else if ("item".Equals(uiSetName)) {
+            // 物品
+            this.uiSet = new UISetItem(this.uiSetMessenger);
+            this.uiSet.start();
+        } else if ("load".Equals(uiSetName)) {
+            // 读档
+            this.uiSet = new UISetLoad(this.uiSetMessenger);
+            this.uiSet.start();
 		} else {
 			// 关闭ui
 			this.uiSet = null;
