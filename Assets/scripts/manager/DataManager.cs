@@ -173,7 +173,7 @@ public class DataManager {
         }
     }
     /// <summary>
-    /// 读取存档数据
+    /// 读取存档数据，不处理异常
     /// </summary>
     /// <param name="fileName"></param>
     private static void loadGameData(string fileName) {
@@ -185,80 +185,73 @@ public class DataManager {
         // GameSelfSwitches
         // GameScreen
         // GameMap
+        FileStream fs = new FileStream(fileName, FileMode.Open);  // 读取文件 
+        // 反序列化内容
+        byte[] lenBytes = new byte[4];
+        int len = 0;
+        int offset = 0;
+        // header
+        fs.Read(lenBytes, 0, 4);
+        offset += lenBytes.Length;
+        // HeaderData
+        fs.Read(lenBytes, 0, 4);
+        offset += 4;
+        len = BitConverter.ToInt32(lenBytes, 0);
+        Dictionary<string, string> headerData = (Dictionary<string, string>)loadObjData(fs, offset, len);
+        offset += len;
+        // GameVariables
+        fs.Read(lenBytes, 0, 4);
+        offset += 4;
+        len = BitConverter.ToInt32(lenBytes, 0);
+        GameVariables gameVariables = (GameVariables)loadObjData(fs, offset, len);
+        offset += len;
+        // GameSwitches
+        fs.Read(lenBytes, 0, 4);
+        offset += 4;
+        len = BitConverter.ToInt32(lenBytes, 0);
+        GameSwitches gameSwitches = (GameSwitches)loadObjData(fs, offset, len);
+        offset += len;
+        // GameSelfSwitches
+        fs.Read(lenBytes, 0, 4);
+        offset += 4;
+        len = BitConverter.ToInt32(lenBytes, 0);
+        GameSelfSwitches gameSelfSwitches = (GameSelfSwitches)loadObjData(fs, offset, len);
+        offset += len;
+        // GameScreen
+        fs.Read(lenBytes, 0, 4);
+        offset += 4;
+        len = BitConverter.ToInt32(lenBytes, 0);
+        GameScreen gameScreen = (GameScreen)loadObjData(fs, offset, len);
+        offset += len;
+        // GameMap
+        fs.Read(lenBytes, 0, 4);
+        offset += 4;
+        len = BitConverter.ToInt32(lenBytes, 0);
+        GameMap gameMap = (GameMap)loadObjData(fs, offset, len);
+        offset += len;
+        // GamePlayer
+        fs.Read(lenBytes, 0, 4);
+        offset += 4;
+        len = BitConverter.ToInt32(lenBytes, 0);
+        GamePlayer gamePlayer = (GamePlayer)loadObjData(fs, offset, len);
+        offset += len;
+        // GameParty
+        fs.Read(lenBytes, 0, 4);
+        offset += 4;
+        len = BitConverter.ToInt32(lenBytes, 0);
+        GameParty gameParty = (GameParty)loadObjData(fs, offset, len);
+        offset += len;
+        fs.Close();
 
-        try {
-            FileStream fs = new FileStream(fileName, FileMode.Open);  // 读取文件 
-            // 反序列化内容
-            byte[] lenBytes = new byte[4];
-            int len = 0;
-            int offset = 0;
-            // header
-            fs.Read(lenBytes, 0, 4);
-            offset += lenBytes.Length;
-            // HeaderData
-            fs.Read(lenBytes, 0, 4);
-            offset += 4;
-            len = BitConverter.ToInt32(lenBytes, 0);
-            Dictionary<string, string> headerData = (Dictionary<string, string>)loadObjData(fs, offset, len);
-            offset += len;
-            // GameVariables
-            fs.Read(lenBytes, 0, 4);
-            offset += 4;
-            len = BitConverter.ToInt32(lenBytes, 0);
-            GameVariables gameVariables = (GameVariables)loadObjData(fs, offset, len);
-            offset += len;
-            // GameSwitches
-            fs.Read(lenBytes, 0, 4);
-            offset += 4;
-            len = BitConverter.ToInt32(lenBytes, 0);
-            GameSwitches gameSwitches = (GameSwitches)loadObjData(fs, offset, len);
-            offset += len;
-            // GameSelfSwitches
-            fs.Read(lenBytes, 0, 4);
-            offset += 4;
-            len = BitConverter.ToInt32(lenBytes, 0);
-            GameSelfSwitches gameSelfSwitches = (GameSelfSwitches)loadObjData(fs, offset, len);
-            offset += len;
-            // GameScreen
-            fs.Read(lenBytes, 0, 4);
-            offset += 4;
-            len = BitConverter.ToInt32(lenBytes, 0);
-            GameScreen gameScreen = (GameScreen)loadObjData(fs, offset, len);
-            offset += len;
-            // GameMap
-            fs.Read(lenBytes, 0, 4);
-            offset += 4;
-            len = BitConverter.ToInt32(lenBytes, 0);
-            GameMap gameMap = (GameMap)loadObjData(fs, offset, len);
-            offset += len;
-            // GamePlayer
-            fs.Read(lenBytes, 0, 4);
-            offset += 4;
-            len = BitConverter.ToInt32(lenBytes, 0);
-            GamePlayer gamePlayer = (GamePlayer)loadObjData(fs, offset, len);
-            offset += len;
-            // GameParty
-            fs.Read(lenBytes, 0, 4);
-            offset += 4;
-            len = BitConverter.ToInt32(lenBytes, 0);
-            GameParty gameParty = (GameParty)loadObjData(fs, offset, len);
-            offset += len;
-            fs.Close();
-
-            // 绑定新数据
-            GameTemp.gameVariables = gameVariables;
-            GameTemp.gameSwitches = gameSwitches;
-            GameTemp.gameSelfSwitches = gameSelfSwitches;
-            GameTemp.gameScreen = gameScreen;
-            GameTemp.gameMessage = new GameMessage();
-            GameTemp.gameMap = gameMap;
-            GameTemp.gamePlayer = gamePlayer;
-            GameTemp.gameParty = gameParty;
-
-        } catch (Exception e) {
-            Debug.Log(string.Format("load data {0} fail", fileName));
-            Debug.Log(e.Message + e.StackTrace);
-        }
+        // 绑定新数据
+        GameTemp.gameVariables = gameVariables;
+        GameTemp.gameSwitches = gameSwitches;
+        GameTemp.gameSelfSwitches = gameSelfSwitches;
+        GameTemp.gameScreen = gameScreen;
+        GameTemp.gameMessage = new GameMessage();
+        GameTemp.gameMap = gameMap;
+        GameTemp.gamePlayer = gamePlayer;
+        GameTemp.gameParty = gameParty;
     }
 
     /// <summary>
@@ -270,16 +263,35 @@ public class DataManager {
     }
 
     /// <summary>
-    /// 读档
+    /// 读取数据
     /// </summary>
-    /// <param name="saveNum"></param>
-    public static void load(int saveNum) {
-        loadGameData(string.Format("save{0}.sav", saveNum));
+    /// <param name="saveNum">存档编号从1开始</param>
+    public static bool load(int saveNum) {
+        try {
+            loadGameData(string.Format("save{0}.sav", saveNum));
+            return true;
+        } catch (Exception e) {
+            Debug.Log(string.Format("failed to load save{0}.sav.", saveNum));
+            Debug.Log(e.Message + e.StackTrace);
+            return false;
+        }
     }
 
-    public static void loadAndReStart(int saveNum) {
-        loadGameData(string.Format("save{0}.sav", saveNum));
-        ((SceneMap)SceneManager.Scene).loadMap(GameTemp.gameMap.mapName, true);
+    /// <summary>
+    /// 读档并以存档数据开始游戏
+    /// </summary>
+    /// <returns></returns>
+    /// <param name="saveNum">存档编号从1开始</param>
+    public static bool loadAndReStart(int saveNum) {
+        try {
+            loadGameData(string.Format("save{0}.sav", saveNum));
+            ((SceneMap)SceneManager.Scene).loadMap(GameTemp.gameMap.mapName, true);
+            return true;
+        } catch (Exception e) {
+            Debug.Log(string.Format("failed to load save{0}.sav.", saveNum));
+            Debug.Log(e.Message + e.StackTrace);
+            return false;
+        }
     }
 }
 

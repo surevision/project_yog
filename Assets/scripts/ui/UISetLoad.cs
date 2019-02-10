@@ -89,9 +89,15 @@ public class UISetLoad : UISetBase {
                 this.menuIndex = Mathf.Max(this.menuIndex - 1, 0);
                 break;
             }
+            if (this.menuIndex >= 0 && InputManager.isTrigger(InputManager.GameKey.C)) {
+                if (DataManager.loadAndReStart(this.menuIndex + 1)) {
+                    this.messenger.switchToUI("");
+                    break;
+                }
+            }
             // 退出菜单
             if (InputManager.isTrigger(InputManager.GameKey.B)) {
-                this.messenger.switchToUI("");
+                this.messenger.switchToUI("menu");
                 break;
             }
             break;
