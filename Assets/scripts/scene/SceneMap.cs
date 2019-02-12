@@ -109,7 +109,7 @@ public class SceneMap : SceneBase {
             // 读档后初始化玩家
             this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
         } else {
-            if (GameTemp.gamePlayer == null) {
+            if (GameTemp.gamePlayer == null) {  // 起始地图
                 // 根据prefab初始化角色
                 GameTemp.gamePlayer = (GamePlayer)this.player.GetComponent<SpritePlayer>().character;
                 GameTemp.gamePlayer.setCellPosition(new Vector2Int(DataManager.systemData.startX, DataManager.systemData.startY));
@@ -143,7 +143,7 @@ public class SceneMap : SceneBase {
 			this.attachPicImage(pic);
 		}
         // 展示地图名
-        if (GameTemp.gameMap.showMapName) {
+        if (!isLoad && GameTemp.gameMap.showMapName) {
             this.showMapName();
         }
     }

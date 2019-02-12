@@ -163,6 +163,7 @@ public class GameMap {
             foreach (SpriteEvent s in spriteEvents) {
                 Debug.Log(string.Format("load event {0}", i + 1));
                 s.setEvent(this.events[i]);
+                this.events[i].loadInitSprite();
                 // 恢复事件解释器
                 if (i + 1 == this.interpreter.eventId) {
 					Debug.Log(string.Format("reset interpreter for event {0}, page {1}", this.interpreter.eventId, this.interpreter.eventPageForList));

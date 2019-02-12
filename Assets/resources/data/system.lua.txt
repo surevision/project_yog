@@ -1,5 +1,5 @@
 local data = CS.SystemData()
-data.startMap = "Map3"
+data.startMap = "Map1"
 data.startX = 9
 data.startY = -1
 data.startDir = 8

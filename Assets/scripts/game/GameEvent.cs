@@ -103,6 +103,17 @@ public class GameEvent : GameCharacterBase {
     }
 
     /// <summary>
+    /// 读档初始化精灵
+    /// </summary>
+    public void loadInitSprite() {
+        SpriteEvent sprite = getEventSprite();
+        foreach (EventPage page in sprite.GetComponentsInChildren<EventPage>()) {
+            page.gameObject.SetActive(true);
+            page.transform.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        }
+    }
+
+    /// <summary>
     /// 读档恢复list数据
     /// </summary>
     /// <param name="page"></param>
