@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class SceneMap : SceneBase {
+    // debug
+    bool debug = true;
 
 	[Serializable]
 	public enum TransitionType {
@@ -219,8 +221,6 @@ public class SceneMap : SceneBase {
         // 刷新对话
         windowMessage.update();
 
-        // debug
-        bool debug = true;
         if (debug) {
             Intersection.Polygon testPolygon = GameTemp.gamePlayer.currCollider();
             Vector2 start = testPolygon.points[0];
@@ -292,6 +292,12 @@ public class SceneMap : SceneBase {
         GameTemp.gameMap.update();
         if (InputManager.isTrigger(InputManager.GameKey.F5)) {
             GameTemp.gameScreen.toggleView();
+        }
+
+        if (debug) {
+            if (InputManager.isTrigger(InputManager.GameKey.F9)) {
+                this.uiSetMessenger.switchToUI("save");
+            }
         }
     }
 
@@ -400,7 +406,7 @@ public class SceneMap : SceneBase {
     /// 切换ui委托
     /// </summary>
     /// <param name="uiName">User interface name.</param>
-    public void switchUIDelegate(string uiSetName) {
+    public void switchUIDelegate(string uiSetName, string args = "") {
         this.uiSetMessenger.uiSetName = uiSetName;
 		if ("menu".Equals(uiSetName)) {
 			// 菜单
@@ -413,6 +419,10 @@ public class SceneMap : SceneBase {
         } else if ("load".Equals(uiSetName)) {
             // 读档
             this.uiSet = new UISetLoad(this.uiSetMessenger);
+            this.uiSet.start();
+        } else if ("save".Equals(uiSetName)) {
+            // 存档
+            this.uiSet = new UISetSave(this.uiSetMessenger);
             this.uiSet.start();
 		} else {
 			// 关闭ui

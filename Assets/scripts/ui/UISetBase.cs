@@ -17,7 +17,7 @@ public class UISetBase {
             this.uiNode = uiNode;
             this.uiSetName = uiSetName;
         }
-        public delegate void SwitchToUIDelegate(string uiSetName);
+        public delegate void SwitchToUIDelegate(string uiSetName, string args = "");
         public SwitchToUIDelegate switchDelegate = null;
         public void setSwitchDelegate(SwitchToUIDelegate _delegate) {
             this.switchDelegate = _delegate;
@@ -26,9 +26,9 @@ public class UISetBase {
         /// 切换到ui
         /// </summary>
         /// <param name="uiSetName"></param>
-        public void switchToUI(string uiSetName) {
+        public void switchToUI(string uiSetName, string args = "") {
             if (this.switchDelegate != null) {
-                switchDelegate.Invoke(uiSetName);
+                switchDelegate.Invoke(uiSetName, args);
             }
         }
     }

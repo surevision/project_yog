@@ -78,6 +78,9 @@ public class GameEvent : GameCharacterBase {
     /// <param name="page"></param>
     /// <returns></returns>
     private EventPage getPageInfo(int page) {
+        if (page < 0) {
+            return null;
+        }
         return this.getEventSprite().GetComponentsInChildren<EventPage>()[page];
     }
 
@@ -87,6 +90,9 @@ public class GameEvent : GameCharacterBase {
     /// <param name="page"></param>
     /// <returns></returns>
     private List<EventCommand> getCommands(int page) {
+        if (page < 0) {
+            return null;
+        }
         List<EventCommand> result = new List<EventCommand>();
         foreach (EventCommand e in this.getPageInfo(page).GetComponentsInChildren<EventCommand>()) {
             if (e.gameObject.activeInHierarchy) {
