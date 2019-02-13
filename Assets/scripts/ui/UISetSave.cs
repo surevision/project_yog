@@ -19,6 +19,8 @@ public class UISetSave : UISetBase {
 
     private int _menuIndex = -1;
 
+    public bool fromMap = false;
+
     /// <summary>
     /// 选中的选项id
     /// </summary>
@@ -95,7 +97,11 @@ public class UISetSave : UISetBase {
             }
             // 退出菜单
             if (InputManager.isTrigger(InputManager.GameKey.B)) {
-                this.messenger.switchToUI("menu");
+                if (fromMap) {
+                    this.messenger.switchToUI("");
+                } else {
+                    this.messenger.switchToUI("menu");
+                }
                 break;
             }
             break;

@@ -251,6 +251,13 @@ public class GameMap {
     }
 
     /// <summary>
+    /// 显示存档
+    /// </summary>
+    public void showSaveMenu() {
+        ((SceneMap)SceneManager.Scene).switchToUI("save", "map");
+    }
+
+    /// <summary>
     /// 返回主角面向的确认键启动格子事件
     /// </summary>
     /// <returns></returns>

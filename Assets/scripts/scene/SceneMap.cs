@@ -395,9 +395,9 @@ public class SceneMap : SceneBase {
     /// 切换UI
     /// </summary>
     /// <param name="newUIName">新ui名</param>
-    public void switchToUI(string newUIName) {
+    public void switchToUI(string newUIName, string args = "") {
         UISetBase origUI = this.uiSet;
-        this.uiSetMessenger.switchToUI(newUIName);
+        this.uiSetMessenger.switchToUI(newUIName, args);
         if (origUI != null) {
             origUI.terminate();
         }
@@ -423,6 +423,7 @@ public class SceneMap : SceneBase {
         } else if ("save".Equals(uiSetName)) {
             // 存档
             this.uiSet = new UISetSave(this.uiSetMessenger);
+            ((UISetSave)this.uiSet).fromMap = "map".Equals(args);
             this.uiSet.start();
 		} else {
 			// 关闭ui

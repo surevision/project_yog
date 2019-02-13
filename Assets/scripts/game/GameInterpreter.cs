@@ -850,6 +850,8 @@ public class GameInterpreter {
 	/// 图片名
 	/// 坐标x
 	/// 坐标y
+    /// opacity 0~255
+    /// rotation 0~360
 	/// </summary>
 	/// <returns></returns>
 	public bool command_showPic() {
@@ -883,6 +885,8 @@ public class GameInterpreter {
 	/// y
 	/// opacity
 	/// rotation
+    /// zoomX
+    /// zoomY
 	/// </summary>
 	/// <returns></returns>
 	public bool command_transPic() {
