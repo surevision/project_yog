@@ -95,6 +95,7 @@ public class DataManager {
     private static void dumpGameData(string fileName) {
         // 
         // header
+        // HeaderData
         // 
         // GameVariables
         // GameSwitches
@@ -182,6 +183,7 @@ public class DataManager {
     private static void loadGameData(string fileName) {
         // 
         // header
+        // HeaderData
         // 
         // GameVariables
         // GameSwitches
