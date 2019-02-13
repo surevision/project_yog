@@ -104,7 +104,7 @@ public class DataManager {
 
         Debug.Log(string.Format("dump data to file {0}", fileName));
 
-        FileStream fs = new FileStream(fileName, FileMode.Create);  // 创建文件 
+        FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate);  // 创建文件 
 
         // 序列化内容
         int offset = 0;
@@ -115,7 +115,7 @@ public class DataManager {
         // HeaderData
         Dictionary<string, string> headerData = new Dictionary<string, string>();
         headerData.Add("mapName", ((SceneMap)SceneManager.Scene).getMapNode().GetComponent<MapExInfo>().showName);
-        headerData.Add("saveTime", DateTime.Now.ToString("yyyy-M-d hh:mm:ss"));
+        headerData.Add("saveTime", DateTime.Now.ToString("yyyy-M-d HH:mm:ss"));
         offset += flushObjData(headerData, fs, offset);
         // GameVariables
         offset += flushObjData(GameTemp.gameVariables, fs, offset);
@@ -147,9 +147,9 @@ public class DataManager {
         // GameSelfSwitches
         // GameScreen
         // GameMap
-
+        FileStream fs = null;
         try {
-            FileStream fs = new FileStream(fileName, FileMode.Open);  // 读取文件 
+            fs = new FileStream(fileName, FileMode.Open);  // 读取文件 
             // 反序列化内容
             byte[] lenBytes = new byte[4];
             int len = 0;
@@ -169,6 +169,9 @@ public class DataManager {
         } catch (Exception e) {
             Debug.Log(string.Format("load data {0} fail", fileName));
             Debug.Log(e.Message + e.StackTrace);
+            if (fs != null) {
+                fs.Close();
+            }
             return null;
         }
     }
