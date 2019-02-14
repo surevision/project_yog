@@ -199,7 +199,6 @@ public class GameMap {
         if (this.needRefresh) {
             this.refresh();
         }
-        this.interpreter.update();
         // 确认键事件启动判定
         if (!this.interpreter.isRunning()) {
             if (InputManager.isTrigger(InputManager.GameKey.C)) {
@@ -231,6 +230,8 @@ public class GameMap {
             }
         }
         GameTemp.gamePlayer.lastHit.Clear();
+        // 更新解释器
+        this.interpreter.update();
         // 更新事件
         foreach (GameEvent e in this.events) {
             e.update();
@@ -374,7 +375,7 @@ public class GameMap {
     /// <param name="character"></param>
     /// <param name="isPlayerStep">判定玩家的行走</param>
     /// <returns></returns>
-    public bool isPassable(Intersection.Polygon polygon, GameCharacterBase character, bool isPlayerStep = false) {
+    public bool isPassable(Intersection.Polygon polygon, GameCharacterBase character) {
         if (character.through) {
             return true;
         }
@@ -389,7 +390,7 @@ public class GameMap {
         foreach (GameEvent e in this.events) {
             Intersection.Polygon eventCollider = e.currCollider();
             if (e.through == false && Intersection.polygonPolygon(eventCollider, polygon)) {
-                if (isPlayerStep && character != null && character != e && !character.lastHit.Contains(e)) {
+                if (character != null && character != e && !e.erased && !character.lastHit.Contains(e)) {
                     character.lastHit.Add(e);
                 }
                 if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && character != e) {
