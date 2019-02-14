@@ -280,7 +280,7 @@ public class GameCharacterBase
         if (dir == DIRS.UP) {
             testPolygon = Intersection.polygonMove(testPolygon, 0, step);
         }
-        return GameTemp.gameMap.isPassable(testPolygon, this);
+        return GameTemp.gameMap.isPassable(testPolygon, this, this.GetType() == typeof(GamePlayer));
     }
 
     /// <summary>

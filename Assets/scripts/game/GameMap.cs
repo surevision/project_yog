@@ -372,8 +372,9 @@ public class GameMap {
     /// </summary>
     /// <param name="polygon"></param>
     /// <param name="character"></param>
+    /// <param name="isPlayerStep">判定玩家的行走</param>
     /// <returns></returns>
-    public bool isPassable(Intersection.Polygon polygon, GameCharacterBase character) {
+    public bool isPassable(Intersection.Polygon polygon, GameCharacterBase character, bool isPlayerStep = false) {
         if (character.through) {
             return true;
         }
@@ -388,7 +389,7 @@ public class GameMap {
         foreach (GameEvent e in this.events) {
             Intersection.Polygon eventCollider = e.currCollider();
             if (e.through == false && Intersection.polygonPolygon(eventCollider, polygon)) {
-                if (character != null && character != e) {
+                if (isPlayerStep && character != null && character != e && !character.lastHit.Contains(e)) {
                     character.lastHit.Add(e);
                 }
                 if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && character != e) {

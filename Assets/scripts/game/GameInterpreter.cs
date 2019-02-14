@@ -413,8 +413,8 @@ public class GameInterpreter {
         // 检查地图事件
         foreach (GameEvent e in GameTemp.gameMap.events) {
             if (e.starting) {
-                this.setup(e.list, e.eventId, e.page);
                 e.starting = false;
+                this.setup(e.list, e.eventId, e.page);
                 return;
             }
         }

@@ -2390,7 +2390,7 @@ MonoBehaviour:
   activeSwitches: []
   activeSelfSwitches:
   - index: 1
-  trigger: 0
+  trigger: 1
   characterName: 
   direction: 2
   pattern: 1
@@ -2752,7 +2752,7 @@ MonoBehaviour:
   activeVariables: []
   activeSwitches: []
   activeSelfSwitches: []
-  trigger: 0
+  trigger: 1
   characterName: 
   direction: 2
   pattern: 1
