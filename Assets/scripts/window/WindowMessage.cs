@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class WindowMessage : WindowBase {
@@ -14,6 +15,8 @@ public class WindowMessage : WindowBase {
     }
 
     public SLRichText richText;
+    public Sprite bgNormal;
+    public Sprite bgBlack;
 
     private const int OpenSpeed = 255 / 8;   //展开速度
 	private bool showFast = false;	    // 快速显示所有
@@ -38,6 +41,11 @@ public class WindowMessage : WindowBase {
             this.openning = false;
         }
         this.needClose = needClose;
+        // 设定显示位置
+        Vector2Int posInt = this.getPos(GameTemp.gameMessage.position);
+        this.gameObject.GetComponent<RectTransform>().position = new Vector3(posInt.x, posInt.y, this.gameObject.GetComponent<RectTransform>().position.z);
+        // 设定背景
+        this.setBg(GameTemp.gameMessage.background);
 		// 初始化显示控件
 		if (this.richText) {
             this.richText.text = this.text;		// 初始化文字
@@ -46,6 +54,48 @@ public class WindowMessage : WindowBase {
 		}
         this.showIndex = 0;	// 当前显示的文字
 	}
+
+    /// <summary>
+    /// 屏幕位置坐标
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    private Vector2Int getPos(GameMessage.ScreenPos pos) {
+        int x = 400;
+        int y = 0;
+        switch (pos) {
+            case GameMessage.ScreenPos.Bottom:
+                y = 114;
+                break;
+            case GameMessage.ScreenPos.Middle:
+                y = 300;
+                break;
+            case GameMessage.ScreenPos.Top:
+                y = 454;
+                break;
+        }
+        return new Vector2Int(x, y);
+    }
+
+    /// <summary>
+    /// 背景
+    /// </summary>
+    /// <param name="bgType"></param>
+    /// <returns></returns>
+    private void setBg(GameMessage.BgType bgType) {
+		Image img = this.gameObject.transform.Find("skin").gameObject.GetComponent<Image>();
+        switch (bgType) {
+            case GameMessage.BgType.Normal:
+		        img.sprite = bgNormal;
+                break;
+            case GameMessage.BgType.Black:
+                img.sprite = bgBlack;
+                break;
+            case GameMessage.BgType.None:
+                img.sprite = null;
+                break;
+        }
+    }
 
     public void update() {
         if (!GameTemp.gameMessage.isBusy()) {

@@ -865,6 +865,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   richText: {fileID: 2101612918}
+  bgNormal: {fileID: 21300000, guid: 322d4a38bd724c746a087dd32bab00bd, type: 3}
+  bgBlack: {fileID: 21300000, guid: cfffed157cc11c44a9b6db40be3c9546, type: 3}
 --- !u!1 &1878240561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,6 +1290,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1598096429219392, guid: 5d8b2afa784a13c488867bb63a009509, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114038218410425924, guid: 5d8b2afa784a13c488867bb63a009509,
+        type: 2}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114038218410425924, guid: 5d8b2afa784a13c488867bb63a009509,
+        type: 2}
+      propertyPath: m_Type
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
