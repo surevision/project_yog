@@ -21,6 +21,7 @@ public class EventCommand : MonoBehaviour {
         Dictionary<GameInterpreter.CommandTypes, string> d = new Dictionary<GameInterpreter.CommandTypes, string> {
             // 1
             {GameInterpreter.CommandTypes.ShowArticle, "显示文章"},
+            {GameInterpreter.CommandTypes.ShowChoice, "显示选择项"},
             {GameInterpreter.CommandTypes.Condition,"条件分歧"},
             {GameInterpreter.CommandTypes.Loop,"循环开始"},
             {GameInterpreter.CommandTypes.Break,"跳出循环"},
@@ -65,6 +66,10 @@ public class EventCommand : MonoBehaviour {
         } else if (this.code == GameInterpreter.CommandTypes.EvalScript) {
         } else if (this.code == GameInterpreter.CommandTypes.EndIf) {
         } else if (this.code == GameInterpreter.CommandTypes.ShowArticle) {
+            if (this.args[0] != null) {
+                title = title + ": " + this.args[0].Replace("\n", "").Substring(0, Mathf.Min(this.args[0].Replace("\n", "").Length, 20));
+            }
+        } else if (this.code == GameInterpreter.CommandTypes.ShowChoice) {
             if (this.args[0] != null) {
                 title = title + ": " + this.args[0].Replace("\n", "").Substring(0, Mathf.Min(this.args[0].Replace("\n", "").Length, 20));
             }

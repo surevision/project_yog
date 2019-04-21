@@ -39,6 +39,7 @@ public class GameInterpreter {
     public enum CommandTypes {
         // 1
         ShowArticle = 101,              // 显示文章
+        ShowChoice = 102,               // 显示选择项
         Condition = 111,                // 条件分歧
         Loop = 112,                     // 循环开始
         Break = 113,                    // 中断循环
@@ -220,6 +221,7 @@ public class GameInterpreter {
     public int lastLoopIndex = 0;   // 上一个循环开始指令索引
     public Dictionary<string, int> gotoMarks = new Dictionary<string,int>(); //标签跳转记录
     public bool messageWaiting = false;	// 等待文章结束
+    public bool choiceWaiting = false;  // 等待选择项
     public GameCharacterBase movingCharacter = null;		// 等待移动结束
     public int waitCount = 0;   // 等待帧数
 
@@ -243,6 +245,7 @@ public class GameInterpreter {
         this.lastLoopIndex = 0;   // 上一个循环开始指令索引
         this.gotoMarks = new Dictionary<string,int>(); //标签跳转索引记录
         this.messageWaiting = false;    // 等待文章结束
+        this.choiceWaiting = false;     // 等待选择项
         this.movingCharacter = null;        // 等待移动结束
         this.waitCount = 0; // 等待帧数
 		this.childInterpreter = null;   // 子解释器（公共事件）
@@ -361,6 +364,9 @@ public class GameInterpreter {
             if (this.messageWaiting) {  // 文章显示中
                 return;
             }
+            if (this.choiceWaiting) {
+                return;
+            }
             if (this.movingCharacter != null) { // 等待移动
                 //Debug.Log(string.Format("this.movingCharacter.isForcedMoving() {0}", this.movingCharacter.isForcedMoving()));
                 if (this.movingCharacter.isForcedMoving()) {  // 移动中
@@ -438,6 +444,9 @@ public class GameInterpreter {
                 case CommandTypes.ShowArticle:  // 101 显示文章 
                     Debug.Log(string.Format("CommandTypes.ShowArticle", this.currentParam));
                     return this.command_showArticle();
+                case CommandTypes.ShowChoice:  // 102 显示选择项
+                    Debug.Log(string.Format("CommandTypes.ShowChoice", this.currentParam));
+                    return this.command_showChoice();
                 case CommandTypes.Condition:    // 111 条件分歧 
                     Debug.Log(string.Format("CommandTypes.Condition", this.currentParam));
                     return this.command_condition();
@@ -561,7 +570,7 @@ public class GameInterpreter {
                 }
                 break;
             }
-            ((SceneMap)SceneManager.Scene).windowMessage.startMessage(needOpen, needClose);
+            ((SceneMap)SceneManager.Scene).startMessage(needOpen, needClose);
             return true;
         }
         return false;
@@ -569,6 +578,41 @@ public class GameInterpreter {
 
     public void onMessageFinish() {
         this.messageWaiting = false;
+    }
+
+    /// <summary>
+    /// 102 显示选择项
+    /// title
+    /// 选项文本1
+    /// 跳转标记1
+    /// 选项文本2
+    /// 跳转标记2
+    /// 选项文本3
+    /// 跳转标记3
+    /// 选项文本4
+    /// 跳转标记4
+    /// </summary>
+    public bool command_showChoice() {
+        Debug.Log(string.Format("command_showChoice"));
+        if (!GameTemp.gameChoice.isBusy()) {
+            string title = this.currentParam[0];
+            GameTemp.gameChoice.prepareChoice(title);
+            GameTemp.gameChoice.title = title;
+            for (int i = 1; i < this.currentParam.Length; i += 2) {
+                GameTemp.gameChoice.addChoice(this.currentParam[i], this.currentParam[i + 1]);
+            }
+            this.choiceWaiting = true;
+            GameTemp.gameChoice.setFinishCallback(this.onChoiceFinish);
+            ((SceneMap)SceneManager.Scene).startChoice(true, true);
+            return true;
+        }
+        return false;
+    }
+
+    public void onChoiceFinish(int index) {
+        ((SceneMap)SceneManager.Scene).windowChoice.gameObject.SetActive(false);
+        this.choiceWaiting = false;
+        this.gotoLabel(GameTemp.gameChoice.choices[index].jumpTag);
     }
 
     /// <summary>
@@ -659,10 +703,14 @@ public class GameInterpreter {
     /// <returns></returns>
     public bool command_gotolabel() {
         string labelName = this.currentParam[0];
+        this.gotoLabel(labelName);
+        return true;
+    }
+
+    public void gotoLabel(string labelName) {
         if (this.gotoMarks.ContainsKey(labelName)) {
             this.index = this.gotoMarks[labelName];
         }
-        return true;
     }
 
 

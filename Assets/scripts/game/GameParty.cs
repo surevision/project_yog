@@ -90,4 +90,18 @@ public class GameParty {
             }
         }
     }
+
+    /// <summary>
+    /// 是否有物品
+    /// </summary>
+    /// <returns><c>true</c>, if item was hased, <c>false</c> otherwise.</returns>
+    /// <param name="id">Identifier.</param>
+    public bool hasItem(int id) {
+        for (int i = 0; i < this.items.Count; i += 1) {
+            if (this.items[i].item.id == id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

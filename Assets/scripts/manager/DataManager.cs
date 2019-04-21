@@ -254,6 +254,7 @@ public class DataManager {
         GameTemp.gameSelfSwitches = gameSelfSwitches;
         GameTemp.gameScreen = gameScreen;
         GameTemp.gameMessage = new GameMessage();
+        GameTemp.gameChoice = new GameChoice();
         GameTemp.gameMap = gameMap;
         GameTemp.gamePlayer = gamePlayer;
         GameTemp.gameParty = gameParty;

@@ -2,7 +2,7 @@ local items = {
 }
 items[#items + 1] = CS.Item(#items + 1, "一元硬币", "", "不知被谁掉在自习楼里的一元硬币", 1, false, "")
 items[#items + 1] = CS.Item(#items + 1, "自习室的钥匙", "", "贴着“4楼自习室”标签的钥匙。", 2, false, "")
-items[#items + 1] = CS.Item(#items + 1, "test3", "", "测试物品描述3", 0, false, "")
+items[#items + 1] = CS.Item(#items + 1, "笔记本", "", "一本破旧的笔记，标记着和电梯内涂鸦相同的符号。", 0, false, "")
 items[#items + 1] = CS.Item(#items + 1, "test4", "", "测试物品描述4", 0, false, "")
 items[#items + 1] = CS.Item(#items + 1, "test5", "", "测试物品描述5", 0, false, "")
 items[#items + 1] = CS.Item(#items + 1, "test6", "", "测试物品描述6", 0, false, "")

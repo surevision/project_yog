@@ -27,6 +27,7 @@ public class SceneMap : SceneBase {
     private GameObject asyncUINode = null;         // 异步刷新的ui
     private GameObject commonEventNode = null;  // 公共事件
     public WindowMessage windowMessage;     // 文字显示窗口
+    public WindowChoice windowChoice;       // 选择项窗口
     public Image snap;                      // 截屏
 	public Image transBlack;				// 黑屏渐变
 	public Image transWhite;				// 白屏渐变
@@ -76,6 +77,7 @@ public class SceneMap : SceneBase {
         GameTemp.gameParty = new GameParty();
         GameTemp.gameScreen = new GameScreen();
         GameTemp.gameMessage = new GameMessage();
+        GameTemp.gameChoice = new GameChoice();
         GameTemp.gameMap = new GameMap();
 
         GameTemp.startMapName = DataManager.systemData.startMap;
@@ -133,6 +135,8 @@ public class SceneMap : SceneBase {
 
         // 初始化文章窗口
         windowMessage.gameObject.transform.localScale = new Vector3(1, 0, windowMessage.gameObject.transform.localScale.z);
+        // 初始化选择窗口
+        windowChoice.gameObject.SetActive(false);
 
         // 初始化显示图片
         if (this.pictures == null) {
@@ -220,6 +224,8 @@ public class SceneMap : SceneBase {
 
         // 刷新对话
         windowMessage.update();
+        // 刷新选择项
+        windowChoice.update();
 
         if (debug) {
             Intersection.Polygon testPolygon = GameTemp.gamePlayer.currCollider();
@@ -333,6 +339,25 @@ public class SceneMap : SceneBase {
         }
         id = index;
         return new List<EventCommand>(this.commonEventNode.transform.GetChild(index).GetComponentsInChildren<EventCommand>());
+    }
+
+    /// <summary>
+    /// 显示文章
+    /// </summary>
+    /// <param name="needOpen">If set to <c>true</c> need open.</param>
+    /// <param name="needClose">If set to <c>true</c> need close.</param>
+    public void startMessage(bool needOpen, bool needClose) {
+        windowMessage.startMessage(needOpen, needClose);
+    }
+
+    /// <summary>
+    /// 显示选择项
+    /// </summary>
+    /// <param name="needOpen">If set to <c>true</c> need open.</param>
+    /// <param name="needClose">If set to <c>true</c> need close.</param>
+    public void startChoice(bool needOpen, bool needClose) {
+        windowChoice.gameObject.SetActive(true);
+        windowChoice.startMessage(needOpen, needClose);
     }
 
 	/// <summary>
