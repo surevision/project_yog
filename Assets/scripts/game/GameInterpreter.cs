@@ -279,6 +279,7 @@ public class GameInterpreter {
     /// <param name="list">List.</param>
     public void preDealList(List<EventCommand> list) {
         // 记录跳转标签
+        this.gotoMarks.Clear();
         for (int i = 0; i < list.Count; i += 1) {
             if (list[i].code == CommandTypes.Label) {
                 string labelName = list[i].args[0];
@@ -944,6 +945,10 @@ public class GameInterpreter {
 		int y = int.Parse(this.currentParam[3]);
 		GamePicture currPic = GameTemp.gameScreen.getPicture(num);
 		Debug.Log(string.Format("trans pic {0}", num));
+        if (currPic == null) {
+            Debug.Log(string.Format("return for pic is null"));
+            return true;
+        }
 		currPic.setAnimDuration(wait);
 		currPic.moveTo(x, y);
 		if (this.currentParam.Length > 4 && !"".Equals(this.currentParam[4])) {
