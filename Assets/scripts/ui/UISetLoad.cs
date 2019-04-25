@@ -97,7 +97,11 @@ public class UISetLoad : UISetBase {
             }
             // 退出菜单
             if (InputManager.isTrigger(InputManager.GameKey.B)) {
-                this.messenger.switchToUI("menu");
+                if (SceneManager.Scene.GetType() == typeof(SceneMap)) {
+                    this.messenger.switchToUI("menu");
+                } else {
+                    this.messenger.switchToUI("title");
+                }
                 break;
             }
             break;
