@@ -24,4 +24,7 @@ public class SceneManager {
             UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
         }
     }
+    public static void exitGame() {
+        UnityEngine.Application.Quit();
+    }
 }

@@ -52,9 +52,6 @@ public class SceneMap : SceneBase {
         base.Start();
         sceneName = "Map";
 
-		// 初始化数据库
-		DataManager.loadAllData();
-
         // 初始化音频
         AudioManager.setup(
             GameObject.Find("BGM"),
@@ -71,17 +68,13 @@ public class SceneMap : SceneBase {
         this.commonEventNode = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/CommonEventNode")));
         this.commonEventNode.transform.parent = GameObject.Find("CommonEvents").transform;
 
-        GameTemp.gameVariables = new GameVariables();
-        GameTemp.gameSwitches = new GameSwitches();
-        GameTemp.gameSelfSwitches = new GameSelfSwitches();
-        GameTemp.gameParty = new GameParty();
-        GameTemp.gameScreen = new GameScreen();
-        GameTemp.gameMessage = new GameMessage();
-        GameTemp.gameChoice = new GameChoice();
-        GameTemp.gameMap = new GameMap();
-
-        GameTemp.startMapName = DataManager.systemData.startMap;
-        loadMap(GameTemp.startMapName);
+        if (GameTemp.startMapName != null && !"".Equals(GameTemp.startMapName)) {
+            // 新游戏
+            loadMap(GameTemp.startMapName);
+        } else {
+            // 读取游戏
+            loadMap(GameTemp.gameMap.mapName, true);
+        }
 
     }
 
@@ -108,8 +101,9 @@ public class SceneMap : SceneBase {
         this.player = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/characters/players/Player"));
         this.player.transform.SetParent(map.transform.Find(GameMap.layers[(int)GameMap.Layers.LayerPlayer]));
         if (isLoad) {
-            // 读档后初始化玩家
             this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
+            this.updateLogic();
+            this.updateRender();
         } else {
             if (GameTemp.gamePlayer == null) {  // 起始地图
                 // 根据prefab初始化角色
@@ -127,8 +121,8 @@ public class SceneMap : SceneBase {
         }
 
         // 绑定摄像机到玩家
-        cameraControl.target = player;
-        cameraControl.player = player;
+        cameraControl.target = this.player;
+        cameraControl.player = this.player;
         cameraControl.minTile = GameTemp.gameMap.mapInfo.minTileWorld;
         cameraControl.maxTile = GameTemp.gameMap.mapInfo.maxTileWorld;
         cameraControl.setupPos(cameraControl.minTile, cameraControl.maxTile);

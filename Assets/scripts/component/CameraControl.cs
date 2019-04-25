@@ -78,6 +78,9 @@ public class CameraControl : MonoBehaviour {
     }
 
     public void update() {
+        if (this.camera == null) {
+            return;
+        }
         if (this.playerLightMask != null) {
             if (this.playerLightMask.activeSelf != GameTemp.gameScreen.maskVisible) {
                 this.playerLightMask.SetActive(GameTemp.gameScreen.maskVisible);
@@ -111,10 +114,11 @@ public class CameraControl : MonoBehaviour {
 						x,
 						y,
 						this.player.transform.position.z
-						);
+                    );
 					Vector3 pos = camera.WorldToViewportPoint(this.player.transform.position);
 					float _x = (x - this.target.transform.position.x) / (Util.WIDTH / Util.PPU);
 					float _y = (y - this.target.transform.position.y) / (Util.HEIGHT / Util.PPU);
+//                    Debug.Log(string.Format("x {0} y {1}", _x, _y));
 					Vector2 offset = new Vector2(_x, _y);
 					this._playerLightMaskMaterial.SetTextureOffset("_Mask", offset);
 				}

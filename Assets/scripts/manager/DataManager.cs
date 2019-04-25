@@ -291,7 +291,11 @@ public class DataManager {
     public static bool loadAndReStart(int saveNum) {
         try {
             loadGameData(string.Format("save{0}.sav", saveNum));
-            ((SceneMap)SceneManager.Scene).loadMap(GameTemp.gameMap.mapName, true);
+            if (SceneManager.Scene.GetType() == typeof(SceneTitle)) {
+                ((SceneTitle)SceneManager.Scene).startLoadedGame();
+            } else {
+                ((SceneMap)SceneManager.Scene).loadMap(GameTemp.gameMap.mapName, true);
+            }
             return true;
         } catch (Exception e) {
             Debug.Log(string.Format("failed to load save{0}.sav.", saveNum));
