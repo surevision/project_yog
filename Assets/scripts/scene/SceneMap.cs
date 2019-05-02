@@ -93,17 +93,15 @@ public class SceneMap : SceneBase {
 		GameObject.Destroy(this.currMapObj);
         map.transform.SetParent(GameObject.Find("Map").transform);
         map.transform.position = Vector3.zero;
-        this.currMapObj = map;
+		this.currMapObj = map;
 
-        GameTemp.gameMap.setupMap(map, isLoad);
+		GameTemp.gameMap.setupMap(map, isLoad);
 
         // 创建玩家
         this.player = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/characters/players/Player"));
         this.player.transform.SetParent(map.transform.Find(GameMap.layers[(int)GameMap.Layers.LayerPlayer]));
         if (isLoad) {
             this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
-            this.updateLogic();
-            this.updateRender();
         } else {
             if (GameTemp.gamePlayer == null) {  // 起始地图
                 // 根据prefab初始化角色
@@ -111,21 +109,23 @@ public class SceneMap : SceneBase {
                 GameTemp.gamePlayer.setCellPosition(new Vector2Int(DataManager.systemData.startX, DataManager.systemData.startY));
                 GameTemp.gamePlayer.direction = DataManager.systemData.startDir;
                 GameTemp.gameMap.showMapName = DataManager.systemData.showMapName;
-                GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
-
-                this.updateLogic();
-                this.updateRender();
+				GameTemp.gamePlayer.setupCollider(this.player.GetComponent<SpritePlayer>());    // 玩家碰撞盒
+				this.updateLogic();
+				this.updateRender();
             } else {
                 this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
             }
-        }
+		}
 
-        // 绑定摄像机到玩家
-        cameraControl.target = this.player;
-        cameraControl.player = this.player;
-        cameraControl.minTile = GameTemp.gameMap.mapInfo.minTileWorld;
-        cameraControl.maxTile = GameTemp.gameMap.mapInfo.maxTileWorld;
-        cameraControl.setupPos(cameraControl.minTile, cameraControl.maxTile);
+		// 绑定摄像机到玩家
+		cameraControl.target = this.player;
+		cameraControl.player = this.player;
+		// 刷新视野
+		cameraControl.gameObject.GetComponent<Camera>().orthographicSize = GameTemp.gameScreen.currView;
+		// 初始化摄像机范围
+		cameraControl.minTile = GameTemp.gameMap.mapInfo.minTileWorld;
+		cameraControl.maxTile = GameTemp.gameMap.mapInfo.maxTileWorld;
+		cameraControl.setupPos(cameraControl.minTile, cameraControl.maxTile);
 
         // 初始化文章窗口
         windowMessage.gameObject.transform.localScale = new Vector3(1, 0, windowMessage.gameObject.transform.localScale.z);
