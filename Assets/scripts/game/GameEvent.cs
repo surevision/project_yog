@@ -58,9 +58,9 @@ public class GameEvent : GameCharacterBase {
         this.mapName = mapName;
 
         SpriteEvent sprite = getEventSprite();
-        foreach (EventPage page in sprite.GetComponentsInChildren<EventPage>()) {
-            page.gameObject.SetActive(true);
-            page.transform.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+		foreach (EventPage page in sprite.GetComponentsInChildren<EventPage>(true)) {
+			page.transform.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+            page.gameObject.SetActive(false);
         }
         this.x = sprite.transform.position.x;
         this.y = sprite.transform.position.y;
@@ -81,7 +81,7 @@ public class GameEvent : GameCharacterBase {
         if (page < 0) {
             return null;
         }
-        return this.getEventSprite().GetComponentsInChildren<EventPage>()[page];
+		return this.getEventSprite().GetComponentsInChildren<EventPage>(true)[page];
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ public class GameEvent : GameCharacterBase {
         }
         List<EventCommand> result = new List<EventCommand>();
         foreach (EventCommand e in this.getPageInfo(page).GetComponentsInChildren<EventCommand>()) {
-            if (e.gameObject.activeInHierarchy) {
+			if (e.gameObject.activeSelf) {
                 result.Add(e);
             }
         }
@@ -107,9 +107,9 @@ public class GameEvent : GameCharacterBase {
     /// </summary>
     public void loadInitSprite() {
         SpriteEvent sprite = getEventSprite();
-        foreach (EventPage page in sprite.GetComponentsInChildren<EventPage>()) {
-            page.gameObject.SetActive(true);
-            page.transform.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+		foreach (EventPage page in sprite.GetComponentsInChildren<EventPage>(true)) {
+			page.transform.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+			page.gameObject.SetActive(false);
         }
     }
 
@@ -176,7 +176,7 @@ public class GameEvent : GameCharacterBase {
             this.characterName = "";    // 清理图像
         } else {
             // 显示控制
-            EventPage[] pages = this.getEventSprite().GetComponentsInChildren<EventPage>();
+            EventPage[] pages = this.getEventSprite().GetComponentsInChildren<EventPage>(true);
 
             // 只显示本页对应精灵
             EventPage currPage = pages[page];
@@ -222,7 +222,7 @@ public class GameEvent : GameCharacterBase {
         int newPage = -1;
         if (!this.erased) {
             // 没有暂时消除的情况下
-            EventPage[] pages = this.getEventSprite().GetComponentsInChildren<EventPage>();
+            EventPage[] pages = this.getEventSprite().GetComponentsInChildren<EventPage>(true);
             // 按页码从大到小遍历
             for (int i = pages.Length - 1; i >= 0; i -= 1) {
                 if (this.isConditionMet(i)) {
@@ -231,7 +231,12 @@ public class GameEvent : GameCharacterBase {
                 }
             }
         }
-        if (this.page != newPage) {
+		if (this.page != newPage) {
+			SpriteEvent sprite = getEventSprite();
+			if (this.page != -1) {
+				sprite.gameObject.GetComponentsInChildren<EventPage> (true) [this.page].gameObject.SetActive (false);
+			}
+			sprite.gameObject.GetComponentsInChildren<EventPage> (true) [newPage].gameObject.SetActive (true);
             this.clearStarting();
             this.setupPage(newPage);    // 设置新启动页,-1时清除
         }
