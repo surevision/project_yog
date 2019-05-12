@@ -155,6 +155,9 @@ public class GameCharacterBase
     /// 更新脚步动画
     /// </summary>
     protected virtual void updateAnimation() {
+		if (this.directionFix) {
+			return;
+		}
         this.updateAnimeCount();
 		if (this.animeCount > 24 - this.getMoveSpeed() * 2) {
             this.updateAnimePattern();  // 改图

@@ -178,7 +178,7 @@ public class UISetItem : UISetBase {
 
             // 不可使用的物品灰化
             if (((Item)item.item).commonEventId == 0) {
-                itemObj.GetComponent<TMPro.TMP_Text>().color = Color.gray;
+				itemObj.GetComponent<TMPro.TMP_Text>().color = new Color(0.8f, 0.8f, 0.8f);
             }
         }
         if (GameTemp.gameParty.items.Count > 0) {
