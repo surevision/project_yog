@@ -197,6 +197,7 @@ public class GameMap {
 
     public void update() {
         if (this.needRefresh) {
+			Debug.Log ("refresh by needRefresh");
             this.refresh();
         }
         // 确认键事件启动判定

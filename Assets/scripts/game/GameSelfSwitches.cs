@@ -77,4 +77,10 @@ public class GameSelfSwitches {
     public static string key(string mapName, int eventId, GameInterpreter.SelfSwitchCode switchId) {
         return string.Format("{0},{1},{2}", mapName, eventId, (int)switchId);
     }
+
+	public void debugPrint() {
+		foreach (var pair in this.data) {
+			Debug.Log(string.Format("key {0}, value {1}", pair.Key, pair.Value));
+		}
+	}
 }

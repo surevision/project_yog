@@ -120,8 +120,10 @@ public class GameCharacterBase
     /// <summary>
     /// 更新
     /// </summary>
-    public virtual void update() {
-        this.updateAnimation();
+	public virtual void update() {
+		if (!this.directionFix) {
+			this.updateAnimation();
+		}
         if (this.isMoving()) {
             this.updateMove();
             return;
@@ -155,9 +157,6 @@ public class GameCharacterBase
     /// 更新脚步动画
     /// </summary>
     protected virtual void updateAnimation() {
-		if (this.directionFix) {
-			return;
-		}
         this.updateAnimeCount();
 		if (this.animeCount > 24 - this.getMoveSpeed() * 2) {
             this.updateAnimePattern();  // 改图

@@ -117,7 +117,10 @@ public class GameEvent : GameCharacterBase {
     /// 读档恢复list数据
     /// </summary>
     /// <param name="page"></param>
-    public void loadCommands(int page) {
+	public void loadCommands(int page) {
+		SpriteEvent sprite = getEventSprite();
+		GameObject pageObject = sprite.GetComponentsInChildren<EventPage>(true)[page].gameObject;
+		pageObject.SetActive (true);
         this.list = this.getCommands(page);
     }
 
@@ -180,9 +183,11 @@ public class GameEvent : GameCharacterBase {
 
             // 只显示本页对应精灵
             EventPage currPage = pages[page];
-            this.characterName = currPage.characterName;
-            this.direction = currPage.direction;
-            this.pattern = currPage.pattern;
+			this.characterName = currPage.characterName;
+			this.direction = currPage.direction;
+			Debug.Log(string.Format("curr char pattern {0}", this.pattern));
+			this.pattern = currPage.pattern;
+			Debug.Log(string.Format("curr char pattern {0}", this.pattern));
             this.priorityType = currPage.priorityType;
             this.through = currPage.through;
             this.moveSpeed = currPage.moveSpeed;
@@ -192,6 +197,7 @@ public class GameEvent : GameCharacterBase {
             this.directionFix = currPage.directionFix;
             this.list = this.getCommands(page);
             this.trigger = this.getPageInfo(page).trigger;
+			this.isDirty = true;
             if (this.trigger == GameInterpreter.TriggerTypes.Async) {
                 // 并行处理：
                 this.interpreter = new GameInterpreter(0, false);
@@ -234,9 +240,9 @@ public class GameEvent : GameCharacterBase {
 		if (this.page != newPage) {
 			SpriteEvent sprite = getEventSprite();
 			if (this.page != -1) {
-				sprite.gameObject.GetComponentsInChildren<EventPage> (true) [this.page].gameObject.SetActive (false);
+				sprite.gameObject.GetComponentsInChildren<EventPage> (true) [this.page].gameObject.SetActive(false);
 			}
-			sprite.gameObject.GetComponentsInChildren<EventPage> (true) [newPage].gameObject.SetActive (true);
+			sprite.gameObject.GetComponentsInChildren<EventPage> (true) [newPage].gameObject.SetActive(true);
             this.clearStarting();
             this.setupPage(newPage);    // 设置新启动页,-1时清除
         }
