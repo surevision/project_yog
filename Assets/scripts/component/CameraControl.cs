@@ -11,27 +11,12 @@ public class CameraControl : MonoBehaviour {
     public Material _screenMaterial = null;
 
 	private Camera camera;
-	private GameObject _target;
-    private GameObject _player;
-    private Vector3 _targetPos;
 
-    private bool forcePos = false;
+	public GameObject player;
 
     private Vector3 _minTile;
     private Vector3 _maxTile;
 
-    public GameObject target {
-        get { return _target; }
-        set { _target = value; }
-    }
-    public GameObject player {
-        get { return _player; }
-        set { _player = value; }
-    }
-    public Vector3 targetPos {
-        get { return _targetPos; }
-        set { _targetPos = value; }
-	}
 	public GameObject playerLightMask {
 		get {
 			return _playerLightMask;
@@ -81,49 +66,37 @@ public class CameraControl : MonoBehaviour {
         if (this.camera == null) {
             return;
         }
+		if (this.player == null) {
+			return;
+		}
         if (this.playerLightMask != null) {
             if (this.playerLightMask.activeSelf != GameTemp.gameScreen.maskVisible) {
                 this.playerLightMask.SetActive(GameTemp.gameScreen.maskVisible);
             }
         }
-        //强制转向坐标
-        if (forcePos) {
-            // 更新摄像机位置
-            float x = Mathf.Clamp(this.targetPos.x, this.minX, this.maxX);
-            float y = Mathf.Clamp(this.targetPos.y, this.minY, this.maxY);
-            this.transform.position = new Vector3(
-                x + GameTemp.gameScreen.shakePosX / (float)Util.PPU,
-                y + GameTemp.gameScreen.shakePosY / (float)Util.PPU,
-                -10
-                );
-        } else {
-            // 转向目标
-            if (this.target != null) {
-                // 更新摄像机位置
-                float x = Mathf.Clamp(this.target.transform.position.x, this.minX, this.maxX);
-                float y = Mathf.Clamp(this.target.transform.position.y, this.minY, this.maxY);
-                this.transform.position = new Vector3(
-                    x + GameTemp.gameScreen.shakePosX / (float)Util.PPU,
-                    y + GameTemp.gameScreen.shakePosY / (float)Util.PPU,
-                    -10
-                    );
-                // 更新遮罩位置
-                if (GameTemp.gameScreen.maskVisible && this.target == this.player && this.playerLightMask != null) {
-                    Vector3 size = this.player.GetComponent<SpriteRenderer>().bounds.size;
-					this.playerLightMask.transform.position = new Vector3(
-						x,
-						y,
-						this.player.transform.position.z
-                    );
-					Vector3 pos = camera.WorldToViewportPoint(this.player.transform.position);
-					float _x = (x - this.target.transform.position.x) / (Util.WIDTH / Util.PPU);
-					float _y = (y - this.target.transform.position.y) / (Util.HEIGHT / Util.PPU);
-//                    Debug.Log(string.Format("x {0} y {1}", _x, _y));
-					Vector2 offset = new Vector2(_x, _y);
-					this._playerLightMaskMaterial.SetTextureOffset("_Mask", offset);
-				}
-            }
-        }
+		// 转向目标// 更新摄像机位置
+		float x = Mathf.Clamp(GameTemp.gameScreen.currTargetPos.x, this.minX, this.maxX);
+		float y = Mathf.Clamp(GameTemp.gameScreen.currTargetPos.y, this.minY, this.maxY);
+		this.transform.position = new Vector3(
+			x + GameTemp.gameScreen.shakePosX / (float)Util.PPU,
+			y + GameTemp.gameScreen.shakePosY / (float)Util.PPU,
+			-10
+		);
+		// 更新遮罩位置
+		if (GameTemp.gameScreen.maskVisible && this.playerLightMask != null) {
+			GameObject player = this.player;
+			this.playerLightMask.transform.position = new Vector3(
+				x,
+				y,
+				this.player.transform.position.z
+			);
+			Vector3 pos = camera.WorldToViewportPoint(this.player.transform.position);
+			float _x = (x - GameTemp.gameScreen.currTargetPos.x) / (Util.WIDTH / Util.PPU);
+			float _y = (y - GameTemp.gameScreen.currTargetPos.y) / (Util.HEIGHT / Util.PPU);
+			//                    Debug.Log(string.Format("x {0} y {1}", _x, _y));
+			Vector2 offset = new Vector2(_x, _y);
+			this._playerLightMaskMaterial.SetTextureOffset("_Mask", offset);
+		}
     }
 
     /// <summary>

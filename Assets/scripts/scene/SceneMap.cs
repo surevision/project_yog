@@ -86,7 +86,6 @@ public class SceneMap : SceneBase {
         // 加载地图prefab
         GameObject map = Instantiate<GameObject>(Resources.Load<GameObject>(string.Format("prefabs/maps/{0}", mapName)));
         CameraControl cameraControl = GameObject.Find("Main Camera").GetComponent<CameraControl>();
-        cameraControl.target = null;
         cameraControl.player = null;
         map.name = mapName;
 		GameObject.Destroy(this.player);
@@ -113,14 +112,12 @@ public class SceneMap : SceneBase {
 				this.updateLogic();
 				this.updateRender();
             } else {
-                this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
+				this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
             }
 		}
 
 		// 绑定摄像机到玩家
-		cameraControl.target = this.player;
-		cameraControl.player = this.player;
-		// 刷新视野
+		cameraControl.player = this.player;		// 刷新视野
 		cameraControl.gameObject.GetComponent<Camera>().orthographicSize = GameTemp.gameScreen.currView;
 		// 初始化摄像机范围
 		cameraControl.minTile = GameTemp.gameMap.mapInfo.minTileWorld;
@@ -158,17 +155,18 @@ public class SceneMap : SceneBase {
             this.snap.sprite = sprite;
             return;
         }
-        if (this.isInTransition()) {
-            // 刷新渐变
-            if (this._transitionProgress > 0) {
-                this._transitionProgress = Mathf.Max(this._transitionProgress - 1, 0);
-                if (this._transitionProgress == 0) {
-                    this._transitionProgress = -1;
-                    if (this.transitionFinishCallback != null) {
-                        transitionFinishCallback.Invoke();
-                    }
-                }
-            }
+
+		if (this.isInTransition()) {
+			// 刷新渐变
+			if (this._transitionProgress > 0) {
+				this._transitionProgress = Mathf.Max(this._transitionProgress - 1, 0);
+				if (this._transitionProgress == 0) {
+					this._transitionProgress = -1;
+					if (this.transitionFinishCallback != null) {
+						transitionFinishCallback.Invoke();
+					}
+				}
+			}
 			switch (this._transitionType) {
 			case TransitionType.SNAP:
 				this.snap.color = new Color(1, 1, 1, this.transitionProgress);
@@ -180,7 +178,9 @@ public class SceneMap : SceneBase {
 				this.transWhite.color = new Color (1, 1, 1, this.transitionProgress);
 				break;
 			}
-        }
+		}
+
+
 
         if (this.isUIRunning()) {
             return;
@@ -271,7 +271,9 @@ public class SceneMap : SceneBase {
         base.updateLogic();
 
         // 刷新渐变
-        if (this.isInTransition()) {
+		if (this.isInTransition()) {
+
+			GameTemp.gameScreen.updateCurrPos();
             return;
         }
 
@@ -308,6 +310,10 @@ public class SceneMap : SceneBase {
     public GameObject getMapNode() {
         return this.currMapObj;
     }
+
+	public GameObject getPlayerNode() {
+		return this.player;
+	}
 
     /// <summary>
     /// 按id获得公共事件指令

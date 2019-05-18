@@ -71,10 +71,21 @@ public class GameScreen {
     public int shakePosX = 0;   // X震动位置
     public int shakePosY = 0;   // Y震动位置
 
+	// 屏幕指向相关
+	public int targetToGameObject;	// 指向 GameObject， -1 不跟随， 0 玩家， 1~n 事件
+	public Vector2 targetPositionFrom;
+	public Vector2 targetPositionTo;		// 移向目标坐标
+	public Vector2 currTargetPos;	// 当前指向坐标
+	public int targetToDuration;	// 移向目标指定时间
+	public int targetToFrame;	// 移向目标已用帧数
+
 	public GameScreen() {
 		this.currView = NormalView;
         this.currScreenColorInfo = new ScreenColorInfo();
 		this.pictures = new Dictionary<int, GamePicture>();
+		this.targetToGameObject = 0;
+		this.targetToDuration = -1;
+		this.currTargetPos = Vector2.zero;
 	}
 
 	public float currView {
@@ -202,40 +213,123 @@ public class GameScreen {
     /// <returns></returns>
     public bool isShaking() {
         return this.shakeDuration > 0;
-    }
+	}
+
+	/// <summary>
+	/// 是否正在将镜头转向坐标
+	/// </summary>
+	/// <returns><c>true</c>, if targeting to position was ised, <c>false</c> otherwise.</returns>
+	public bool isTargetingToPos() {
+		return this.targetToDuration > 0;
+	}
+
+	/// <summary>
+	/// 跟随角色
+	/// </summary>
+	/// <param name="id">Identifier. 0 主角 1~n 事件</param>
+	public void targetToCharacter(int id) {
+		if (id >= 0) {
+			this.targetToGameObject = id;
+		} else {
+			Debug.Log(string.Format("wrong id {id}", id));
+		}
+	}
+
+	/// <summary>
+	/// 移向坐标
+	/// </summary>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="y">The y coordinate.</param>
+	/// <param name="duration">Duration.</param>
+	public void targetToPos(float x, float y, int duration) {
+		this.targetToGameObject = -1;
+		this.targetPositionFrom = this.currTargetPos;
+		this.targetPositionTo = new Vector2(x, y);
+		this.targetToDuration = duration;
+		this.targetToFrame = 0;
+	}
+
+	/// <summary>
+	/// 移向角色坐标
+	/// </summary>
+	/// <param name="id">Identifier.</param>
+	/// <param name="duration">Duration.</param>
+	public void targetToPosByCharId(int id, int duration) {
+
+		if (id >= 0) {
+			Vector2 v2 = Vector2.zero;
+			if (id == 0) {	// 跟随主角
+				Vector3 v3 = ((SceneMap)SceneManager.Scene).getPlayerNode().transform.position;
+				v2 = new Vector2(v3.x, v3.y);
+			} else {	// 跟随事件
+				Vector3 v3 = ((GameEvent)GameTemp.gameMap.getCharacter(id)).getEventSprite().transform.position;
+				v2 = new Vector2(v3.x, v3.y);
+			}
+			this.targetToGameObject = -1;
+			this.targetPositionFrom = this.currTargetPos;
+			this.targetPositionTo = v2;
+			this.targetToDuration = duration;
+			this.targetToFrame = 0;
+		}
+	}
+
+	public void updateCurrPos() {
+
+		// 刷新镜头移动
+		if (this.isTargetingToPos()) {	// 移向位置
+			this.targetToFrame += 1;
+			this.currTargetPos = Vector2.Lerp(this.targetPositionFrom, this.targetPositionTo, 1.0f * this.targetToFrame / this.targetToDuration);
+			if (this.targetToFrame == this.targetToDuration) {
+				this.targetToDuration = -1;
+			}
+		} else {
+			// 跟随角色
+			if (this.targetToGameObject >= 0) {
+				if (this.targetToGameObject == 0) {	// 跟随主角
+					Vector3 v3 = ((SceneMap)SceneManager.Scene).getPlayerNode().transform.position;
+					this.currTargetPos = new Vector2(v3.x, v3.y);
+				} else {	// 跟随事件
+					Vector3 v3 = ((GameEvent)GameTemp.gameMap.getCharacter(this.targetToGameObject)).getEventSprite().transform.position;
+					this.currTargetPos = new Vector2(v3.x, v3.y);
+				}
+			}
+		}
+		
+	}
 
     public void update() {
+		// 更新镜头位置
+		this.updateCurrPos();
+		// 刷新色调
+		if (this.isColorChanging()) {
+			this.screenColorTransformFrames -= 1;
+			if (this.screenColorTransformFrames == 0) {
+				this.currScreenColorInfo = this.targetScreenColorInfo;
+				this.targetScreenColorInfo = null;
+			} else {
+				this.currScreenColorInfo.brightness += 
+					(this.targetScreenColorInfo.brightness - this.currScreenColorInfo.brightness) / this.screenColorTransformFrames;
+				this.currScreenColorInfo.contrast += 
+					(this.targetScreenColorInfo.contrast - this.currScreenColorInfo.contrast) / this.screenColorTransformFrames;
+				this.currScreenColorInfo.saturation += 
+					(this.targetScreenColorInfo.saturation - this.currScreenColorInfo.saturation) / this.screenColorTransformFrames;
+				this.currScreenColorInfo.hue += 
+					(this.targetScreenColorInfo.hue - this.currScreenColorInfo.hue) / this.screenColorTransformFrames;
+			}
+		}
+
+		// 刷新视野
+		if (currView < targetView) {
+			currView = Mathf.Min(currView + (Util.GRID_WIDTH / Util.PPU) / 8, targetView);
+		}
+		if (currView > targetView) {
+			currView = Mathf.Max(currView - (Util.GRID_WIDTH / Util.PPU) / 8, targetView);
+		}
 
 		// 刷新图片
 		foreach(GamePicture pic in this.pictures.Values) {
 			pic.update();
 		}
-
-        // 刷新色调
-        if (this.isColorChanging()) {
-            this.screenColorTransformFrames -= 1;
-            if (this.screenColorTransformFrames == 0) {
-                this.currScreenColorInfo = this.targetScreenColorInfo;
-                this.targetScreenColorInfo = null;
-            } else {
-                this.currScreenColorInfo.brightness += 
-                    (this.targetScreenColorInfo.brightness - this.currScreenColorInfo.brightness) / this.screenColorTransformFrames;
-                this.currScreenColorInfo.contrast += 
-                    (this.targetScreenColorInfo.contrast - this.currScreenColorInfo.contrast) / this.screenColorTransformFrames;
-                this.currScreenColorInfo.saturation += 
-                    (this.targetScreenColorInfo.saturation - this.currScreenColorInfo.saturation) / this.screenColorTransformFrames;
-                this.currScreenColorInfo.hue += 
-                    (this.targetScreenColorInfo.hue - this.currScreenColorInfo.hue) / this.screenColorTransformFrames;
-            }
-        }
-
-        // 刷新视野
-        if (currView < targetView) {
-            currView = Mathf.Min(currView + (Util.GRID_WIDTH / Util.PPU) / 8, targetView);
-        }
-        if (currView > targetView) {
-            currView = Mathf.Max(currView - (Util.GRID_WIDTH / Util.PPU) / 8, targetView);
-        }
 
         // 刷新震动
         if (this.isShaking()) {
@@ -266,4 +360,5 @@ public class GameScreen {
             }
         }
     }
+
 }

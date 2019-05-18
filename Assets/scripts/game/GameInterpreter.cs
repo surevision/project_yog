@@ -807,6 +807,9 @@ public class GameInterpreter {
     /// <returns></returns>
     public bool command_transformation() {
         GameTemp.transforming = true;
+		if (GameTemp.gameScreen.targetToGameObject > 0) {
+			GameTemp.gameScreen.targetToGameObject = -1;	// 若过图的时候镜头在跟随事件则取消跟随
+		}
         Vector2Int newPos = new Vector2Int(int.Parse(this.currentParam[1].Trim()), int.Parse(this.currentParam[2].Trim()));
         GameTemp.gamePlayer.setCellPosition(newPos);
         if (this.currentParam.Length >= 4 && (!"".Equals(this.currentParam[3]))) {

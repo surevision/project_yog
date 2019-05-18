@@ -401,4 +401,21 @@ public class GameMap {
         }
         return true;
     }
+
+	/// <summary>
+	/// 根据编号取gamePlayer/gameEvent
+	/// </summary>
+	/// <param name="charId">char</param>
+	/// <returns></returns>
+	public GameCharacterBase getCharacter(int charId) {
+		if (charId == -1) {
+			return null;
+		} else if (charId == 0) {
+			// 玩家
+			return GameTemp.gamePlayer;
+		} else {
+			// 指定事件
+			return this.events[charId - 1];
+		}
+	}
 }
