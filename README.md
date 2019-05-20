@@ -19,3 +19,5 @@
 - [Caitlin Nicnubill](http://nicnubill.deviantart.com/)
 
 - [Rayane Félix](https://opengameart.org/content/rpg-terrains)
+
+- [Gage Prentiss](http://www.hplhs.org/images/dart/hod/prentisstrap.jpg) ※ 如果有无版权的 **偏光三八面体** 图片，请告诉我。
