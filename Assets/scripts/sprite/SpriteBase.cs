@@ -83,7 +83,7 @@ public class SpriteBase : MonoBehaviour {
 		sr.sprite = animInfo.animSprites[0];
 		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 		sr.sortingLayerName = spriteRenderer.sortingLayerName;
-		sr.sortingOrder = spriteRenderer.sortingOrder;
+		sr.sortingOrder = spriteRenderer.sortingOrder + 1;
 		animSpriteObj.transform.SetParent(this.gameObject.transform);
 		animSpriteObj.transform.localPosition = new Vector3(0, 0, 0);
 	}
