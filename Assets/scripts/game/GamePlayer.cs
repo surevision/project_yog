@@ -55,6 +55,44 @@ public class GamePlayer : GameCharacterBase {
         }
     }
 
+	public SpritePlayer getPlayerSprite() {
+		return ((SceneMap)SceneManager.Scene).getPlayerNode().GetComponent<SpritePlayer>();
+	}
+
+	/// <summary>
+	/// 播放动画
+	/// </summary>
+	/// <param name="animName">Animation name.</param>
+	/// <param name="loop">If set to <c>true</c> loop.</param>
+	public override void playAnim(string animName, bool loop = false)
+	{
+		base.playAnim(animName, loop);
+		SpritePlayer sprite = getPlayerSprite();
+		sprite.playAnim(animName, loop);
+	}
+
+	/// <summary>
+	/// 停止一个循环动画，不考虑序号
+	/// </summary>
+	/// <param name="animName">Animation name.</param>
+	public override void stopLoopAnim(string animName)
+	{
+		base.stopLoopAnim(animName);
+		SpritePlayer sprite = getPlayerSprite();
+		sprite.stopLoopAnim(animName);
+	}
+
+	/// <summary>
+	/// 读档初始化精灵
+	/// </summary>
+	public void loadInitSprite() {
+		SpritePlayer sprite = getPlayerSprite();
+		// 恢复循环动画
+		foreach (string animName in this.loopAnimNames) {
+			sprite.playAnim(animName, true);
+		}
+	}
+
     /// <summary>
     /// 初始化包围盒数据
     /// </summary>

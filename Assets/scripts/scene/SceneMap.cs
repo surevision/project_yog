@@ -101,6 +101,7 @@ public class SceneMap : SceneBase {
         this.player.transform.SetParent(map.transform.Find(GameMap.layers[(int)GameMap.Layers.LayerPlayer]));
         if (isLoad) {
             this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
+			GameTemp.gamePlayer.loadInitSprite();
         } else {
             if (GameTemp.gamePlayer == null) {  // 起始地图
                 // 根据prefab初始化角色

@@ -111,6 +111,10 @@ public class GameEvent : GameCharacterBase {
 			page.transform.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
 			page.gameObject.SetActive(false);
         }
+		// 恢复循环动画
+		foreach (string animName in this.loopAnimNames) {
+			sprite.playAnim(animName, true);
+		}
     }
 
     /// <summary>
@@ -134,6 +138,29 @@ public class GameEvent : GameCharacterBase {
             );
         }
     }
+
+	/// <summary>
+	/// 播放动画
+	/// </summary>
+	/// <param name="animName">Animation name.</param>
+	/// <param name="loop">If set to <c>true</c> loop.</param>
+	public override void playAnim(string animName, bool loop = false)
+	{
+		base.playAnim(animName, loop);
+		SpriteEvent sprite = getEventSprite();
+		sprite.playAnim(animName, loop);
+	}
+
+	/// <summary>
+	/// 停止一个循环动画，不考虑序号
+	/// </summary>
+	/// <param name="animName">Animation name.</param>
+	public override void stopLoopAnim(string animName)
+	{
+		base.stopLoopAnim(animName);
+		SpriteEvent sprite = getEventSprite();
+		sprite.stopLoopAnim(animName);
+	}
 
     /// <summary>
     /// 检查条件满足

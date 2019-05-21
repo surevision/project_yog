@@ -38,13 +38,12 @@ public class GameCharacterBase
     public bool stepAnime = false;              // 踏步动画
     public bool directionFix = false;           // 固定朝向
     public int opacity = 255;                   // 不透明度
-    public int angle = 0;                   // 角度
+    public int angle = 0;                   	// 角度
     public DIRS direction = DIRS.DOWN;          // 方向
     public int pattern = 1;                     // 图案
-    public PRIORITIES priorityType = PRIORITIES.BELOW;            // 优先级类型
+    public PRIORITIES priorityType = PRIORITIES.BELOW;				// 优先级类型
     public bool through = false;                    // 穿透
-    public int animationId = -1;                    // 动画 ID
-    public int balloonId = -1;                      // 心情图标 ID
+	public List<string> loopAnimNames = new List<string>();			// 循环的动画文件名
     public bool transparent = false;                // 透明状态
 
     protected DIRS originalDirection = DIRS.DOWN;      // 原方向
@@ -77,8 +76,8 @@ public class GameCharacterBase
         this.stopCount = 0;                       // 停止计数
         this.locked = false;                      // 锁的标志
         this.prelockDirection = DIRS.NONE;        // 被锁上前的方向
+		this.loopAnimNames = new List<string>();	// 循环的动画
         this.moveSucceed = true;                  // 移动成功的标志
-
         this.moveRoute = null;
         this.moveByRouteIndex = -1;
         this.moveWaitCount = 0;
@@ -610,6 +609,25 @@ public class GameCharacterBase
     public void unlock() {
         this.locked = false;
     }
+
+	/// <summary>
+	/// Plaies the anime.
+	/// </summary>
+	/// <param name="animName">Animation name.</param>
+	/// <param name="loop">If set to <c>true</c> loop.</param>
+	public virtual void playAnim(string animName, bool loop = false) {
+		if (loop) {
+			this.loopAnimNames.Add(animName);
+		}
+	}
+
+	/// <summary>
+	/// 停止一个循环动画，不考虑序号
+	/// </summary>
+	/// <param name="animName">Animation name.</param>
+	public virtual void stopLoopAnim(string animName) {
+		this.loopAnimNames.Remove(animName);
+	}
 
     public override string ToString() {
         return base.ToString() + " \r\n" +
