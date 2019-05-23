@@ -2186,8 +2186,8 @@ MonoBehaviour:
   - index: 3
   trigger: 0
   characterName: stonebar
-  direction: 4
-  pattern: 2
+  direction: 2
+  pattern: 1
   priorityType: 0
   through: 1
   moveSpeed: 3
@@ -2195,7 +2195,7 @@ MonoBehaviour:
   walkAnime: 0
   stepAnime: 0
   directionFix: 1
-  BaseFrame: {fileID: 21300010, guid: 078eb672a91775d4e81805e8e366b41f, type: 3}
+  BaseFrame: {fileID: 21300002, guid: 078eb672a91775d4e81805e8e366b41f, type: 3}
 --- !u!114 &114345064978393076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3719,7 +3719,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300010, guid: 078eb672a91775d4e81805e8e366b41f, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 078eb672a91775d4e81805e8e366b41f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
