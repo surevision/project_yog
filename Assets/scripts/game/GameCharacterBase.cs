@@ -268,7 +268,7 @@ public class GameCharacterBase
     /// <returns></returns>
     private bool isPassable(float x, float y, DIRS dir) {
         float step = this.getStep();
-        Intersection.Polygon testPolygon = this.currCollider();
+		Intersection.Polygon testPolygon = Intersection.polygonMove(this.colliderPolygon, x, y);//this.currCollider();
         if (dir == DIRS.DOWN) {
             testPolygon = Intersection.polygonMove(testPolygon, 0, -step);
         }
@@ -293,7 +293,7 @@ public class GameCharacterBase
     /// <param name="distanceY"></param>
     /// <returns></returns>
     public bool isPassableByDistance(float x, float y, DIRS dir, float distanceX, float distanceY) {
-        Intersection.Polygon testPolygon = this.currCollider();
+		Intersection.Polygon testPolygon = Intersection.polygonMove(this.colliderPolygon, x, y);//this.currCollider();
         Debug.Log(testPolygon.points[0].x);
         Debug.Log(testPolygon.points[0].y);
         if (dir == DIRS.DOWN) {
@@ -415,6 +415,36 @@ public class GameCharacterBase
         return true;
     }
 
+	/// <summary>
+	/// 想指定角色移动
+	/// </summary>
+	/// <returns><c>true</c>, if towards was moved, <c>false</c> otherwise.</returns>
+	/// <param name="charId">Char identifier.</param>
+	public bool moveTowards(int charId) {
+		GameCharacterBase character = GameTemp.gameMap.interpreter.getCharacter(charId);
+		float targetX = character.realX;
+		float targetY = character.realY;
+		float offsetX = Mathf.Abs(targetX - this.realX);
+		float offsetY = Mathf.Abs(targetY - this.realY);
+		DIRS dir = DIRS.NONE;
+		if (offsetX > offsetY && (new System.Random()).Next(100) > 50) {
+			if (this.realX < targetX) {
+				dir = DIRS.RIGHT;
+			}
+			if (this.realX >= targetX) {
+				dir = DIRS.LEFT;
+			}
+		} else {
+			if (this.realY < targetY) {
+				dir = DIRS.UP;
+			}
+			if (this.realY >= targetY) {
+				dir = DIRS.DOWN;
+			}
+		}
+		return this.moveGridStraight(dir);
+	}
+
     /// <summary>
     /// 根据移动指令行走
     /// </summary>
@@ -455,8 +485,8 @@ public class GameCharacterBase
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_RANDOM:
                     //move_random
                     break;
-                case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_TOWARD:
-                    //move_toward_player
+			case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_TOWARD:
+				this.moveTowards(int.Parse(cmd.args[0]));
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_AWAY:
                     //move_away_from_player

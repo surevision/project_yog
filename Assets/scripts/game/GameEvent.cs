@@ -72,6 +72,14 @@ public class GameEvent : GameCharacterBase {
         this.erased = false;
     }
 
+	/// <summary>
+	/// 获取并行interpreter
+	/// </summary>
+	/// <returns>The interpreter.</returns>
+	public GameInterpreter getInterpreter() {
+		return this.interpreter;
+	}
+
     /// <summary>
     /// 取事件页信息
     /// </summary>

@@ -179,8 +179,8 @@ public class GameInterpreter {
         public MoveRoute() { }
 
         public MoveRoute(Cmd code) {
-            this.code = code;
-            this.args = null;
+			this.code = code;
+			this.args = new List<string>();
         }
         public MoveRoute(int code):this((Cmd)code) {}
 
@@ -854,8 +854,11 @@ public class GameInterpreter {
         // 处理移动指令
         List<MoveRoute> list = new List<MoveRoute>();
         for (int i = 0; i < ((XLua.LuaTable)result[0]).Length; i += 1) {
-            list.Add(((XLua.LuaTable)result[0]).Get<int, MoveRoute>(i + 1));
-            Debug.Log(list[list.Count - 1]);
+			MoveRoute route = ((XLua.LuaTable)result[0]).Get<int, MoveRoute>(i + 1);
+			route.args.Add(this.currentParam[1]);	// 操作的事件id
+			route.args.Add(this.eventId.ToString());			// 当前解释器所属事件id
+            list.Add(route);
+			Debug.Log(route);
         }
 
         character.setMoveRoute(list);
