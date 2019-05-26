@@ -294,8 +294,8 @@ public class GameCharacterBase
     /// <returns></returns>
     public bool isPassableByDistance(float x, float y, DIRS dir, float distanceX, float distanceY) {
 		Intersection.Polygon testPolygon = Intersection.polygonMove(this.colliderPolygon, x, y);//this.currCollider();
-        Debug.Log(testPolygon.points[0].x);
-        Debug.Log(testPolygon.points[0].y);
+//        Debug.Log(testPolygon.points[0].x);
+//        Debug.Log(testPolygon.points[0].y);
         if (dir == DIRS.DOWN) {
             testPolygon = Intersection.polygonMove(testPolygon, 0, -distanceY);
         }
@@ -308,10 +308,10 @@ public class GameCharacterBase
         if (dir == DIRS.UP) {
             testPolygon = Intersection.polygonMove(testPolygon, 0, distanceY);
         }
-        Debug.Log(testPolygon.points[0].x);
-        Debug.Log(testPolygon.points[0].y);
-        Debug.Log(string.Format("GameTemp.gameMap.isPassable(testPolygon, this) {0}, {1}, {2}, {3}, {4}, {5}", 
-            GameTemp.gameMap.isPassable(testPolygon, this), testPolygon, this.currCollider(), distanceX, distanceY, dir));
+//        Debug.Log(testPolygon.points[0].x);
+//        Debug.Log(testPolygon.points[0].y);
+//        Debug.Log(string.Format("GameTemp.gameMap.isPassable(testPolygon, this) {0}, {1}, {2}, {3}, {4}, {5}", 
+//            GameTemp.gameMap.isPassable(testPolygon, this), testPolygon, this.currCollider(), distanceX, distanceY, dir));
         return GameTemp.gameMap.isPassable(testPolygon, this);
     }
 
@@ -352,6 +352,9 @@ public class GameCharacterBase
     /// <returns></returns>
     public bool moveGridStraight(DIRS dir) {
         Debug.Log(string.Format("moveGridStraight {0}", dir));
+		if (dir == DIRS.NONE) {
+			return true;
+		}
         //if (dir == DIRS.LEFT || dir == DIRS.RIGHT) {
             this.direction = dir;
         //}
@@ -393,7 +396,9 @@ public class GameCharacterBase
         if (stepY > this.getBaseStep()) {
             stepY = this.getBaseStep();
         }
-        while ((stepY > 0 || stepX > 0) && this.isPassableByDistance(this.x, this.y, dir, step, step)) {
+		System.DateTime timeBegin = new System.DateTime();
+		while ((((dir == DIRS.UP || dir == DIRS.DOWN) && stepY > 0) || ((dir == DIRS.LEFT || dir == DIRS.RIGHT) && stepX > 0)) && 
+				this.isPassableByDistance(this.x, this.y, dir, step, step)) {
             if (dir == DIRS.DOWN) {
                 this.y -= step;
                 stepY -= step;
@@ -412,6 +417,7 @@ public class GameCharacterBase
             }
             this.increaseMove();
         }
+		Debug.Log(string.Format("delta time: {0}", ((TimeSpan)((new System.DateTime()) - timeBegin)).Seconds));
         return true;
     }
 
@@ -427,19 +433,33 @@ public class GameCharacterBase
 		float offsetX = Mathf.Abs(targetX - this.realX);
 		float offsetY = Mathf.Abs(targetY - this.realY);
 		DIRS dir = DIRS.NONE;
-		if (offsetX > offsetY && (new System.Random()).Next(100) > 50) {
+		if (offsetX > offsetY && (new System.Random()).Next(100) > 30) {
 			if (this.realX < targetX) {
-				dir = DIRS.RIGHT;
-			}
-			if (this.realX >= targetX) {
-				dir = DIRS.LEFT;
+				if ((new System.Random()).Next(100) > 20) {
+					dir = DIRS.RIGHT;
+				} else {
+					dir = DIRS.LEFT;
+				}
+			} else {
+				if ((new System.Random()).Next(100) > 20) {
+					dir = DIRS.LEFT;
+				} else {
+					dir = DIRS.RIGHT;
+				}
 			}
 		} else {
 			if (this.realY < targetY) {
-				dir = DIRS.UP;
-			}
-			if (this.realY >= targetY) {
-				dir = DIRS.DOWN;
+				if ((new System.Random()).Next(100) > 20) {
+					dir = DIRS.UP;
+				} else {
+					dir = DIRS.DOWN;
+				}
+			} else {
+				if ((new System.Random()).Next(100) > 20) {
+					dir = DIRS.DOWN;
+				} else {
+					dir = DIRS.UP;
+				}
 			}
 		}
 		return this.moveGridStraight(dir);

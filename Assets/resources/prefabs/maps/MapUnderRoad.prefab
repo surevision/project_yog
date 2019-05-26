@@ -526,7 +526,7 @@ MonoBehaviour:
   characterName: 
   direction: 2
   pattern: 1
-  priorityType: 1
+  priorityType: 0
   through: 0
   moveSpeed: 3
   moveFrequency: 0

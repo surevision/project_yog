@@ -393,12 +393,37 @@ public class GameMap {
             if (e.through == false && Intersection.polygonPolygon(eventCollider, polygon)) {
                 if (character != null && character != e && !e.erased && !character.lastHit.Contains(e)) {
                     character.lastHit.Add(e);
-                }
-                if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && character != e) {
-                    return false;
-                }
+				}
+
+				if (character.GetType() == typeof(GameEvent)) {
+					GameEvent eChar = (GameEvent)character;
+					if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && character != e &&
+					    !eChar.erased && !eChar.through && eChar.priorityType == GameCharacterBase.PRIORITIES.SAME) {
+						return false;
+					}
+				} else {
+					if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && character != e) {
+						return false;
+					}
+				}
             }
         }
+		// 检查事件碰到主角
+		if (character.GetType() == typeof(GameEvent)) {
+			Intersection.Polygon playerCollider = GameTemp.gamePlayer.currCollider();
+			GameEvent e = (GameEvent)character;
+			if (e.through == false && Intersection.polygonPolygon(playerCollider, polygon)) {
+				if (e != null && !e.erased && !e.lastHit.Contains(GameTemp.gamePlayer)) {
+					e.lastHit.Add(GameTemp.gamePlayer);
+					if (!GameTemp.gamePlayer.lastHit.Contains(e)) {
+						GameTemp.gamePlayer.lastHit.Add(e);	// 给玩家碰撞数据加上本事件
+					}
+				}
+				if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME) {
+					return false;
+				}
+			}
+		}
         return true;
     }
 

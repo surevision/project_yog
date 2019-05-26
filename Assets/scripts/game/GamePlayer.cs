@@ -18,7 +18,7 @@ public class GamePlayer : GameCharacterBase {
         base.update();
         if (GameTemp.gameMap.interpreter.isRunning()) {
             return;
-        }
+		}
         if (!this.isMoving()) {
             switch (InputManager.DIR4()) {
                 case InputManager.GameKey.DOWN :
