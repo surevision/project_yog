@@ -396,7 +396,6 @@ public class GameCharacterBase
         if (stepY > this.getBaseStep()) {
             stepY = this.getBaseStep();
         }
-		System.DateTime timeBegin = new System.DateTime();
 		while ((((dir == DIRS.UP || dir == DIRS.DOWN) && stepY > 0) || ((dir == DIRS.LEFT || dir == DIRS.RIGHT) && stepX > 0)) && 
 				this.isPassableByDistance(this.x, this.y, dir, step, step)) {
             if (dir == DIRS.DOWN) {
@@ -417,7 +416,6 @@ public class GameCharacterBase
             }
             this.increaseMove();
         }
-		Debug.Log(string.Format("delta time: {0}", ((TimeSpan)((new System.DateTime()) - timeBegin)).Seconds));
         return true;
     }
 

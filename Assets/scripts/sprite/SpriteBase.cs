@@ -24,7 +24,7 @@ public class SpriteBase : MonoBehaviour {
 				SpriteAnimInfo info = this.animeInfos[i];
 				GameObject animObj = this.gameObject.transform.GetComponentsInChildren<Anime>()[i].gameObject;
 				info.animFrame += 1;
-				if (info.animFrame >= info.animSprites.Length) {	// 播放完毕
+				if (info.animFrame > info.animSprites.Length * this.animRate()) {	// 播放完毕
 					if (info.animLoop) {
 						// 循环动画
 						info.animFrame = 0;
@@ -34,12 +34,22 @@ public class SpriteBase : MonoBehaviour {
 						GameObject.Destroy(animObj);
 					}
 				} else {	// 显示下一帧
-					SpriteRenderer sr = animObj.GetComponent<SpriteRenderer>();
-					sr.sprite = info.animSprites[info.animFrame];
+					if (info.animFrame % this.animRate() == 0) {
+						SpriteRenderer sr = animObj.GetComponent<SpriteRenderer>();
+						sr.sprite = info.animSprites[info.animFrame / this.animRate()];
+					}
 				}
 			}
 		}
     }
+
+	/// <summary>
+	/// 动画减速
+	/// </summary>
+	/// <returns>The rate.</returns>
+	private int animRate() {
+		return 2;
+	}
 
 	public virtual bool hasAnim() {
 		return this.animeInfos.Count > 0;
