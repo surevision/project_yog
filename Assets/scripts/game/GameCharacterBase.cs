@@ -452,32 +452,52 @@ public class GameCharacterBase
 		float offsetX = Mathf.Abs(targetX - this.realX);
 		float offsetY = Mathf.Abs(targetY - this.realY);
 		DIRS dir = DIRS.NONE;
-		if (offsetX > offsetY && (new System.Random()).Next(100) > 30) {
-			if (this.realX < targetX) {
-				if ((new System.Random()).Next(100) > 20) {
+		if (this.isPassable(this.realX, this.realY, DIRS.UP) &&
+		    this.isPassable(this.realX, this.realY, DIRS.DOWN) &&
+		    this.isPassable(this.realX, this.realY, DIRS.LEFT) &&
+		    this.isPassable(this.realX, this.realY, DIRS.RIGHT)) {
+			// 四面无障碍
+			if (offsetX > offsetY) {
+				if (this.realX < targetX) {
 					dir = DIRS.RIGHT;
 				} else {
 					dir = DIRS.LEFT;
 				}
 			} else {
-				if ((new System.Random()).Next(100) > 20) {
-					dir = DIRS.LEFT;
+				if (this.realY < targetY) {
+					dir = DIRS.UP;
 				} else {
-					dir = DIRS.RIGHT;
+					dir = DIRS.DOWN;
 				}
 			}
 		} else {
-			if (this.realY < targetY) {
-				if ((new System.Random()).Next(100) > 20) {
-					dir = DIRS.UP;
+			if (offsetX > offsetY && (new System.Random()).Next(100) > 30) {
+				if (this.realX < targetX) {
+					if ((new System.Random()).Next(100) > 20) {
+						dir = DIRS.RIGHT;
+					} else {
+						dir = DIRS.LEFT;
+					}
 				} else {
-					dir = DIRS.DOWN;
+					if ((new System.Random()).Next(100) > 20) {
+						dir = DIRS.LEFT;
+					} else {
+						dir = DIRS.RIGHT;
+					}
 				}
 			} else {
-				if ((new System.Random()).Next(100) > 20) {
-					dir = DIRS.DOWN;
+				if (this.realY < targetY) {
+					if ((new System.Random()).Next(100) > 20) {
+						dir = DIRS.UP;
+					} else {
+						dir = DIRS.DOWN;
+					}
 				} else {
-					dir = DIRS.UP;
+					if ((new System.Random()).Next(100) > 20) {
+						dir = DIRS.DOWN;
+					} else {
+						dir = DIRS.UP;
+					}
 				}
 			}
 		}
