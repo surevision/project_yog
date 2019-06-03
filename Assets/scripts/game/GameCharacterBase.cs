@@ -420,7 +420,28 @@ public class GameCharacterBase
     }
 
 	/// <summary>
-	/// 想指定角色移动
+	/// 取反向
+	/// </summary>
+	/// <returns>The reverse dir.</returns>
+	/// <param name="dir">Dir.</param>
+	public static DIRS getReverseDir(DIRS dir) {
+		return (DIRS)(10 - (int)dir);
+	}
+
+	/// <summary>
+	/// 向反向前进一格
+	/// </summary>
+	/// <returns><c>true</c>, if grid straight reverse was moved, <c>false</c> otherwise.</returns>
+	/// <param name="currDir">Curr dir.</param>
+	public bool moveGridStraightReverse(DIRS currDir) {
+		DIRS reverseDir = getReverseDir(currDir);
+		bool result = moveGridStraight(reverseDir);
+		this.direction = currDir;
+		return result;
+	}
+
+	/// <summary>
+	/// 向指定角色移动
 	/// </summary>
 	/// <returns><c>true</c>, if towards was moved, <c>false</c> otherwise.</returns>
 	/// <param name="charId">Char identifier.</param>
@@ -463,6 +484,22 @@ public class GameCharacterBase
 		return this.moveGridStraight(dir);
 	}
 
+	/// <summary>
+	/// 前进一格
+	/// </summary>
+	/// <returns><c>true</c>, if forward was moved, <c>false</c> otherwise.</returns>
+	public bool moveForward() {
+		return this.moveGridStraight(this.direction);
+	}
+
+	/// <summary>
+	/// 后退一格
+	/// </summary>
+	/// <returns><c>true</c>, if backward was moved, <c>false</c> otherwise.</returns>
+	public bool moveBackward() {
+		return this.moveGridStraightReverse(this.direction);
+	}
+
     /// <summary>
     /// 根据移动指令行走
     /// </summary>
@@ -503,17 +540,17 @@ public class GameCharacterBase
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_RANDOM:
                     //move_random
                     break;
-			case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_TOWARD:
-				this.moveTowards(int.Parse(cmd.args[0]));
+				case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_TOWARD:
+					this.moveTowards(int.Parse(cmd.args[0]));
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_AWAY:
                     //move_away_from_player
                     break;
-                case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_FORWARD:
-                    //move_forward
+				case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_FORWARD:
+					this.moveForward();
                     break;
-                case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_BACKWARD:
-                    //move_backward
+				case GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_BACKWARD:
+					this.moveBackward();
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_JUMP:
                     //jump(params[0], params[1])
