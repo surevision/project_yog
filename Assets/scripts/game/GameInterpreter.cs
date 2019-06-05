@@ -38,44 +38,76 @@ public class GameInterpreter {
     [Serializable]
     public enum CommandTypes {
         // 1
-        ShowArticle = 101,              // 显示文章
-        ShowChoice = 102,               // 显示选择项
-        Condition = 111,                // 条件分歧
-        Loop = 112,                     // 循环开始
-        Break = 113,                    // 中断循环
-        CommandBreak = 115,             // 中断事件处理
-        CommonEvent = 117,              // 公共事件
-        Label = 118,                    // 跳转标志
-        GotoLabel = 119,                // 跳转
-        SetSwitch = 121,                // 开关操作
-        SetVariable = 122,              // 变量操作
-        SetSelfSwitch = 123,            // 独立开关操作
-        DealItem = 126,                 // 增减物品
+		[EnumAttirbute("显示文章")]
+		ShowArticle = 101,              // 显示文章
+		[EnumAttirbute("显示选择项")]
+		ShowChoice = 102,               // 显示选择项
+		[EnumAttirbute("条件分歧")]
+		Condition = 111,                // 条件分歧
+		[EnumAttirbute("循环开始")]
+		Loop = 112,                     // 循环开始
+		[EnumAttirbute("中断循环")]
+		Break = 113,                    // 中断循环
+		[EnumAttirbute("中断事件处理")]
+		CommandBreak = 115,             // 中断事件处理
+		[EnumAttirbute("公共事件")]
+		CommonEvent = 117,              // 公共事件
+		[EnumAttirbute("跳转标志")]
+		Label = 118,                    // 跳转标志
+		[EnumAttirbute("跳转")]
+		GotoLabel = 119,                // 跳转
+		[EnumAttirbute("开关操作")]
+		SetSwitch = 121,                // 开关操作
+		[EnumAttirbute("变量操作")]
+		SetVariable = 122,              // 变量操作
+		[EnumAttirbute("独立开关操作")]
+		SetSelfSwitch = 123,            // 独立开关操作
+		[EnumAttirbute("增减物品")]
+		DealItem = 126,                 // 增减物品
+		[EnumAttirbute("注释")]
         Comment = 140,                  // 注释
 
-        // 2
-        Transformation = 201,           // 场所移动
-        SetPos = 203,                   // 设置事件位置
-        MoveByRoute = 209,              // 设置移动路线
-        Erase = 214,                    // 暂时消除事件
-        Shake = 225,                    // 画面震动
+		// 2
+		[EnumAttirbute("场所移动")]
+		Transformation = 201,           // 场所移动
+		[EnumAttirbute("设置事件位置")]
+		SetPos = 203,                   // 设置事件位置
+		[EnumAttirbute("设置移动路线")]
+		MoveByRoute = 209,              // 设置移动路线
+		[EnumAttirbute("暂时消除事件")]
+		Erase = 214,                    // 暂时消除事件
+		[EnumAttirbute("画面震动")]
+		Shake = 225,                    // 画面震动
+		[EnumAttirbute("等待")]
 		Wait = 230,                     // 等待
+		[EnumAttirbute("显示图片")]
 		ShowPic = 231,                  // 显示图片
+		[EnumAttirbute("移动图片")]
 		TransPic = 232,                 // 移动图片
+		[EnumAttirbute("消除图片")]
 		ErasePic = 233,                 // 消除图片
-        ChangeScreenColor = 234,        // 更改画面色调
+		[EnumAttirbute("更改画面色调")]
+		ChangeScreenColor = 234,        // 更改画面色调
+		[EnumAttirbute("播放BGM")]
 		PlayBGM = 241,                  // 播放BGM
-        FadeoutBGM = 242,               // 淡出BGM
-        PlaySE = 250,                   // 播放SE
+		[EnumAttirbute("淡出BGM")]
+		FadeoutBGM = 242,               // 淡出BGM
+		[EnumAttirbute("播放SE")]
+		PlaySE = 250,                   // 播放SE
+		[EnumAttirbute("停止SE")]
         StopSE = 251,                   // 停止SE
 
+		[EnumAttirbute("开启\\关闭展示地图名")]
         ShowMapName = 281,              // 开启/关闭展示地图名
 
-        // 3
+		// 3
+		[EnumAttirbute("脚本")]
         EvalScript = 355,               // 脚本
 
-        // 4
-        EndIf = 412,		            // 分歧结束
+		// 4
+		[EnumAttirbute("分歧结束")]
+		EndIf = 412,		            // 分歧结束
+		[EnumAttirbute("以上反复")]
         EndLoop = 413,		            // 以上反复（循环）
 
     }

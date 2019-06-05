@@ -5,13 +5,14 @@ using UnityEngine;
 
 [Serializable]
 public class EventCommand : MonoBehaviour {
-    [SerializeField]
-    private GameInterpreter.CommandTypes _code;
+	[SerializeField]                                                    
+	[EnumAttirbute("指令")]
+	private GameInterpreter.CommandTypes _code;      
     public GameInterpreter.CommandTypes code {
         get { return _code; }
     }
     [SerializeField]
-    [MultilineAttribute]
+	[MultilineAttribute]      
     private string[] _args;
     public string[] args {
         get { return _args; }

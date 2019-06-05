@@ -22,8 +22,11 @@ public class GameCharacterBase
     [Serializable]
     public enum PRIORITIES
     {
-        BELOW,
-        SAME,
+		[EnumAttirbute("在角色之下")]
+		BELOW,
+		[EnumAttirbute("和角色同层")]
+		SAME,
+		[EnumAttirbute("在角色之上")]
         UPPER
     }
     public int id;                              // ID
