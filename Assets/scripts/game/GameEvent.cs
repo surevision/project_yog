@@ -130,6 +130,11 @@ public class GameEvent : GameCharacterBase {
     /// </summary>
     /// <param name="page"></param>
 	public void loadCommands(int page) {
+		if (page < 0) {
+			Debug.Log(string.Format("error page {0}", page));
+			return;
+		}
+		Debug.Log(string.Format("load commands at page {0}", page));
 		SpriteEvent sprite = getEventSprite();
 		GameObject pageObject = sprite.GetComponentsInChildren<EventPage>(true)[page].gameObject;
 		pageObject.SetActive (true);

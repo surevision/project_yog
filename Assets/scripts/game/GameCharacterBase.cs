@@ -87,9 +87,9 @@ public class GameCharacterBase
 
         List<Vector2> points = new List<Vector2>();
         points.Add(new Vector2(0, 0));
-        points.Add(new Vector2(0, Util.GRID_WIDTH / Util.PPU));
-        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU, Util.GRID_WIDTH / Util.PPU));
-        points.Add(new Vector2(Util.GRID_WIDTH / Util.PPU, 0));
+		points.Add(new Vector2(0, (Util.GRID_WIDTH - 1) / Util.PPU));
+		points.Add(new Vector2((Util.GRID_WIDTH - 1) / Util.PPU, (Util.GRID_WIDTH - 1) / Util.PPU));
+		points.Add(new Vector2((Util.GRID_WIDTH - 1) / Util.PPU, 0));
         this.colliderPolygon = new Intersection.Polygon(points);
     }
 
