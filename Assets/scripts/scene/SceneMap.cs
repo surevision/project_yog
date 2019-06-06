@@ -451,6 +451,10 @@ public class SceneMap : SceneBase {
             this.uiSet = new UISetSave(this.uiSetMessenger);
             ((UISetSave)this.uiSet).fromMap = "map".Equals(args);
             this.uiSet.start();
+		} else if ("gameover".Equals(uiSetName)) {
+			// GameOver
+			this.uiSet = new UIGameOver(this.uiSetMessenger);
+			this.uiSet.start();
 		} else {
 			// 关闭ui
 			this.uiSet = null;

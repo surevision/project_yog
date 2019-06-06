@@ -1152,7 +1152,7 @@ GameObject:
   - component: {fileID: 4349209906300674}
   - component: {fileID: 114578890593071436}
   m_Layer: 0
-  m_Name: "\u663E\u793A\u6587\u7AE0: \u78B0\u5230\u4E86~"
+  m_Name: "\u811A\u672C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3506,9 +3506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _code: 101
+  _code: 355
   _args:
-  - "\u78B0\u5230\u4E86~"
+  - CS.SceneManager.Scene:switchToUI("gameover")
 --- !u!114 &114589220524006394
 MonoBehaviour:
   m_ObjectHideFlags: 1
