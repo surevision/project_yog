@@ -9,19 +9,16 @@ public class EventPage : SpriteBase {
     /// <summary>
     /// 出现条件 变量
 	/// </summary>
-	[EnumAttirbute("出现条件 变量")]
     public GameInterpreter.ActiveVariable[] activeVariables;
 
     /// <summary>
     /// 出现条件 开关
 	/// </summary>
-	[EnumAttirbute("出现条件 开关")]
     public GameInterpreter.ActiveSwitch[] activeSwitches;
 
     /// <summary>
     /// 出现条件 独立开关
 	/// </summary>
-	[EnumAttirbute("出现条件 独立开关")]
     public GameInterpreter.ActiveSelfSwitch[] activeSelfSwitches;
 
     /// <summary>
