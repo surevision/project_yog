@@ -1159,7 +1159,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerLightMask: {fileID: 2055511585}
+  _playerLightMaskMaterial: {fileID: 2100000, guid: 7bdeac616acc70546bcf44da0ad1c43e,
+    type: 2}
   _screenMaterial: {fileID: 2100000, guid: c915eb05801cdbd4090d5de087b46a8c, type: 2}
+  camera: {fileID: 2038535704}
+  player: {fileID: 0}
 --- !u!1 &2055511585
 GameObject:
   m_ObjectHideFlags: 0

@@ -124,6 +124,8 @@ public class SceneMap : SceneBase {
 		cameraControl.minTile = GameTemp.gameMap.mapInfo.minTileWorld;
 		cameraControl.maxTile = GameTemp.gameMap.mapInfo.maxTileWorld;
 		cameraControl.setupPos(cameraControl.minTile, cameraControl.maxTile);
+		Debug.Log("force cameraControl.update();");
+		cameraControl.update();
 
         // 初始化文章窗口
         windowMessage.gameObject.transform.localScale = new Vector3(1, 0, windowMessage.gameObject.transform.localScale.z);
@@ -161,6 +163,7 @@ public class SceneMap : SceneBase {
 			// 刷新渐变
 			if (this._transitionProgress > 0) {
 				this._transitionProgress = Mathf.Max(this._transitionProgress - 1, 0);
+//				Debug.Log(string.Format("this._transitionProgress {0}", this._transitionProgress));
 				if (this._transitionProgress == 0) {
 					this._transitionProgress = -1;
 					if (this.transitionFinishCallback != null) {
@@ -273,9 +276,11 @@ public class SceneMap : SceneBase {
 
         // 刷新渐变
 		if (this.isInTransition()) {
-
 			GameTemp.gameScreen.updateCurrPos();
-            return;
+			// 检测切换地图
+			if (!"".Equals(this.mapToLoad)) {
+				return;
+			}
         }
 
         // 刷新异步ui

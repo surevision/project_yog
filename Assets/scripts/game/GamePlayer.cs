@@ -16,10 +16,9 @@ public class GamePlayer : GameCharacterBase {
 
     public override void update() {
         base.update();
-        if (GameTemp.gameMap.interpreter.isRunning()) {
-            return;
-		}
-        if (!this.isMoving()) {
+		if (!GameTemp.transforming &&
+			!GameTemp.gameMap.interpreter.isRunning() &&
+			!this.isMoving()) {
             switch (InputManager.DIR4()) {
                 case InputManager.GameKey.DOWN :
                     this.moveStraight(DIRS.DOWN);

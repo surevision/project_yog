@@ -286,11 +286,10 @@ public class GameScreen {
 			// 跟随角色
 			if (this.targetToGameObject >= 0) {
 				if (this.targetToGameObject == 0) {	// 跟随主角
-					Vector3 v3 = ((SceneMap)SceneManager.Scene).getPlayerNode().transform.position;
-					this.currTargetPos = new Vector2(v3.x, v3.y);
+					this.currTargetPos = new Vector2(GameTemp.gamePlayer.screenX(), GameTemp.gamePlayer.screenY());
 				} else {	// 跟随事件
-					Vector3 v3 = ((GameEvent)GameTemp.gameMap.getCharacter(this.targetToGameObject)).getEventSprite().transform.position;
-					this.currTargetPos = new Vector2(v3.x, v3.y);
+					GameCharacterBase character = GameTemp.gameMap.getCharacter(this.targetToGameObject);
+					this.currTargetPos = new Vector2(character.screenX(), character.screenY());
 				}
 			}
 		}
