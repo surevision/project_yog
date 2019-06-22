@@ -3127,7 +3127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _code: 101
   _args:
-  - "$c<4>\u64CD\u4F5C\u8BF4\u660E\uFF1A$c<0>\n\u6309\u4E0B$c<3>Shift$c<0> \u53EF\u4EE5\u52A0\u901F\u884C\u8D70\u3002"
+  - "$c<4>\u64CD\u4F5C\u8BF4\u660E\uFF1A$c<0>\n\u6309\u4E0B$c<3>Shift$c<0>\u53EF\u4EE5\u52A0\u901F\u884C\u8D70\u3002"
 --- !u!114 &114040800503398306
 MonoBehaviour:
   m_ObjectHideFlags: 1
