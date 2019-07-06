@@ -238,6 +238,9 @@ public class GameEvent : GameCharacterBase {
             this.list = this.getCommands(page);
             this.trigger = this.getPageInfo(page).trigger;
 			this.isDirty = true;
+			// 注册光效
+			GameTemp.gameScreen.registerLight(this.eventId, currPage.lightType);
+			// 并行解释器
             if (this.trigger == GameInterpreter.TriggerTypes.Async) {
                 // 并行处理：
                 this.interpreter = new GameInterpreter(0, false);

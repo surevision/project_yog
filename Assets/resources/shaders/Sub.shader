@@ -34,6 +34,10 @@ Shader "Custom/Sub" {
 			//LOOK! The texture name + ST is needed to get the tiling/offset
 			uniform float4 _Mask_ST;
 
+			// pos array
+			uniform float4 _Positions[10];
+			uniform float _ActivePosition;
+
 
 			struct appdata_t                           //vert输入
 			{
@@ -60,7 +64,7 @@ Shader "Custom/Sub" {
 				#ifdef PIXELSNAP_ON
 				OUT.vertex = UnityPixelSnap(OUT.vertex);
 				#endif
-				OUT.mask_uv = IN.texcoord.xy * _Mask_ST.xy + _Mask_ST.zw;
+				OUT.mask_uv = IN.texcoord.xy * _Mask_ST.xy;
 				return OUT;
 			}
 
@@ -68,8 +72,10 @@ Shader "Custom/Sub" {
 			fixed4 frag(v2f IN) : SV_Target
 			{
 				fixed4 c = tex2D(_MainTex, IN.texcoord);
-				fixed4 c_mask = tex2D(_Mask, IN.mask_uv);
-				c.a -= c_mask.a;
+				for (int i = 0; i < (int)_ActivePosition; i ++) {
+					fixed4 c_mask = tex2D(_Mask, IN.mask_uv + _Positions[i].xy);
+					c.a -= c_mask.a;
+				}
 				return c * _Color;
 			}
 

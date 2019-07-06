@@ -79,6 +79,9 @@ public class GameScreen {
 	public int targetToDuration;	// 移向目标指定时间
 	public int targetToFrame;	// 移向目标已用帧数
 
+	// 灯光相关
+	private Dictionary<int, GameInterpreter.EventLightType> lightsData = new Dictionary<int, GameInterpreter.EventLightType>();
+
 	public GameScreen() {
 		this.currView = NormalView;
         this.currScreenColorInfo = new ScreenColorInfo();
@@ -294,6 +297,62 @@ public class GameScreen {
 			}
 		}
 		
+	}
+
+	/// <summary>
+	/// 注册事件的光效
+	/// </summary>
+	/// <param name="charId">Char identifier.</param>
+	/// <param name="lightType">Light type.</param>
+	public void registerLight(int charId, GameInterpreter.EventLightType lightType) {
+		if (this.lightsData == null) {
+			this.lightsData = new Dictionary<int, GameInterpreter.EventLightType>();
+		}
+		if (this.lightsData.ContainsKey(charId)) {
+			if (lightType == GameInterpreter.EventLightType.NONE) {
+				this.lightsData.Remove(charId);
+			} else {
+				this.lightsData[charId] = lightType;
+			}
+		} else {
+			if (lightType != GameInterpreter.EventLightType.NONE) {
+				this.lightsData.Add(charId, lightType);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Gets the lights.
+	/// </summary>
+	/// <returns>The lights.</returns>
+	public Dictionary<int, Vector4> getLights() {
+		Dictionary<int, Vector4> result = new Dictionary<int, Vector4>();
+		if (this.lightsData == null) {
+			this.lightsData = new Dictionary<int, GameInterpreter.EventLightType>();
+		}
+		foreach (var pair in this.lightsData) {
+			Vector2 v2 = Vector2.zero;
+			int id = pair.Key;
+			if (id == 0) {	// 主角
+				v2 = new Vector2(GameTemp.gamePlayer.screenX(), GameTemp.gamePlayer.screenY());
+			} else {	// 事件
+				GameEvent charEvent = (GameEvent)GameTemp.gameMap.getCharacter(id);
+				v2 = new Vector2(charEvent.screenX(), charEvent.screenY());
+			}
+			Vector4 v4 = new Vector4(v2.x, v2.y, 0, (int)pair.Value);
+			result.Add(id, v4);
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// 清除灯光信息
+	/// </summary>
+	public void clearLights() {
+		if (this.lightsData == null) {
+			this.lightsData = new Dictionary<int, GameInterpreter.EventLightType>();
+		}
+		this.lightsData.Clear();
 	}
 
     public void update() {

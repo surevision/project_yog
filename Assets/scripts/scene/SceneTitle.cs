@@ -69,6 +69,7 @@ public class SceneTitle : SceneBase {
         GameTemp.gameMessage = new GameMessage();
         GameTemp.gameChoice = new GameChoice();
         GameTemp.gameMap = new GameMap();
+		GameTemp.gamePlayer = null;
 
         GameTemp.startMapName = DataManager.systemData.startMap;
         SceneManager.gotoScene("Map");

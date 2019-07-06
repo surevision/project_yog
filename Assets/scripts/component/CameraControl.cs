@@ -95,12 +95,25 @@ public class CameraControl : MonoBehaviour {
 				y,
 				this.player.transform.position.z
 			);
-			Vector3 pos = camera.WorldToViewportPoint(this.player.transform.position);
 			float _x = (x - GameTemp.gameScreen.currTargetPos.x) / (Util.WIDTH / Util.PPU);
 			float _y = (y - GameTemp.gameScreen.currTargetPos.y) / (Util.HEIGHT / Util.PPU);
 			//                    Debug.Log(string.Format("x {0} y {1}", _x, _y));
 			Vector2 offset = new Vector2(_x, _y);
-			this._playerLightMaskMaterial.SetTextureOffset("_Mask", offset);
+			// this._playerLightMaskMaterial.SetTextureOffset("_Mask", offset);
+			List<Vector4> values = new List<Vector4>();
+			values.Add(new Vector4(_x, _y, 0, 0));
+			// TODO 摇曳灯光暂无处理
+			Dictionary<int, Vector4> lights = GameTemp.gameScreen.getLights();
+			foreach (var pair in lights) {
+				_x = (x - pair.Value.x) / (Util.WIDTH / Util.PPU);
+				_y = (y - pair.Value.y) / (Util.HEIGHT / Util.PPU);
+				values.Add(new Vector4(_x, _y, 0, 0));
+			}
+			for (int i = values.Count; i < 10; i += 1) {
+				values.Add(Vector4.zero);
+			}
+			this._playerLightMaskMaterial.SetVectorArray("_Positions", values);
+			this._playerLightMaskMaterial.SetFloat("_ActivePosition", Mathf.Min(10, lights.Count + 1));
 		}
     }
 

@@ -46,9 +46,14 @@ public class EventPage : SpriteBase {
 	[EnumAttirbute("有踏步动画")]
 	public bool stepAnime = false;              // 踏步动画
 	[EnumAttirbute("固定朝向")]
-    public bool directionFix = false;           // 固定朝向
+	public bool directionFix = false;           // 固定朝向
+	[EnumAttirbute("灯光")]
+	public GameInterpreter.EventLightType lightType = GameInterpreter.EventLightType.NONE;               // 灯光类型
 	[EnumAttirbute("事件图片")]
     public Sprite BaseFrame = null;
+	[EnumAttirbute("注释")]
+	[MultilineAttribute]
+	public string note = "";
 
     public EventCommand[] getCommands() {
         return this.transform.GetComponentsInChildren<EventCommand>();

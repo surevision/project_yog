@@ -237,6 +237,15 @@ public class GameInterpreter {
         }
     }
 
+	public enum EventLightType {
+		[EnumAttirbute("无")]
+		NONE,	// 没有光效
+		[EnumAttirbute("静止")]
+		STATIC,	// 静止
+		[EnumAttirbute("摇曳（不可用)")]
+		LAMP	// 摇晃的烛光
+	}
+
     private int depth;
     private bool isMain;
 
@@ -859,6 +868,7 @@ public class GameInterpreter {
             GameTemp.transforming = false;  // 立即判定结束移动
         }
         ((SceneMap)SceneManager.Scene).prepareLoadMap(this.currentParam[0]);
+		GameTemp.gameScreen.clearLights();
         return false;
     }
 
