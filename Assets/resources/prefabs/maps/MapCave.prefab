@@ -1865,7 +1865,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114101631143679538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1923,7 +1925,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114144354318318918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1968,7 +1972,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114240992026292438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2044,7 +2050,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114352346349232620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2190,7 +2198,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114428206852275438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2259,7 +2269,9 @@ MonoBehaviour:
   walkAnime: 0
   stepAnime: 1
   directionFix: 0
+  lightType: 1
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114559906103393510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2300,7 +2312,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114593173057015304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2699,7 +2713,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114983534036716168
 MonoBehaviour:
   m_ObjectHideFlags: 1
