@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: ac523a78e69480042929efb746d1962c
+guid: 0e368443131964d4bb94793659f37efb
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mon2_0
-    21300002: mon2_1
-    21300004: mon2_2
-    21300006: mon2_3
-    21300008: mon2_4
-    21300010: mon2_5
-    21300012: mon2_6
-    21300014: mon2_7
-    21300016: mon2_8
-    21300018: mon2_9
-    21300020: mon2_10
-    21300022: mon2_11
+    21300000: $weddingguy02_0
+    21300002: $weddingguy02_1
+    21300004: $weddingguy02_2
+    21300006: $weddingguy02_3
+    21300008: $weddingguy02_4
+    21300010: $weddingguy02_5
+    21300012: $weddingguy02_6
+    21300014: $weddingguy02_7
+    21300016: $weddingguy02_8
+    21300018: $weddingguy02_9
+    21300020: $weddingguy02_10
+    21300022: $weddingguy02_11
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -111,13 +111,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mon2_0
+      name: $weddingguy02_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 144
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,13 +125,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_1
+      name: $weddingguy02_1
       rect:
         serializedVersion: 2
         x: 32
-        y: 192
+        y: 144
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,13 +139,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_2
+      name: $weddingguy02_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 192
+        y: 144
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,13 +153,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_3
+      name: $weddingguy02_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 96
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,13 +167,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_4
+      name: $weddingguy02_4
       rect:
         serializedVersion: 2
         x: 32
-        y: 128
+        y: 96
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,13 +181,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_5
+      name: $weddingguy02_5
       rect:
         serializedVersion: 2
         x: 64
-        y: 128
+        y: 96
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,13 +195,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_6
+      name: $weddingguy02_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 48
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,13 +209,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_7
+      name: $weddingguy02_7
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 48
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,13 +223,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_8
+      name: $weddingguy02_8
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 48
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,13 +237,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_9
+      name: $weddingguy02_9
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,13 +251,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_10
+      name: $weddingguy02_10
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,13 +265,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mon2_11
+      name: $weddingguy02_11
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
-        height: 64
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
