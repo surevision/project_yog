@@ -821,7 +821,7 @@ MonoBehaviour:
   moveSpeed: 4
   moveFrequency: 0
   walkAnime: 1
-  stepAnime: 1
+  stepAnime: 0
   directionFix: 0
   lightType: 0
   BaseFrame: {fileID: 21300002, guid: 0e368443131964d4bb94793659f37efb, type: 3}
