@@ -1028,17 +1028,17 @@ public class GameInterpreter {
 
     /// <summary>
     /// 234 更改画面色调
-    /// 亮度
-    /// 饱和度
-    /// 对比度
-    /// 色调
+    /// 亮度 0~1
+    /// 饱和度 0~1
+    /// 对比度 0~1
+    /// 色调 0~360
     /// 时间（帧）
     /// </summary>
     /// <returns></returns>
     public bool command_changeScreenColor() {
         float brightness = float.Parse(this.currentParam[0]);
         float saturation = float.Parse(this.currentParam[1]);
-        float contrast = int.Parse(this.currentParam[2]);
+		float contrast = float.Parse(this.currentParam[2]);
         int hue = int.Parse(this.currentParam[3]);
         int frames = int.Parse(this.currentParam[4]);
         GameScreen.ScreenColorInfo info = new GameScreen.ScreenColorInfo();

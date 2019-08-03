@@ -267,6 +267,14 @@ public class GameEvent : GameCharacterBase {
         this.starting = false;
     }
 
+	/// <summary>
+	/// 是否有事件页被激活（有满足条件的事件页）
+	/// </summary>
+	/// <returns><c>true</c>, if page active was ised, <c>false</c> otherwise.</returns>
+	public bool isPageActive() {
+		return this.page != -1;
+	}
+
     public void refresh() {
         int newPage = -1;
         if (!this.erased) {

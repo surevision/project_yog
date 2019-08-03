@@ -397,12 +397,12 @@ public class GameMap {
 
 				if (character.GetType() == typeof(GameEvent)) {
 					GameEvent eChar = (GameEvent)character;
-					if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && character != e &&
+					if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && e.isPageActive() && character != e &&
 					    !eChar.erased && !eChar.through && eChar.priorityType == GameCharacterBase.PRIORITIES.SAME) {
 						return false;
 					}
 				} else {
-					if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && character != e) {
+					if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && e.isPageActive() && character != e) {
 						return false;
 					}
 				}
@@ -419,7 +419,7 @@ public class GameMap {
 						GameTemp.gamePlayer.lastHit.Add(e);	// 给玩家碰撞数据加上本事件
 					}
 				}
-				if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME) {
+				if (!e.erased && !e.through && e.isPageActive() && e.priorityType == GameCharacterBase.PRIORITIES.SAME) {
 					return false;
 				}
 			}
