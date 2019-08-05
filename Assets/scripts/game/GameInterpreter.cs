@@ -1028,9 +1028,9 @@ public class GameInterpreter {
 
     /// <summary>
     /// 234 更改画面色调
-    /// 亮度 0~1
-    /// 饱和度 0~1
-    /// 对比度 0~1
+    /// 亮度 0~2
+    /// 饱和度 0~2
+    /// 对比度 0~2
     /// 色调 0~360
     /// 时间（帧）
     /// </summary>
@@ -1043,8 +1043,9 @@ public class GameInterpreter {
         int frames = int.Parse(this.currentParam[4]);
         GameScreen.ScreenColorInfo info = new GameScreen.ScreenColorInfo();
         info.brightness = brightness;
-        info.saturation = saturation;
-        info.contrast = contrast;
+		info.saturation = saturation;
+		info.contrast = contrast;
+		info.hue = hue;
         GameTemp.gameScreen.screenColorChange(info, frames);
         return true;
     }

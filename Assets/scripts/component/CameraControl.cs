@@ -127,7 +127,7 @@ public class CameraControl : MonoBehaviour {
             _screenMaterial.SetFloat("_Brightness", GameTemp.gameScreen.currScreenColorInfo.brightness);  // 亮度
             _screenMaterial.SetFloat("_Saturation", GameTemp.gameScreen.currScreenColorInfo.saturation);    // 饱和度
             _screenMaterial.SetFloat("_Contrast", GameTemp.gameScreen.currScreenColorInfo.contrast);      // 对比度
-            _screenMaterial.SetInt("_Hue", GameTemp.gameScreen.currScreenColorInfo.hue);  // 色调0~360
+			_screenMaterial.SetInt("_Hue", (int)GameTemp.gameScreen.currScreenColorInfo.hue);  // 色调0~360
             Graphics.Blit(src, dest, _screenMaterial);
         } else {
             //直接绘制

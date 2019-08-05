@@ -39,7 +39,7 @@ public class GameScreen {
         /// <summary>
         /// 色调
         /// </summary>
-        public int hue = 0;
+        public float hue = 0f; // 0~360
     }
 
     /// <summary>

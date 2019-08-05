@@ -29,7 +29,6 @@ public class MapExInfo : MonoBehaviour {
         public int speedY;
     }
     // 显示名称
-	[EnumAttirbute("地图名")]
     public string showName = "";
 	// 雾图形
     public Fog[] fogs;
