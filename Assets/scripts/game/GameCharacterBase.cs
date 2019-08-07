@@ -662,10 +662,12 @@ public class GameCharacterBase
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_CHANGE_GRAPHIC:
                     this.characterName = cmd.args[0];
-                    this.originalPattern = 1;
+					this.originalPattern = 1;
+					this.isDirty = true;
                     break;
-                case GameInterpreter.MoveRoute.Cmd.ROUTE_CHANGE_OPACITY:
-                    this.opacity = int.Parse(cmd.args[0]);
+				case GameInterpreter.MoveRoute.Cmd.ROUTE_CHANGE_OPACITY:
+					this.opacity = int.Parse(cmd.args[0]);
+					this.isDirty = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_CHANGE_BLENDING:
                     //@blend_type = params[0]
