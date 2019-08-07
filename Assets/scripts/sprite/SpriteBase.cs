@@ -36,7 +36,8 @@ public class SpriteBase : MonoBehaviour {
 				} else {	// 显示下一帧
 					if (info.animFrame % this.animRate() == 0) {
 						SpriteRenderer sr = animObj.GetComponent<SpriteRenderer>();
-						sr.sprite = info.animSprites[info.animFrame / this.animRate()];
+						Debug.Log(string.Format("anime {0}, frame {1}, total frames {2}", i, info.animFrame / this.animRate(), info.animSprites.Length));
+						sr.sprite = info.animSprites[(info.animFrame - 1) / this.animRate()];
 					}
 				}
 			}

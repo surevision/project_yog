@@ -101,7 +101,14 @@ public class WindowChoice : WindowBase {
             // 未显示完
             if (InputManager.isTrigger(InputManager.GameKey.C)) {
                 this.showIndex = this.richText.contents.Count;  // 快速显示
-                this.finished = true;
+				this.finished = true;
+				for (int i = 0; i < this.choices.Count; i += 1) {
+					if (this.choiceItems[i]) {
+						this.choiceItems[i].SetActive(true);
+						this.choiceItems[i].transform.localScale = new Vector3(1, 1, this.choiceItems[i].transform.localScale.z);
+					}
+				}
+				this.waitCount = 1;
             }
             if (this.waitCount > 0 && !this.finished) {
                 this.waitCount -= 1;    // 执行等待
