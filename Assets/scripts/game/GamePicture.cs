@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[XLua.LuaCallCSharp]
 [Serializable]
 public class GamePicture {
 	// 属性

@@ -35,3 +35,5 @@ Materials
 *.sav
 
 build/
+Gen.meta
+Gen

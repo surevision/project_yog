@@ -371,6 +371,7 @@ public class SceneMap : SceneBase {
 	/// </summary>
 	/// <param name="picture"></param>
 	public void attachPicImage(GamePicture picture) {
+		Debug.Log(string.Format("attach pic {0}", picture.picName));
 		GameObject picImage = new GameObject();
 		Image img = picImage.AddComponent<Image>();
 		Sprite sprite = Resources.Load<Sprite>(string.Format("graphics/pictures/{0}", picture.picName));
