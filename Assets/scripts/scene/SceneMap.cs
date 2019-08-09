@@ -376,8 +376,8 @@ public class SceneMap : SceneBase {
 		Image img = picImage.AddComponent<Image>();
 		Sprite sprite = Resources.Load<Sprite>(string.Format("graphics/pictures/{0}", picture.picName));
 		img.sprite = sprite;
-		img.GetComponent<RectTransform>().sizeDelta = new Vector2(sprite.bounds.extents.x * sprite.pixelsPerUnit, 
-																	sprite.bounds.extents.y * sprite.pixelsPerUnit);
+		Debug.Log(string.Format("pic size: {0}, {1}", sprite.textureRect.width, sprite.textureRect.height));
+		img.GetComponent<RectTransform>().sizeDelta = new Vector2(sprite.textureRect.width, sprite.textureRect.height);
 		img.transform.position = new Vector3(picture.x, picture.y, picture.num);
 		img.color = new Color(
 			1.0f,
