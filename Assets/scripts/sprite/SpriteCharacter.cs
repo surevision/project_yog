@@ -53,6 +53,17 @@ public class SpriteCharacter : SpriteBase {
                 this.character.opacity / 255.0f
                 );
 		}
+		// 强制层级设置（角色之上 角色之下）
+		if (this.character.GetType() == typeof(GameEvent)) {
+			if (this.character.priorityType == GameCharacterBase.PRIORITIES.BELOW) {
+				// 角色之下
+				this.GetComponent<SpriteRenderer>().sortingOrder = 190;
+			}
+			if (this.character.priorityType == GameCharacterBase.PRIORITIES.UPPER) {
+				// 角色之下
+				this.GetComponent<SpriteRenderer>().sortingOrder = 210;
+			}
+		}
 		this.transform.position = new Vector3(this.character.screenX(), this.character.screenY(), this.character.screenY());
     }
 

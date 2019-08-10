@@ -69,10 +69,9 @@ MonoBehaviour:
     angle: 0
     direction: 2
     pattern: 1
-    priorityType: 0
+    priorityType: 1
     through: 0
-    animationId: -1
-    balloonId: -1
+    loopAnimNames: []
     transparent: 0
     isDirty: 0
 --- !u!212 &212349155828965428

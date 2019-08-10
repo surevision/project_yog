@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 4157177776727554}
   - component: {fileID: 114453304236760490}
   m_Layer: 0
-  m_Name: "\u573A\u6240\u79FB\u52A8: MapAltar, -2, -9, 8, 30, 1"
+  m_Name: "\u573A\u6240\u79FB\u52A8: MapAltar, -2, -10, 8, 30, 1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 4142118753397708}
   - component: {fileID: 114180179797670134}
   m_Layer: 0
-  m_Name: "\u573A\u6240\u79FB\u52A8: MapAltar, -2, -9, 8, 30, 1"
+  m_Name: "\u573A\u6240\u79FB\u52A8: MapAltar, -2, -10, 8, 30, 1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,7 +1029,7 @@ GameObject:
   - component: {fileID: 4222130899303678}
   - component: {fileID: 114385189009233226}
   m_Layer: 0
-  m_Name: "\u573A\u6240\u79FB\u52A8: MapAltar, -2, -9, 8, 30, 1"
+  m_Name: "\u573A\u6240\u79FB\u52A8: MapAltar, -2, -10, 8, 30, 1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2361,7 +2361,7 @@ MonoBehaviour:
   _args:
   - MapAltar
   - -2
-  - -9
+  - -10
   - 8
   - 30
   - 1
@@ -2730,7 +2730,7 @@ MonoBehaviour:
   _args:
   - MapAltar
   - -2
-  - -9
+  - -10
   - 8
   - 30
   - 1
@@ -2805,7 +2805,7 @@ MonoBehaviour:
   _args:
   - MapAltar
   - -2
-  - -9
+  - -10
   - 8
   - 30
   - 1

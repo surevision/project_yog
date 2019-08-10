@@ -881,7 +881,10 @@ public class GameInterpreter {
     /// <returns></returns>
     public bool command_moveByRoute() {
 
-        XLua.LuaTable scriptEnv = LuaManager.getInterpreterEnvTable(this);
+		XLua.LuaTable scriptEnv = LuaManager.getInterpreterEnvTable(this);
+
+		Debug.Log("route:");
+		Debug.Log(this.currentParam[0]);
 
         object[] result = LuaManager.LuaEnv.DoString(this.currentParam[0], string.Format("command_move_by_route_{0}", this.eventId), scriptEnv);
 
