@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 4267445257212482}
   - component: {fileID: 114522802688265192}
   m_Layer: 0
-  m_Name: "\u663E\u793A\u6587\u7AE0: $c<3>[\u6211]$c<0>\u554A\u771F\u662F\u7684\u3002"
+  m_Name: "\u663E\u793A\u6587\u7AE0: $c<3>[\u6211]$c<0>\u771F\u662F\u7684\u2026\u2026"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1397,7 +1397,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114135894537867334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1428,8 +1430,7 @@ MonoBehaviour:
     pattern: 1
     priorityType: 0
     through: 0
-    animationId: -1
-    balloonId: -1
+    loopAnimNames: []
     transparent: 0
     isDirty: 0
 --- !u!114 &114152342082783348
@@ -1533,8 +1534,7 @@ MonoBehaviour:
     pattern: 1
     priorityType: 0
     through: 0
-    animationId: -1
-    balloonId: -1
+    loopAnimNames: []
     transparent: 0
     isDirty: 0
 --- !u!114 &114221392043480998
@@ -1724,7 +1724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _code: 101
   _args:
-  - "$c<3>[\u6211]$c<0>\n\u554A\u771F\u662F\u7684\u3002"
+  - "$c<3>[\u6211]$c<0>\n\u771F\u662F\u7684\u2026\u2026"
 --- !u!114 &114528153849677024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1750,7 +1750,9 @@ MonoBehaviour:
   walkAnime: 0
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114575265910400306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1826,7 +1828,9 @@ MonoBehaviour:
   walkAnime: 0
   stepAnime: 1
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114662962888598626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1942,7 +1946,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114973022213962028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2022,8 +2028,7 @@ MonoBehaviour:
     pattern: 1
     priorityType: 0
     through: 0
-    animationId: -1
-    balloonId: -1
+    loopAnimNames: []
     transparent: 0
     isDirty: 0
 --- !u!212 &212042984850953290

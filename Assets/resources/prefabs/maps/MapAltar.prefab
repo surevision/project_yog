@@ -6399,7 +6399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _code: 209
   _args:
-  - "local result = {\r\n\tCS.GameInterpreter.MoveRoute(\r\n\t\tCS.GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_DOWN\r\n\t),\r\n}\r\n\t\r\nreturn
+  - "local result = {\r\n\tCS.GameInterpreter.MoveRoute(\r\n\t\tCS.GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_DOWN\r\n\t),\r\n\tCS.GameInterpreter.MoveRoute(\r\n\t\tCS.GameInterpreter.MoveRoute.Cmd.ROUTE_MOVE_DOWN\r\n\t),\r\n}\r\n\t\r\nreturn
     result"
   - 0
   - true
