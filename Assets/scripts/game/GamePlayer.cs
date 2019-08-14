@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 
 [Serializable]
+[XLua.LuaCallCSharp]
 public class GamePlayer : GameCharacterBase {
 
 	protected override float getMoveSpeed() {

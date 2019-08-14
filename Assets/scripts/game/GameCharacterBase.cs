@@ -9,7 +9,8 @@ using UnityEditor;
 [Serializable]
 public class GameCharacterBase
 {
-    [Serializable]
+	[Serializable]
+	[XLua.LuaCallCSharp]
     public enum DIRS
     {
         NONE = 0,
@@ -625,7 +626,7 @@ public class GameCharacterBase
                     //$game_switches[params[0]] = false
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_CHANGE_SPEED:
-                    //@move_speed = params[0]
+					this.moveSpeed = int.Parse(cmd.args[0]);
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_CHANGE_FREQ:
                     //@move_frequency = params[0]
@@ -737,6 +738,19 @@ public class GameCharacterBase
 	/// <param name="animName">Animation name.</param>
 	public virtual void stopLoopAnim(string animName) {
 		this.loopAnimNames.Remove(animName);
+	}
+
+	/// <summary>
+	/// 是否和事件碰撞
+	/// </summary>
+	/// <returns><c>true</c>, if hitting char was ised, <c>false</c> otherwise.</returns>
+	/// <param name="character">Character.</param>
+	public virtual bool isHittingChar(GameCharacterBase character) {
+		Intersection.Polygon eventCollider = character.currCollider();
+		if (Intersection.polygonPolygon(eventCollider, this.currCollider())) {
+			return true;
+		}
+		return false;
 	}
 
     public override string ToString() {
