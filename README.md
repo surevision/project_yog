@@ -60,6 +60,8 @@ Unity3D 引擎学习中，尝试制作一个简单的日式 RPG 恐解框架，�
 
 ![截图](./doc/img/5.png)
 
+![截图](./doc/img/6.png)
+
 </details>
 
 # 素材来源
