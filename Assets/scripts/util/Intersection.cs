@@ -39,6 +39,13 @@ public class Intersection {
         }
     }
 
+	/// <summary>
+	/// 平移
+	/// </summary>
+	/// <returns>The move.</returns>
+	/// <param name="polygon">Polygon.</param>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="y">The y coordinate.</param>
     public static Polygon polygonMove(Polygon polygon, float x, float y) {
         Polygon newPolygon = new Polygon();
         for (int i = 0; i < polygon.points.Count; i += 1) {
@@ -47,6 +54,58 @@ public class Intersection {
         }
         return newPolygon;
     }
+
+	/// <summary>
+	/// 以中心为锚点缩放
+	/// </summary>
+	/// <returns>The scale.</returns>
+	/// <param name="polygon">Polygon.</param>
+	/// <param name="scaleRate">Scale rate.</param>
+	public static Polygon polygonScale(Polygon polygon, float scaleRate) {
+		Polygon newPolygon = new Polygon();
+		// 计算多边形范围
+		float left = polygon.points[0].x;
+		float top = polygon.points[0].y;
+		float right = polygon.points[0].x;
+		float down = polygon.points[0].y;
+		float x = left;
+		float y = top;
+		float w = right - left;
+		float h = top - down;
+		foreach (Vector2 point in polygon.points) {
+			if (point.x < left) {
+				left = point.x;
+			}
+			if (point.x > right) {
+				right = point.x;
+			}
+			if (point.y < down) {
+				down = point.y;
+			}
+			if (point.y > top) {
+				top = point.y;
+			}
+		}
+		x = left;
+		y = top;
+		w = right - left;
+		h = top - down;
+
+		for (int i = 0; i < polygon.points.Count; i += 1) {
+			Vector2 point = new Vector2(polygon.points[i].x, polygon.points[i].y);
+			// 平移坐标到左上为原点
+			point.x += -x;
+			point.y += -y;
+			// 缩放坐标
+			point.x *= scaleRate;
+			point.y *= scaleRate;
+			// 平移还原为缩放后坐标
+			point.x += x + w / 4;
+			point.y += y - h / 4;
+			newPolygon.points.Add(point);
+		}
+		return newPolygon;
+	}
 
     /// <summary>
     /// 计算两个数字是否接近相等,阈值是dvalue

@@ -108,6 +108,10 @@ public class GameCharacterBase
         return Intersection.polygonMove(this.colliderPolygon, this.realX, this.realY);
     }
 
+	public Intersection.Polygon currMidCollider() {
+		return Intersection.polygonScale(this.currCollider(), 0.5f);
+	}
+
 	protected virtual float getMoveSpeed() {
 		return this.moveSpeed;
 	}
