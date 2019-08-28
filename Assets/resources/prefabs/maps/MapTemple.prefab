@@ -7285,8 +7285,8 @@ MonoBehaviour:
   _args:
   - "local result = false\r\nlocal charId = 3\nlocal event = self:getCharacter(charId)\r\nfor
     i = 4, 8 do\r\n    local char = self:getCharacter(i)\r\n    if char.direction
-    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isOverChar(char) then\r\n        result = true\r\n
-    \       break\r\n    end\r\nend\r\nreturn result"
+    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isOverChar(char) then\r\n
+    \       result = true\r\n        break\r\n    end\r\nend\r\nreturn result"
 --- !u!114 &114346507909172406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7805,7 +7805,7 @@ MonoBehaviour:
   pattern: 1
   priorityType: 1
   through: 0
-  moveSpeed: 4
+  moveSpeed: 3
   moveFrequency: 0
   walkAnime: 1
   stepAnime: 1
@@ -8034,8 +8034,8 @@ MonoBehaviour:
   _args:
   - "local result = false\r\nlocal charId = 1\r\nlocal event = self:getCharacter(charId)\r\nfor
     i = 4, 8 do\r\n    local char = self:getCharacter(i)\r\n    if char.direction
-    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isOverChar(char) then\r\n        result = true\r\n
-    \       break\r\n    end\r\nend\r\nreturn result"
+    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isOverChar(char) then\r\n
+    \       result = true\r\n        break\r\n    end\r\nend\r\nreturn result"
 --- !u!114 &114469817888462754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8195,7 +8195,7 @@ MonoBehaviour:
   pattern: 1
   priorityType: 1
   through: 0
-  moveSpeed: 4
+  moveSpeed: 3
   moveFrequency: 0
   walkAnime: 1
   stepAnime: 1
@@ -10049,8 +10049,8 @@ MonoBehaviour:
   _args:
   - "local result = false\r\nlocal charId = 2\nlocal event = self:getCharacter(charId)\r\nfor
     i = 4, 8 do\r\n    local char = self:getCharacter(i)\r\n    if char.direction
-    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isOverChar(char) then\r\n        result = true\r\n
-    \       break\r\n    end\r\nend\r\nreturn result"
+    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isOverChar(char) then\r\n
+    \       result = true\r\n        break\r\n    end\r\nend\r\nreturn result"
 --- !u!114 &114927469083818148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10103,7 +10103,7 @@ MonoBehaviour:
   pattern: 1
   priorityType: 1
   through: 0
-  moveSpeed: 4
+  moveSpeed: 3
   moveFrequency: 0
   walkAnime: 1
   stepAnime: 1

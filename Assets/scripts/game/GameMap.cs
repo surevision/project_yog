@@ -388,17 +388,17 @@ public class GameMap {
         }
         // 检测事件通行
         character.lastHit.Clear();
-        foreach (GameEvent e in this.events) {
-            Intersection.Polygon eventCollider = e.currCollider();
-            if (e.through == false && Intersection.polygonPolygon(eventCollider, polygon)) {
-                if (character != null && character != e && !e.erased && !character.lastHit.Contains(e)) {
-                    character.lastHit.Add(e);
+		foreach (GameEvent e in this.events) {
+			Intersection.Polygon eventCollider = e.currCollider();
+			if (e.through == false && Intersection.polygonPolygon(eventCollider, polygon)) {
+				if (character != null && character != e && !e.erased && !character.lastHit.Contains(e)) {
+					character.lastHit.Add(e);
 				}
 
 				if (character.GetType() == typeof(GameEvent)) {
 					GameEvent eChar = (GameEvent)character;
 					if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && e.isPageActive() && character != e &&
-					    !eChar.erased && !eChar.through && eChar.priorityType == GameCharacterBase.PRIORITIES.SAME) {
+						!eChar.erased && !eChar.through && eChar.priorityType == GameCharacterBase.PRIORITIES.SAME) {
 						return false;
 					}
 				} else {
@@ -406,7 +406,7 @@ public class GameMap {
 						return false;
 					}
 				}
-            }
+			}
         }
 		// 检查事件碰到主角
 		if (character.GetType() == typeof(GameEvent)) {
@@ -426,6 +426,36 @@ public class GameMap {
 		}
         return true;
     }
+
+	/// <summary>
+	/// 判定是否对于其他事件可通行，会处理事件的目标位置
+	/// </summary>
+	/// <returns><c>true</c>, if pre passable was ised, <c>false</c> otherwise.</returns>
+	/// <param name="polygon">Polygon.</param>
+	/// <param name="character">Character.</param>
+	public bool isPreOtherEventsPassable(Intersection.Polygon polygon, GameCharacterBase character) {
+		if (character.through) {
+			return true;
+		}
+		// 检测事件通行
+		foreach (GameEvent e in this.events) {
+			Intersection.Polygon eventTargetCollider = e.targetCollider();
+			if (e.through == false && Intersection.polygonPolygon(eventTargetCollider, polygon)) {
+				if (character.GetType() == typeof(GameEvent)) {
+					GameEvent eChar = (GameEvent)character;
+					if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && e.isPageActive() && character != e &&
+						!eChar.erased && !eChar.through && eChar.priorityType == GameCharacterBase.PRIORITIES.SAME) {
+						return false;
+					}
+				} else {
+					if (!e.erased && !e.through && e.priorityType == GameCharacterBase.PRIORITIES.SAME && e.isPageActive() && character != e) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
 
 	/// <summary>
 	/// 根据编号取gamePlayer/gameEvent

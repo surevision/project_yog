@@ -104,10 +104,21 @@ public class GameCharacterBase
     public virtual void setupCollider(SpriteCharacter sprite) {
     }
 
+	/// <summary>
+	/// 当前位置碰撞盒
+	/// </summary>
+	/// <returns>The collider.</returns>
     public Intersection.Polygon currCollider() {
         return Intersection.polygonMove(this.colliderPolygon, this.realX, this.realY);
     }
 
+	/// <summary>
+	/// 目标位置碰撞盒
+	/// </summary>
+	/// <returns>The collider.</returns>
+	public Intersection.Polygon targetCollider() {
+		return Intersection.polygonMove(this.colliderPolygon, this.x, this.y);
+	}
 	/// <summary>
 	/// 取用于判断接近重合的包围盒
 	/// </summary>
@@ -294,7 +305,7 @@ public class GameCharacterBase
         if (dir == DIRS.UP) {
             testPolygon = Intersection.polygonMove(testPolygon, 0, step);
         }
-        return GameTemp.gameMap.isPassable(testPolygon, this);
+		return GameTemp.gameMap.isPassable(testPolygon, this) && GameTemp.gameMap.isPreOtherEventsPassable(testPolygon, this);
     }
 
     /// <summary>
@@ -325,7 +336,7 @@ public class GameCharacterBase
 //        Debug.Log(testPolygon.points[0].y);
 //        Debug.Log(string.Format("GameTemp.gameMap.isPassable(testPolygon, this) {0}, {1}, {2}, {3}, {4}, {5}", 
 //            GameTemp.gameMap.isPassable(testPolygon, this), testPolygon, this.currCollider(), distanceX, distanceY, dir));
-        return GameTemp.gameMap.isPassable(testPolygon, this);
+		return GameTemp.gameMap.isPassable(testPolygon, this) && GameTemp.gameMap.isPreOtherEventsPassable(testPolygon, this);
     }
 
     /// <summary>
