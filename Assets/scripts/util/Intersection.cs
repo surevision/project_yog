@@ -100,8 +100,8 @@ public class Intersection {
 			point.x *= scaleRate;
 			point.y *= scaleRate;
 			// 平移还原为缩放后坐标
-			point.x += x + w / 4;
-			point.y += y - h / 4;
+			point.x += x + w / 2 * scaleRate;
+			point.y += y - h / 2 * scaleRate;
 			newPolygon.points.Add(point);
 		}
 		return newPolygon;

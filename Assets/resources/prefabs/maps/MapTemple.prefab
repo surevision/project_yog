@@ -7285,7 +7285,7 @@ MonoBehaviour:
   _args:
   - "local result = false\r\nlocal charId = 3\nlocal event = self:getCharacter(charId)\r\nfor
     i = 4, 8 do\r\n    local char = self:getCharacter(i)\r\n    if char.direction
-    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isHittingChar(char) then\r\n        result = true\r\n
+    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isOverChar(char) then\r\n        result = true\r\n
     \       break\r\n    end\r\nend\r\nreturn result"
 --- !u!114 &114346507909172406
 MonoBehaviour:
@@ -8034,7 +8034,7 @@ MonoBehaviour:
   _args:
   - "local result = false\r\nlocal charId = 1\r\nlocal event = self:getCharacter(charId)\r\nfor
     i = 4, 8 do\r\n    local char = self:getCharacter(i)\r\n    if char.direction
-    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isHittingChar(char) then\r\n        result = true\r\n
+    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isOverChar(char) then\r\n        result = true\r\n
     \       break\r\n    end\r\nend\r\nreturn result"
 --- !u!114 &114469817888462754
 MonoBehaviour:
@@ -9500,7 +9500,7 @@ MonoBehaviour:
   _code: 111
   _args:
   - "local result = false\r\nfor i = 4, 8 do\r\n    local char = self:getCharacter(i)\r\n
-    \   if char.direction == CS.GameCharacterBase.DIRS.UP and \r\n            CS.GameTemp.gamePlayer:isHittingChar(char)
+    \   if char.direction == CS.GameCharacterBase.DIRS.UP and \r\n            CS.GameTemp.gamePlayer:isOverChar(char)
     then\r\n        result = true\r\n        break\r\n    end\r\nend\r\nreturn result"
 --- !u!114 &114816388610275734
 MonoBehaviour:
@@ -10049,7 +10049,7 @@ MonoBehaviour:
   _args:
   - "local result = false\r\nlocal charId = 2\nlocal event = self:getCharacter(charId)\r\nfor
     i = 4, 8 do\r\n    local char = self:getCharacter(i)\r\n    if char.direction
-    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isHittingChar(char) then\r\n        result = true\r\n
+    == CS.GameCharacterBase.DIRS.UP and \r\n            event:isOverChar(char) then\r\n        result = true\r\n
     \       break\r\n    end\r\nend\r\nreturn result"
 --- !u!114 &114927469083818148
 MonoBehaviour:

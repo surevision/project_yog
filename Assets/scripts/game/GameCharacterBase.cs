@@ -108,8 +108,13 @@ public class GameCharacterBase
         return Intersection.polygonMove(this.colliderPolygon, this.realX, this.realY);
     }
 
-	public Intersection.Polygon currMidCollider() {
-		return Intersection.polygonScale(this.currCollider(), 0.5f);
+	/// <summary>
+	/// 取用于判断接近重合的包围盒
+	/// </summary>
+	/// <returns>The middle collider.</returns>
+	/// <param name="scaleRate">Scale rate.</param>
+	public Intersection.Polygon currMidCollider(float scaleRate = 0.5f) {
+		return Intersection.polygonScale(this.currCollider(), scaleRate);
 	}
 
 	protected virtual float getMoveSpeed() {
@@ -745,7 +750,7 @@ public class GameCharacterBase
 	}
 
 	/// <summary>
-	/// 是否和事件碰撞
+	/// 是否和人物碰撞
 	/// </summary>
 	/// <returns><c>true</c>, if hitting char was ised, <c>false</c> otherwise.</returns>
 	/// <param name="character">Character.</param>
@@ -757,6 +762,18 @@ public class GameCharacterBase
 		return false;
 	}
 
+	/// <summary>
+	/// 是否和人物重合
+	/// </summary>
+	/// <returns><c>true</c>, if over char, <c>false</c> otherwise.</returns>
+	/// <param name="character">Character.</param>
+	public virtual bool isOverChar(GameCharacterBase character) {
+		Intersection.Polygon eventCollider = character.currMidCollider();
+		if (Intersection.polygonPolygon(eventCollider, this.currMidCollider())) {
+			return true;
+		}
+		return false;
+	}
     public override string ToString() {
         return base.ToString() + " \r\n" +
             "x " + this.x.ToString() + " \r\n" +
