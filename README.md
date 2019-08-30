@@ -6,7 +6,7 @@ Unity3D 引擎学习中，尝试制作一个简单的日式 RPG 恐解框架，�
 
 # 剧情进度：
 
-- [ ] STAFF liebiao
+- [ ] STAFF 列表
 
 - [ ] 通关对话
 
