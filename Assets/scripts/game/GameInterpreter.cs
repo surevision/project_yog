@@ -1111,4 +1111,11 @@ public class GameInterpreter {
         return true;
     }
 
+	/// <summary>
+	/// Gotos the title.
+	/// </summary>
+	public void gotoTitle() {
+		SceneManager.gotoScene("Title");
+	}
+
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[XLua.LuaCallCSharp]
 public class InputManager {
     public enum GameKey {
         NONE = -1,
