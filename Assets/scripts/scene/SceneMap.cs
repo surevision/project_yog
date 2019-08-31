@@ -225,7 +225,7 @@ public class SceneMap : SceneBase {
         // 刷新选择项
         windowChoice.update();
 
-        if (debug) {
+		#if UNITY_EDITOR
             Intersection.Polygon testPolygon = GameTemp.gamePlayer.currCollider();
             Vector2 start = testPolygon.points[0];
             foreach (Vector2 point in testPolygon.points) {
@@ -292,7 +292,7 @@ public class SceneMap : SceneBase {
 					new Vector3(end.x, end.y, this.player.transform.position.z), Color.green);
 
             }
-        }
+		#endif
     }
 
     protected override void updateLogic() {
@@ -326,11 +326,11 @@ public class SceneMap : SceneBase {
             GameTemp.gameScreen.toggleView();
         }
 
-        if (debug) {
+		#if UNITY_EDITOR
             if (InputManager.isTrigger(InputManager.GameKey.F9)) {
                 this.uiSetMessenger.switchToUI("save");
             }
-        }
+		#endif
     }
 
     protected override void updateAfterFrame() {

@@ -957,7 +957,7 @@ MonoBehaviour:
   activeSwitches: []
   activeSelfSwitches: []
   trigger: 1
-  characterName: $chara
+  characterName:  
   direction: 2
   pattern: 2
   priorityType: 0

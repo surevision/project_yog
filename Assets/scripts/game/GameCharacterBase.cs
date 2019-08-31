@@ -676,10 +676,12 @@ public class GameCharacterBase
                     this.through = false;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TRANSPARENT_ON:
-                    this.transparent = true;
+					this.transparent = true;
+					this.isDirty = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_TRANSPARENT_OFF:
-                    this.transparent = false;
+					this.transparent = false;
+					this.isDirty = true;
                     break;
                 case GameInterpreter.MoveRoute.Cmd.ROUTE_CHANGE_GRAPHIC:
                     this.characterName = cmd.args[0];

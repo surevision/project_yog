@@ -47,10 +47,10 @@ public class SpriteCharacter : SpriteBase {
         this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, this.character.angle));
         if (this.character.isDirty) {
             this.GetComponent<SpriteRenderer>().color = new Color(
-                this.GetComponent<SpriteRenderer>().color.r,
-                this.GetComponent<SpriteRenderer>().color.g,
-                this.GetComponent<SpriteRenderer>().color.b,
-                this.character.opacity / 255.0f
+	                this.GetComponent<SpriteRenderer>().color.r,
+	                this.GetComponent<SpriteRenderer>().color.g,
+	                this.GetComponent<SpriteRenderer>().color.b,
+				(this.character.transparent ? 0 : this.character.opacity / 255.0f)
                 );
 		}
 		// 强制层级设置（角色之上 角色之下）
