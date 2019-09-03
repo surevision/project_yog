@@ -6,13 +6,20 @@ Unity3D 引擎学习中，尝试制作一个简单的日式 RPG 恐解框架，�
 
 # 剧情进度：
 
-- [ ] 音乐音效
+完成。
+
+<details>
+<summary><mark><font color=darkred>历史进度</font></mark></summary>
+
+- [x] 音乐音效
 
 - [x] STAFF 列表
 
 - [x] 通关对话
 
 - [x] 最终追逐战，效率优化中。
+
+</details>
 
 # 已完成的事件解释器功能：
 
