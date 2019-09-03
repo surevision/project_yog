@@ -48,7 +48,7 @@ public class EventCommand : MonoBehaviour {
             {GameInterpreter.CommandTypes.ErasePic,"消除图片"},
             {GameInterpreter.CommandTypes.ChangeScreenColor,"更改画面色调"},
 			{GameInterpreter.CommandTypes.PlayBGM,"播放BGM"},
-            {GameInterpreter.CommandTypes.FadeoutBGM,"淡出BGM"},
+            {GameInterpreter.CommandTypes.StopBGM,"停止BGM"},
             {GameInterpreter.CommandTypes.PlaySE,"播放SE"},
             {GameInterpreter.CommandTypes.StopSE,"停止SE"},
             {GameInterpreter.CommandTypes.ShowMapName,"开启/关闭地图名"},

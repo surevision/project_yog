@@ -36,7 +36,8 @@ public class AudioManager {
     /// 播放bgm
     /// </summary>
     /// <param name="name"></param>
-    public static void PlayBGM(string name) {
+	public static void PlayBGM(string name, int volume = 100) {
+		nodeBGM.GetComponent<AudioSource>().volume = volume / 100.0f;
         if (name.Equals(playingBgm)) {
             return;
         }
@@ -46,7 +47,7 @@ public class AudioManager {
         nodeBGM.GetComponent<AudioSource>().Stop();
         nodeBGM.GetComponent<AudioSource>().clip = clip;
         nodeBGM.GetComponent<AudioSource>().PlayDelayed(0);
-    }
+	}
     public static void StopBGM() {
         playingBgm = "";
         nodeBGM.GetComponent<AudioSource>().Stop();

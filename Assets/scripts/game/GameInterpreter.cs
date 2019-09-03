@@ -91,7 +91,7 @@ public class GameInterpreter {
 		[EnumAttirbute("播放BGM")]
 		PlayBGM = 241,                  // 播放BGM
 		[EnumAttirbute("淡出BGM")]
-		FadeoutBGM = 242,               // 淡出BGM
+		StopBGM = 242,               	// 停止BGM
 		[EnumAttirbute("播放SE")]
 		PlaySE = 250,                   // 播放SE
 		[EnumAttirbute("停止SE")]
@@ -554,7 +554,10 @@ public class GameInterpreter {
                     return this.command_changeScreenColor();
 				case CommandTypes.PlayBGM: // 241 播放bgm
                     Debug.Log(string.Format("CommandTypes.PlayBGM", this.currentParam));
-                    return this.command_play_bgm();
+					return this.command_play_bgm();
+				case CommandTypes.StopBGM: // 242 淡出（停止）bgm
+					Debug.Log(string.Format("CommandTypes.StopBGM", this.currentParam));
+					return this.command_stop_bgm();
                 case CommandTypes.PlaySE: // 250 播放se
                     Debug.Log(string.Format("CommandTypes.PlaySE", this.currentParam));
                     return this.command_play_se();
@@ -1053,14 +1056,25 @@ public class GameInterpreter {
         return true;
     }
 
-    /// <summary>
-    ///  241 播放bgm
-    ///  文件名
-    /// </summary>
-    public bool command_play_bgm() {
-        AudioManager.PlayBGM(this.currentParam[0]);
-        return true;
-    }
+	/// <summary>
+	///  241 播放bgm
+	///  文件名
+	/// </summary>
+	public bool command_play_bgm() {
+		GameTemp.bgmName = this.currentParam[0];
+		AudioManager.PlayBGM(this.currentParam[0]);
+		return true;
+	}
+
+	/// <summary>
+	///  242 停止bgm
+	///  文件名
+	/// </summary>
+	public bool command_stop_bgm() {
+		GameTemp.bgmName = "";
+		AudioManager.StopBGM();
+		return true;
+	}
 
     /// <summary>
     ///  250 播放se

@@ -17,6 +17,7 @@ public class GameTemp {
     public static GameParty gameParty = null;
     public static GameMessage gameMessage = null;
     public static GameChoice gameChoice = null;
+	public static string bgmName = "";
 
     // 运行时临时数据
     public static bool transforming = false;    // 场所移动中

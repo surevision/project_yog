@@ -73,7 +73,7 @@ public class SceneMap : SceneBase {
             loadMap(GameTemp.startMapName);
         } else {
             // 读取游戏
-            loadMap(GameTemp.gameMap.mapName, true);
+			loadMap(GameTemp.gameMap.mapName, true);
         }
 
     }
@@ -102,6 +102,9 @@ public class SceneMap : SceneBase {
         if (isLoad) {
             this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
 			GameTemp.gamePlayer.loadInitSprite();
+			if (!"".Equals(GameTemp.bgmName)) {
+				AudioManager.PlayBGM(GameTemp.bgmName);
+			}
         } else {
             if (GameTemp.gamePlayer == null) {  // 起始地图
                 // 根据prefab初始化角色
@@ -467,24 +470,29 @@ public class SceneMap : SceneBase {
 		if ("menu".Equals(uiSetName)) {
 			// 菜单
 			this.uiSet = new UISetMenu(this.uiSetMessenger);
-            this.uiSet.start();
-        } else if ("item".Equals(uiSetName)) {
-            // 物品
-            this.uiSet = new UISetItem(this.uiSetMessenger);
-            this.uiSet.start();
-        } else if ("load".Equals(uiSetName)) {
-            // 读档
-            this.uiSet = new UISetLoad(this.uiSetMessenger);
-            this.uiSet.start();
-        } else if ("save".Equals(uiSetName)) {
-            // 存档
-            this.uiSet = new UISetSave(this.uiSetMessenger);
-            ((UISetSave)this.uiSet).fromMap = "map".Equals(args);
-            this.uiSet.start();
+			this.uiSet.start();
+		} else if ("item".Equals(uiSetName)) {
+			// 物品
+			this.uiSet = new UISetItem(this.uiSetMessenger);
+			this.uiSet.start();
+		} else if ("load".Equals(uiSetName)) {
+			// 读档
+			this.uiSet = new UISetLoad(this.uiSetMessenger);
+			this.uiSet.start();
+		} else if ("save".Equals(uiSetName)) {
+			// 存档
+			this.uiSet = new UISetSave(this.uiSetMessenger);
+			((UISetSave)this.uiSet).fromMap = "map".Equals(args);
+			this.uiSet.start();
 		} else if ("gameover".Equals(uiSetName)) {
 			// GameOver
 			this.uiSet = new UIGameOver(this.uiSetMessenger);
-			this.uiSet.start();
+			this.uiSet.start(); 
+		} else if ("title".Equals(uiSetName)) {
+			// title
+			AudioManager.StopBGM();
+			AudioManager.StopBGS();
+			SceneManager.gotoScene("Title");
 		} else {
 			// 关闭ui
 			this.uiSet = null;

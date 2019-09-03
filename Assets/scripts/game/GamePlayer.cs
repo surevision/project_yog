@@ -48,9 +48,13 @@ public class GamePlayer : GameCharacterBase {
             this.updateAnimePattern();  // 改图
             this.animeCount = 0;
             this.isDirty = true;
-            if (this.pattern == 2) {
+			if (this.pattern == 2 || this.pattern == 0) {
                 // 脚步声
-                AudioManager.PlaySE("step");
+				if (this.getMoveSpeed() > 3) {
+					AudioManager.PlaySE("se_maoudamashii_se_footstep01"); // NOTE 配表？
+				} else {
+					AudioManager.PlaySE("se_maoudamashii_se_footstep02"); // NOTE 配表？
+				}
             }
         }
     }

@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1169610840418350}
   m_IsPrefabParent: 1
+--- !u!1 &1006996570177336
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4185411739689542}
+  - component: {fileID: 114237431937533932}
+  m_Layer: 0
+  m_Name: "\u72EC\u7ACB\u5F00\u5173: A, true"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1015452913368766
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +236,7 @@ GameObject:
   - component: {fileID: 4584093129800970}
   - component: {fileID: 114264501469927628}
   m_Layer: 0
-  m_Name: "\u72EC\u7ACB\u5F00\u5173: A, true"
+  m_Name: "\u64AD\u653EBGM: SelfContainedUniverseReprise"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -627,6 +643,19 @@ Transform:
   m_Father: {fileID: 4738655247320734}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4185411739689542
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1006996570177336}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4248589096238758}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4190442939010612
 Transform:
   m_ObjectHideFlags: 1
@@ -653,6 +682,7 @@ Transform:
   - {fileID: 4339603849860432}
   - {fileID: 4015593463518294}
   - {fileID: 4584093129800970}
+  - {fileID: 4185411739689542}
   m_Father: {fileID: 4670991960978994}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1075,7 +1105,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114198762286058024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1101,7 +1133,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114211986372761774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1132,8 +1166,7 @@ MonoBehaviour:
     pattern: 1
     priorityType: 0
     through: 0
-    animationId: -1
-    balloonId: -1
+    loopAnimNames: []
     transparent: 0
     isDirty: 0
 --- !u!114 &114228689644688856
@@ -1155,6 +1188,21 @@ MonoBehaviour:
   - 8
   - 30
   - 1
+--- !u!114 &114237431937533932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1006996570177336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _code: 123
+  _args:
+  - A
+  - true
 --- !u!114 &114264501469927628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1166,10 +1214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c621a332b88ff41880e4c89a3b4aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _code: 123
+  _code: 241
   _args:
-  - A
-  - true
+  - SelfContainedUniverseReprise
 --- !u!114 &114271043466893664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1195,7 +1242,9 @@ MonoBehaviour:
   walkAnime: 0
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 21300002, guid: e7425101f495b7b4f8240e35efbc57df, type: 3}
+  note: 
 --- !u!114 &114364459373708146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1259,8 +1308,7 @@ MonoBehaviour:
     pattern: 1
     priorityType: 0
     through: 0
-    animationId: -1
-    balloonId: -1
+    loopAnimNames: []
     transparent: 0
     isDirty: 0
 --- !u!114 &114409970710839210
@@ -1303,7 +1351,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114445376959310906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1330,7 +1380,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114458470075958434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1356,7 +1408,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114490102655281430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1459,8 +1513,7 @@ MonoBehaviour:
     pattern: 1
     priorityType: 0
     through: 0
-    animationId: -1
-    balloonId: -1
+    loopAnimNames: []
     transparent: 0
     isDirty: 0
 --- !u!114 &114589327278212166
@@ -1548,7 +1601,9 @@ MonoBehaviour:
   walkAnime: 1
   stepAnime: 0
   directionFix: 0
+  lightType: 0
   BaseFrame: {fileID: 0}
+  note: 
 --- !u!114 &114844209444055346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1579,8 +1634,7 @@ MonoBehaviour:
     pattern: 1
     priorityType: 0
     through: 0
-    animationId: -1
-    balloonId: -1
+    loopAnimNames: []
     transparent: 0
     isDirty: 0
 --- !u!114 &114868025572750524
@@ -1627,8 +1681,7 @@ MonoBehaviour:
     pattern: 1
     priorityType: 0
     through: 0
-    animationId: -1
-    balloonId: -1
+    loopAnimNames: []
     transparent: 0
     isDirty: 0
 --- !u!114 &114968046773861798

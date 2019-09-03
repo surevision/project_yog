@@ -129,9 +129,11 @@ public class DataManager {
         // GameMap
         offset += flushObjData(GameTemp.gameMap, fs, offset);
         // GamePlayer
-        offset += flushObjData(GameTemp.gamePlayer, fs, offset);
-        // GameParty
-        offset += flushObjData(GameTemp.gameParty, fs, offset);
+		offset += flushObjData(GameTemp.gamePlayer, fs, offset);
+		// GameParty
+		offset += flushObjData(GameTemp.gameParty, fs, offset);
+		// bgm
+		offset += flushObjData(GameTemp.bgmName, fs, offset);
         fs.Close();
     }
 
@@ -239,13 +241,19 @@ public class DataManager {
         offset += 4;
         len = BitConverter.ToInt32(lenBytes, 0);
         GamePlayer gamePlayer = (GamePlayer)loadObjData(fs, offset, len);
-        offset += len;
-        // GameParty
-        fs.Read(lenBytes, 0, 4);
-        offset += 4;
-        len = BitConverter.ToInt32(lenBytes, 0);
-        GameParty gameParty = (GameParty)loadObjData(fs, offset, len);
-        offset += len;
+		offset += len;
+		// GameParty
+		fs.Read(lenBytes, 0, 4);
+		offset += 4;
+		len = BitConverter.ToInt32(lenBytes, 0);
+		GameParty gameParty = (GameParty)loadObjData(fs, offset, len);
+		offset += len;
+		// bgm
+		fs.Read(lenBytes, 0, 4);
+		offset += 4;
+		len = BitConverter.ToInt32(lenBytes, 0);
+		string bgmName = (string)loadObjData(fs, offset, len);
+		offset += len;
         fs.Close();
 
         // 绑定新数据
@@ -258,6 +266,7 @@ public class DataManager {
         GameTemp.gameMap = gameMap;
         GameTemp.gamePlayer = gamePlayer;
         GameTemp.gameParty = gameParty;
+		GameTemp.bgmName = bgmName;
     }
 
     /// <summary>
@@ -291,6 +300,7 @@ public class DataManager {
     public static bool loadAndReStart(int saveNum) {
         try {
             loadGameData(string.Format("save{0}.sav", saveNum));
+			Debug.Log(string.Format("restore bgm {0}", GameTemp.bgmName));
             if (SceneManager.Scene.GetType() == typeof(SceneTitle)) {
                 ((SceneTitle)SceneManager.Scene).startLoadedGame();
             } else {
