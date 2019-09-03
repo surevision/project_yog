@@ -102,9 +102,11 @@ public class SceneMap : SceneBase {
         if (isLoad) {
             this.player.GetComponent<SpritePlayer>().setPlayer(GameTemp.gamePlayer);
 			GameTemp.gamePlayer.loadInitSprite();
-			if (!"".Equals(GameTemp.bgmName)) {
-				AudioManager.PlayBGM(GameTemp.bgmName);
-			}
+            if (!"".Equals(GameTemp.bgmName)) {
+                AudioManager.PlayBGM(GameTemp.bgmName);
+            } else {
+                AudioManager.StopBGM();
+            }
         } else {
             if (GameTemp.gamePlayer == null) {  // 起始地图
                 // 根据prefab初始化角色
